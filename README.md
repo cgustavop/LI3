@@ -5,4 +5,5 @@ Cláudio Bessa        a97063
 Francisco Ribeiro    a96859
 Vasco Oliveira       a96361
 
-https://www.di.uminho.pt/~rcm/aulas/2021/Lab/videos/
+enunciado - https://www.di.uminho.pt/~rcm/aulas/2021/Lab/projeto.pdf
+videos - https://www.di.uminho.pt/~rcm/aulas/2021/Lab/videos/
