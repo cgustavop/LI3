@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['main_1',['main',['../guiao1_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'guiao1.c']]]
+  ['error_1',['error',['../stack_8h.html#a78004f49ac0abc47f858d508c258191e',1,'stack.h']]]
 ];

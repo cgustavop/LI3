@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['guiao1_2ec_0',['guiao1.c',['../guiao1_8c.html',1,'']]]
+  ['clear_0',['clear',['../classStack.html#a9e9b8cf118a2329526d700d093c4f71d',1,'Stack']]]
 ];

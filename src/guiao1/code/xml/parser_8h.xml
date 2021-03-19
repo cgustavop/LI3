@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="parser_8h" kind="file" language="C++">
+    <compoundname>parser.h</compoundname>
+    <includedby refid="main_8c" local="yes">main.c</includedby>
+    <includedby refid="parser_8c" local="yes">parser.c</includedby>
+    <invincdepgraph>
+      <node id="2">
+        <label>main.c</label>
+        <link refid="main_8c"/>
+      </node>
+      <node id="3">
+        <label>parser.c</label>
+        <link refid="parser_8c"/>
+      </node>
+      <node id="1">
+        <label>parser.h</label>
+        <link refid="parser_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="parser_8h_1ab116abcccaf4f52d6bb5f1235d1f7cbd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void parser</definition>
+        <argsstring>(char *line)</argsstring>
+        <name>parser</name>
+        <param>
+          <type>char *</type>
+          <declname>line</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="parser.h" line="1" column="6" declfile="parser.h" declline="1" declcolumn="6"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="parser_8h_1ab116abcccaf4f52d6bb5f1235d1f7cbd" kindref="member">parser</ref>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*line);</highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="parser.h"/>
+  </compounddef>
+</doxygen>

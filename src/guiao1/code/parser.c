@@ -1,11 +1,12 @@
 /**
- * @file Funcão que dizes respeito ao parser
+ * @file Funcão que diz respeito ao parser
  */
 
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
 
 #include "stack.h"
 #include "parser.h"
@@ -29,6 +30,8 @@ int parse(char *line) {
         long val_i = strtol(token, &sobra, 10);
         if(strlen(sobra) == 0) {
             PUSH(val_i);
+
+        // operações básicas
         } else if(strcmp(token, "+") == 0) {
             long Y = POP();
             long X = POP();
@@ -37,6 +40,48 @@ int parse(char *line) {
             long Y = POP();
             long X = POP();
             PUSH(X - Y);
+        } else if(strcmp(token, "*") == 0) {
+            long Y = POP();
+            long X = POP();
+            PUSH(X * Y);
+        } else if(strcmp(token, "/") == 0) {
+            long Y = POP();
+            long X = POP();
+            PUSH(X / Y);
+
+        // incrementação e decrementação
+        } else if(strcmp(token, "(") == 0) {
+            long Y = POP();
+            PUSH(Y++);  
+        } else if(strcmp(token, ")") == 0) {
+            long Y = POP();
+            PUSH(Y--);
+
+        // módulo e exponenciação
+        } else if(strcmp(token, "%") == 0) {
+            long Y = POP();
+            PUSH(abs(Y));
+        } else if(strcmp(token, "#") == 0) {
+            long Y = POP();
+            long X = POP();
+            PUSH(pow(X,Y));
+
+        // tabelas de verdades e bits oriented
+        } else if(strcmp(token, "&") == 0) {
+            long Y = POP();
+            long X = POP();
+            PUSH(X && Y);
+        } else if(strcmp(token, "|") == 0) {
+            long Y = POP();
+            long X = POP();
+            PUSH(X || Y);
+        } else if(strcmp(token, "^") == 0) {
+            long Y = POP();
+            long X = POP();
+            PUSH(X ^ Y);
+        } else if(strcmp(token, "~") == 0) {
+            long Y = POP();
+            PUSH(~ Y);
         }
     }
 
