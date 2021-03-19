@@ -1,0 +1,27 @@
+\hypertarget{guiao1_8c}{}\doxysection{guiao1.\+c File Reference}
+\label{guiao1_8c}\index{guiao1.c@{guiao1.c}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+Include dependency graph for guiao1.\+c\+:
+% FIG 0
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{guiao1_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{guiao1_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}\label{guiao1_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}} 
+\index{guiao1.c@{guiao1.c}!main@{main}}
+\index{main@{main}!guiao1.c@{guiao1.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Esta é a função principal do programa
+
+\begin{DoxyReturn}{Returns}
+o valor 0 
+\end{DoxyReturn}
