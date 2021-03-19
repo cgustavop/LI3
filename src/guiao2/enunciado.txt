@@ -1,0 +1,52 @@
+Guião 2
+Para este guião, o teu programa recebe várias linhas. A primeira linha é o programa e as próximas linhas podem ser lidas com o comando l.
+
+Todos os testes que usarem o comando l irão sempre seguir com uma conversão para inteiro ou float.
+
+Exemplo 1
+Neste exemplo o input tem 3 linhas:
+
+O programa
+A linha que é lida pelo primeiro comando l
+A linha que é lida pelo segundo comando l
+Os dois valores são convertidos em inteiro e somados.
+
+Input
+l i l i +
+2
+3
+Output
+5
+Exemplo 2
+Este input tem 2 linhas (código e linha de input do programa) e calcula a raiz quadrado de um número que foi lido
+
+Input
+l i 0.5 #
+9
+Output
+3
+Exemplo 3
+Este input corresponde a um programa que lê uma linha, converte o valor para double e divide o resultado por 2.
+
+Input
+l f 2 /
+7
+Output
+3.5
+Exemplo 4
+Este input corresponde a um programa copia o nésimo elemento para o topo da stack. O valor zero corresponde ao topo da stack.
+
+Input
+7 1 4 3 2 $
+Output
+7 1 4 3 1
+Sugestões
+A tua stack tem que aceitar vários tipos:
+long
+double
+char
+string
+O comando l deve simplesmente usar a função fgets para ler uma linha e fazer push na stack da string que foi lida
+Os comandos de conversão tiram o que está no topo da stack e colocam a sua conversão
+Cuidado que certas operações, como por exemplo a divisão, são como em C: se os dois valores forem long usamos a divisão inteira, caso contrário, usamos a divião real
+Os comandos bitwise ou o módulo da divisão nunca vão ser testados com doubles.
