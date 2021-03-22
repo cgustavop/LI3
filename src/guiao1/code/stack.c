@@ -1,8 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <math.h>
-
 void push(int n)
 {
 
@@ -27,7 +22,7 @@ void pop()
     }
     else
     {
-        stack[top] == NULL
+        stack[top] == NULL;
         top--;
     }
 }
