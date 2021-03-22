@@ -9,8 +9,9 @@
 #include <assert.h>
 
 #include "parser.h"
-#include "stack.c"
 #include "parser.c"
+#include "stack.c"
+
 
 int top;
 int stack[100];
@@ -30,6 +31,6 @@ int main() {
     assert(fgets(line, 10240, stdin) != NULL);
     assert(line [strlen(line) - 1] == '\n');
 
-    parse(line);
+    parser(line);
     return 0;
 }
