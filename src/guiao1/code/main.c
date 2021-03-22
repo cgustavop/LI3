@@ -9,6 +9,10 @@
 #include <assert.h>
 
 #include "parser.h"
+#include "stack.c"
+
+int top = 0;
+int stack[100];
 
 // gcc -std=gnu11 -Wall -Wextra -pedantic-errors -O main.c -lm
 
