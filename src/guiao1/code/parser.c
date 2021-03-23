@@ -8,7 +8,7 @@
 #include <string.h>
 #include <math.h>
 
-#include "stack.c"
+#include "handy.h"
 
 // gcc -std=gnu11 -Wall -Wextra -pedantic-errors -O parser.c -lm
 
@@ -81,7 +81,7 @@ int parse(char *line) {
             PUSH(X ^= Y);
         } else if(strcmp(token, "~") == 0) {
             long Y = POP();
-            PUSH((~ Y) + 1);
+            PUSH((~ Y));
         }
     }
 

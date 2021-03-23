@@ -8,6 +8,8 @@
 #include <stdbool.h>
 #include <string.h>
 
+#include "handy.h"
+
 #define EMPTY (-1)
 #define STACK_EMPTY INT_MIN
 
@@ -43,22 +45,12 @@ int POP(){
     return result;
 }
 
-
-//void PRINT_STACK(){
-//    int p;
-//
-//    while ( (p = POP() ) != STACK_EMPTY ){
-//        printf("%d", p);
-//    }
-//    printf("\n");
-//}
-
 void PRINT_STACK(){
     int i;
 
-    for(i=top;i>=0;i--)
+    for(i=0;i<=top;i++)
     {
-    	printf("%d", mystack[i]);
+        printf("%d", mystack[i]);
     }
     printf("\n");
 }
