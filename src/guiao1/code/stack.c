@@ -43,11 +43,22 @@ int POP(){
     return result;
 }
 
-void PRINT_STACK(){
-    int p;
 
-    while ( (p = POP() ) != STACK_EMPTY ){
-        printf("%d", p);
+//void PRINT_STACK(){
+//    int p;
+//
+//    while ( (p = POP() ) != STACK_EMPTY ){
+//        printf("%d", p);
+//    }
+//    printf("\n");
+//}
+
+void PRINT_STACK(){
+    int i;
+
+    for(i=top;i>=0;i--)
+    {
+    	printf("%d", mystack[i]);
     }
     printf("\n");
 }
