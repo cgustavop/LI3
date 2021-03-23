@@ -8,7 +8,7 @@
 #include <stdbool.h>
 #include <string.h>
 
-#include "handy.h"
+#include "stack.h"
 
 #define EMPTY (-1)
 #define STACK_EMPTY INT_MIN

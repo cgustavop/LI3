@@ -8,7 +8,7 @@
 #include <string.h>
 #include <assert.h>
 
-#include "handy.h"
+#include "stack.h"
 
 // gcc -std=gnu11 -Wall -Wextra -pedantic-errors -O main.c -lm
 
