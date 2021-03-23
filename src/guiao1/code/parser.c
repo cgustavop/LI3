@@ -8,11 +8,9 @@
 #include <string.h>
 #include <math.h>
 
-#include "stack.h"
-#include "parser.h"
+#include "stack.c"
 
-
-// gcc -std=gnu11 -Wall -Wextra -pedantic-errors -O parser.c.c -lm
+// gcc -std=gnu11 -Wall -Wextra -pedantic-errors -O parser.c -lm
 
 /**
  * \brief Esta é a função que vai fazer o parse de uma linha

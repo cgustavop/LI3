@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['data_0',['data',['../structStackElem.html#a10738a73416aebcfd5ac662aee983903',1,'StackElem']]]
+  ['empty_0',['EMPTY',['../stack_8c.html#a2b7cf2a3641be7b89138615764d60ba3',1,'stack.c']]]
 ];

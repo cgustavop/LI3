@@ -6,11 +6,11 @@
     <includes local="no">stdlib.h</includes>
     <includes local="no">string.h</includes>
     <includes local="no">assert.h</includes>
-    <includes refid="parser_8h" local="yes">parser.h</includes>
-    <includes refid="stack_8h" local="yes">stack.h</includes>
     <includes refid="parser_8c" local="yes">parser.c</includes>
-    <includes refid="stack_8c" local="yes">stack.c</includes>
     <incdepgraph>
+      <node id="10">
+        <label>stdbool.h</label>
+      </node>
       <node id="1">
         <label>main.c</label>
         <link refid="main_8c"/>
@@ -24,12 +24,6 @@
         </childnode>
         <childnode refid="6" relation="include">
         </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="10" relation="include">
-        </childnode>
       </node>
       <node id="5">
         <label>assert.h</label>
@@ -37,7 +31,7 @@
       <node id="3">
         <label>stdlib.h</label>
       </node>
-      <node id="8">
+      <node id="6">
         <label>parser.c</label>
         <link refid="parser_8c"/>
         <childnode refid="2" relation="include">
@@ -46,71 +40,38 @@
         </childnode>
         <childnode refid="4" relation="include">
         </childnode>
-        <childnode refid="9" relation="include">
-        </childnode>
         <childnode refid="7" relation="include">
         </childnode>
-        <childnode refid="6" relation="include">
+        <childnode refid="8" relation="include">
         </childnode>
       </node>
-      <node id="6">
-        <label>parser.h</label>
-        <link refid="parser_8h"/>
+      <node id="9">
+        <label>limits.h</label>
       </node>
       <node id="4">
         <label>string.h</label>
       </node>
-      <node id="10">
+      <node id="8">
         <label>stack.c</label>
         <link refid="stack_8c"/>
         <childnode refid="2" relation="include">
         </childnode>
         <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="4" relation="include">
+        <childnode refid="9" relation="include">
         </childnode>
-        <childnode refid="6" relation="include">
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
         </childnode>
       </node>
       <node id="7">
-        <label>stack.h</label>
-        <link refid="stack_8h"/>
-      </node>
-      <node id="9">
         <label>math.h</label>
       </node>
       <node id="2">
         <label>stdio.h</label>
       </node>
     </incdepgraph>
-      <sectiondef kind="var">
-      <memberdef kind="variable" id="main_8c_1af93f4f37fc2ad9c37af4a715423b110c" prot="public" static="no" mutable="no">
-        <type>int</type>
-        <definition>int top</definition>
-        <argsstring></argsstring>
-        <name>top</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="main.c" line="17" column="5" bodyfile="main.c" bodystart="17" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="main_8c_1ad557a1a3563514f34a679e3a76452af8" prot="public" static="no" mutable="no">
-        <type>int</type>
-        <definition>int stack[100]</definition>
-        <argsstring>[100]</argsstring>
-        <name>stack</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="main.c" line="18" column="5" bodyfile="main.c" bodystart="18" bodyend="-1"/>
-      </memberdef>
-      </sectiondef>
       <sectiondef kind="func">
       <memberdef kind="function" id="main_8c_1ae66f6b31b5ad750f1fe042a706a4e3d4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -127,7 +88,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="main.c" line="28" column="5" bodyfile="main.c" bodystart="28" bodyend="37"/>
+        <location file="main.c" line="21" column="5" bodyfile="main.c" bodystart="21" bodyend="29"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -141,27 +102,19 @@
 <codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string.h&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;assert.h&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="10"><highlight class="normal"></highlight></codeline>
-<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="parser_8h" kindref="compound">parser.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="stack_8h" kindref="compound">stack.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="parser_8c" kindref="compound">parser.c</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="stack_8c" kindref="compound">stack.c</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="15"><highlight class="normal"></highlight></codeline>
-<codeline lineno="16"><highlight class="normal"></highlight></codeline>
-<codeline lineno="17"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="main_8c_1af93f4f37fc2ad9c37af4a715423b110c" kindref="member">top</ref>;</highlight></codeline>
-<codeline lineno="18"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="main_8c_1ad557a1a3563514f34a679e3a76452af8" kindref="member">stack</ref>[100];</highlight></codeline>
-<codeline lineno="19"><highlight class="normal"></highlight></codeline>
-<codeline lineno="20"><highlight class="normal"></highlight><highlight class="comment">//<sp/>gcc<sp/>-std=gnu11<sp/>-Wall<sp/>-Wextra<sp/>-pedantic-errors<sp/>-O<sp/>main.c<sp/>-lm</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="21"><highlight class="normal"></highlight></codeline>
-<codeline lineno="28"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="main_8c_1ae66f6b31b5ad750f1fe042a706a4e3d4" kindref="member">main</ref>()<sp/>{</highlight></codeline>
-<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="main_8c_1af93f4f37fc2ad9c37af4a715423b110c" kindref="member">top</ref><sp/>=<sp/>0;</highlight></codeline>
-<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>line[10240];</highlight></codeline>
-<codeline lineno="31"><highlight class="normal"></highlight></codeline>
-<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/>assert(fgets(line,<sp/>10240,<sp/>stdin)<sp/>!=<sp/>NULL);</highlight></codeline>
-<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/>assert(line<sp/>[strlen(line)<sp/>-<sp/>1]<sp/>==<sp/></highlight><highlight class="charliteral">&apos;\n&apos;</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="34"><highlight class="normal"></highlight></codeline>
-<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="parser_8h_1ab116abcccaf4f52d6bb5f1235d1f7cbd" kindref="member">parser</ref>(line);</highlight></codeline>
-<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
-<codeline lineno="37"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="parser_8c" kindref="compound">parser.c</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="comment">//<sp/>gcc<sp/>-std=gnu11<sp/>-Wall<sp/>-Wextra<sp/>-pedantic-errors<sp/>-O<sp/>main.c<sp/>-lm</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="main_8c_1ae66f6b31b5ad750f1fe042a706a4e3d4" kindref="member">main</ref>()<sp/>{</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>line[10240];</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/>assert(fgets(line,<sp/>10240,<sp/>stdin)<sp/>!=<sp/>NULL);</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/>assert(line<sp/>[strlen(line)<sp/>-<sp/>1]<sp/>==<sp/></highlight><highlight class="charliteral">&apos;\n&apos;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="parser_8c_1a856b43fb767d7c151e90b5fe260af1a2" kindref="member">parse</ref>(line);</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="29"><highlight class="normal">}</highlight></codeline>
     </programlisting>
     <location file="main.c"/>
   </compounddef>

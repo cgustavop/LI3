@@ -2,110 +2,36 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
   <compounddef id="parser_8h" kind="file" language="C++">
     <compoundname>parser.h</compoundname>
-    <includedby refid="main_8c" local="yes">main.c</includedby>
-    <includedby refid="parser_8c" local="yes">parser.c</includedby>
-    <includedby refid="stack_8c" local="yes">stack.c</includedby>
-    <invincdepgraph>
-      <node id="2">
-        <label>main.c</label>
-        <link refid="main_8c"/>
-      </node>
-      <node id="3">
-        <label>parser.c</label>
-        <link refid="parser_8c"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-      </node>
-      <node id="1">
-        <label>parser.h</label>
-        <link refid="parser_8h"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-      </node>
-      <node id="4">
-        <label>stack.c</label>
-        <link refid="stack_8c"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-      </node>
-    </invincdepgraph>
       <sectiondef kind="func">
-      <memberdef kind="function" id="parser_8h_1ab116abcccaf4f52d6bb5f1235d1f7cbd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
-        <definition>void parser</definition>
+      <memberdef kind="function" id="parser_8h_1a856b43fb767d7c151e90b5fe260af1a2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int parse</definition>
         <argsstring>(char *line)</argsstring>
-        <name>parser</name>
+        <name>parse</name>
         <param>
           <type>char *</type>
           <declname>line</declname>
         </param>
         <briefdescription>
+<para>Esta é a função que vai fazer o parse de uma linha. </para>
         </briefdescription>
         <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>line</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A linha que foi lida e da qual se vai fazer o parse </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>O tamanho da stack que foi criada </para>
+</simplesect>
+</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="parser.h" line="1" column="6" declfile="parser.h" declline="1" declcolumn="6"/>
-      </memberdef>
-      <memberdef kind="function" id="parser_8h_1abf47b3f70564305b09e5d114bc85a5a8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>int</type>
-        <definition>int PUSH</definition>
-        <argsstring>(int n)</argsstring>
-        <name>PUSH</name>
-        <param>
-          <type>int</type>
-          <declname>n</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="parser.h" line="2" column="5" bodyfile="stack.c" bodystart="7" bodyend="20" declfile="parser.h" declline="2" declcolumn="5"/>
-      </memberdef>
-      <memberdef kind="function" id="parser_8h_1ac9c76201d1930e75c9196dd2c01ce308" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>int</type>
-        <definition>int POP</definition>
-        <argsstring>()</argsstring>
-        <name>POP</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="parser.h" line="3" column="5" bodyfile="stack.c" bodystart="23" bodyend="36" declfile="parser.h" declline="3" declcolumn="5"/>
-      </memberdef>
-      <memberdef kind="function" id="parser_8h_1aba79cb558dcc94742a2c64f7f2a19a4f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
-        <definition>void PRINT_STACK</definition>
-        <argsstring>()</argsstring>
-        <name>PRINT_STACK</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="parser.h" line="4" column="6" bodyfile="stack.c" bodystart="38" bodyend="42" declfile="parser.h" declline="4" declcolumn="6"/>
-      </memberdef>
-      <memberdef kind="function" id="parser_8h_1af47e5cb287f1c5734a65d00b47cb8313" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>int</type>
-        <definition>int STACK_SIZE</definition>
-        <argsstring>()</argsstring>
-        <name>STACK_SIZE</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="parser.h" line="5" column="5" bodyfile="stack.c" bodystart="44" bodyend="48" declfile="parser.h" declline="5" declcolumn="5"/>
+        <location file="parser.h" line="1" column="5" bodyfile="parser.c" bodystart="22" bodyend="90" declfile="parser.h" declline="1" declcolumn="5"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -113,11 +39,7 @@
     <detaileddescription>
     </detaileddescription>
     <programlisting>
-<codeline lineno="1"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="parser_8h_1ab116abcccaf4f52d6bb5f1235d1f7cbd" kindref="member">parser</ref>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*line);</highlight></codeline>
-<codeline lineno="2"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="parser_8h_1abf47b3f70564305b09e5d114bc85a5a8" kindref="member">PUSH</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>n);</highlight></codeline>
-<codeline lineno="3"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="parser_8h_1ac9c76201d1930e75c9196dd2c01ce308" kindref="member">POP</ref>();</highlight></codeline>
-<codeline lineno="4"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="parser_8h_1aba79cb558dcc94742a2c64f7f2a19a4f" kindref="member">PRINT_STACK</ref>();</highlight></codeline>
-<codeline lineno="5"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="parser_8h_1af47e5cb287f1c5734a65d00b47cb8313" kindref="member">STACK_SIZE</ref>();</highlight></codeline>
+<codeline lineno="1"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="parser_8h_1a856b43fb767d7c151e90b5fe260af1a2" kindref="member">parse</ref>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*line);</highlight></codeline>
     </programlisting>
     <location file="parser.h"/>
   </compounddef>

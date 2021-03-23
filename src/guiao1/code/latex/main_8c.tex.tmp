@@ -4,23 +4,13 @@
 {\ttfamily \#include $<$stdlib.\+h$>$}\newline
 {\ttfamily \#include $<$string.\+h$>$}\newline
 {\ttfamily \#include $<$assert.\+h$>$}\newline
-{\ttfamily \#include \char`\"{}parser.\+h\char`\"{}}\newline
-{\ttfamily \#include \char`\"{}stack.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}parser.\+c\char`\"{}}\newline
-{\ttfamily \#include \char`\"{}stack.\+c\char`\"{}}\newline
 Include dependency graph for main.\+c\+:
 % FIG 0
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
 int \mbox{\hyperlink{main_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}} ()
-\end{DoxyCompactItemize}
-\doxysubsection*{Variables}
-\begin{DoxyCompactItemize}
-\item 
-int \mbox{\hyperlink{main_8c_af93f4f37fc2ad9c37af4a715423b110c}{top}}
-\item 
-int \mbox{\hyperlink{main_8c_ad557a1a3563514f34a679e3a76452af8}{stack}} \mbox{[}100\mbox{]}
 \end{DoxyCompactItemize}
 
 
@@ -36,18 +26,3 @@ Esta é a função principal do programa
 \begin{DoxyReturn}{Returns}
 o valor 0 
 \end{DoxyReturn}
-
-
-\doxysubsection{Variable Documentation}
-\mbox{\Hypertarget{main_8c_ad557a1a3563514f34a679e3a76452af8}\label{main_8c_ad557a1a3563514f34a679e3a76452af8}} 
-\index{main.c@{main.c}!stack@{stack}}
-\index{stack@{stack}!main.c@{main.c}}
-\doxysubsubsection{\texorpdfstring{stack}{stack}}
-{\footnotesize\ttfamily int stack\mbox{[}100\mbox{]}}
-
-\mbox{\Hypertarget{main_8c_af93f4f37fc2ad9c37af4a715423b110c}\label{main_8c_af93f4f37fc2ad9c37af4a715423b110c}} 
-\index{main.c@{main.c}!top@{top}}
-\index{top@{top}!main.c@{main.c}}
-\doxysubsubsection{\texorpdfstring{top}{top}}
-{\footnotesize\ttfamily int top}
-

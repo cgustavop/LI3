@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['next_34',['next',['../structStackElem.html#ac0bd15f0c18b20c41b2954494fc3b048',1,'StackElem']]]
+  ['top_25',['top',['../stack_8c.html#af93f4f37fc2ad9c37af4a715423b110c',1,'stack.c']]]
 ];

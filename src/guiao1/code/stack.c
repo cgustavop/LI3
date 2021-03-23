@@ -1,48 +1,62 @@
+/**
+ * @file Ficheiro que contem a nossa versão do stack.
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
+#include <limits.h>
+#include <stdbool.h>
 #include <string.h>
 
-#include "parser.h"
+#define EMPTY (-1)
+#define STACK_EMPTY INT_MIN
 
-int PUSH(int n)
-{
+// gcc -std=gnu11 -Wall -Wextra -pedantic-errors -O stack.c -lm
 
-		if(top == 100-1)
-		{
-			printf("Error");
-		}
-		else
-		{
-    		stack[top]=n;
-    		top++;	
-		}
-    return 0;
+/**
+ * \brief Conjunto de funções utilizadas numa biblioteca default stack
+ *
+ * Realização da função PUSH e POP
+ *
+ * Print do tamanho e do resultado da operação submetida ao stack
+ */
+
+int mystack[100];
+int top = EMPTY;
+
+int PUSH(int value){
+
+	if (top >= 99) 
+         return false;
+
+    top++;
+    mystack[top] = value;
+    return true;
 }
 
+int POP(){
 
-int POP()
-{
+    if (top == EMPTY) return STACK_EMPTY;
 
-    if(top <= 0)
-    {
-        printf("Error");
+    int result = mystack[top];
+    top--;
+    return result;
+}
+
+void PRINT_STACK(){
+    int p;
+
+    while ( (p = POP() ) != STACK_EMPTY ){
+        printf("%d", p);
     }
-    else
-    {
-        stack[top] == NULL;
-        top--;
-    }
+    printf("\n");
+}
+
+int STACK_SIZE(){ 
+    int p;
+
+    while ( (p = POP() ) != STACK_EMPTY )
+        return (sizeof(p));
+    
     return 0;
-}
-
-void PRINT_STACK() { // testando
-    int i;
-    int a = strlen(stack);
-    for(i=0; i<a; i++) printf("%d", stack[i]);
-}
-
-int STACK_SIZE() {  // testando
-
-    int a = strlen(stack);
-    return a;
 }

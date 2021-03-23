@@ -1,50 +1,28 @@
 \hypertarget{parser_8h}{}\doxysection{parser.\+h File Reference}
 \label{parser_8h}\index{parser.h@{parser.h}}
-This graph shows which files directly or indirectly include this file\+:
-% FIG 0
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \mbox{\hyperlink{parser_8h_ab116abcccaf4f52d6bb5f1235d1f7cbd}{parser}} (char $\ast$line)
-\item 
-int \mbox{\hyperlink{parser_8h_abf47b3f70564305b09e5d114bc85a5a8}{P\+U\+SH}} (int n)
-\item 
-int \mbox{\hyperlink{parser_8h_ac9c76201d1930e75c9196dd2c01ce308}{P\+OP}} ()
-\item 
-void \mbox{\hyperlink{parser_8h_aba79cb558dcc94742a2c64f7f2a19a4f}{P\+R\+I\+N\+T\+\_\+\+S\+T\+A\+CK}} ()
-\item 
-int \mbox{\hyperlink{parser_8h_af47e5cb287f1c5734a65d00b47cb8313}{S\+T\+A\+C\+K\+\_\+\+S\+I\+ZE}} ()
-\end{DoxyCompactItemize}
+int \mbox{\hyperlink{parser_8h_a856b43fb767d7c151e90b5fe260af1a2}{parse}} (char $\ast$line)
+\begin{DoxyCompactList}\small\item\em Esta é a função que vai fazer o parse de uma linha. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Function Documentation}
-\mbox{\Hypertarget{parser_8h_ab116abcccaf4f52d6bb5f1235d1f7cbd}\label{parser_8h_ab116abcccaf4f52d6bb5f1235d1f7cbd}} 
-\index{parser.h@{parser.h}!parser@{parser}}
-\index{parser@{parser}!parser.h@{parser.h}}
-\doxysubsubsection{\texorpdfstring{parser()}{parser()}}
-{\footnotesize\ttfamily void parser (\begin{DoxyParamCaption}\item[{char $\ast$}]{line }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{parser_8h_a856b43fb767d7c151e90b5fe260af1a2}\label{parser_8h_a856b43fb767d7c151e90b5fe260af1a2}} 
+\index{parser.h@{parser.h}!parse@{parse}}
+\index{parse@{parse}!parser.h@{parser.h}}
+\doxysubsubsection{\texorpdfstring{parse()}{parse()}}
+{\footnotesize\ttfamily int parse (\begin{DoxyParamCaption}\item[{char $\ast$}]{line }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{parser_8h_ac9c76201d1930e75c9196dd2c01ce308}\label{parser_8h_ac9c76201d1930e75c9196dd2c01ce308}} 
-\index{parser.h@{parser.h}!POP@{POP}}
-\index{POP@{POP}!parser.h@{parser.h}}
-\doxysubsubsection{\texorpdfstring{POP()}{POP()}}
-{\footnotesize\ttfamily int P\+OP (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{parser_8h_aba79cb558dcc94742a2c64f7f2a19a4f}\label{parser_8h_aba79cb558dcc94742a2c64f7f2a19a4f}} 
-\index{parser.h@{parser.h}!PRINT\_STACK@{PRINT\_STACK}}
-\index{PRINT\_STACK@{PRINT\_STACK}!parser.h@{parser.h}}
-\doxysubsubsection{\texorpdfstring{PRINT\_STACK()}{PRINT\_STACK()}}
-{\footnotesize\ttfamily void P\+R\+I\+N\+T\+\_\+\+S\+T\+A\+CK (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{parser_8h_abf47b3f70564305b09e5d114bc85a5a8}\label{parser_8h_abf47b3f70564305b09e5d114bc85a5a8}} 
-\index{parser.h@{parser.h}!PUSH@{PUSH}}
-\index{PUSH@{PUSH}!parser.h@{parser.h}}
-\doxysubsubsection{\texorpdfstring{PUSH()}{PUSH()}}
-{\footnotesize\ttfamily int P\+U\+SH (\begin{DoxyParamCaption}\item[{int}]{n }\end{DoxyParamCaption})}
+Esta é a função que vai fazer o parse de uma linha. 
 
-\mbox{\Hypertarget{parser_8h_af47e5cb287f1c5734a65d00b47cb8313}\label{parser_8h_af47e5cb287f1c5734a65d00b47cb8313}} 
-\index{parser.h@{parser.h}!STACK\_SIZE@{STACK\_SIZE}}
-\index{STACK\_SIZE@{STACK\_SIZE}!parser.h@{parser.h}}
-\doxysubsubsection{\texorpdfstring{STACK\_SIZE()}{STACK\_SIZE()}}
-{\footnotesize\ttfamily int S\+T\+A\+C\+K\+\_\+\+S\+I\+ZE (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
+\begin{DoxyParams}{Parameters}
+{\em line} & A linha que foi lida e da qual se vai fazer o parse \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O tamanho da stack que foi criada 
+\end{DoxyReturn}

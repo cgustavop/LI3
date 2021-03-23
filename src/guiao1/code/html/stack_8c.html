@@ -62,15 +62,18 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#func-members">Functions</a>  </div>
+<a href="#define-members">Macros</a> &#124;
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">stack.c File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;stdio.h&gt;</code><br />
 <code>#include &lt;stdlib.h&gt;</code><br />
+<code>#include &lt;limits.h&gt;</code><br />
+<code>#include &lt;stdbool.h&gt;</code><br />
 <code>#include &lt;string.h&gt;</code><br />
-<code>#include &quot;<a class="el" href="parser_8h_source.html">parser.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for stack.c:</div>
 <div class="dyncontent">
@@ -84,17 +87,61 @@ This graph shows which files directly or indirectly include this file:</div>
 <!-- MAP 1 -->
 </div>
 </div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a2b7cf2a3641be7b89138615764d60ba3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stack_8c.html#a2b7cf2a3641be7b89138615764d60ba3">EMPTY</a>&#160;&#160;&#160;(-1)</td></tr>
+<tr class="separator:a2b7cf2a3641be7b89138615764d60ba3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afceb75332628ecda1b4793a63b70f00c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stack_8c.html#afceb75332628ecda1b4793a63b70f00c">STACK_EMPTY</a>&#160;&#160;&#160;INT_MIN</td></tr>
+<tr class="separator:afceb75332628ecda1b4793a63b70f00c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:abf47b3f70564305b09e5d114bc85a5a8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stack_8c.html#abf47b3f70564305b09e5d114bc85a5a8">PUSH</a> (int n)</td></tr>
-<tr class="separator:abf47b3f70564305b09e5d114bc85a5a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad4111f6b42d6c96ca3dba8841bfaaff1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stack_8c.html#ad4111f6b42d6c96ca3dba8841bfaaff1">PUSH</a> (int value)</td></tr>
+<tr class="separator:ad4111f6b42d6c96ca3dba8841bfaaff1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac9c76201d1930e75c9196dd2c01ce308"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stack_8c.html#ac9c76201d1930e75c9196dd2c01ce308">POP</a> ()</td></tr>
 <tr class="separator:ac9c76201d1930e75c9196dd2c01ce308"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aba79cb558dcc94742a2c64f7f2a19a4f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stack_8c.html#aba79cb558dcc94742a2c64f7f2a19a4f">PRINT_STACK</a> ()</td></tr>
 <tr class="separator:aba79cb558dcc94742a2c64f7f2a19a4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af47e5cb287f1c5734a65d00b47cb8313"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stack_8c.html#af47e5cb287f1c5734a65d00b47cb8313">STACK_SIZE</a> ()</td></tr>
 <tr class="separator:af47e5cb287f1c5734a65d00b47cb8313"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:aae2740822e2c94e7aeb4314eb76e125a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stack_8c.html#aae2740822e2c94e7aeb4314eb76e125a">mystack</a> [100]</td></tr>
+<tr class="memdesc:aae2740822e2c94e7aeb4314eb76e125a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Conjunto de funções utilizadas numa biblioteca default stack.  <a href="stack_8c.html#aae2740822e2c94e7aeb4314eb76e125a">More...</a><br /></td></tr>
+<tr class="separator:aae2740822e2c94e7aeb4314eb76e125a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af93f4f37fc2ad9c37af4a715423b110c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stack_8c.html#af93f4f37fc2ad9c37af4a715423b110c">top</a> = <a class="el" href="stack_8c.html#a2b7cf2a3641be7b89138615764d60ba3">EMPTY</a></td></tr>
+<tr class="separator:af93f4f37fc2ad9c37af4a715423b110c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="a2b7cf2a3641be7b89138615764d60ba3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b7cf2a3641be7b89138615764d60ba3">&#9670;&nbsp;</a></span>EMPTY</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EMPTY&#160;&#160;&#160;(-1)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afceb75332628ecda1b4793a63b70f00c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afceb75332628ecda1b4793a63b70f00c">&#9670;&nbsp;</a></span>STACK_EMPTY</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define STACK_EMPTY&#160;&#160;&#160;INT_MIN</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="ac9c76201d1930e75c9196dd2c01ce308"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac9c76201d1930e75c9196dd2c01ce308">&#9670;&nbsp;</a></span>POP()</h2>
@@ -130,8 +177,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="abf47b3f70564305b09e5d114bc85a5a8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abf47b3f70564305b09e5d114bc85a5a8">&#9670;&nbsp;</a></span>PUSH()</h2>
+<a id="ad4111f6b42d6c96ca3dba8841bfaaff1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad4111f6b42d6c96ca3dba8841bfaaff1">&#9670;&nbsp;</a></span>PUSH()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -140,7 +187,7 @@ Functions</h2></td></tr>
           <td class="memname">int PUSH </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>n</em></td><td>)</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -159,6 +206,39 @@ Functions</h2></td></tr>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a id="aae2740822e2c94e7aeb4314eb76e125a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae2740822e2c94e7aeb4314eb76e125a">&#9670;&nbsp;</a></span>mystack</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int mystack[100]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Conjunto de funções utilizadas numa biblioteca default stack. </p>
+<p>Realização da função PUSH e POP</p>
+<p>Print do tamanho e do resultado da operação submetida ao stack </p>
+
+</div>
+</div>
+<a id="af93f4f37fc2ad9c37af4a715423b110c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af93f4f37fc2ad9c37af4a715423b110c">&#9670;&nbsp;</a></span>top</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int top = <a class="el" href="stack_8c.html#a2b7cf2a3641be7b89138615764d60ba3">EMPTY</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
