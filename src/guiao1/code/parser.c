@@ -59,7 +59,7 @@ int parse(char *line) {
 
         // módulo e exponenciação
         } else if(strcmp(token, "%") == 0) {
-            long Y = POP();
+            int Y = POP();
             PUSH(abs(Y));
         } else if(strcmp(token, "#") == 0) {
             long Y = POP();
