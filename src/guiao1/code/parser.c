@@ -33,33 +33,33 @@ int parse(char *line) {
         } else if(strcmp(token, "+") == 0) {
             long Y = POP();
             long X = POP();
-            PUSH(X + Y);
+            PUSH(X += Y);
         } else if(strcmp(token, "-") == 0) {
             long Y = POP();
             long X = POP();
-            PUSH(X - Y);
+            PUSH(X -= Y);
         } else if(strcmp(token, "*") == 0) {
             long Y = POP();
             long X = POP();
-            PUSH(X * Y);
+            PUSH(X *= Y);
         } else if(strcmp(token, "/") == 0) {
             long Y = POP();
             long X = POP();
-            PUSH(X / Y);
+            PUSH(X /= Y);
 
         // incrementação e decrementação
         } else if(strcmp(token, "(") == 0) {
             long Y = POP();
-            PUSH(Y--);  
+            PUSH(Y -= 1);  
         } else if(strcmp(token, ")") == 0) {
             long Y = POP();
-            PUSH(Y++);
+            PUSH(Y += 1);
 
         // módulo e exponenciação
         } else if(strcmp(token, "%") == 0) {
             long Y = POP();
             long X = POP();
-            PUSH(X%Y);
+            PUSH(X %= Y);
 
         } else if(strcmp(token, "#") == 0) {
             long Y = POP();
@@ -70,18 +70,18 @@ int parse(char *line) {
         } else if(strcmp(token, "&") == 0) {
             long Y = POP();
             long X = POP();
-            PUSH(X && Y);
+            PUSH(X &= Y);
         } else if(strcmp(token, "|") == 0) {
             long Y = POP();
             long X = POP();
-            PUSH(X || Y);
+            PUSH(X |= Y);
         } else if(strcmp(token, "^") == 0) {
             long Y = POP();
             long X = POP();
-            PUSH(X ^ Y);
+            PUSH(X ^= Y);
         } else if(strcmp(token, "~") == 0) {
             long Y = POP();
-            PUSH(~ Y);
+            PUSH((~ Y) + 1);
         }
     }
 
