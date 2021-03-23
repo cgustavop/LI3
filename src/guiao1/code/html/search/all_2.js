@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['isempty_2',['isEmpty',['../classStack.html#af58f25071989ccce63aa4a769521bd56',1,'Stack']]]
+  ['next_3',['next',['../structStackElem.html#ac0bd15f0c18b20c41b2954494fc3b048',1,'StackElem']]]
 ];

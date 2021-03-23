@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['clear_25',['clear',['../classStack.html#a9e9b8cf118a2329526d700d093c4f71d',1,'Stack']]]
+  ['main_24',['main',['../main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'main.c']]]
 ];

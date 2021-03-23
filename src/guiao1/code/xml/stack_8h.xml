@@ -2,348 +2,56 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
   <compounddef id="stack_8h" kind="file" language="C++">
     <compoundname>stack.h</compoundname>
-    <includes local="yes">vector.h</includes>
+    <includedby refid="main_8c" local="yes">main.c</includedby>
     <includedby refid="parser_8c" local="yes">parser.c</includedby>
-    <incdepgraph>
+    <invincdepgraph>
       <node id="2">
-        <label>vector.h</label>
+        <label>main.c</label>
+        <link refid="main_8c"/>
+      </node>
+      <node id="3">
+        <label>parser.c</label>
+        <link refid="parser_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
       </node>
       <node id="1">
         <label>stack.h</label>
         <link refid="stack_8h"/>
         <childnode refid="2" relation="include">
         </childnode>
-      </node>
-    </incdepgraph>
-    <invincdepgraph>
-      <node id="2">
-        <label>parser.c</label>
-        <link refid="parser_8c"/>
-      </node>
-      <node id="1">
-        <label>stack.h</label>
-        <link refid="stack_8h"/>
-        <childnode refid="2" relation="include">
+        <childnode refid="3" relation="include">
         </childnode>
       </node>
     </invincdepgraph>
+    <innerclass refid="structStackElem" prot="public">StackElem</innerclass>
     <innerclass refid="classStack" prot="public">Stack</innerclass>
-      <sectiondef kind="func">
-      <memberdef kind="function" id="stack_8h_1a78004f49ac0abc47f858d508c258191e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
-        <definition>void error</definition>
-        <argsstring>(std::string msg)</argsstring>
-        <name>error</name>
-        <param>
-          <type>std::string</type>
-          <declname>msg</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="stack.h" line="134" column="13" declfile="stack.h" declline="134" declcolumn="13"/>
-      </memberdef>
-      <memberdef kind="function" id="stack_8h_1ab1962866e487c84b8e76de9ff0e9ca4a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <templateparamlist>
-          <param>
-            <type>typename ValueType</type>
-          </param>
-        </templateparamlist>
-        <type>std::ostream &amp;</type>
-        <definition>std::ostream&amp; operator&lt;&lt;</definition>
-        <argsstring>(std::ostream &amp;os, const Stack&lt; ValueType &gt; &amp;stack)</argsstring>
-        <name>operator&lt;&lt;</name>
-        <param>
-          <type>std::ostream &amp;</type>
-          <declname>os</declname>
-        </param>
-        <param>
-          <type>const <ref refid="classStack" kindref="compound">Stack</ref>&lt; ValueType &gt; &amp;</type>
-          <declname>stack</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="stack.h" line="202" column="1" bodyfile="stack.h" bodystart="202" bodyend="215"/>
-      </memberdef>
-      <memberdef kind="function" id="stack_8h_1a6aa29804db7f548efb6793bdc3f6da0d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <templateparamlist>
-          <param>
-            <type>typename ValueType</type>
-          </param>
-        </templateparamlist>
-        <type>std::istream &amp;</type>
-        <definition>std::istream&amp; operator&gt;&gt;</definition>
-        <argsstring>(std::istream &amp;is, Stack&lt; ValueType &gt; &amp;stack)</argsstring>
-        <name>operator&gt;&gt;</name>
-        <param>
-          <type>std::istream &amp;</type>
-          <declname>is</declname>
-        </param>
-        <param>
-          <type><ref refid="classStack" kindref="compound">Stack</ref>&lt; ValueType &gt; &amp;</type>
-          <declname>stack</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="stack.h" line="218" column="15" bodyfile="stack.h" bodystart="218" bodyend="238"/>
-      </memberdef>
-      </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
     <programlisting>
-<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
-<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>File:<sp/>stack.h</highlight></codeline>
-<codeline lineno="3"><highlight class="comment"><sp/>*<sp/>-------------</highlight></codeline>
-<codeline lineno="4"><highlight class="comment"><sp/>*<sp/>This<sp/>file<sp/>exports<sp/>the<sp/>Stack<sp/>class,<sp/>which<sp/>implements<sp/>a<sp/>collection<sp/>that</highlight></codeline>
-<codeline lineno="5"><highlight class="comment"><sp/>*<sp/>processes<sp/>values<sp/>in<sp/>a<sp/>last-in/first-out<sp/>(LIFO)<sp/>order.</highlight></codeline>
-<codeline lineno="6"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="7"><highlight class="normal"></highlight></codeline>
-<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>_stack_h</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>_stack_h</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="10"><highlight class="normal"></highlight></codeline>
-<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;vector.h&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="12"><highlight class="normal"></highlight></codeline>
-<codeline lineno="13"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
-<codeline lineno="14"><highlight class="comment"><sp/>*<sp/>Class:<sp/>Stack&lt;ValueType&gt;</highlight></codeline>
-<codeline lineno="15"><highlight class="comment"><sp/>*<sp/>-----------------------</highlight></codeline>
-<codeline lineno="16"><highlight class="comment"><sp/>*<sp/>This<sp/>class<sp/>models<sp/>a<sp/>linear<sp/>structure<sp/>called<sp/>a<sp/>stack<sp/>in<sp/>which<sp/>values<sp/>are</highlight></codeline>
-<codeline lineno="17"><highlight class="comment"><sp/>*<sp/>added<sp/>and<sp/>removed<sp/>only<sp/>from<sp/>one<sp/>end.<sp/><sp/>This<sp/>discipline<sp/>gives<sp/>rise<sp/>to<sp/>a</highlight></codeline>
-<codeline lineno="18"><highlight class="comment"><sp/>*<sp/>last-in/first-out<sp/>behavior<sp/>(LIFO)<sp/>that<sp/>is<sp/>the<sp/>defining<sp/>feature<sp/>of</highlight></codeline>
-<codeline lineno="19"><highlight class="comment"><sp/>*<sp/>stacks.<sp/><sp/>The<sp/>fundamental<sp/>stack<sp/>operations<sp/>are<sp/>push<sp/>(add<sp/>to<sp/>top)<sp/>and<sp/>pop</highlight></codeline>
-<codeline lineno="20"><highlight class="comment"><sp/>*<sp/>(remove<sp/>from<sp/>top).</highlight></codeline>
-<codeline lineno="21"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="22"><highlight class="normal"></highlight></codeline>
-<codeline lineno="23"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>ValueType&gt;</highlight></codeline>
-<codeline lineno="24" refid="classStack" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classStack" kindref="compound">Stack</ref><sp/>{</highlight></codeline>
-<codeline lineno="25"><highlight class="normal"></highlight></codeline>
-<codeline lineno="26"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="27"><highlight class="normal"></highlight></codeline>
-<codeline lineno="28"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
-<codeline lineno="29"><highlight class="comment"><sp/>*<sp/>Constructor:<sp/>Stack</highlight></codeline>
-<codeline lineno="30"><highlight class="comment"><sp/>*<sp/>Usage:<sp/>Stack&lt;ValueType&gt;<sp/>stack;</highlight></codeline>
-<codeline lineno="31"><highlight class="comment"><sp/>*<sp/>------------------------------</highlight></codeline>
-<codeline lineno="32"><highlight class="comment"><sp/>*<sp/>Initializes<sp/>a<sp/>new<sp/>empty<sp/>stack.</highlight></codeline>
-<codeline lineno="33"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="34"><highlight class="normal"></highlight></codeline>
-<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><ref refid="classStack_1a3dda891eaa1e7650043e9d9596406164" kindref="member">Stack</ref>();</highlight></codeline>
-<codeline lineno="36"><highlight class="normal"></highlight></codeline>
-<codeline lineno="37"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
-<codeline lineno="38"><highlight class="comment"><sp/>*<sp/>Destructor:<sp/>~Stack</highlight></codeline>
-<codeline lineno="39"><highlight class="comment"><sp/>*<sp/>------------------</highlight></codeline>
-<codeline lineno="40"><highlight class="comment"><sp/>*<sp/>Frees<sp/>any<sp/>heap<sp/>storage<sp/>associated<sp/>with<sp/>this<sp/>stack.</highlight></codeline>
-<codeline lineno="41"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="42"><highlight class="normal"></highlight></codeline>
-<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/><ref refid="classStack_1a8a2147cf8c3c813b85a3e49b01c3fb09" kindref="member">~Stack</ref>();</highlight></codeline>
-<codeline lineno="44"><highlight class="normal"></highlight></codeline>
-<codeline lineno="45"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
-<codeline lineno="46"><highlight class="comment"><sp/>*<sp/>Method:<sp/>size</highlight></codeline>
-<codeline lineno="47"><highlight class="comment"><sp/>*<sp/>Usage:<sp/>int<sp/>n<sp/>=<sp/>stack.size();</highlight></codeline>
-<codeline lineno="48"><highlight class="comment"><sp/>*<sp/>----------------------------</highlight></codeline>
-<codeline lineno="49"><highlight class="comment"><sp/>*<sp/>Returns<sp/>the<sp/>number<sp/>of<sp/>values<sp/>in<sp/>this<sp/>stack.</highlight></codeline>
-<codeline lineno="50"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="51"><highlight class="normal"></highlight></codeline>
-<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classStack_1a481e5f6b9dd188a3c908d358678847e3" kindref="member">size</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="53"><highlight class="normal"></highlight></codeline>
-<codeline lineno="54"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
-<codeline lineno="55"><highlight class="comment"><sp/>*<sp/>Method:<sp/>isEmpty</highlight></codeline>
-<codeline lineno="56"><highlight class="comment"><sp/>*<sp/>Usage:<sp/>if<sp/>(stack.isEmpty())<sp/>...</highlight></codeline>
-<codeline lineno="57"><highlight class="comment"><sp/>*<sp/>-------------------------------</highlight></codeline>
-<codeline lineno="58"><highlight class="comment"><sp/>*<sp/>Returns<sp/>true<sp/>if<sp/>this<sp/>stack<sp/>contains<sp/>no<sp/>elements.</highlight></codeline>
-<codeline lineno="59"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="60"><highlight class="normal"></highlight></codeline>
-<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classStack_1af58f25071989ccce63aa4a769521bd56" kindref="member">isEmpty</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="62"><highlight class="normal"></highlight></codeline>
-<codeline lineno="63"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
-<codeline lineno="64"><highlight class="comment"><sp/>*<sp/>Method:<sp/>clear</highlight></codeline>
-<codeline lineno="65"><highlight class="comment"><sp/>*<sp/>Usage:<sp/>stack.clear();</highlight></codeline>
-<codeline lineno="66"><highlight class="comment"><sp/>*<sp/>---------------------</highlight></codeline>
-<codeline lineno="67"><highlight class="comment"><sp/>*<sp/>Removes<sp/>all<sp/>elements<sp/>from<sp/>this<sp/>stack.</highlight></codeline>
-<codeline lineno="68"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="69"><highlight class="normal"></highlight></codeline>
-<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classStack_1a9e9b8cf118a2329526d700d093c4f71d" kindref="member">clear</ref>();</highlight></codeline>
-<codeline lineno="71"><highlight class="normal"></highlight></codeline>
-<codeline lineno="72"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
-<codeline lineno="73"><highlight class="comment"><sp/>*<sp/>Method:<sp/>push</highlight></codeline>
-<codeline lineno="74"><highlight class="comment"><sp/>*<sp/>Usage:<sp/>stack.push(value);</highlight></codeline>
-<codeline lineno="75"><highlight class="comment"><sp/>*<sp/>-------------------------</highlight></codeline>
-<codeline lineno="76"><highlight class="comment"><sp/>*<sp/>Pushes<sp/>the<sp/>specified<sp/>value<sp/>onto<sp/>this<sp/>stack.</highlight></codeline>
-<codeline lineno="77"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="78"><highlight class="normal"></highlight></codeline>
-<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classStack_1a369b6b7fa9119bab964d479dd3264ed4" kindref="member">push</ref>(ValueType<sp/>value);</highlight></codeline>
-<codeline lineno="80"><highlight class="normal"></highlight></codeline>
-<codeline lineno="81"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
-<codeline lineno="82"><highlight class="comment"><sp/>*<sp/>Method:<sp/>pop</highlight></codeline>
-<codeline lineno="83"><highlight class="comment"><sp/>*<sp/>Usage:<sp/>ValueType<sp/>top<sp/>=<sp/>stack.pop();</highlight></codeline>
-<codeline lineno="84"><highlight class="comment"><sp/>*<sp/>-----------------------------------</highlight></codeline>
-<codeline lineno="85"><highlight class="comment"><sp/>*<sp/>Removes<sp/>the<sp/>top<sp/>element<sp/>from<sp/>this<sp/>stack<sp/>and<sp/>returns<sp/>it.<sp/><sp/>This<sp/>method</highlight></codeline>
-<codeline lineno="86"><highlight class="comment"><sp/>*<sp/>signals<sp/>an<sp/>error<sp/>if<sp/>called<sp/>on<sp/>an<sp/>empty<sp/>stack.</highlight></codeline>
-<codeline lineno="87"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="88"><highlight class="normal"></highlight></codeline>
-<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/>ValueType<sp/><ref refid="classStack_1a2eaa887d4bd4667bec5e07e8af2dd67d" kindref="member">pop</ref>();</highlight></codeline>
-<codeline lineno="90"><highlight class="normal"></highlight></codeline>
-<codeline lineno="91"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
-<codeline lineno="92"><highlight class="comment"><sp/>*<sp/>Method:<sp/>peek</highlight></codeline>
-<codeline lineno="93"><highlight class="comment"><sp/>*<sp/>Usage:<sp/>ValueType<sp/>top<sp/>=<sp/>stack.peek();</highlight></codeline>
-<codeline lineno="94"><highlight class="comment"><sp/>*<sp/>------------------------------------</highlight></codeline>
-<codeline lineno="95"><highlight class="comment"><sp/>*<sp/>Returns<sp/>the<sp/>value<sp/>of<sp/>top<sp/>element<sp/>from<sp/>this<sp/>stack,<sp/>without<sp/>removing<sp/>it.<sp/></highlight></codeline>
-<codeline lineno="96"><highlight class="comment"><sp/>*<sp/>This<sp/>method<sp/>signals<sp/>an<sp/>error<sp/>if<sp/>called<sp/>on<sp/>an<sp/>empty<sp/>stack.<sp/><sp/>For</highlight></codeline>
-<codeline lineno="97"><highlight class="comment"><sp/>*<sp/>compatibility<sp/>with<sp/>the<sp/>STL<sp/>classes,<sp/>this<sp/>method<sp/>is<sp/>also<sp/>exported<sp/>under</highlight></codeline>
-<codeline lineno="98"><highlight class="comment"><sp/>*<sp/>the<sp/>name<sp/>top,<sp/>in<sp/>which<sp/>case<sp/>it<sp/>returns<sp/>the<sp/>value<sp/>by<sp/>reference.</highlight></codeline>
-<codeline lineno="99"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="100"><highlight class="normal"></highlight></codeline>
-<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/>ValueType<sp/><ref refid="classStack_1ac2ac8caedc9186d462a72b64b2abb1dd" kindref="member">peek</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/>ValueType<sp/>&amp;<sp/><ref refid="classStack_1a922cc6b0493e73b63d52da7a9aad09fa" kindref="member">top</ref>();</highlight></codeline>
-<codeline lineno="103"><highlight class="normal"></highlight></codeline>
-<codeline lineno="104"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
-<codeline lineno="105"><highlight class="comment"><sp/>*<sp/>Method:<sp/>toString</highlight></codeline>
-<codeline lineno="106"><highlight class="comment"><sp/>*<sp/>Usage:<sp/>string<sp/>str<sp/>=<sp/>stack.toString();</highlight></codeline>
-<codeline lineno="107"><highlight class="comment"><sp/>*<sp/>-------------------------------------</highlight></codeline>
-<codeline lineno="108"><highlight class="comment"><sp/>*<sp/>Converts<sp/>the<sp/>stack<sp/>to<sp/>a<sp/>printable<sp/>string<sp/>representation.</highlight></codeline>
-<codeline lineno="109"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="110"><highlight class="normal"></highlight></codeline>
-<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/>std::string<sp/><ref refid="classStack_1a24aacbc701e1a56f159a96ab283ad8d2" kindref="member">toString</ref>();</highlight></codeline>
-<codeline lineno="112"><highlight class="normal"></highlight></codeline>
-<codeline lineno="113"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Private<sp/>section<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="114"><highlight class="normal"></highlight></codeline>
-<codeline lineno="115"><highlight class="normal"></highlight><highlight class="comment">/**********************************************************************/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="116"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Note:<sp/>Everything<sp/>below<sp/>this<sp/>point<sp/>in<sp/>the<sp/>file<sp/>is<sp/>logically<sp/>part<sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="117"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>of<sp/>the<sp/>implementation<sp/>and<sp/>should<sp/>not<sp/>be<sp/>of<sp/>interest<sp/>to<sp/>clients.<sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="118"><highlight class="normal"></highlight><highlight class="comment">/**********************************************************************/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="119"><highlight class="normal"></highlight></codeline>
-<codeline lineno="120"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
-<codeline lineno="121"><highlight class="comment"><sp/>*<sp/>Implementation<sp/>notes:<sp/>Stack<sp/>data<sp/>structure</highlight></codeline>
-<codeline lineno="122"><highlight class="comment"><sp/>*<sp/>------------------------------------------</highlight></codeline>
-<codeline lineno="123"><highlight class="comment"><sp/>*<sp/>The<sp/>easiest<sp/>way<sp/>to<sp/>implement<sp/>a<sp/>stack<sp/>is<sp/>to<sp/>store<sp/>the<sp/>elements<sp/>in<sp/>a</highlight></codeline>
-<codeline lineno="124"><highlight class="comment"><sp/>*<sp/>Vector.<sp/><sp/>Doing<sp/>so<sp/>means<sp/>that<sp/>the<sp/>problems<sp/>of<sp/>dynamic<sp/>memory<sp/>allocation</highlight></codeline>
-<codeline lineno="125"><highlight class="comment"><sp/>*<sp/>and<sp/>copy<sp/>assignment<sp/>are<sp/>already<sp/>solved<sp/>by<sp/>the<sp/>implementation<sp/>of<sp/>the</highlight></codeline>
-<codeline lineno="126"><highlight class="comment"><sp/>*<sp/>underlying<sp/>Vector<sp/>class.</highlight></codeline>
-<codeline lineno="127"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="128"><highlight class="normal"></highlight></codeline>
-<codeline lineno="129"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/>Vector&lt;ValueType&gt;<sp/>elements;</highlight></codeline>
-<codeline lineno="131"><highlight class="normal"></highlight></codeline>
-<codeline lineno="132"><highlight class="normal">};</highlight></codeline>
-<codeline lineno="133"><highlight class="normal"></highlight></codeline>
-<codeline lineno="134"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="stack_8h_1a78004f49ac0abc47f858d508c258191e" kindref="member">error</ref>(std::string<sp/>msg);</highlight></codeline>
-<codeline lineno="135"><highlight class="normal"></highlight></codeline>
-<codeline lineno="136"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
-<codeline lineno="137"><highlight class="comment"><sp/>*<sp/>Stack<sp/>class<sp/>implementation</highlight></codeline>
-<codeline lineno="138"><highlight class="comment"><sp/>*<sp/>--------------------------</highlight></codeline>
-<codeline lineno="139"><highlight class="comment"><sp/>*<sp/>The<sp/>Stack<sp/>is<sp/>internally<sp/>managed<sp/>using<sp/>a<sp/>Vector.<sp/><sp/>This<sp/>layered<sp/>design</highlight></codeline>
-<codeline lineno="140"><highlight class="comment"><sp/>*<sp/>makes<sp/>the<sp/>implementation<sp/>extremely<sp/>simple,<sp/>to<sp/>the<sp/>point<sp/>that<sp/>most</highlight></codeline>
-<codeline lineno="141"><highlight class="comment"><sp/>*<sp/>methods<sp/>can<sp/>be<sp/>implemented<sp/>in<sp/>as<sp/>single<sp/>line.</highlight></codeline>
-<codeline lineno="142"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="143"><highlight class="normal"></highlight></codeline>
-<codeline lineno="144"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>ValueType&gt;</highlight></codeline>
-<codeline lineno="145" refid="classStack_1a3dda891eaa1e7650043e9d9596406164" refkind="member"><highlight class="normal"><ref refid="classStack_1a3dda891eaa1e7650043e9d9596406164" kindref="member">Stack&lt;ValueType&gt;::Stack</ref>()<sp/>{</highlight></codeline>
-<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Empty<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="147"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="148"><highlight class="normal"></highlight></codeline>
-<codeline lineno="149"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>ValueType&gt;</highlight></codeline>
-<codeline lineno="150" refid="classStack_1a8a2147cf8c3c813b85a3e49b01c3fb09" refkind="member"><highlight class="normal"><ref refid="classStack_1a8a2147cf8c3c813b85a3e49b01c3fb09" kindref="member">Stack&lt;ValueType&gt;::~Stack</ref>()<sp/>{</highlight></codeline>
-<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Empty<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="152"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="153"><highlight class="normal"></highlight></codeline>
-<codeline lineno="154"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>ValueType&gt;</highlight></codeline>
-<codeline lineno="155" refid="classStack_1a481e5f6b9dd188a3c908d358678847e3" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classStack_1a481e5f6b9dd188a3c908d358678847e3" kindref="member">Stack&lt;ValueType&gt;::size</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>elements.size();</highlight></codeline>
-<codeline lineno="157"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="158"><highlight class="normal"></highlight></codeline>
-<codeline lineno="159"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>ValueType&gt;</highlight></codeline>
-<codeline lineno="160" refid="classStack_1af58f25071989ccce63aa4a769521bd56" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classStack_1af58f25071989ccce63aa4a769521bd56" kindref="member">Stack&lt;ValueType&gt;::isEmpty</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>size()<sp/>==<sp/>0;</highlight></codeline>
-<codeline lineno="162"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="163"><highlight class="normal"></highlight></codeline>
-<codeline lineno="164"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>ValueType&gt;</highlight></codeline>
-<codeline lineno="165" refid="classStack_1a369b6b7fa9119bab964d479dd3264ed4" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classStack_1a369b6b7fa9119bab964d479dd3264ed4" kindref="member">Stack&lt;ValueType&gt;::push</ref>(ValueType<sp/>value)<sp/>{</highlight></codeline>
-<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/>elements.add(value);</highlight></codeline>
-<codeline lineno="167"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="168"><highlight class="normal"></highlight></codeline>
-<codeline lineno="169"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>ValueType&gt;</highlight></codeline>
-<codeline lineno="170" refid="classStack_1a2eaa887d4bd4667bec5e07e8af2dd67d" refkind="member"><highlight class="normal">ValueType<sp/><ref refid="classStack_1a2eaa887d4bd4667bec5e07e8af2dd67d" kindref="member">Stack&lt;ValueType&gt;::pop</ref>()<sp/>{</highlight></codeline>
-<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(isEmpty())<sp/><ref refid="stack_8h_1a78004f49ac0abc47f858d508c258191e" kindref="member">error</ref>(</highlight><highlight class="stringliteral">&quot;pop:<sp/>Attempting<sp/>to<sp/>pop<sp/>an<sp/>empty<sp/>stack&quot;</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/>ValueType<sp/>top<sp/>=<sp/>elements[elements.size()<sp/>-<sp/>1];</highlight></codeline>
-<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/>elements.remove(elements.size()<sp/>-<sp/>1);</highlight></codeline>
-<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>top;</highlight></codeline>
-<codeline lineno="175"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="176"><highlight class="normal"></highlight></codeline>
-<codeline lineno="177"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>ValueType&gt;</highlight></codeline>
-<codeline lineno="178" refid="classStack_1ac2ac8caedc9186d462a72b64b2abb1dd" refkind="member"><highlight class="normal">ValueType<sp/><ref refid="classStack_1ac2ac8caedc9186d462a72b64b2abb1dd" kindref="member">Stack&lt;ValueType&gt;::peek</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(isEmpty())<sp/><ref refid="stack_8h_1a78004f49ac0abc47f858d508c258191e" kindref="member">error</ref>(</highlight><highlight class="stringliteral">&quot;peek:<sp/>Attempting<sp/>to<sp/>peek<sp/>at<sp/>an<sp/>empty<sp/>stack&quot;</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>elements.get(elements.size()<sp/>-<sp/>1);</highlight></codeline>
-<codeline lineno="181"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="182"><highlight class="normal"></highlight></codeline>
-<codeline lineno="183"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>ValueType&gt;</highlight></codeline>
-<codeline lineno="184" refid="classStack_1a922cc6b0493e73b63d52da7a9aad09fa" refkind="member"><highlight class="normal">ValueType<sp/>&amp;<sp/><ref refid="classStack_1a922cc6b0493e73b63d52da7a9aad09fa" kindref="member">Stack&lt;ValueType&gt;::top</ref>()<sp/>{</highlight></codeline>
-<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(isEmpty())<sp/><ref refid="stack_8h_1a78004f49ac0abc47f858d508c258191e" kindref="member">error</ref>(</highlight><highlight class="stringliteral">&quot;top:<sp/>Attempting<sp/>to<sp/>read<sp/>top<sp/>of<sp/>an<sp/>empty<sp/>stack&quot;</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>elements[elements.size()<sp/>-<sp/>1];</highlight></codeline>
-<codeline lineno="187"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="188"><highlight class="normal"></highlight></codeline>
-<codeline lineno="189"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>ValueType&gt;</highlight></codeline>
-<codeline lineno="190" refid="classStack_1a9e9b8cf118a2329526d700d093c4f71d" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classStack_1a9e9b8cf118a2329526d700d093c4f71d" kindref="member">Stack&lt;ValueType&gt;::clear</ref>()<sp/>{</highlight></codeline>
-<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/>elements.clear();</highlight></codeline>
-<codeline lineno="192"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="193"><highlight class="normal"></highlight></codeline>
-<codeline lineno="194"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>ValueType&gt;</highlight></codeline>
-<codeline lineno="195" refid="classStack_1a24aacbc701e1a56f159a96ab283ad8d2" refkind="member"><highlight class="normal">std::string<sp/><ref refid="classStack_1a24aacbc701e1a56f159a96ab283ad8d2" kindref="member">Stack&lt;ValueType&gt;::toString</ref>()<sp/>{</highlight></codeline>
-<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/>ostringstream<sp/>os;</highlight></codeline>
-<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/>os<sp/>&lt;&lt;<sp/>*</highlight><highlight class="keyword">this</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="198"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>os.str();</highlight></codeline>
-<codeline lineno="199"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="200"><highlight class="normal"></highlight></codeline>
-<codeline lineno="201"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>ValueType&gt;</highlight></codeline>
-<codeline lineno="202" refid="stack_8h_1ab1962866e487c84b8e76de9ff0e9ca4a" refkind="member"><highlight class="normal">std::ostream<sp/>&amp;<sp/><ref refid="stack_8h_1ab1962866e487c84b8e76de9ff0e9ca4a" kindref="member">operator&lt;&lt;</ref>(std::ostream<sp/>&amp;<sp/>os,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classStack" kindref="compound">Stack&lt;ValueType&gt;</ref><sp/>&amp;<sp/>stack)<sp/>{</highlight></codeline>
-<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/>os<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;{&quot;</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><ref refid="classStack" kindref="compound">Stack&lt;ValueType&gt;</ref><sp/>copy<sp/>=<sp/>stack;</highlight></codeline>
-<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><ref refid="classStack" kindref="compound">Stack&lt;ValueType&gt;</ref><sp/>reversed;</highlight></codeline>
-<codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(!copy.<ref refid="classStack_1af58f25071989ccce63aa4a769521bd56" kindref="member">isEmpty</ref>())<sp/>{</highlight></codeline>
-<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>reversed.<ref refid="classStack_1a369b6b7fa9119bab964d479dd3264ed4" kindref="member">push</ref>(copy.<ref refid="classStack_1a2eaa887d4bd4667bec5e07e8af2dd67d" kindref="member">pop</ref>());</highlight></codeline>
-<codeline lineno="208"><highlight class="normal"><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="209"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>len<sp/>=<sp/>stack.<ref refid="classStack_1a481e5f6b9dd188a3c908d358678847e3" kindref="member">size</ref>();</highlight></codeline>
-<codeline lineno="210"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>len;<sp/>i++)<sp/>{</highlight></codeline>
-<codeline lineno="211"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(i<sp/>&gt;<sp/>0)<sp/>os<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;,<sp/>&quot;</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="212"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>writeGenericValue(os,<sp/>reversed.<ref refid="classStack_1a2eaa887d4bd4667bec5e07e8af2dd67d" kindref="member">pop</ref>(),<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="213"><highlight class="normal"><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="214"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>os<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;}&quot;</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="215"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="216"><highlight class="normal"></highlight></codeline>
-<codeline lineno="217"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>ValueType&gt;</highlight></codeline>
-<codeline lineno="218" refid="stack_8h_1a6aa29804db7f548efb6793bdc3f6da0d" refkind="member"><highlight class="normal">std::istream<sp/>&amp;<sp/><ref refid="stack_8h_1a6aa29804db7f548efb6793bdc3f6da0d" kindref="member">operator&gt;&gt;</ref>(std::istream<sp/>&amp;<sp/>is,<sp/><ref refid="classStack" kindref="compound">Stack&lt;ValueType&gt;</ref><sp/>&amp;<sp/>stack)<sp/>{</highlight></codeline>
-<codeline lineno="219"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>ch;</highlight></codeline>
-<codeline lineno="220"><highlight class="normal"><sp/><sp/><sp/>is<sp/>&gt;&gt;<sp/>ch;</highlight></codeline>
-<codeline lineno="221"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(ch<sp/>!=<sp/></highlight><highlight class="charliteral">&apos;{&apos;</highlight><highlight class="normal">)<sp/><ref refid="stack_8h_1a78004f49ac0abc47f858d508c258191e" kindref="member">error</ref>(</highlight><highlight class="stringliteral">&quot;operator<sp/>&gt;&gt;:<sp/>Missing<sp/>{&quot;</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="222"><highlight class="normal"><sp/><sp/><sp/>stack.<ref refid="classStack_1a9e9b8cf118a2329526d700d093c4f71d" kindref="member">clear</ref>();</highlight></codeline>
-<codeline lineno="223"><highlight class="normal"><sp/><sp/><sp/>is<sp/>&gt;&gt;<sp/>ch;</highlight></codeline>
-<codeline lineno="224"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(ch<sp/>!=<sp/></highlight><highlight class="charliteral">&apos;}&apos;</highlight><highlight class="normal">)<sp/>{</highlight></codeline>
-<codeline lineno="225"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>is.unget();</highlight></codeline>
-<codeline lineno="226"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">true</highlight><highlight class="normal">)<sp/>{</highlight></codeline>
-<codeline lineno="227"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ValueType<sp/>value;</highlight></codeline>
-<codeline lineno="228"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>readGenericValue(is,<sp/>value);</highlight></codeline>
-<codeline lineno="229"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>stack.<ref refid="classStack_1a369b6b7fa9119bab964d479dd3264ed4" kindref="member">push</ref>(value);</highlight></codeline>
-<codeline lineno="230"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>is<sp/>&gt;&gt;<sp/>ch;</highlight></codeline>
-<codeline lineno="231"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(ch<sp/>==<sp/></highlight><highlight class="charliteral">&apos;}&apos;</highlight><highlight class="normal">)<sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="232"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(ch<sp/>!=<sp/></highlight><highlight class="charliteral">&apos;,&apos;</highlight><highlight class="normal">)<sp/>{</highlight></codeline>
-<codeline lineno="233"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="stack_8h_1a78004f49ac0abc47f858d508c258191e" kindref="member">error</ref>(std::string(</highlight><highlight class="stringliteral">&quot;operator<sp/>&gt;&gt;:<sp/>Unexpected<sp/>character<sp/>&quot;</highlight><highlight class="normal">)<sp/>+<sp/>ch);</highlight></codeline>
-<codeline lineno="234"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="235"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="236"><highlight class="normal"><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="237"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>is;</highlight></codeline>
-<codeline lineno="238"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="239"><highlight class="normal"></highlight></codeline>
-<codeline lineno="240"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+<codeline lineno="1" refid="structStackElem" refkind="compound"><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structStackElem" kindref="compound">StackElem</ref></highlight></codeline>
+<codeline lineno="2"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="3" refid="structStackElem_1af7df7215221d556415d62bf790922992" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="structStackElem_1af7df7215221d556415d62bf790922992" kindref="member">StackElem</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>d,<sp/><ref refid="structStackElem" kindref="compound">StackElem</ref><sp/>*n)<sp/></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/><ref refid="structStackElem_1a10738a73416aebcfd5ac662aee983903" kindref="member">data</ref><sp/>=<sp/>d;<sp/><ref refid="structStackElem_1ac0bd15f0c18b20c41b2954494fc3b048" kindref="member">next</ref><sp/>=<sp/>n;<sp/>}</highlight></codeline>
+<codeline lineno="5" refid="structStackElem_1a10738a73416aebcfd5ac662aee983903" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structStackElem_1a10738a73416aebcfd5ac662aee983903" kindref="member">data</ref>;</highlight></codeline>
+<codeline lineno="6" refid="structStackElem_1ac0bd15f0c18b20c41b2954494fc3b048" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="structStackElem" kindref="compound">StackElem</ref><sp/>*<ref refid="structStackElem_1ac0bd15f0c18b20c41b2954494fc3b048" kindref="member">next</ref>;</highlight></codeline>
+<codeline lineno="7"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10" refid="classStack" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classStack" kindref="compound">Stack</ref></highlight></codeline>
+<codeline lineno="11"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><ref refid="classStack_1a14cd1cba325bead4ff0a91bc6eb0f6f5" kindref="member">Stack</ref>();<sp/></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><ref refid="classStack_1a14cd1cba325bead4ff0a91bc6eb0f6f5" kindref="member">Stack</ref>();</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classStack_1a4140b49e86ca78412f6a82c63b1c2865" kindref="member">PUSH</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>x);</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classStack_1a804d828b172c6651b2535c4c2f55fc67" kindref="member">POP</ref>();<sp/><sp/></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><ref refid="structStackElem" kindref="compound">StackElem</ref><sp/>*head;</highlight></codeline>
+<codeline lineno="21"><highlight class="normal">};</highlight></codeline>
     </programlisting>
     <location file="stack.h"/>
   </compounddef>

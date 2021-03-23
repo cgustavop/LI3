@@ -3,30 +3,25 @@
   <compounddef id="classStack" kind="class" language="C++" prot="public">
     <compoundname>Stack</compoundname>
     <includes refid="stack_8h" local="no">stack.h</includes>
-    <templateparamlist>
-      <param>
-        <type>typename ValueType</type>
-      </param>
-    </templateparamlist>
       <sectiondef kind="private-attrib">
-      <memberdef kind="variable" id="classStack_1a84c6078b4d5dc20dc564af447380d4ca" prot="private" static="no" mutable="no">
-        <type>Vector&lt; ValueType &gt;</type>
-        <definition>Vector&lt;ValueType&gt; Stack&lt; ValueType &gt;::elements</definition>
+      <memberdef kind="variable" id="classStack_1ae4c08969fee2569b26610c0a3786af53" prot="private" static="no" mutable="no">
+        <type><ref refid="structStackElem" kindref="compound">StackElem</ref> *</type>
+        <definition>StackElem* Stack::head</definition>
         <argsstring></argsstring>
-        <name>elements</name>
+        <name>head</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="stack.h" line="130" column="11" bodyfile="stack.h" bodystart="130" bodyend="-1"/>
+        <location file="stack.h" line="20" column="13" bodyfile="stack.h" bodystart="20" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="classStack_1a3dda891eaa1e7650043e9d9596406164" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classStack_1a14cd1cba325bead4ff0a91bc6eb0f6f5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
-        <definition>Stack&lt; ValueType &gt;::Stack</definition>
+        <definition>Stack::Stack</definition>
         <argsstring>()</argsstring>
         <name>Stack</name>
         <briefdescription>
@@ -35,68 +30,29 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="stack.h" line="35" column="4" bodyfile="stack.h" bodystart="145" bodyend="147"/>
+        <location file="stack.h" line="13" column="3"/>
       </memberdef>
-      <memberdef kind="function" id="classStack_1a8a2147cf8c3c813b85a3e49b01c3fb09" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+      <memberdef kind="function" id="classStack_1a14cd1cba325bead4ff0a91bc6eb0f6f5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
-        <definition>Stack&lt; ValueType &gt;::~Stack</definition>
+        <definition>Stack::Stack</definition>
         <argsstring>()</argsstring>
-        <name>~Stack</name>
+        <name>Stack</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="stack.h" line="43" column="12" bodyfile="stack.h" bodystart="150" bodyend="152"/>
+        <location file="stack.h" line="14" column="3"/>
       </memberdef>
-      <memberdef kind="function" id="classStack_1a481e5f6b9dd188a3c908d358678847e3" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type>int</type>
-        <definition>int Stack&lt; ValueType &gt;::size</definition>
-        <argsstring>() const</argsstring>
-        <name>size</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="stack.h" line="52" column="8" bodyfile="stack.h" bodystart="155" bodyend="157"/>
-      </memberdef>
-      <memberdef kind="function" id="classStack_1af58f25071989ccce63aa4a769521bd56" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type>bool</type>
-        <definition>bool Stack&lt; ValueType &gt;::isEmpty</definition>
-        <argsstring>() const</argsstring>
-        <name>isEmpty</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="stack.h" line="61" column="9" bodyfile="stack.h" bodystart="160" bodyend="162"/>
-      </memberdef>
-      <memberdef kind="function" id="classStack_1a9e9b8cf118a2329526d700d093c4f71d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classStack_1a4140b49e86ca78412f6a82c63b1c2865" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
-        <definition>void Stack&lt; ValueType &gt;::clear</definition>
-        <argsstring>()</argsstring>
-        <name>clear</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="stack.h" line="70" column="9" bodyfile="stack.h" bodystart="190" bodyend="192"/>
-      </memberdef>
-      <memberdef kind="function" id="classStack_1a369b6b7fa9119bab964d479dd3264ed4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
-        <definition>void Stack&lt; ValueType &gt;::push</definition>
-        <argsstring>(ValueType value)</argsstring>
-        <name>push</name>
+        <definition>void Stack::PUSH</definition>
+        <argsstring>(int x)</argsstring>
+        <name>PUSH</name>
         <param>
-          <type>ValueType</type>
-          <declname>value</declname>
+          <type>int</type>
+          <declname>x</declname>
         </param>
         <briefdescription>
         </briefdescription>
@@ -104,78 +60,33 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="stack.h" line="79" column="9" bodyfile="stack.h" bodystart="165" bodyend="167"/>
+        <location file="stack.h" line="16" column="8"/>
       </memberdef>
-      <memberdef kind="function" id="classStack_1a2eaa887d4bd4667bec5e07e8af2dd67d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>ValueType</type>
-        <definition>ValueType Stack&lt; ValueType &gt;::pop</definition>
+      <memberdef kind="function" id="classStack_1a804d828b172c6651b2535c4c2f55fc67" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int Stack::POP</definition>
         <argsstring>()</argsstring>
-        <name>pop</name>
+        <name>POP</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="stack.h" line="89" column="14" bodyfile="stack.h" bodystart="170" bodyend="175"/>
-      </memberdef>
-      <memberdef kind="function" id="classStack_1ac2ac8caedc9186d462a72b64b2abb1dd" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type>ValueType</type>
-        <definition>ValueType Stack&lt; ValueType &gt;::peek</definition>
-        <argsstring>() const</argsstring>
-        <name>peek</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="stack.h" line="101" column="14" bodyfile="stack.h" bodystart="178" bodyend="181"/>
-      </memberdef>
-      <memberdef kind="function" id="classStack_1a922cc6b0493e73b63d52da7a9aad09fa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>ValueType &amp;</type>
-        <definition>ValueType &amp; Stack&lt; ValueType &gt;::top</definition>
-        <argsstring>()</argsstring>
-        <name>top</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="stack.h" line="102" column="15" bodyfile="stack.h" bodystart="184" bodyend="187"/>
-      </memberdef>
-      <memberdef kind="function" id="classStack_1a24aacbc701e1a56f159a96ab283ad8d2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>std::string</type>
-        <definition>std::string Stack&lt; ValueType &gt;::toString</definition>
-        <argsstring>()</argsstring>
-        <name>toString</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="stack.h" line="111" column="16" bodyfile="stack.h" bodystart="195" bodyend="199"/>
+        <location file="stack.h" line="17" column="7"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="stack.h" line="24" column="12" bodyfile="stack.h" bodystart="24" bodyend="132"/>
+    <location file="stack.h" line="11" column="1" bodyfile="stack.h" bodystart="10" bodyend="21"/>
     <listofallmembers>
-      <member refid="classStack_1a9e9b8cf118a2329526d700d093c4f71d" prot="public" virt="non-virtual"><scope>Stack</scope><name>clear</name></member>
-      <member refid="classStack_1a84c6078b4d5dc20dc564af447380d4ca" prot="private" virt="non-virtual"><scope>Stack</scope><name>elements</name></member>
-      <member refid="classStack_1af58f25071989ccce63aa4a769521bd56" prot="public" virt="non-virtual"><scope>Stack</scope><name>isEmpty</name></member>
-      <member refid="classStack_1ac2ac8caedc9186d462a72b64b2abb1dd" prot="public" virt="non-virtual"><scope>Stack</scope><name>peek</name></member>
-      <member refid="classStack_1a2eaa887d4bd4667bec5e07e8af2dd67d" prot="public" virt="non-virtual"><scope>Stack</scope><name>pop</name></member>
-      <member refid="classStack_1a369b6b7fa9119bab964d479dd3264ed4" prot="public" virt="non-virtual"><scope>Stack</scope><name>push</name></member>
-      <member refid="classStack_1a481e5f6b9dd188a3c908d358678847e3" prot="public" virt="non-virtual"><scope>Stack</scope><name>size</name></member>
-      <member refid="classStack_1a3dda891eaa1e7650043e9d9596406164" prot="public" virt="non-virtual"><scope>Stack</scope><name>Stack</name></member>
-      <member refid="classStack_1a922cc6b0493e73b63d52da7a9aad09fa" prot="public" virt="non-virtual"><scope>Stack</scope><name>top</name></member>
-      <member refid="classStack_1a24aacbc701e1a56f159a96ab283ad8d2" prot="public" virt="non-virtual"><scope>Stack</scope><name>toString</name></member>
-      <member refid="classStack_1a8a2147cf8c3c813b85a3e49b01c3fb09" prot="public" virt="virtual"><scope>Stack</scope><name>~Stack</name></member>
+      <member refid="classStack_1ae4c08969fee2569b26610c0a3786af53" prot="private" virt="non-virtual"><scope>Stack</scope><name>head</name></member>
+      <member refid="classStack_1a804d828b172c6651b2535c4c2f55fc67" prot="public" virt="non-virtual"><scope>Stack</scope><name>POP</name></member>
+      <member refid="classStack_1a4140b49e86ca78412f6a82c63b1c2865" prot="public" virt="non-virtual"><scope>Stack</scope><name>PUSH</name></member>
+      <member refid="classStack_1a14cd1cba325bead4ff0a91bc6eb0f6f5" prot="public" virt="non-virtual"><scope>Stack</scope><name>Stack</name></member>
+      <member refid="classStack_1a14cd1cba325bead4ff0a91bc6eb0f6f5" prot="public" virt="non-virtual"><scope>Stack</scope><name>Stack</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

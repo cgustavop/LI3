@@ -8,7 +8,7 @@
 #include <string.h>
 #include <math.h>
 
-//#include "stack.h"
+#include "stack.h"
 #include "parser.h"
 
 
@@ -59,14 +59,10 @@ int parse(char *line) {
 
         // módulo e exponenciação
         } else if(strcmp(token, "%") == 0) {
-<<<<<<< HEAD
-            int Y = POP();
-            PUSH(abs(Y));
-=======
             long Y = POP();
             long X = POP();
             PUSH(X%Y);
->>>>>>> a9d7829c9b8e5be3398eb0a69410e10a3ffe2f6c
+
         } else if(strcmp(token, "#") == 0) {
             long Y = POP();
             long X = POP();

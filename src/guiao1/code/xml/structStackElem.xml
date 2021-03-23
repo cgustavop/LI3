@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="structStackElem" kind="struct" language="C++" prot="public">
+    <compoundname>StackElem</compoundname>
+    <includes refid="stack_8h" local="no">stack.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structStackElem_1a10738a73416aebcfd5ac662aee983903" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int StackElem::data</definition>
+        <argsstring></argsstring>
+        <name>data</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="stack.h" line="5" column="7" bodyfile="stack.h" bodystart="5" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structStackElem_1ac0bd15f0c18b20c41b2954494fc3b048" prot="public" static="no" mutable="no">
+        <type><ref refid="structStackElem" kindref="compound">StackElem</ref> *</type>
+        <definition>StackElem* StackElem::next</definition>
+        <argsstring></argsstring>
+        <name>next</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="stack.h" line="6" column="13" bodyfile="stack.h" bodystart="6" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structStackElem_1af7df7215221d556415d62bf790922992" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>StackElem::StackElem</definition>
+        <argsstring>(int d, StackElem *n)</argsstring>
+        <name>StackElem</name>
+        <param>
+          <type>int</type>
+          <declname>d</declname>
+        </param>
+        <param>
+          <type><ref refid="structStackElem" kindref="compound">StackElem</ref> *</type>
+          <declname>n</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="stack.h" line="3" column="3" bodyfile="stack.h" bodystart="3" bodyend="4"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>StackElem</label>
+        <link refid="structStackElem"/>
+        <childnode refid="1" relation="usage">
+          <edgelabel>next</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="stack.h" line="2" column="1" bodyfile="stack.h" bodystart="1" bodyend="7"/>
+    <listofallmembers>
+      <member refid="structStackElem_1a10738a73416aebcfd5ac662aee983903" prot="public" virt="non-virtual"><scope>StackElem</scope><name>data</name></member>
+      <member refid="structStackElem_1ac0bd15f0c18b20c41b2954494fc3b048" prot="public" virt="non-virtual"><scope>StackElem</scope><name>next</name></member>
+      <member refid="structStackElem_1af7df7215221d556415d62bf790922992" prot="public" virt="non-virtual"><scope>StackElem</scope><name>StackElem</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

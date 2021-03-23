@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['clear_0',['clear',['../classStack.html#a9e9b8cf118a2329526d700d093c4f71d',1,'Stack']]]
+  ['data_0',['data',['../structStackElem.html#a10738a73416aebcfd5ac662aee983903',1,'StackElem']]]
 ];

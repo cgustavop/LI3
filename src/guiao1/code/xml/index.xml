@@ -1,19 +1,20 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.8.17">
   <compound refid="classStack" kind="class"><name>Stack</name>
-    <member refid="classStack_1a84c6078b4d5dc20dc564af447380d4ca" kind="variable"><name>elements</name></member>
-    <member refid="classStack_1a3dda891eaa1e7650043e9d9596406164" kind="function"><name>Stack</name></member>
-    <member refid="classStack_1a8a2147cf8c3c813b85a3e49b01c3fb09" kind="function"><name>~Stack</name></member>
-    <member refid="classStack_1a481e5f6b9dd188a3c908d358678847e3" kind="function"><name>size</name></member>
-    <member refid="classStack_1af58f25071989ccce63aa4a769521bd56" kind="function"><name>isEmpty</name></member>
-    <member refid="classStack_1a9e9b8cf118a2329526d700d093c4f71d" kind="function"><name>clear</name></member>
-    <member refid="classStack_1a369b6b7fa9119bab964d479dd3264ed4" kind="function"><name>push</name></member>
-    <member refid="classStack_1a2eaa887d4bd4667bec5e07e8af2dd67d" kind="function"><name>pop</name></member>
-    <member refid="classStack_1ac2ac8caedc9186d462a72b64b2abb1dd" kind="function"><name>peek</name></member>
-    <member refid="classStack_1a922cc6b0493e73b63d52da7a9aad09fa" kind="function"><name>top</name></member>
-    <member refid="classStack_1a24aacbc701e1a56f159a96ab283ad8d2" kind="function"><name>toString</name></member>
+    <member refid="classStack_1ae4c08969fee2569b26610c0a3786af53" kind="variable"><name>head</name></member>
+    <member refid="classStack_1a14cd1cba325bead4ff0a91bc6eb0f6f5" kind="function"><name>Stack</name></member>
+    <member refid="classStack_1a14cd1cba325bead4ff0a91bc6eb0f6f5" kind="function"><name>Stack</name></member>
+    <member refid="classStack_1a4140b49e86ca78412f6a82c63b1c2865" kind="function"><name>PUSH</name></member>
+    <member refid="classStack_1a804d828b172c6651b2535c4c2f55fc67" kind="function"><name>POP</name></member>
+  </compound>
+  <compound refid="structStackElem" kind="struct"><name>StackElem</name>
+    <member refid="structStackElem_1a10738a73416aebcfd5ac662aee983903" kind="variable"><name>data</name></member>
+    <member refid="structStackElem_1ac0bd15f0c18b20c41b2954494fc3b048" kind="variable"><name>next</name></member>
+    <member refid="structStackElem_1af7df7215221d556415d62bf790922992" kind="function"><name>StackElem</name></member>
   </compound>
   <compound refid="main_8c" kind="file"><name>main.c</name>
+    <member refid="main_8c_1af93f4f37fc2ad9c37af4a715423b110c" kind="variable"><name>top</name></member>
+    <member refid="main_8c_1ad557a1a3563514f34a679e3a76452af8" kind="variable"><name>stack</name></member>
     <member refid="main_8c_1ae66f6b31b5ad750f1fe042a706a4e3d4" kind="function"><name>main</name></member>
   </compound>
   <compound refid="parser_8c" kind="file"><name>parser.c</name>
@@ -21,10 +22,17 @@
   </compound>
   <compound refid="parser_8h" kind="file"><name>parser.h</name>
     <member refid="parser_8h_1ab116abcccaf4f52d6bb5f1235d1f7cbd" kind="function"><name>parser</name></member>
+    <member refid="parser_8h_1abf47b3f70564305b09e5d114bc85a5a8" kind="function"><name>PUSH</name></member>
+    <member refid="parser_8h_1ac9c76201d1930e75c9196dd2c01ce308" kind="function"><name>POP</name></member>
+    <member refid="parser_8h_1aba79cb558dcc94742a2c64f7f2a19a4f" kind="function"><name>PRINT_STACK</name></member>
+    <member refid="parser_8h_1af47e5cb287f1c5734a65d00b47cb8313" kind="function"><name>STACK_SIZE</name></member>
+  </compound>
+  <compound refid="stack_8c" kind="file"><name>stack.c</name>
+    <member refid="stack_8c_1abf47b3f70564305b09e5d114bc85a5a8" kind="function"><name>PUSH</name></member>
+    <member refid="stack_8c_1ac9c76201d1930e75c9196dd2c01ce308" kind="function"><name>POP</name></member>
+    <member refid="stack_8c_1aba79cb558dcc94742a2c64f7f2a19a4f" kind="function"><name>PRINT_STACK</name></member>
+    <member refid="stack_8c_1af47e5cb287f1c5734a65d00b47cb8313" kind="function"><name>STACK_SIZE</name></member>
   </compound>
   <compound refid="stack_8h" kind="file"><name>stack.h</name>
-    <member refid="stack_8h_1a78004f49ac0abc47f858d508c258191e" kind="function"><name>error</name></member>
-    <member refid="stack_8h_1ab1962866e487c84b8e76de9ff0e9ca4a" kind="function"><name>operator&lt;&lt;</name></member>
-    <member refid="stack_8h_1a6aa29804db7f548efb6793bdc3f6da0d" kind="function"><name>operator&gt;&gt;</name></member>
   </compound>
 </doxygenindex>

@@ -1,44 +1,11 @@
 \hypertarget{stack_8h}{}\doxysection{stack.\+h File Reference}
 \label{stack_8h}\index{stack.h@{stack.h}}
-{\ttfamily \#include \char`\"{}vector.\+h\char`\"{}}\newline
-Include dependency graph for stack.\+h\+:
-% FIG 0
 This graph shows which files directly or indirectly include this file\+:
-% FIG 1
+% FIG 0
 \doxysubsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
-class \mbox{\hyperlink{classStack}{Stack$<$ Value\+Type $>$}}
+struct \mbox{\hyperlink{structStackElem}{Stack\+Elem}}
+\item 
+class \mbox{\hyperlink{classStack}{Stack}}
 \end{DoxyCompactItemize}
-\doxysubsection*{Functions}
-\begin{DoxyCompactItemize}
-\item 
-void \mbox{\hyperlink{stack_8h_a78004f49ac0abc47f858d508c258191e}{error}} (std\+::string msg)
-\item 
-{\footnotesize template$<$typename Value\+Type $>$ }\\std\+::ostream \& \mbox{\hyperlink{stack_8h_ab1962866e487c84b8e76de9ff0e9ca4a}{operator$<$$<$}} (std\+::ostream \&os, const \mbox{\hyperlink{classStack}{Stack}}$<$ Value\+Type $>$ \&stack)
-\item 
-{\footnotesize template$<$typename Value\+Type $>$ }\\std\+::istream \& \mbox{\hyperlink{stack_8h_a6aa29804db7f548efb6793bdc3f6da0d}{operator$>$$>$}} (std\+::istream \&is, \mbox{\hyperlink{classStack}{Stack}}$<$ Value\+Type $>$ \&stack)
-\end{DoxyCompactItemize}
-
-
-\doxysubsection{Function Documentation}
-\mbox{\Hypertarget{stack_8h_a78004f49ac0abc47f858d508c258191e}\label{stack_8h_a78004f49ac0abc47f858d508c258191e}} 
-\index{stack.h@{stack.h}!error@{error}}
-\index{error@{error}!stack.h@{stack.h}}
-\doxysubsubsection{\texorpdfstring{error()}{error()}}
-{\footnotesize\ttfamily void error (\begin{DoxyParamCaption}\item[{std\+::string}]{msg }\end{DoxyParamCaption})}
-
-\mbox{\Hypertarget{stack_8h_ab1962866e487c84b8e76de9ff0e9ca4a}\label{stack_8h_ab1962866e487c84b8e76de9ff0e9ca4a}} 
-\index{stack.h@{stack.h}!operator$<$$<$@{operator$<$$<$}}
-\index{operator$<$$<$@{operator$<$$<$}!stack.h@{stack.h}}
-\doxysubsubsection{\texorpdfstring{operator$<$$<$()}{operator<<()}}
-{\footnotesize\ttfamily template$<$typename Value\+Type $>$ \\
-std\+::ostream\& operator$<$$<$ (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{os,  }\item[{const \mbox{\hyperlink{classStack}{Stack}}$<$ Value\+Type $>$ \&}]{stack }\end{DoxyParamCaption})}
-
-\mbox{\Hypertarget{stack_8h_a6aa29804db7f548efb6793bdc3f6da0d}\label{stack_8h_a6aa29804db7f548efb6793bdc3f6da0d}} 
-\index{stack.h@{stack.h}!operator$>$$>$@{operator$>$$>$}}
-\index{operator$>$$>$@{operator$>$$>$}!stack.h@{stack.h}}
-\doxysubsubsection{\texorpdfstring{operator$>$$>$()}{operator>>()}}
-{\footnotesize\ttfamily template$<$typename Value\+Type $>$ \\
-std\+::istream\& operator$>$$>$ (\begin{DoxyParamCaption}\item[{std\+::istream \&}]{is,  }\item[{\mbox{\hyperlink{classStack}{Stack}}$<$ Value\+Type $>$ \&}]{stack }\end{DoxyParamCaption})}
-
