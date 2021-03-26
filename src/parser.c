@@ -26,62 +26,93 @@ int parse(char *line) {
     for (char *token = strtok(line, delims); token != NULL; token = strtok(NULL, delims)) {
         char *sobra;
         long val_i = strtol(token, &sobra, 10);
+
         if(strlen(sobra) == 0) {
             PUSH(val_i);
 
+        // operações 
+        } else switch (strcmp(token,delims) == 0) {
+
         // operações básicas
-        } else if(strcmp(token, "+") == 0) {
-            long Y = POP();
-            long X = POP();
-            PUSH(X += Y);
-        } else if(strcmp(token, "-") == 0) {
-            long Y = POP();
-            long X = POP();
-            PUSH(X -= Y);
-        } else if(strcmp(token, "*") == 0) {
-            long Y = POP();
-            long X = POP();
-            PUSH(X *= Y);
-        } else if(strcmp(token, "/") == 0) {
-            long Y = POP();
-            long X = POP();
-            PUSH(X /= Y);
+         
+        	case (delims == "+") :
+            	long Y = POP();
+            	long X = POP();
+            	PUSH(X += Y);
+     			break;
+
+        	case (delims == "-") :
+            	long Y = POP();
+            	long X = POP();
+            	PUSH(X -= Y);
+            	break;
+
+        	case (delims == "*") :
+            	long Y = POP();
+            	long X = POP();
+            	PUSH(X *= Y);
+            	break;
+
+        	case (delims == "/") :
+            	long Y = POP();
+            	long X = POP();
+            	PUSH(X /= Y);
+            	break;
 
         // incrementação e decrementação
-        } else if(strcmp(token, "(") == 0) {
-            long Y = POP();
-            PUSH(Y -= 1);  
-        } else if(strcmp(token, ")") == 0) {
-            long Y = POP();
-            PUSH(Y += 1);
+
+        	case (delims == "(") :
+            	long Y = POP();
+            	PUSH(Y -= 1);
+            	break;  
+
+        	case (delims == ")") :
+            	long Y = POP();
+           		PUSH(Y += 1);
+           		break;
 
         // módulo e exponenciação
-        } else if(strcmp(token, "%") == 0) {
-            long Y = POP();
-            long X = POP();
-            PUSH(X %= Y);
 
-        } else if(strcmp(token, "#") == 0) {
-            long Y = POP();
-            long X = POP();
-            PUSH(pow(X,Y));
+       		case (delims == "%") :
+            	long Y = POP();
+            	long X = POP();
+            	PUSH(X %= Y);
+            	break;
+
+        	case (delims == "#") :
+            	long Y = POP();
+            	long X = POP();
+            	PUSH(pow(X,Y));
+            	break;
 
         // tabelas de verdades e bits oriented
-        } else if(strcmp(token, "&") == 0) {
-            long Y = POP();
-            long X = POP();
-            PUSH(X &= Y);
-        } else if(strcmp(token, "|") == 0) {
-            long Y = POP();
-            long X = POP();
-            PUSH(X |= Y);
-        } else if(strcmp(token, "^") == 0) {
-            long Y = POP();
-            long X = POP();
-            PUSH(X ^= Y);
-        } else if(strcmp(token, "~") == 0) {
-            long Y = POP();
-            PUSH((~ Y));
+
+        	case (delims == "&") :
+            	long Y = POP();
+            	long X = POP();
+            	PUSH(X &= Y);
+            	break;
+
+        	case (delims == "|") :
+            	long Y = POP();
+            	long X = POP();
+            	PUSH(X |= Y);
+            	break;
+
+       		case (delims == "^") :
+            	long Y = POP();
+            	long X = POP();
+            	PUSH(X ^= Y);
+            	break;
+
+        	case (delims == "~") :
+            	long Y = POP();
+            	PUSH((~ Y));
+            	break;
+
+            default :
+            	PUSH(val_i);
+
         }
     }
 
