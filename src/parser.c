@@ -18,7 +18,7 @@
  * @param line A linha que foi lida e da qual se vai fazer o parse
  * @returns O tamanho da stack que foi criada
  */
-
+/*
 int parse(char *line) {
 
     char *delims = " \t\n";
@@ -87,4 +87,95 @@ int parse(char *line) {
 
     PRINT_STACK();
     return STACK_SIZE();
+}*/
+
+int parse(char *line) {
+
+    char *delims = " \t\n";
+
+    for (char *token = strtok(line, delims); token != NULL; token = strtok(NULL, delims)) {
+        char *sobra;
+        long val_i = strtol(token, &sobra, 10);
+        if (strlen(sobra) == 0) {
+            PUSH(val_i);
+
+
+        // operações básicas
+        switch (token[0])
+        { 
+
+            case '+': ;
+                Y = POP();
+                X = POP();
+                PUSH(X += Y);
+            break;
+
+            case '-': ;
+                Y = POP();
+                X = POP();
+                PUSH(X -= Y);
+            break;
+
+            case '*': ;
+                Y = POP();
+                X = POP();
+                PUSH(X *= Y);
+            break;
+
+            case '/': ;
+                Y = POP();
+                X = POP();
+                PUSH(X /= Y);
+            break;
+
+            case '(': ;
+                Y = POP();
+                PUSH(Y -= 1);
+            break;
+
+            case ')': ;
+                Y = POP();
+                PUSH(Y += 1);
+            break;
+
+            case '%': ;
+                Y = POP();
+                X = POP();
+                PUSH(X %= Y);
+            break;
+
+            case '#': ;
+                Y = POP();
+                X = POP();
+                PUSH(pow(X,Y));
+            break;
+
+            case '&': ;
+                Y = POP();
+                X = POP();
+                PUSH(X &= Y);
+            break;
+
+            case '|': ;
+                Y = POP();
+                X = POP();
+                PUSH(X |= Y);
+            break;
+
+            case '^': ;
+                Y = POP();
+                X = POP();
+                PUSH(X ^= Y);
+            break;
+            
+            case '~': ;
+                Y = POP();
+                PUSH((~ Y));
+            break;
+        }
+    }
+
+    PRINT_STACK();
+    return STACK_SIZE();
+}
 }
