@@ -2,13 +2,11 @@
  * @file Ficheiro que contem função principal do programa
  */
 
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <assert.h>
 
-#include "stack.h"
 #include "parser.c"
 
 // gcc -std=gnu11 -Wall -Wextra -pedantic-errors -O main.c -lm
@@ -16,6 +14,8 @@
 /**
  * Esta é a função principal do programa
  *
+ * A stack tem um size de 100
+ * O top está definido como EMPTY ou seja (-1)
  * @returns o valor 0
  */
 
