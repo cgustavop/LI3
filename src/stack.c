@@ -15,7 +15,7 @@
 STACK_OPERATION(long, LONG)
 STACK_OPERATION(double, DOUBLE)
 STACK_OPERATION(char, CHAR)
-STACK_OPERATION(char *, STRING)
+STACK_OPERATION(char*, STRING)
 
 
 // gcc -std=gnu11 -Wall -Wextra -pedantic-errors -O stack.c -lm
@@ -31,7 +31,7 @@ STACK_OPERATION(char *, STRING)
 int mystack[100];
 int top = EMPTY;
 
-int has_type(DATA elem, int mask) {
+int has_type(elem, int mask) {
   return (elem.type & mask) != 0;
 }
 
@@ -55,11 +55,21 @@ int POP(){
 }
 
 void PRINT_STACK() {
-    int i;
+    int i, j;
 
-    for(i= 0;i<=top;i++) {
-        DATA elem = mystack[i];
-        TYPE type = elem.type;
+    for(i=0;i<=top;i++) {
+
+    // temporario mas pode ajudar
+    if ( (mystack[i] >= 'a' && mystack[i] <= 'z') || (mystack[i] >= 'A' && mystack[i] <= 'Z') ) {
+        elem.type = CHAR;
+    } else if (mystack[i] >= '0' && mystack[i] <= '9') {
+        elem.type = LONG;
+    } else if (for (j=0;j!='\0';j++)) {
+        elem.type = STRING;
+    } else elem.type = DOUBLE;
+    //-------------------------------
+        elem = mystack[i];
+        type = elem.type;
 
         switch(type) {
 
