@@ -19,12 +19,32 @@
  * @returns o valor 0
  */
 
-int main() {
+// Type of top of the stack
+void print_type(STACK *s) {
+	if (has_type(top(s), STRING)) putchar('S');
+	if (has_type(top(s), INTEGER)) putchar('I');
+	if (has_type(top(s), DOUBLE)) putchar('D');
+	if (has_type(top(s), NUMBER)) putchar('N');
+	putchar('\n');
+}
+
+int main(void) {
+	STACK *s = create_stack();
+
+	/* old stuff
     char line[10240];
 
     assert(fgets(line, 10240, stdin) != NULL);
     assert(line [strlen(line) - 1] == '\n');
 
     parse(line);
+	*/
+
+    print_stack(s); print_type(s);
+
+    printf("%c\n", pop_CHAR(s));
+    printf("%g\n", pop_DOUBLE(s));
+    printf("%ld\n", pop_LONG(s));
+
     return 0;
 }

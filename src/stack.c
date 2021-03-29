@@ -23,7 +23,7 @@ STACK_OPERATION(char*, STRING)
 /**
  * \brief Conjunto de funções utilizadas numa biblioteca default stack
  *
- * Realização da função PUSH, POP, PRINT_STACK, STACK_SIZE
+ * Realização da função push, pop, print_stack, stack_size
  *
  * Print do tamanho e do resultado da operação submetida ao stack
  */
@@ -35,7 +35,7 @@ int has_type(elem, int mask) {
   return (elem.type & mask) != 0;
 }
 
-int PUSH(int value){
+int push(int value){
 
 	if (top >= 99) 
          return false;
@@ -45,7 +45,7 @@ int PUSH(int value){
     return true;
 }
 
-int POP(){
+int pop(){
 
     if (top == EMPTY) return STACK_EMPTY;
 
@@ -54,7 +54,7 @@ int POP(){
     return result;
 }
 
-void PRINT_STACK() {
+void print_stack() {
     int i, j;
 
     for(i=0;i<=top;i++) {
@@ -68,8 +68,8 @@ void PRINT_STACK() {
         elem.type = STRING;
     } else elem.type = DOUBLE;
     //-------------------------------
-        elem = mystack[i];
-        type = elem.type;
+        DATA elem = mystack[i];
+        TYPE type = elem.type;
 
         switch(type) {
 
@@ -92,7 +92,7 @@ void PRINT_STACK() {
     }
 }  
 
-int STACK_SIZE(){ 
+int stack_size(){ 
     int p;
 
     while ( (p = POP() ) != STACK_EMPTY )

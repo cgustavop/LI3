@@ -31,95 +31,131 @@ int parse(char *line) {
         switch (token[0]){ 
 
         // operações básicas
+
             case '+': 
-                Y = POP();
-                X = POP();
-                PUSH(X += Y);
-            break;
+                Y = pop();
+                X = pop();
+                push(X += Y);
+                break;
 
             case '-': 
-                Y = POP();
-                X = POP();
-                PUSH(X -= Y);
-            break;
+                Y = pop();
+                X = pop();
+                push(X -= Y);
+                break;
 
             case '*': 
-                Y = POP();
-                X = POP();
-                PUSH(X *= Y);
-            break;
+                Y = pop();
+                X = pop();
+                push(X *= Y);
+                break;
 
             case '/': 
-                Y = POP();
-                X = POP();
-                PUSH(X /= Y);
-            break;
+                Y = pop();
+                X = pop();
+                push(X /= Y);
+                break;
 
         // incrementação e decrementação
 
             case '(': 
-                Y = POP();
-                PUSH(Y -= 1);
-            break;
+                Y = pop();
+                push(Y -= 1);
+                break;
 
             case ')': 
-                Y = POP();
-                PUSH(Y += 1);
-            break;
+                Y = pop();
+                push(Y += 1);
+                break;
 
         // módulo e exponenciação
+
             case '%': 
-                Y = POP();
-                X = POP();
-                PUSH(X %= Y);
-            break;
+                Y = pop();
+                X = pop();
+                push(X %= Y);
+                break;
 
             case '#': 
-                Y = POP();
-                X = POP();
-                PUSH(pow(X,Y));
-            break;
+                Y = pop();
+                X = pop();
+                push(pow(X,Y));
+                break;
 
         // tabelas de verdades e bits oriented
 
             case '&': 
-                Y = POP();
-                X = POP();
-                PUSH(X &= Y);
-            break;
+                Y = pop();
+                X = pop();
+                push(X &= Y);
+                break;
 
             case '|':
-                Y = POP();
-                X = POP();
-                PUSH(X |= Y);
-            break;
+                Y = pop();
+                X = pop();
+                push(X |= Y);
+                break;
 
             case '^': 
-                Y = POP();
-                X = POP();
-                PUSH(X ^= Y);
-            break;
+                Y = pop();
+                X = pop();
+                push(X ^= Y);
+                break;
             
             case '~': 
-                Y = POP();
-                PUSH((~ Y));
-            break;
+                Y = pop();
+                push((~ Y));
+                break;       
 
-        // ASCII
-            
-            case 'c':
-                Y = POP();
+        // conversões do topo da stack || incompleto
+
+            case 'i' : // converter em int
+                Y = pop();
+                // ...
+                push();
+                break;
+
+            case 'f' : // converter em double
+                Y = pop();
+                // ...
+                push();
+                break;
+
+            case 's' : // converter em string
+                Y = pop();
+                // ...
+                push();
+                break; 
+
+            case 'c': // converter em char (ASCII)
+                Y = pop();
                 ascii_c = Y;
-                PUSH(ascii_c);
-            break;
+                push(ascii_c);
+                break;
+
+        // ler linhas e imprimir linhas || incompleto
+
+            case 'l' : // ler linha abaixo
+                fgets();
+                break;
+
+            case 't' : // ler todas as linhas guião 3/4
+                fgets();
+                break;
+
+            case 'p' : // printar topo guião 3/4
+
+                push();
+                break;
 
         // caso default
+
             default :
-                PUSH(val_i);
+                push(val_i);
 
         }
     }
 
-    PRINT_STACK();
-    return STACK_SIZE();
+    print_stack();
+    return stack_size();
 }
