@@ -13,19 +13,26 @@
 
 /**
  * \brief Esta é a função que vai fazer o parse de uma linha
+ * 
+ * Analisa a linha de texto inserida e faz a sua separação em operadores e operandos consoante espaços, tabs ou mudanças de linhas.
+ * Interpreta cada token e executa a sua função no contexto da linguagem.
  *
+ * 
  * @param line A linha que foi lida e da qual se vai fazer o parse
- * @returns O tamanho da stack que foi criada
+ * @param token Operadores contidos na linha
+ * @param sobra Vai guardando elementos da stack que não sofreram nenhuma transformação
+ * @val_i 
+ * @param ascii_c Usado no operando de conversão ASCII
+ * @returns O tamanho da stack resultante
  */
-
 int parse(char *line) {
 
     char *delims = " \t\n";
 
     for (char *token = strtok(line, delims); token != NULL; token = strtok(NULL, delims)) {
-        char *sobra;
+        char *sobra;                             // ???
         long Y; long X;
-        long val_i = strtol(token, &sobra, 10);
+        long val_i = strtol(token, &sobra, 10);  // ???
         char ascii_c;
 
         switch (token[0]){ 

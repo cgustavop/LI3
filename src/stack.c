@@ -30,11 +30,27 @@ STACK_OPERATION(char*, STRING)
 
 int mystack[100];
 int top = EMPTY;
-
+/**
+ * \brief 
+ * 
+ * @param elem
+ * @param mask
+ * @returns
+ */
 int has_type(elem, int mask) {
   return (elem.type & mask) != 0;
 }
-
+/**
+ * \brief Função que faz push de um elemento do stack
+ * 
+ * Após receber um valor, insere-o no topo da stack.
+ * 
+ * @param value Valor a inserir no topo da stack
+ * @param top Indica o índice do elemento no topo da stack
+ * @param mystack Array onde a nossa stack se encontra guardada
+ * 
+ * @returns um inteiro representante de um valor boleano
+ */
 int push(int value){
 
 	if (top >= 99) 
@@ -44,7 +60,16 @@ int push(int value){
     mystack[top] = value;
     return true;
 }
-
+/**
+ * \brief Função que faz pop de um elemento do stack
+ * 
+ * Altera o valor que indica o índice do elemento no topo da stack de modo a "retirar" elementos da stack.
+ * 
+ * @param top Indica o índice do elemento no topo da stack
+ * @param result elemento que se encontra no topo da stack
+ * 
+ * @returns elemento que se encontra no topo da stack
+ */
 int pop(){
 
     if (top == EMPTY) return STACK_EMPTY;
@@ -53,7 +78,16 @@ int pop(){
     top--;
     return result;
 }
-
+/**
+ * \brief Função que imprime a stack
+ * 
+ * Vai imprimindo o array que guarda a nossa stack tendo em conta os tipos dos elementos presentes no array.
+ * 
+ * @param i Contador em função for
+ * @param j Contador em função for
+ * 
+ * @returns void
+ */
 void print_stack() {
     int i, j;
 
@@ -91,7 +125,12 @@ void print_stack() {
         }
     }
 }  
-
+/**
+ * \brief Função que indica a dimensão da nossa stack
+ *
+ * @param p Contador
+ * @returns o valor 0
+ */
 int stack_size(){ 
     int p;
 

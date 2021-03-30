@@ -1,5 +1,5 @@
 /**
- * @file Ficheiro que contem função principal do programa
+ * @file Ficheiro que contém a função principal do programa.
  */
 
 #include <stdio.h>
@@ -12,14 +12,10 @@
 // gcc -std=gnu11 -Wall -Wextra -pedantic-errors -O main.c -lm
 
 /**
- * Esta é a função principal do programa
- *
- * A stack tem um size de 100
- * O top está definido como EMPTY ou seja (-1)
- * @returns o valor 0
+ * Analisa o tipo de um operando localizado no topo da stack.
+ * 
+ * @returns o void
  */
-
-// Type of top of the stack
 void print_type(STACK *s) {
 	if (has_type(top(s), STRING)) putchar('S');
 	if (has_type(top(s), INTEGER)) putchar('I');
@@ -28,6 +24,13 @@ void print_type(STACK *s) {
 	putchar('\n');
 }
 
+/**
+ * \brief Esta é a função principal do programa
+ *
+ * A stack tem um size de 100
+ * O top está definido como EMPTY ou seja (-1)
+ * @returns o valor 0
+ */
 int main(void) {
 	STACK *s = create_stack();
 
