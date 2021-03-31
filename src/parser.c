@@ -25,6 +25,7 @@
  * @param ascii_c Usado no operando de conversão ASCII
  * @returns O tamanho da stack resultante
  */
+
 int parse(char *line) {
 
     char *delims = " \t\n";
@@ -144,15 +145,17 @@ int parse(char *line) {
 
             case 'l' : // ler linha abaixo
                 fgets();
+                // ..
                 break;
 
             case 't' : // ler todas as linhas guião 3/4
                 fgets();
+                //..
                 break;
 
-            case 'p' : // printar topo guião 3/4
-
-                push();
+            case 'p' : // printar topo || guião 3/4
+                Y = pop();
+                push(Y);
                 break;
 
             case '@' : // Rodar os 3 elementos no topo da stack
@@ -176,21 +179,23 @@ int parse(char *line) {
 
             case '$' : // Copia n-ésimo elemento para o topo da stack, 0 é o topo da stack
                 int i, n;
+
                 Y = pop();
                 X = pop();
                 push(X);
                 push(Y);
-                for(i=X;i<0;i--)
-                {
+
+                for(i=X;i<0;i--){
                 	n = mystack[top];
                 	top--;                  
                 }
+
                 pop();
                 push(n);
                 break;
 
 
-            case '\' : // Trocar os dois elementos do topo da stack
+            case '\ ' : // Trocar os dois elementos do topo da stack
                 Y = pop();
                 X = pop();
                 push(Y);
