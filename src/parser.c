@@ -31,7 +31,7 @@ int parse(char *line) {
 
     for (char *token = strtok(line, delims); token != NULL; token = strtok(NULL, delims)) {
         char *sobra;                             // ???
-        long Y; long X;
+        long Y; long X; long Z;
         long val_i = strtol(token, &sobra, 10);  // ???
         char ascii_c;
 
@@ -154,6 +154,49 @@ int parse(char *line) {
 
                 push();
                 break;
+
+            case '@' : // Rodar os 3 elementos no topo da stack
+                Z = pop();
+                Y = pop();
+                X = pop();
+                push(Y);
+                push(Z);
+                push(X);                
+                break;
+
+            case ';' : // Pop
+                pop();
+                break;
+
+            case '_' : // Duplicar
+                Y = pop();
+                push(Y);
+                push(Y);
+                break;
+
+            case '$' : // Copia n-ésimo elemento para o topo da stack, 0 é o topo da stack
+                int i, n;
+                Y = pop();
+                X = pop();
+                push(X);
+                push(Y);
+                for(i=X;i<0;i--)
+                {
+                	n = mystack[top];
+                	top--;                  
+                }
+                pop();
+                push(n);
+                break;
+
+
+            case '\' : // Trocar os dois elementos do topo da stack
+                Y = pop();
+                X = pop();
+                push(Y);
+                push(X);
+                break;
+
 
         // caso default
 
