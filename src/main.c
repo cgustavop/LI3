@@ -20,8 +20,8 @@
  */
 
 
-int main(void){
-    Stack stk = stack_create(5);
+int main() {
+    Stack stk = create_stack(5);
     
      
     char line[10240];
@@ -78,8 +78,8 @@ int main(void){
         }
     }
 	*/
-	
-    stack_destroy(stk);
+	print_stack(stk);
+    destroy_stack(stk);
 
     return 0;
 }

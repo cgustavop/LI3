@@ -25,7 +25,7 @@
  * @param ascii_c Usado no operando de conversão ASCII
  * @returns O tamanho da stack resultante
  */
-
+/*
 int parse(char *line) {
 
     char *delims = " \t\n";
@@ -193,15 +193,13 @@ int parse(char *line) {
                 pop();
                 push(n);
                 break;
-
-
-            case '\ ' : // Trocar os dois elementos do topo da stack
+           
+            case '\' : // Trocar os dois elementos do topo da stack
                 Y = pop();
                 X = pop();
                 push(Y);
                 push(X);
                 break;
-
 
         // caso default
 
@@ -213,4 +211,53 @@ int parse(char *line) {
 
     print_stack();
     return stack_size();
+}
+*/
+
+int parse(char *line) {
+
+    char *delims = " \t\n";
+
+    for (char *token = strtok(line, delims); token != NULL; token = strtok(NULL, delims)) {
+        char *sobra;                             // ???
+        long Y; long X; long Z;
+        long val_i = strtol(token, &sobra, 10);  // ???
+        char ascii_c;
+        
+        //vars novas
+        char val_char;
+        int val_int;  
+        long val_long;     
+        double val_double;
+        void * val_pointer;
+
+        switch (token[0]){ 
+
+        // operações básicas
+
+            case '+': 
+                Y = pop(new_stack, val_pointer);
+                X = pop();
+                push(X += Y);
+                break;
+
+            case '-': 
+                Y = pop();
+                X = pop();
+                push(X -= Y);
+                break;
+
+            case '*': 
+                Y = pop();
+                X = pop();
+                push(X *= Y);
+                break;
+
+            case '/': 
+                Y = pop();
+                X = pop();
+                push(X /= Y);
+                break;
+
+
 }

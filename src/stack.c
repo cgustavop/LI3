@@ -10,7 +10,7 @@
 
 #include "stack.h"
 
-/*
+
 void print_stack(struct stack * stack) {
     int i;
 
