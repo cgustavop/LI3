@@ -4,143 +4,14 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <limits.h>
+#include <stdarg.h>
 #include <stdbool.h>
 #include <string.h>
 
-#include <stack.h>
+#include "stack.h"
 
-#define EMPTY (-1)
-#define STACK_EMPTY INT_MIN
-#define STACK_OPERATION(_type, _name)         \
-  void push_##_name(STACK *s, _type val) {    \
-    DATA elem;                                \
-    elem.type = _name;                        \
-    elem._name = val;                         \
-    push(s, elem);                            \
-  }                                           \
-  _type pop_##_name(STACK *s) {               \
-    DATA elem = pop(s);                       \
-    assert(elem.type == _name);               \
-    return elem._name;                        \
-  }
-
-STACK_OPERATION(long, LONG)
-STACK_OPERATION(double, DOUBLE)
-STACK_OPERATION(char, CHAR)
-STACK_OPERATION(char *, STRING)        
-
-
-
-// gcc -std=gnu11 -Wall -Wextra -pedantic-errors -O stack.c -lm
-
-/**
- * \brief Conjunto de funções utilizadas numa biblioteca default stack
- *
- * Realização da função push, pop, print_stack, stack_size
- *
- * Print do tamanho e do resultado da operação submetida ao stack
- */
-
-int mystack[100];
-int top = EMPTY;
-
-/**
- * \brief 
- * 
- * @param elem
- * @param mask
- * @returns
- */
-
-int has_type(DATA elem, int mask) {
-  return (elem.type & mask) != 0;
-}
-
-/* bem definido?
-DATA top(STACK *s) {
-  return s->stack[s->n_elems - 1];
-}
-
-int is_empty(STACK *s) {
-  return s->n_elems == 0;
-
-*/
-
-/**
- * \brief Função que faz push de um elemento do stack
- * 
- * Após receber um valor, insere-o no topo da stack.
- * 
- * @param value Valor a inserir no topo da stack
- * @param top Indica o índice do elemento no topo da stack
- * @param mystack Array onde a nossa stack se encontra guardada
- * 
- * @returns um inteiro representante de um valor boleano
- */
-STACK *create_stack() {
-  STACK *s = (STACK *) calloc(1, sizeof(STACK));
-  //s->n_elems = 0;
-  s->size = 100;
-  s->stack = (DATA *) calloc(s->size, sizeof(DATA));
-  return s;
-}
-
-int push(int value){
-
-	if (top >= 99) 
-         return false;
-
-    top++;
-    mystack[top] = value;
-    return true;
-}
-
-void push(STACK *s, DATA elem) {
-  if(s->size == s->n_elems) {
-    s->size += 100;
-    s->stack = (DATA*) realloc(s->stack, s->size * sizeof(DATA));
-  }
-  s->stack[s->n_elems] = elem;
-  s->n_elems++;
-}
-
-/**
- * \brief Função que faz pop de um elemento do stack
- * 
- * Altera o valor que indica o índice do elemento no topo da stack de modo a "retirar" elementos da stack.
- * 
- * @param top Indica o índice do elemento no topo da stack
- * @param result elemento que se encontra no topo da stack
- * 
- * @returns elemento que se encontra no topo da stack
- */
-
-int pop(){
-
-    if (top == EMPTY) return STACK_EMPTY;
-
-    int result = mystack[top];
-    top--;
-    return result;
-}
-
-DATA pop(STACK *s) {
-  s->n_elems--;s<-n_elems
-  return s->stack[s->n_elems];
-}
-/**
- * \brief Função que imprime a stack
- * 
- * Vai imprimindo o array que guarda a nossa stack tendo em conta os tipos dos elementos presentes no array.
- * 
- * @param i Contador em função for
- * @param j Contador em função for
- * 
- * @returns void
- */
-
-void print_stack() {
+/*
+void print_stack(struct stack * stack) {
     int i;
 
     // temporario mas pode ajudar
@@ -177,14 +48,8 @@ void print_stack() {
     }
 } 
 
-/**
- * \brief Função que indica a dimensão da nossa stack
- *
- * @param p Contador
- * @returns o valor 0
- */
-
-int stack_size(){ 
+/*
+int stack_size(struct stack * stack){ 
     int p;
 
     while ( (p = POP() ) != STACK_EMPTY )
@@ -193,3 +58,141 @@ int stack_size(){
     return 0;
 }
 
+*/
+
+//  Struct that contains stack element  
+
+struct stack_element {
+    enum stack_type type;
+    union {
+        char val_c;
+        int val_i;  
+        long val_l;     
+        double val_d;
+        void * val_p;
+    } data;
+};
+
+//  Struct that contains stack 
+
+struct stack {
+    size_t top;
+    size_t capacity;
+    enum stack_type type;
+    struct stack_element * elements;
+};
+
+//  Creates and returns a new stack of specified type and capacity  
+
+struct stack * create_stack(const size_t capacity)
+{
+    struct stack * new_stack = malloc(sizeof *new_stack);
+    if ( !new_stack ) {
+        perror("couldn't allocate memory for stack");
+        exit(EXIT_FAILURE);
+    }
+
+    new_stack->capacity = capacity; // definir capacidade
+    new_stack->top = 0; // definir top
+
+    new_stack->elements = malloc(sizeof *new_stack->elements * capacity);
+    if ( !new_stack->elements ) {
+        free(new_stack);
+        perror("couldn't allocate memory for stack elements");
+        exit(EXIT_FAILURE);
+    }
+
+    return new_stack;
+}
+
+//  Destroys a previously created stack 
+
+void destroy_stack(struct stack * stack)
+{
+    free(stack->elements);
+    free(stack);
+} 
+
+/*  Pushes an element onto the stack  */
+
+void push(struct stack * stack, const enum stack_type type, ...)
+{
+    if ( stack->top == stack->capacity ) {
+        fprintf(stderr, "Stack full!\n");
+        exit(EXIT_FAILURE);
+    }
+
+    va_list ap;
+    va_start(ap, type);
+
+    switch ( type ) {
+        case STACK_CHAR:
+            stack->elements[stack->top].data.val_c = (char) va_arg(ap, int);
+            break;
+
+        case STACK_LONG:
+            stack->elements[stack->top].data.val_l = va_arg(ap, long);
+            break;
+
+        case STACK_INT:
+            *((int *) p) = stack->elements[stack->top].data.val_i;
+            break;
+
+        case STACK_DOUBLE:
+            stack->elements[stack->top].data.val_d = va_arg(ap, double);
+            break;
+
+        case STACK_STRING:
+            stack->elements[stack->top].data.val_p = va_arg(ap, void *);
+            break;
+
+        default:
+            fprintf(stderr, "Unknown type in push()\n");
+            exit(EXIT_FAILURE);
+    }
+
+    stack->elements[stack->top++].type = type;
+
+    va_end(ap);
+}
+
+/*  Pops an element from the stack  */
+
+void pop(struct stack * stack, void * p)
+{
+    if ( stack->top == 0 ) {
+        fprintf(stderr, "Stack empty!\n");
+        exit(EXIT_FAILURE);
+    }
+
+    switch ( stack->elements[--stack->top].type ) {
+        case STACK_CHAR:
+            *((char *) p) = stack->elements[stack->top].data.val_c;
+            break;
+
+        case STACK_LONG:
+            *((long *) p) = stack->elements[stack->top].data.val_l;
+            break;
+
+        case STACK_DOUBLE:
+            *((double *) p) = stack->elements[stack->top].data.val_d;
+            break;
+
+        case STACK_STRING:
+            *((void **) p) = stack->elements[stack->top].data.val_p;
+            break;
+
+        default:
+            fprintf(stderr, "Unknown type in pop()\n");
+            exit(EXIT_FAILURE);
+    }
+}
+
+/*  Returns the type of the top element on the stack  */
+
+enum stack_type top_type(struct stack * stack)
+{
+    if ( stack->top == 0 ) {
+        fprintf(stderr, "Stack empty!\n");
+        exit(EXIT_FAILURE);
+    }
