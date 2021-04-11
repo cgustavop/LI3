@@ -174,6 +174,10 @@ void pop(struct stack * stack, void * p)
             *((long *) p) = stack->elements[stack->top].data.val_l;
             break;
 
+        case STACK_INT:
+            *((int *) p) = stack->elements[stack->top].data.val_i;
+            break;
+
         case STACK_DOUBLE:
             *((double *) p) = stack->elements[stack->top].data.val_d;
             break;
