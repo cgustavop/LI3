@@ -11,7 +11,7 @@
 #include "stack.h"
 
 
-void print_stack(struct stack * stack) {
+void print_stack(struct stack *stack) {
     int i;
 
     // temporario mas pode ajudar
@@ -84,8 +84,7 @@ struct stack {
 
 //  Creates and returns a new stack of specified type and capacity  
 
-struct stack * create_stack(const size_t capacity)
-{
+struct stack *create_stack(const size_t capacity){
     struct stack * new_stack = malloc(sizeof *new_stack);
     if ( !new_stack ) {
         perror("couldn't allocate memory for stack");
@@ -107,16 +106,14 @@ struct stack * create_stack(const size_t capacity)
 
 //  Destroys a previously created stack 
 
-void destroy_stack(struct stack * stack)
-{
+void destroy_stack(struct stack *stack){
     free(stack->elements);
     free(stack);
 } 
 
 /*  Pushes an element onto the stack  */
 
-void push(struct stack * stack, const enum stack_type type, ...)
-{
+void push(struct stack *stack, const enum stack_type type, ...){
     if ( stack->top == stack->capacity ) {
         fprintf(stderr, "Stack full!\n");
         exit(EXIT_FAILURE);
@@ -158,8 +155,7 @@ void push(struct stack * stack, const enum stack_type type, ...)
 
 /*  Pops an element from the stack  */
 
-void pop(struct stack * stack, void * p)
-{
+void pop(struct stack *stack, void *p){
     if ( stack->top == 0 ) {
         fprintf(stderr, "Stack empty!\n");
         exit(EXIT_FAILURE);
@@ -194,8 +190,7 @@ void pop(struct stack * stack, void * p)
 
 /*  Returns the type of the top element on the stack  */
 
-enum stack_type top_type(struct stack * stack)
-{
+enum stack_type top_type(struct stack *stack){
     if ( stack->top == 0 ) {
         fprintf(stderr, "Stack empty!\n");
         exit(EXIT_FAILURE);

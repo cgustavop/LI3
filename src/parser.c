@@ -9,13 +9,13 @@
 
 #include "stack.h"
 
-// gcc -std=gnu11 -Wall -Wextra -pedantic-errors -O parser.c -lm
+// gcc -std=gnu11 -Wall -Weval_longtra -pedantic-errors -O parser.c -lm
 
 /**
  * \brief Esta é a função que vai fazer o parse de uma linha
  * 
- * Analisa a linha de texto inserida e faz a sua separação em operadores e operandos consoante espaços, tabs ou mudanças de linhas.
- * Interpreta cada token e executa a sua função no contexto da linguagem.
+ * Analisa a linha de teval_longto inserida e faz a sua separação em operadores e operandos consoante espaços, tabs ou mudanças de linhas.
+ * Interpreta cada token e eval_longecuta a sua função no conteval_longto da linguagem.
  *
  * 
  * @param line A linha que foi lida e da qual se vai fazer o parse
@@ -25,125 +25,139 @@
  * @param ascii_c Usado no operando de conversão ASCII
  * @returns O tamanho da stack resultante
  */
-/*
+
 int parse(char *line) {
 
     char *delims = " \t\n";
 
     for (char *token = strtok(line, delims); token != NULL; token = strtok(NULL, delims)) {
-        char *sobra;                             // ???
-        long Y; long X; long Z;
-        long val_i = strtol(token, &sobra, 10);  // ???
-        char ascii_c;
+        char *sobra;
+        long val_i = strtol(token, &sobra, 10);  
+
+        // void push(Stack stack, const enum stack_type type, ...)
+        // void pop(Stack stack, void *p)
+
+        // vars novas
+
+        char val_char, val_char2, val_char3, check1; 
+        long val_long, val_long2, val_long3, check2;     
+        double val_double, val_double2, val_double3, check3;
+        void *val_pointer, check4;
+
+        /*
+
+        // checks de tipos do top
+        // copiar para os casos necessários
+
+        if ((top_type(token)) == (STACK_CHAR)){
+            token[0] = check1;
+        } else if ((top_type(token)) == (STACK_LONG)){
+            token[0] = check2;
+        } else if ((top_type(token)) == (STACK_DOUBLE)){
+            token[0] = check3;
+        } else if ((top_type(token)) == (STACK_STRING)){
+            token[0] = check4;
+        } else token[0] = check2; // default é int
+
+        */
 
         switch (token[0]){ 
 
         // operações básicas
 
             case '+': 
-                Y = pop();
-                X = pop();
-                push(X += Y);
+                val_long = pop(*token, &val_long);
+                val_long2 = pop(*token, &val_long2);
+                push(val_long2 += val_long);
                 break;
 
             case '-': 
-                Y = pop();
-                X = pop();
-                push(X -= Y);
+                val_long = pop(*token, &val_long);
+                val_long2 = pop(*token, &val_long2);
+                push(val_long2 -= val_long);
                 break;
 
             case '*': 
-                Y = pop();
-                X = pop();
-                push(X *= Y);
+                val_long = pop(*token, &val_long);
+                val_long2 = pop(*token, &val_long2);
+                push(val_long2 *= val_long);
                 break;
 
             case '/': 
-                Y = pop();
-                X = pop();
-                push(X /= Y);
+                val_long = pop(*token, &val_long);
+                val_long2 = pop(*token, &val_long2);
+                push(val_long2 /= val_long);
                 break;
 
         // incrementação e decrementação
 
             case '(': 
-                Y = pop();
-                push(Y -= 1);
+                val_long = pop(*token, &val_long);
+                push(val_long -= 1);
                 break;
 
             case ')': 
-                Y = pop();
-                push(Y += 1);
+                val_long = pop(*token, &val_long);
+                push(val_long += 1);
                 break;
 
         // módulo e exponenciação
 
             case '%': 
-                Y = pop();
-                X = pop();
-                push(X %= Y);
+                val_long = pop(*token, &val_long);
+                val_long2 = pop(*token, &val_long2);
+                push(val_long2 %= val_long);
                 break;
 
             case '#': 
-                Y = pop();
-                X = pop();
-                push(pow(X,Y));
+                val_long = pop(*token, &val_long);
+                val_long2 = pop(*token, &val_long2);
+                push(pow(val_long2,val_long));
                 break;
 
         // tabelas de verdades e bits oriented
 
             case '&': 
-                Y = pop();
-                X = pop();
-                push(X &= Y);
+                val_long = pop(*token, &val_long);
+                val_long2 = pop(*token, &val_long2);
+                push(val_long2 &= val_long);
                 break;
 
             case '|':
-                Y = pop();
-                X = pop();
-                push(X |= Y);
+                val_long = pop(*token, &val_long);
+                val_long2 = pop(*token, &val_long2);
+                push(val_long2 |= val_long);
                 break;
 
             case '^': 
-                Y = pop();
-                X = pop();
-                push(X ^= Y);
+                val_long = pop(*token, &val_long);
+                val_long2 = pop(*token, &val_long2);
+                push(val_long2 ^= val_long);
                 break;
             
             case '~': 
-                Y = pop();
-                push((~ Y));
+                val_long = pop(*token, &val_long);
+                push((~ val_long));
                 break;       
 
         // conversões do topo da stack || incompleto
 
-            case 'i' : // converter em int
-                Y = pop();
-                // ...
-                push();
+            case 'i' : // int
+
                 break;
 
-            case 'f' : // converter em double
-                Y = pop();
-                // ...
-                push();
+            case 'f' : // double
+
                 break;
 
-            case 's' : // converter em string
-                Y = pop();
-                // ...
-                push();
-                break; 
-
-            case 'c': // converter em char (ASCII)
-                Y = pop();
-                ascii_c = Y;
-                push(ascii_c);
+            case 'c' : // char (ascii)
+                
+                
                 break;
 
         // ler linhas e imprimir linhas || incompleto
 
-            case 'l' : // ler linha abaixo
+            case 'l' : // ler linha abaiXo
                 fgets();
                 // ..
                 break;
@@ -154,39 +168,81 @@ int parse(char *line) {
                 break;
 
             case 'p' : // printar topo || guião 3/4
-                Y = pop();
-                push(Y);
+                if ((top_type(token)) == (STACK_CHAR)){
+                    token[0] = check1;
+                    check1 = pop(*token, &check1);
+                    push(token, STACK_CHAR, check1);
+                } else if ((top_type(token)) == (STACK_LONG)){
+                    token[0] = check2;
+                    check2 = pop(*token, &check2);
+                    push(token, STACK_LONG, check2);
+                } else if ((top_type(token)) == (STACK_DOUBLE)){
+                    token[0] = check3;
+                    check3 = pop(*token, &check3);
+                    push(token, STACK_DOUBLE, check3);
+                } else if ((top_type(token)) == (STACK_STRING)){
+                    token[0] = check4;
+                    check4 = pop(*token, &check4);
+                    push(token, STACK_STRING, check4);
+                } else {
+                    token[0] = check2;
+                    check2 = pop(*token, &check2);
+                    push(token, STACK_LONG, check2);
                 break;
 
             case '@' : // Rodar os 3 elementos no topo da stack
-                Z = pop();
-                Y = pop();
-                X = pop();
-                push(Y);
-                push(Z);
-                push(X);                
+                val_long = pop();
+                val_long2 = pop();
+                val_long3 = pop();
+                push(val_long);
+                push(val_long3);
+                push(val_long2);                
                 break;
 
             case ';' : // Pop
-                pop();
+                pop(*token, top_type(token));
                 break;
 
             case '_' : // Duplicar
-                Y = pop();
-                push(Y);
-                push(Y);
+                if ((top_type(token)) == (STACK_CHAR)){
+                    token[0] = check1;
+                    check1 = pop(*token, &check1);
+                    push(token, STACK_CHAR, check1);
+                    push(token, STACK_CHAR, check1);
+                } else if ((top_type(token)) == (STACK_LONG)){
+                    token[0] = check2;
+                    check2 = pop(*token, &check2);
+                    push(token, STACK_LONG, check2);
+                    push(token, STACK_LONG, check2);
+                } else if ((top_type(token)) == (STACK_DOUBLE)){
+                    token[0] = check3;
+                    check3 = pop(*token, &check3);
+                    push(token, STACK_DOUBLE, check3);
+                    push(token, STACK_DOUBLE, check3);  
+                } else if ((top_type(token)) == (STACK_STRING)){
+                    token[0] = check2;
+                    check4 = pop(*token, &check4);
+                    push(token, STACK_STRING, check4);
+                    push(token, STACK_STRING, check4);
+                } else { 
+                    token[0] = check2;
+                    check2 = pop(*token, &check2);
+                    push(token, STACK_LONG, check2);
+                    push(token, STACK_LONG, check2);
+                }
+
                 break;
 
             case '$' : // Copia n-ésimo elemento para o topo da stack, 0 é o topo da stack
                 int i, n;
 
-                Y = pop();
-                X = pop();
-                push(X);
-                push(Y);
+                val_long = pop();
+                val_long2 = pop();
+                push(val_long);
+                push(val_long);
 
-                for(i=X;i<0;i--){
-                	n = mystack[top];
+                for(i=val_long2;i<0;i--){
+                	n = token[top];
                 	top--;                  
                 }
 
@@ -194,11 +250,11 @@ int parse(char *line) {
                 push(n);
                 break;
            
-            case '\' : // Trocar os dois elementos do topo da stack
-                Y = pop();
-                X = pop();
-                push(Y);
-                push(X);
+            case '\\n': // Trocar os dois elementos do topo da stack
+                val_long = pop();
+                val_long2 = pop();
+                push(val_long);
+                push(val_long2);
                 break;
 
         // caso default
@@ -211,53 +267,4 @@ int parse(char *line) {
 
     print_stack();
     return stack_size();
-}
-*/
-
-int parse(char *line) {
-
-    char *delims = " \t\n";
-
-    for (char *token = strtok(line, delims); token != NULL; token = strtok(NULL, delims)) {
-        char *sobra;                             // ???
-        long Y; long X; long Z;
-        long val_i = strtol(token, &sobra, 10);  // ???
-        char ascii_c;
-        
-        //vars novas
-        char val_char;
-        int val_int;  
-        long val_long;     
-        double val_double;
-        void * val_pointer;
-
-        switch (token[0]){ 
-
-        // operações básicas
-
-            case '+': 
-                Y = pop(new_stack, val_pointer);
-                X = pop();
-                push(X += Y);
-                break;
-
-            case '-': 
-                Y = pop();
-                X = pop();
-                push(X -= Y);
-                break;
-
-            case '*': 
-                Y = pop();
-                X = pop();
-                push(X *= Y);
-                break;
-
-            case '/': 
-                Y = pop();
-                X = pop();
-                push(X /= Y);
-                break;
-
-
 }

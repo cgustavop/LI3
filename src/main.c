@@ -15,13 +15,13 @@
  * Esta é a função principal do programa
  *
  * A stack tem um size de 100
- * O top está definido como EMPTY ou seja (-1)
+ * 
  * @returns o valor 0
  */
 
 
 int main() {
-    Stack stk = create_stack(5);
+    Stack mystack = create_stack(100);
     
      
     char line[10240];
@@ -34,40 +34,40 @@ int main() {
     /*
     // estava a fazer testes, ignorar isto
 
-    //push(stk, STACK_CHAR, 'x');
-    //push(stk, STACK_INT, 123);
-    //push(stk, STACK_DOUBLE, 7.89);
-    //push(stk, STACK_STRING, (void *) &stk);
+    //push(mystack, STACK_CHAR, 'x');
+    //push(mystack, STACK_INT, 123);
+    //push(mystack, STACK_DOUBLE, 7.89);
+    //push(mystack, STACK_STRING, (void *) &mystack);
 	
-    while ( !stack_empty(stk) ) {
+    while ( !stack_empty(mystack) ) {
         char c;
         int i;
         double d;
         void * p;
 
-        switch ( top_type(stk) ) {
+        switch ( top_type(mystack) ) {
             case STACK_CHAR:
-                stack_pop(stk, &c);
+                pop(mystack, &c);
                 printf("Popped char '%c' from stack.\n", c);
                 break;
 
             case STACK_LONG:
-                stack_pop(stk, &i);
+                pop(mystack, &i);
                 printf("Popped int %d from stack.\n", i);
                 break;
 
             case STACK_INT:
-                stack_pop(stk, &i);
+                pop(mystack, &i);
                 printf("Popped int %d from stack.\n", i);
                 break;
 
             case STACK_DOUBLE:
-                stack_pop(stk, &d);
+                pop(mystack, &d);
                 printf("Popped double %f from stack.\n", d);
                 break;
 
             case STACK_STRING:
-                stack_pop(stk, &p);
+                pop(mystack, &p);
                 printf("Popped pointer %p from stack.\n", p);
                 break;
 
@@ -78,8 +78,8 @@ int main() {
         }
     }
 	*/
-	print_stack(stk);
-    destroy_stack(stk);
+	print_stack(mystack);
+    destroy_stack(mystack);
 
     return 0;
 }
