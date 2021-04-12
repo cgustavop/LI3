@@ -7,7 +7,8 @@
 #include <string.h>
 #include <assert.h>
 
-#include "stack.h"
+#include "stack.c"
+#include "parser.c"
 
 // gcc -std=gnu11 -Wall -Wextra -pedantic-errors -O main.c -lm
 
@@ -20,7 +21,7 @@
  */
 
 
-int main() {
+int main(void) {
     Stack mystack = create_stack(100);
     
      
@@ -78,7 +79,7 @@ int main() {
         }
     }
 	*/
-	print_stack(*mystack);
+	print_stack(mystack);
     destroy_stack(mystack);
 
     return 0;

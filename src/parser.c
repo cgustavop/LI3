@@ -88,7 +88,7 @@ int parse(char *line) {
 
             case '/': 
                 val_long = pop(*token, &val_long);
-                val_long2 = pop(*token, &val_long2);
+                val_longa2 = pop(*token, &val_long2);
                 int res4 = val_long2 /= val_long;
                 push(token, STACK_LONG, res4);
                 break;
@@ -97,7 +97,7 @@ int parse(char *line) {
 
             case '(': 
                 val_long = pop(*token, &val_long);
-                int res5 =val_long -= 1;
+                int res5 = val_long -= 1;
                 push(token, STACK_LONG, res5);
                 break;
 
@@ -202,7 +202,7 @@ int parse(char *line) {
                     push(token, STACK_LONG, check2);
                 break;
 
-            case '@' : // Rodar os 3 elementos no topo da stack
+            case '@' : // Rodar os 3 elementos no topo da stack (inc)
                 val_long = pop();
                 val_long2 = pop();
                 val_long3 = pop();
@@ -272,7 +272,7 @@ int parse(char *line) {
         // caso default
 
             default :
-                push(val_i);
+                push(token, STACK_LONG,val_i);
 
         }
     }

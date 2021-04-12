@@ -19,9 +19,9 @@ struct stack_element {
         int val_i;  
         long val_l;     
         double val_d;
-        void * val_p;
+        void *val_p;
     } data;
-};
+}
 
 //  Struct that contains stack 
 
@@ -29,13 +29,13 @@ struct stack {
     size_t top;
     size_t capacity;
     enum stack_type type;
-    struct stack_element * elements;
-};
+    struct stack_element *elements;
+}
 
 //  Creates and returns a new stack of specified type and capacity  
 
 struct stack *create_stack(const size_t capacity){
-    struct stack * new_stack = malloc(sizeof *new_stack);
+    struct stack *new_stack = malloc(sizeof *new_stack);
     if ( !new_stack ) {
         perror("couldn't allocate memory for stack");
         exit(EXIT_FAILURE);
@@ -58,9 +58,9 @@ void print_stack(struct stack *stack) { // fazer
     int i;
 
     // temporario mas pode ajudar
-    if ( (stack[i] >= 'a' && stack[i] <= 'z') || (stack[i] >= 'A' && stack[i] <= 'Z') ) {
+    if ( (new_stack[i] >= 'a' && new_stack[i] <= 'z') || (new_stack[i] >= 'A' && new_stack[i] <= 'Z') ) {
         type = STACK_CHAR;
-    } else if (stack[i] >= '0' && stack[i] <= '9') {
+    } else if (new_stack[i] >= '0' && new_stack[i] <= '9') {
         type = STACK_LONG
     } else if (for (j=0;j!='\0';j++)) {
         type = STACK_STRING;
@@ -70,7 +70,7 @@ void print_stack(struct stack *stack) { // fazer
 int stack_size(struct stack *stack){ // rever
     int p;
 
-    while ( (p = pop(stack, STACK_LONG) ) !=  0)
+    while ( (p = pop(stack, STACK_LONG) ) != stack_empty(stack) )
         return (sizeof(p));
     
     return 0;
@@ -112,7 +112,7 @@ void push(struct stack *stack, const enum stack_type type, ...){
             break;
 
         case STACK_STRING:
-            stack->elements[stack->top].data.val_p = va_arg(ap, void *);
+            stack->elements[stack->top].data.val_p = va_arg(ap, void *p);
             break;
 
         default:

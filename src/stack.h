@@ -12,7 +12,7 @@ enum stack_type {
     STACK_STRING
 };
 
-typedef struct stack * Stack;
+typedef struct stack *Stack;
 
 int parse(char *line);
 Stack create_stack(const size_t capacity);
