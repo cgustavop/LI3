@@ -78,7 +78,7 @@ int main() {
         }
     }
 	*/
-	print_stack(mystack);
+	print_stack(*mystack);
     destroy_stack(mystack);
 
     return 0;

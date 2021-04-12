@@ -10,56 +10,6 @@
 
 #include "stack.h"
 
-
-void print_stack(struct stack *stack) {
-    int i;
-
-    // temporario mas pode ajudar
-    if ( (mystack[i] >= 'a' && mystack[i] <= 'z') || (mystack[i] >= 'A' && mystack[i] <= 'Z') ) {
-        elem.type = CHAR;
-    } else if (mystack[i] >= '0' && mystack[i] <= '9') {
-        elem.type = LONG;
-    } else if (for (j=0;j!='\0';j++)) {
-        elem.type = STRING;
-    } else elem.type = DOUBLE;
-    //-------------------------------
-
-    for(i=0;i<s->n_elems;i++) {
-        DATA elem = s->mystack[i];
-        TYPE type = elem.type;
-        switch(type) {
-
-        case LONG:
-            printf("%ld ", elem.LONG); 
-            break;
-
-        case DOUBLE:
-            printf("%g ", elem.DOUBLE); 
-            break;
-
-        case CHAR:
-            printf("%c ", elem.CHAR); 
-            break;
-
-        case STRING:
-            printf("%s ", elem.STRING); 
-            break;
-        }
-    }
-} 
-
-/*
-int stack_size(struct stack * stack){ 
-    int p;
-
-    while ( (p = POP() ) != STACK_EMPTY )
-        return (sizeof(p));
-    
-    return 0;
-}
-
-*/
-
 //  Struct that contains stack element  
 
 struct stack_element {
@@ -102,6 +52,28 @@ struct stack *create_stack(const size_t capacity){
     }
 
     return new_stack;
+}
+
+void print_stack(struct stack *stack) { // fazer
+    int i;
+
+    // temporario mas pode ajudar
+    if ( (stack[i] >= 'a' && stack[i] <= 'z') || (stack[i] >= 'A' && stack[i] <= 'Z') ) {
+        type = STACK_CHAR;
+    } else if (stack[i] >= '0' && stack[i] <= '9') {
+        type = STACK_LONG
+    } else if (for (j=0;j!='\0';j++)) {
+        type = STACK_STRING;
+    } else type = STACK_DOUBLE;
+
+
+int stack_size(struct stack *stack){ // rever
+    int p;
+
+    while ( (p = pop(stack, STACK_LONG) ) !=  0)
+        return (sizeof(p));
+    
+    return 0;
 }
 
 //  Destroys a previously created stack 

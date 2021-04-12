@@ -68,37 +68,43 @@ int parse(char *line) {
             case '+': 
                 val_long = pop(*token, &val_long);
                 val_long2 = pop(*token, &val_long2);
-                push(val_long2 += val_long);
+                int res = val_long2 += val_long;
+                push(token, STACK_LONG, res);
                 break;
 
             case '-': 
                 val_long = pop(*token, &val_long);
                 val_long2 = pop(*token, &val_long2);
-                push(val_long2 -= val_long);
+                int res2 = val_long2 -= val_long;
+                push(token, STACK_LONG, res);
                 break;
 
             case '*': 
                 val_long = pop(*token, &val_long);
                 val_long2 = pop(*token, &val_long2);
-                push(val_long2 *= val_long);
+                int res3 = val_long2 *= val_long;
+                push(token, STACK_LONG, res3);
                 break;
 
             case '/': 
                 val_long = pop(*token, &val_long);
                 val_long2 = pop(*token, &val_long2);
-                push(val_long2 /= val_long);
+                int res4 = val_long2 /= val_long;
+                push(token, STACK_LONG, res4);
                 break;
 
         // incrementação e decrementação
 
             case '(': 
                 val_long = pop(*token, &val_long);
-                push(val_long -= 1);
+                int res5 =val_long -= 1;
+                push(token, STACK_LONG, res5);
                 break;
 
             case ')': 
                 val_long = pop(*token, &val_long);
-                push(val_long += 1);
+                int res6 = val_long += 1;
+                push(token, STACK_LONG, res5);
                 break;
 
         // módulo e exponenciação
@@ -106,13 +112,15 @@ int parse(char *line) {
             case '%': 
                 val_long = pop(*token, &val_long);
                 val_long2 = pop(*token, &val_long2);
-                push(val_long2 %= val_long);
+                int res6 = val_long2 %= val_long;
+                push(token, STACK_LONG, res6);
                 break;
 
             case '#': 
                 val_long = pop(*token, &val_long);
                 val_long2 = pop(*token, &val_long2);
-                push(pow(val_long2,val_long));
+                int res7 = pow(val_long2,val_long);
+                push(token, STACK_LONG, res7);
                 break;
 
         // tabelas de verdades e bits oriented
@@ -120,26 +128,30 @@ int parse(char *line) {
             case '&': 
                 val_long = pop(*token, &val_long);
                 val_long2 = pop(*token, &val_long2);
-                push(val_long2 &= val_long);
+                int res8 = (val_long2 &= val_long);
+                push(token, STACK_LONG, res8);
                 break;
 
             case '|':
                 val_long = pop(*token, &val_long);
                 val_long2 = pop(*token, &val_long2);
-                push(val_long2 |= val_long);
+                int res9 = (val_long2 |= val_long);
+                push(token, STACK_LONG, res9);
                 break;
 
             case '^': 
                 val_long = pop(*token, &val_long);
                 val_long2 = pop(*token, &val_long2);
-                push(val_long2 ^= val_long);
+                int res10 = (val_long2 ^= val_long);
+                push(token, STACK_LONG, res10);
                 break;
             
             case '~': 
                 val_long = pop(*token, &val_long);
-                push((~ val_long));
+                int res11 = ((~ val_long));
+                push(token, STACK_LONG, res11);
                 break;       
-
+                /*
         // conversões do topo da stack || incompleto
 
             case 'i' : // int
@@ -256,7 +268,7 @@ int parse(char *line) {
                 push(val_long);
                 push(val_long2);
                 break;
-
+            */
         // caso default
 
             default :
@@ -265,6 +277,6 @@ int parse(char *line) {
         }
     }
 
-    print_stack();
-    return stack_size();
+    print_stack(*token);
+    return stack_size(token);
 }

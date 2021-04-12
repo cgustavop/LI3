@@ -23,7 +23,7 @@ void top(Stack stack, void *p);
 enum stack_type top_type(Stack stack);
 int stack_empty(Stack stack);
 int stack_size(Stack stack);
-void print_stack(struct stack * stack);
+void print_stack(struct stack *stack);
 
 #endif  
 
