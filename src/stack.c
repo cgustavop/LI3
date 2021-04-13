@@ -21,7 +21,7 @@ struct stack_element {
         double val_d;
         void *val_p;
     } data;
-}
+};
 
 //  Struct that contains stack 
 
@@ -30,7 +30,7 @@ struct stack {
     size_t capacity;
     enum stack_type type;
     struct stack_element *elements;
-}
+};
 
 //  Creates and returns a new stack of specified type and capacity  
 
@@ -54,34 +54,14 @@ struct stack *create_stack(const size_t capacity){
     return new_stack;
 }
 
-void print_stack(struct stack *stack) { // fazer
-    int i;
+/*  Returns the type of the top element on the stack  */
 
-    // temporario mas pode ajudar
-    if ( (new_stack[i] >= 'a' && new_stack[i] <= 'z') || (new_stack[i] >= 'A' && new_stack[i] <= 'Z') ) {
-        type = STACK_CHAR;
-    } else if (new_stack[i] >= '0' && new_stack[i] <= '9') {
-        type = STACK_LONG;
-    } else if (for (j=0;j!='\0';j++)) {
-        type = STACK_STRING;
-    } else type = STACK_DOUBLE;
-
-
-int stack_size(struct stack *stack){ // rever
-    int p;
-
-    while ( (pop(stack, &STACK_LONG) ) != stack_empty(stack) )
-        return (sizeof(p));
-    
-    return 0;
+enum stack_type top_type(struct stack *stack){
+  if ( stack->top == 0 ) {
+      fprintf(stderr, "Stack empty!\n");
+      exit(EXIT_FAILURE);
+  }
 }
-
-//  Destroys a previously created stack 
-
-void destroy_stack(struct stack *stack){
-    free(stack->elements);
-    free(stack);
-} 
 
 /*  Pushes an element onto the stack  */
 
@@ -89,7 +69,7 @@ void push(struct stack *stack, const enum stack_type type, ...){
     if ( stack->top == stack->capacity ) {
         fprintf(stderr, "Stack full!\n");
         exit(EXIT_FAILURE);
-    }
+    
 
     va_list ap;
     va_start(ap, type);
@@ -104,7 +84,7 @@ void push(struct stack *stack, const enum stack_type type, ...){
             break;
 
         case STACK_INT:
-            *((int *) p) = stack->elements[stack->top].data.val_i;
+            *((int*) ap) = stack->elements[stack->top].data.val_i;
             break;
 
         case STACK_DOUBLE:
@@ -112,7 +92,7 @@ void push(struct stack *stack, const enum stack_type type, ...){
             break;
 
         case STACK_STRING:
-            stack->elements[stack->top].data.val_p = va_arg(ap, void *p);
+            stack->elements[stack->top].data.val_p = va_arg(ap, void*);
             break;
 
         default:
@@ -160,10 +140,25 @@ void pop(struct stack *stack, void *p){
     }
 }
 
-/*  Returns the type of the top element on the stack  */
 
-enum stack_type top_type(struct stack *stack){
-    if ( stack->top == 0 ) {
-        fprintf(stderr, "Stack empty!\n");
-        exit(EXIT_FAILURE);
+void print_stack(struct stack *stack) { // fazer
+    if (stack->top == 0)
+      return;
+
+    pop(enum stack_type top_type(stack), stack->top);
+
+    int i;
+    
+    for (i=0;i<stack->capacity;i++){
+      pop(stack, stack->top);
+      push(stack,top_type(stack),stack->top);
     }
+}
+
+//  Destroys a previously created stack 
+
+void destroy_stack(struct stack *stack){
+    free(stack->elements);
+    free(stack);
+} 
+

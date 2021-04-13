@@ -280,5 +280,5 @@ int parse(char *line) {
     }
 
     print_stack(mystack);
-    return stack_size(mystack);
+    return mystack.capacity;
 }
