@@ -61,7 +61,7 @@ void print_stack(struct stack *stack) { // fazer
     if ( (new_stack[i] >= 'a' && new_stack[i] <= 'z') || (new_stack[i] >= 'A' && new_stack[i] <= 'Z') ) {
         type = STACK_CHAR;
     } else if (new_stack[i] >= '0' && new_stack[i] <= '9') {
-        type = STACK_LONG
+        type = STACK_LONG;
     } else if (for (j=0;j!='\0';j++)) {
         type = STACK_STRING;
     } else type = STACK_DOUBLE;
@@ -70,7 +70,7 @@ void print_stack(struct stack *stack) { // fazer
 int stack_size(struct stack *stack){ // rever
     int p;
 
-    while ( (p = pop(stack, STACK_LONG) ) != stack_empty(stack) )
+    while ( (pop(stack, &STACK_LONG) ) != stack_empty(stack) )
         return (sizeof(p));
     
     return 0;
