@@ -56,20 +56,13 @@ struct stack *create_stack(const size_t capacity){
 
 /*  Returns the type of the top element on the stack  */
 
-enum stack_type top_type(struct stack *stack){
-  if ( stack->top == 0 ) {
-      fprintf(stderr, "Stack empty!\n");
-      exit(EXIT_FAILURE);
-  }
+enum stack_type top_type(struct stack * stack){
+  return stack->elements[--stack->top].type;
 }
 
 /*  Pushes an element onto the stack  */
 
-void push(struct stack *stack, const enum stack_type type, ...){
-    if ( stack->top == stack->capacity ) {
-        fprintf(stderr, "Stack full!\n");
-        exit(EXIT_FAILURE);
-    
+void push(struct stack * stack, const enum stack_type type, ...){
 
     va_list ap;
     va_start(ap, type);
@@ -107,11 +100,7 @@ void push(struct stack *stack, const enum stack_type type, ...){
 
 /*  Pops an element from the stack  */
 
-void pop(struct stack *stack, void *p){
-    if ( stack->top == 0 ) {
-        fprintf(stderr, "Stack empty!\n");
-        exit(EXIT_FAILURE);
-    }
+void pop(struct stack * stack, void * p){
 
     switch ( stack->elements[--stack->top].type ) {
         case STACK_CHAR:
@@ -141,24 +130,31 @@ void pop(struct stack *stack, void *p){
 }
 
 
-void print_stack(struct stack *stack) { // fazer
-    if (stack->top == 0)
-      return;
+void print_stack(struct stack * stack){
+    if (stack->top == 0){
+      fprintf(stderr, "Impossible to print stack\n");
+      exit(EXIT_FAILURE);
+    }
+ 
+    size_t i;
 
-    pop(enum stack_type top_type(stack), stack->top);
-
-    int i;
     
-    for (i=0;i<stack->capacity;i++){
-      pop(stack, stack->top);
+    int Outop = (int)(stack->top);
+
+    for (i=0;i<sizeof (stack->capacity);i++){
+      pop(stack, &Outop);
       push(stack,top_type(stack),stack->top);
     }
 }
 
 //  Destroys a previously created stack 
 
-void destroy_stack(struct stack *stack){
+void destroy_stack(struct stack * stack){
     free(stack->elements);
     free(stack);
 } 
 
+int stack_size(struct stack * stack){
+  int cap = stack->capacity;
+  return cap;
+}

@@ -7,7 +7,7 @@
 #include <string.h>
 #include <assert.h>
 
-#include "stack.h"
+#include "parser.c"
 
 // gcc -std=gnu11 -Wall -Wextra -pedantic-errors -O main.c -lm
 
@@ -20,7 +20,7 @@
  */
 
 
-int main(void) {
+int main() {
     Stack mystack = create_stack(100);
      
     char line[10240];
