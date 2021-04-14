@@ -161,16 +161,30 @@ void parse(char *line) {
         
         // conversões do topo da stack || incompleto
 
-            case 'i' : // int
+            case 'i' : // Converter o topo da stack num inteiro
+                int i;
+                pop(stack, &val_long);
+                pop(stack, &val_long2);
+                i = (int)&val_long;
+                push (stack, STACK_LONG, i)
 
                 break;
 
-            case 'f' : // double
+            case 'f' : // Converter o topo da stack num double
+                double f;
+                pop(stack, &val_long);
+                pop(stack, &val_long2);
+                f = (double)&val_long;
+                push (stack, STACK_LONG, f)
 
                 break;
 
-            case 'c' : // char (ascii)
-                
+            case 'c' : // Converter o topo da stack para caratere (ascii)
+                char c;
+                pop(stack, &val_long);
+                pop(stack, &val_long2);
+                i = (char)&val_long;
+                push (stack, STACK_LONG, c)
                 
                 break;
 
