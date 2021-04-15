@@ -8,7 +8,6 @@
 #include <stdbool.h>
 #include <string.h>
 
-#include "stack.h"
 
 //  Struct that contains stack element  
 
@@ -36,7 +35,7 @@ struct stack {
 
 struct stack * create_stack(const size_t capacity){
     struct stack *new_stack = malloc(sizeof *new_stack);
-    if ( !new_stack ) {
+    if ( !new_stack ){
         perror("couldn't allocate memory for stack");
         exit(EXIT_FAILURE);
     }
@@ -45,7 +44,7 @@ struct stack * create_stack(const size_t capacity){
     new_stack->top = 0; // definir top
 
     new_stack->elements = malloc(sizeof *new_stack->elements * capacity);
-    if ( !new_stack->elements ) {
+    if ( !new_stack->elements ){
         free(new_stack);
         perror("couldn't allocate memory for stack elements");
         exit(EXIT_FAILURE);
