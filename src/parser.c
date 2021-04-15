@@ -166,7 +166,7 @@ void parse(char *line) {
                 pop(stack, &val_long);
                 pop(stack, &val_long2);
                 i = (int)&val_long;
-                push (stack, STACK_LONG, i)
+                push (stack, STACK_INT, i)
 
                 break;
 
@@ -175,7 +175,7 @@ void parse(char *line) {
                 pop(stack, &val_long);
                 pop(stack, &val_long2);
                 f = (double)&val_long;
-                push (stack, STACK_LONG, f)
+                push (stack, STACK_DOUBLE, f)
 
                 break;
 
@@ -184,7 +184,7 @@ void parse(char *line) {
                 pop(stack, &val_long);
                 pop(stack, &val_long2);
                 i = (char)&val_long;
-                push (stack, STACK_LONG, c)
+                push (stack, STACK_CHAR, c)
                 
                 break;
 
