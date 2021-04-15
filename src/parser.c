@@ -165,8 +165,13 @@ void parse(char *line) {
                 //int i;
                 pop(stack, &val_long);
                 pop(stack, &val_long2);
+<<<<<<< HEAD
                 int i = (int)val_long;
                 push (stack, STACK_LONG, i);
+=======
+                i = (int)&val_long;
+                push (stack, STACK_INT, i)
+>>>>>>> 3c785189495e90ea686ae688f6c4d3d834387027
 
                 break;
 
@@ -174,8 +179,13 @@ void parse(char *line) {
                 //double f;
                 pop(stack, &val_long);
                 pop(stack, &val_long2);
+<<<<<<< HEAD
                 double f = (double)val_long;
                 push (stack, STACK_LONG, f);
+=======
+                f = (double)&val_long;
+                push (stack, STACK_DOUBLE, f)
+>>>>>>> 3c785189495e90ea686ae688f6c4d3d834387027
 
                 break;
 
@@ -183,8 +193,13 @@ void parse(char *line) {
                 //char c;
                 pop(stack, &val_long);
                 pop(stack, &val_long2);
+<<<<<<< HEAD
                 char c = (char)val_long;
                 push (stack, STACK_LONG, c);
+=======
+                i = (char)&val_long;
+                push (stack, STACK_CHAR, c)
+>>>>>>> 3c785189495e90ea686ae688f6c4d3d834387027
                 
                 break;
 
