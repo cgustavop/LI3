@@ -7,7 +7,8 @@
 #include <string.h>
 #include <math.h>
 
-#include "stack.c"
+#include "stack.h"
+//#include "stack.c"
 
 // gcc -std=gnu11 -Wall -Weval_longtra -pedantic-errors -O parser.c -lm
 
@@ -34,7 +35,7 @@ void parse(char *line) {
 
     for (char *token = strtok(line, delims); token != NULL; token = strtok(NULL, delims)) {
          char *sobra;
-         long val_i = strtol(token, &sobra, 10);  
+         long val_i = strtol(token, &sobra, 10);
 
         // void push(Stack stack, const enum stack_type type, ...)
         // void pop(Stack stack, void *p)
@@ -42,16 +43,17 @@ void parse(char *line) {
         // vars novas
 
         //char val_char, val_char2, val_char3; 
-        long val_long, val_long2, val_long3;     
+        long val_long, val_long2; // val_long3;     
         double val_double,  val_double2; //val_double3;
         //void *val_pointer, *check4;
-
+/*      
+        TUDO RELACIONADO AOS "Outops" ESTÁ EM COMMENT
         int Outop = (int)(stack->top);
         char Outop2 = (char)(stack->top);
         long Outop3 = (long)(stack->top);
         double Outop4 = (double)(stack->top);
 
-        /*
+        
 
         // checks de tipos do top
         // copiar para os casos necessários
@@ -201,7 +203,7 @@ void parse(char *line) {
                 //fgets();
                 //..
                 break;
-               
+/*               
             case 'p' : // printar topo || guião 3/4
                 if ((top_type(stack)) == (STACK_CHAR)){
                     pop(stack, &Outop2);
@@ -265,7 +267,7 @@ void parse(char *line) {
                     push(stack, STACK_LONG, Outop);
                 }
 
-                break;
+                break; */
             /*
             case '$' : // Copia n-ésimo elemento para o topo da stack, 0 é o topo da stack (inc feito somente para long)
                 int i, n;
