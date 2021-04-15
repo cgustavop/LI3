@@ -34,7 +34,7 @@ struct stack {
 
 //  Creates and returns a new stack of specified type and capacity  
 
-struct stack *create_stack(const size_t capacity){
+struct stack * create_stack(const size_t capacity){
     struct stack *new_stack = malloc(sizeof *new_stack);
     if ( !new_stack ) {
         perror("couldn't allocate memory for stack");
@@ -131,21 +131,40 @@ void pop(struct stack * stack, void * p){
 
 
 void print_stack(struct stack * stack){
-    if (stack->top == 0){
-      fprintf(stderr, "Impossible to print stack\n");
-      exit(EXIT_FAILURE);
-    }
- 
-    size_t i;
 
-    
-    int Outop = (int)(stack->top);
+  switch (top_type(stack)){
+    case STACK_CHAR:
+      printf("%c\n", (char)stack->top);
+      break;
 
-    for (i=0;i<sizeof (stack->capacity);i++){
-      pop(stack, &Outop);
-      push(stack,top_type(stack),stack->top);
+    case STACK_LONG:
+      printf("%ld", stack->top);
+      break;
+
+    case STACK_INT:
+      printf("%i\n", (int)stack->top);
+      break;
+
+    case STACK_DOUBLE:
+      printf("%f\n", (double)stack->top);
+      break;
+
+    case STACK_STRING:
+      for (int i=0;i<(int)(stack->capacity);i++){
+        printf("%c", (char)stack->top);
+        pop(stack, &stack->top);
+        push(stack, stack->type, stack->top);
+      }
+      break;
+
+    default:
+      printf("%ld", stack->top);
+      break;
+
     }
+     
 }
+
 
 //  Destroys a previously created stack 
 

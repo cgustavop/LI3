@@ -8,7 +8,7 @@
 #include <math.h>
 
 #include "stack.h"
-//#include "stack.c"
+
 
 // gcc -std=gnu11 -Wall -Weval_longtra -pedantic-errors -O parser.c -lm
 
@@ -43,17 +43,15 @@ void parse(char *line) {
         // vars novas
 
         //char val_char, val_char2, val_char3; 
-        long val_long, val_long2; // val_long3;     
-        double val_double,  val_double2; //val_double3;
+        long val_long, val_long2;     
+        //double val_double,  val_double2; 
         //void *val_pointer, *check4;
 /*      
         TUDO RELACIONADO AOS "Outops" ESTÁ EM COMMENT
         int Outop = (int)(stack->top);
         char Outop2 = (char)(stack->top);
         long Outop3 = (long)(stack->top);
-        double Outop4 = (double)(stack->top);
-
-        
+        double Outop4 = (double)(stack->top);  
 
         // checks de tipos do top
         // copiar para os casos necessários
@@ -162,36 +160,22 @@ void parse(char *line) {
                 break;       
         
         // conversões do topo da stack || incompleto
-
+        /*
             case 'i' : // Converter o topo da stack num inteiro
-                pop(stack, &val_long);
-                pop(stack, &val_long2);
-
-                int i = (int)&val_long2;
-                push (stack, STACK_INT, i);
-
+                
 
                 break;
 
             case 'f' : // Converter o topo da stack num double
-
-                pop(stack, &val_double);
-                pop(stack, &val_double2);
-
                 
-                push (stack, STACK_DOUBLE, val_double2);
 
                 break;
 
             case 'c' : // Converter o topo da stack para caratere (ascii)
-                pop(stack, &val_long);
-                pop(stack, &val_long2);
-
-                char c = (char)&val_long2;
-                push (stack, STACK_CHAR, c);
+                
 
                 break;
-
+        */
         // ler linhas e imprimir linhas || incompleto
 
             case 'l' : // ler linha abaixo
