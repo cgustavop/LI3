@@ -43,7 +43,7 @@ void parse(char *line) {
 
         //char val_char, val_char2, val_char3; 
         long val_long, val_long2, val_long3;     
-        //double val_double, val_double2, val_double3;
+        // double val_double,  val_double2; val_double3;
         //void *val_pointer, *check4;
 
         int Outop = (int)(stack->top);
@@ -162,45 +162,32 @@ void parse(char *line) {
         // conversões do topo da stack || incompleto
 
             case 'i' : // Converter o topo da stack num inteiro
-                //int i;
                 pop(stack, &val_long);
                 pop(stack, &val_long2);
-<<<<<<< HEAD
-                int i = (int)val_long;
-                push (stack, STACK_LONG, i);
-=======
-                i = (int)&val_long;
-                push (stack, STACK_INT, i)
->>>>>>> 3c785189495e90ea686ae688f6c4d3d834387027
+
+                int i = (int)&val_long2;
+                push (stack, STACK_INT, i);
+
 
                 break;
 
             case 'f' : // Converter o topo da stack num double
-                //double f;
+
                 pop(stack, &val_long);
                 pop(stack, &val_long2);
-<<<<<<< HEAD
-                double f = (double)val_long;
-                push (stack, STACK_LONG, f);
-=======
-                f = (double)&val_long;
-                push (stack, STACK_DOUBLE, f)
->>>>>>> 3c785189495e90ea686ae688f6c4d3d834387027
+
+                double f = (double)&val_long2;
+                push (stack, STACK_DOUBLE, f);
 
                 break;
 
             case 'c' : // Converter o topo da stack para caratere (ascii)
-                //char c;
                 pop(stack, &val_long);
                 pop(stack, &val_long2);
-<<<<<<< HEAD
-                char c = (char)val_long;
-                push (stack, STACK_LONG, c);
-=======
-                i = (char)&val_long;
-                push (stack, STACK_CHAR, c)
->>>>>>> 3c785189495e90ea686ae688f6c4d3d834387027
-                
+
+                char c = (char)&val_long2;
+                push (stack, STACK_CHAR, c);
+
                 break;
 
         // ler linhas e imprimir linhas || incompleto
