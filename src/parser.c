@@ -46,13 +46,9 @@ void parse(char *line) {
         long val_long, val_long2;     
         //double val_double,  val_double2; 
         //void *val_pointer, *check4;
-/*      
-        TUDO RELACIONADO AOS "Outops" ESTÁ EM COMMENT
-        int Outop = (int)(stack->top);
-        char Outop2 = (char)(stack->top);
-        long Outop3 = (long)(stack->top);
-        double Outop4 = (double)(stack->top);  
-
+        
+        /*      
+       
         // checks de tipos do top
         // copiar para os casos necessários
 
