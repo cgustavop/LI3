@@ -43,7 +43,7 @@ void parse(char *line) {
 
         //char val_char, val_char2, val_char3; 
         long val_long, val_long2, val_long3;     
-        // double val_double,  val_double2; val_double3;
+        double val_double,  val_double2; //val_double3;
         //void *val_pointer, *check4;
 
         int Outop = (int)(stack->top);
@@ -173,11 +173,11 @@ void parse(char *line) {
 
             case 'f' : // Converter o topo da stack num double
 
-                pop(stack, &val_long);
-                pop(stack, &val_long2);
+                pop(stack, &val_double);
+                pop(stack, &val_double2);
 
-                double f = (double)&val_long2;
-                push (stack, STACK_DOUBLE, f);
+                
+                push (stack, STACK_DOUBLE, val_double2);
 
                 break;
 
