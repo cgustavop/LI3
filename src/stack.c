@@ -132,37 +132,33 @@ void pop(struct stack * stack, void * p){
 
 void print_stack(struct stack * stack){
 
-  switch (top_type(stack)){
-    case STACK_CHAR:
-      printf("%c\n", (char)stack->top);
-      break;
+  for(int i=0;i<=(int)stack->top;i++){
+    switch (top_type(stack)){
 
-    case STACK_LONG:
-      printf("%ld", stack->top);
-      break;
+      case STACK_CHAR:
+        printf("%c", stack->elements[i].data.val_c);
+        break;
 
-    case STACK_INT:
-      printf("%i\n", (int)stack->top);
-      break;
+      case STACK_LONG:
+        printf("%ld", stack->elements[i].data.val_l);
+        break;
 
-    case STACK_DOUBLE:
-      printf("%f\n", (double)stack->top);
-      break;
+     case STACK_INT:
+        printf("%i", stack->elements[i].data.val_i);
+        break;
 
-    case STACK_STRING:
-      for (int i=0;i<(int)(stack->capacity);i++){
-        printf("%c", (char)stack->top);
-        pop(stack, &stack->top);
-        push(stack, stack->type, stack->top);
-      }
-      break;
+      case STACK_DOUBLE:
+        printf("%f", stack->elements[stack->top].data.val_d);
+        break;
 
-    default:
-      printf("%ld", stack->top);
-      break;
-
+      case STACK_STRING:
+        printf("%p", stack->elements[i].data.val_p);
+        break;
     }
-     
+  }
+
+  printf("\n"); 
+
 }
 
 
