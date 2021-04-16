@@ -8,6 +8,7 @@
 #include <stdbool.h>
 #include <string.h>
 
+#include "stack.h"
 
 /// Struct que contém os elementos segundo o seu tipo
 struct stack_element {

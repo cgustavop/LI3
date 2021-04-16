@@ -7,11 +7,9 @@
 #include <string.h>
 #include <assert.h>
 
-<<<<<<< HEAD
-#include "parser.c"
-=======
+
 #include "stack.h"
->>>>>>> 05053850ba481596d8a563ef626f66f9c45d0889
+
 
 // gcc -std=gnu11 -Wall -Wextra -pedantic-errors -O main.c -lm
 
