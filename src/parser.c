@@ -15,7 +15,7 @@
 /**
  * \brief Esta é a função que vai fazer o parse de uma linha
  * 
- * Analisa a linha de teval_longto inserida e faz a sua separação em operadores e operandos consoante espaços, tabs ou mudanças de linhas.
+ * Analisa a linha de eval_long inserida e faz a sua separação em operadores e operandos consoante espaços, tabs ou mudanças de linhas.
  * Interpreta cada token e executa a sua função no conto da linguagem.
  *
  * 
@@ -23,7 +23,7 @@
  * @param token Operadores contidos na linha
  * @param sobra Vai guardando elementos da stack que não sofreram nenhuma transformação
  * @val_i 
- * @param ascii_c Usado no operando de conversão ASCII
+ * 
  * @returns O tamanho da stack resultante
  */
 
@@ -47,31 +47,6 @@ void parse(char *line) {
         double val_double,  val_double2; 
         void *val_pointer;
 
-        //char val_char, val_char2, val_char3; 
-        long val_long, val_long2; // val_long3;     
-        double val_double,  val_double2; //val_double3;
-        //void *val_pointer, *check4;
-/*      
-        TUDO RELACIONADO AOS "Outops" ESTÁ EM COMMENT
-        int Outop = (int)(stack->top);
-        char Outop2 = (char)(stack->top);
-        long Outop3 = (long)(stack->top);
-        double Outop4 = (double)(stack->top);
-        
-        // checks de tipos do top
-        // copiar para os casos necessários
-
-        if ((top_type(stack)) == (STACK_CHAR)){
-            stack->top = check1;
-        } else if ((top_type(stack)) == (STACK_LONG)){
-            stack->top = check2;
-        } else if ((top_type(stack)) == (STACK_DOUBLE)){
-            stack->top = check3;
-        } else if ((top_type(stack)) == (STACK_STRING)){
-            stack->top = check4;
-        } else stack->top = check2; // default é int
-
-        */
         switch (token[0]){ 
 
         // operações básicas
@@ -317,7 +292,7 @@ void parse(char *line) {
                         push(stack, STACK_LONG, val_long2);
                         break;
 
-                    case (STACK_DOUBLE): // não faz double
+                    case (STACK_DOUBLE):
                         break;
 
                     case (STACK_CHAR):
@@ -350,7 +325,7 @@ void parse(char *line) {
                         push(stack, STACK_LONG, val_long2);
                         break;
 
-                    case (STACK_DOUBLE): // não faz double
+                    case (STACK_DOUBLE):
                         break;
 
                     case (STACK_CHAR):
@@ -386,7 +361,7 @@ void parse(char *line) {
                         push(stack, STACK_LONG, val_long2);
                         break;
 
-                    case (STACK_DOUBLE): // não faz double
+                    case (STACK_DOUBLE):
                         break;
 
                     case (STACK_CHAR):
@@ -419,7 +394,7 @@ void parse(char *line) {
                         push(stack, STACK_LONG, val_long2);
                         break;
 
-                    case (STACK_DOUBLE): // não faz double
+                    case (STACK_DOUBLE):
                         break;
 
                     case (STACK_CHAR):
@@ -452,7 +427,7 @@ void parse(char *line) {
                         push(stack, STACK_LONG, val_long2);
                         break;
 
-                    case (STACK_DOUBLE): // não faz double
+                    case (STACK_DOUBLE):
                         break;
 
                     case (STACK_CHAR):
@@ -483,7 +458,7 @@ void parse(char *line) {
                         push(stack, STACK_LONG, val_long);
                         break;
 
-                    case (STACK_DOUBLE): // não faz double
+                    case (STACK_DOUBLE):
                         break;
 
                     case (STACK_CHAR):
@@ -499,8 +474,8 @@ void parse(char *line) {
                 }
                 break;      
         
-            // conversões do topo da stack || incompleto
-            
+            // conversões do topo da stack
+
             case 'i' : // Converter o topo da stack num inteiro
                 switch (top_type(stack)){
                     case (STACK_INT):
@@ -530,17 +505,7 @@ void parse(char *line) {
                     case (STACK_STRING):
                         push(stack, STACK_STRING, val_pointer);
                         break;
-        // conversões do topo da stack || incompleto
 
-            case 'i' : // Converter o topo da stack num inteiro
-                pop(stack, &val_long);
-                pop(stack, &val_long2);
-
-                int i = (int)&val_long2;
-                push (stack, STACK_INT, i);
-
-                }
-                break; 
 
             case 'f' : // Converter o topo da stack num double
                 switch (top_type(stack)){
@@ -606,18 +571,7 @@ void parse(char *line) {
 
                     case (STACK_STRING):
                         push(stack, STACK_STRING, val_pointer);
-                        break;
-            case 'c' : // Converter o topo da stack para caratere (ascii)
-                pop(stack, &val_long);
-                pop(stack, &val_long2);
-
-                char c = (char)&val_long2;
-                push (stack, STACK_CHAR, c);
-
-                }
-                break;
-            
-            
+                        break;            
 
         // ler linhas e imprimir linhas || incompleto
 
@@ -626,106 +580,196 @@ void parse(char *line) {
                 // ..
                 break;
 
-            case 't' : // ler todas as linhas guião 3/4
+            case 't' : // ler todas as linhas
                 //fgets();
                 //..
                 break;
-            /*
-                case '@' : // Rodar os 3 elementos no topo da stack (inc, apenas feito para 3 longs)
-                    pop(stack, &val_int);
-                    pop(stack, &val_int2);
-                    pop(stack, &val_int3);
+            
+            case '@' : // Rodar os 3 elementos no topo da stack
+                char aux[3]; 
+                for (int i=0;i<3;i++){
+                    switch (top_type(stack)){
+                        case (STACK_INT):
+                            pop(stack, &val_int);
+                            aux[i] = &val_int;
+                            break;
 
-                    push(stack, STACK_INT, val_int);
-                    push(stack, STACK_INT, val_int3);
-                    push(stack, STACK_INT, val_int2);             
-                    break;
+                        case (STACK_LONG):
+                            pop(stack, &val_long);
+                            aux[i] = &val_long;
+                            break;
+
+                        case (STACK_DOUBLE):
+                            pop(stack, &val_double);
+                            aux[i] = &val_double;
+                            break;
+
+                        case (STACK_CHAR):
+                            pop(stack, &val_char);
+                            aux[i] = &val_char;
+                            break;
+
+                        case (STACK_STRING):
+                            break;            
+                }
+
+                push(stack, STACK_CHAR, aux[0]);
+                push(stack, STACK_CHAR, aux[2]);
+                push(stack, STACK_CHAR, aux[1]); 
+
+                break;
                
-                case 'p' : // printar topo || guião 3/4
-                    if ((top_type(stack)) == (STACK_CHAR)){
-                        pop(stack, &Outop2);
-                        push(stack, STACK_CHAR, Outop2);
-                    } else if ((top_type(stack)) == (STACK_LONG)){
-                        pop(stack, &Outop3);
-                        push(stack, STACK_LONG, Outop3);
-                    } else if ((top_type(stack)) == (STACK_DOUBLE)){
-                        pop(stack, &Outop4);
-                        push(stack, STACK_DOUBLE, Outop4);
-                    //} else if ((top_type(stack)) == (STACK_STRING)){
-                    //    pop(stack, &Outop);
-                    //    push(stack, STACK_STRING, Outop);
-                    } else {
-                        pop(stack, &Outop);
-                        push(stack, STACK_LONG, Outop);
-                    }
-                    break;
-
-                
-
-                case ';' : // Pop
-                    if ((top_type(stack)) == (STACK_CHAR)){
-                        pop(stack, &Outop2);
-                    } else if ((top_type(stack)) == (STACK_LONG)){
-                        pop(stack, &Outop3);
-                    } else if ((top_type(stack)) == (STACK_DOUBLE)){
-                        pop(stack, &Outop4); 
-                    } else
-                        pop(stack, &Outop);
-                
-                    break;
-
-                case '_' : // Duplicar
-                    if ((top_type(stack)) == (STACK_CHAR)){
-                        pop(stack, &Outop);
-                        push(stack, STACK_CHAR, Outop);
-                        push(stack, STACK_CHAR, Outop);
-                    } else if ((top_type(stack)) == (STACK_LONG)){
-                        pop(stack, &Outop);
-                        push(stack, STACK_LONG, Outop);
-                        push(stack, STACK_LONG, Outop);
-                    } else if ((top_type(stack)) == (STACK_DOUBLE)){
-                        pop(stack, &Outop);
-                        push(stack, STACK_DOUBLE, Outop);
-                        push(stack, STACK_DOUBLE, Outop);  
-                    } else if ((top_type(stack)) == (STACK_STRING)){
-                        pop(stack, &Outop);
-                        push(stack, STACK_STRING, Outop);
-                        push(stack, STACK_STRING, Outop);
-                    } else { 
-                        pop(stack, &Outop);
-                        push(stack, STACK_LONG, Outop);
-                        push(stack, STACK_LONG, Outop);
-                    }
-
-                    break; */
-                /*
-                case '$' : // Copia n-ésimo elemento para o topo da stack, 0 é o topo da stack (inc feito somente para long)
-                    int i, n;
-
+            case 'p' : // printar topo 
+                if ((top_type(stack)) == (STACK_CHAR)){
+                    pop(stack, &val_char);
+                    push(stack, STACK_CHAR, val_char);
+                } else if ((top_type(stack)) == (STACK_LONG)){
                     pop(stack, &val_long);
-                    pop(stack, &val_long2);
                     push(stack, STACK_LONG, val_long);
-                    push(stack, STACK_LONG, val_long2);
+                } else if ((top_type(stack)) == (STACK_DOUBLE)){
+                    pop(stack, &val_double);
+                    push(stack, STACK_DOUBLE, val_double);
+                } else if ((top_type(stack)) == (STACK_STRING)){
+                    pop(stack, &val_pointer);
+                    push(stack, STACK_STRING, val_pointer);
+                } else {
+                    pop(stack, val_int);
+                    push(stack, STACK_INT, val_int);
+                }
+                break;
+                
+            
+            case ';' : // Pop
+                if ((top_type(stack)) == (STACK_CHAR)){
+                    pop(stack, &val_char);
+                } else if ((top_type(stack)) == (STACK_LONG)){
+                     pop(stack, &val_long);
+                } else if ((top_type(stack)) == (STACK_DOUBLE)){
+                    pop(stack, &val_double); 
+                } else
+                    pop(stack, &val_int);
+                
+                break;
 
-                    for(i=val_long2;i<0;i--){
-                       n = Outop;
-                       Outop--;                  
-                    }
-
-                    pop(stack, &n);
-                    push(stack, STACK_LONG, n);
-                    break;
-           
-                case '\\n': // Trocar os dois elementos do topo da stack (inc, apenas feito para 2 longs)
+            case '_' : // Duplicar
+                if ((top_type(stack)) == (STACK_CHAR)){
+                    pop(stack, &val_char);
+                    push(stack, STACK_CHAR, val_char);
+                    push(stack, STACK_CHAR, val_char);
+                } else if ((top_type(stack)) == (STACK_LONG)){
                     pop(stack, &val_long);
-                    pop(stack, &val_long2);
-                    push(stack, STACK_LONG,val_long);
-                    push(stack, STACK_LONG,val_long2);
-                    break;
-                */
-            // caso default
+                    push(stack, STACK_LONG, val_long);
+                    push(stack, STACK_LONG, val_long);
+                } else if ((top_type(stack)) == (STACK_DOUBLE)){
+                    pop(stack, &val_double);
+                    push(stack, STACK_DOUBLE, val_double);
+                    push(stack, STACK_DOUBLE, val_double);  
+                } else if ((top_type(stack)) == (STACK_STRING)){
+                    pop(stack, &val_pointer);
+                    push(stack, STACK_STRING, val_pointer);
+                    push(stack, STACK_STRING, val_pointer);
+                } else { 
+                    pop(stack, &val_int);
+                    push(stack, STACK_LONG, val_int);
+                    push(stack, STACK_LONG, val_int);
+                }
 
+                break;
+
+            /*
+            7 1 4 3 2 $
+            7 1 4 3 1 
+            case '$' : // Copia n-ésimo elemento para o topo da stack, 0 é o topo da stack  
+                switch (stack->type((stack_element->top) + 1) ){
+                    case (STACK_INT):
+                        (int)stack_element->top = val_int;
+                        break;
+
+                    case (STACK_LONG):
+                        (long)stack_element->top = val_long;
+                        break;
+
+                    case (STACK_DOUBLE):
+                        (double)stack_element->top = val_double;
+                        break;
+
+                    case (STACK_CHAR):
+                        (char)stack_element->top = val_char;
+                        break;
+                    
+                    case (STACK_STRING):
+                        break;
+                           
+                }
+
+                for (int i=0;i<(int)(stack->capacity);i++){
+                    if ((top_type(stack)) == (STACK_CHAR)){
+                        pop(stack, &val_char);
+                    } else if ((top_type(stack)) == (STACK_LONG)){
+                        pop(stack, &val_long);
+                    } else if ((top_type(stack)) == (STACK_DOUBLE)){
+                        pop(stack, &val_double); 
+                    } else if ((top_type(stack)) == (STACK_INT))
+                        pop(stack, &val_int);
+                    } else {
+                        pop(stack, &val_pointer);
+                    }
+                }
+                for (int j=0;j<(int)(stack->capacity);j++){
+                    if ((top_type(stack)) == (STACK_CHAR)){
+                        push(stack, STACK_CHAR, val_char);
+                    } else if ((top_type(stack)) == (STACK_LONG)){
+                        push(stack, STACK_LONG, val_long);
+                    } else if ((top_type(stack)) == (STACK_DOUBLE)){
+                        push(stack, STACK_DOUBLE, val_double); 
+                    } else if ((top_type(stack)) == (STACK_INT)
+                        push(stack, STACK_INT,val_int);
+                    } else {
+                        push(stack, STACK_STRING,val_pointer);
+                    }
+                }   
+                    
+                break;
+
+
+            
+            */
+            case '\\n': // Trocar os dois elementos do topo da stack
+                char aux2[2]; 
+                for (int i=0;i<2;i++){
+                    switch (top_type(stack)){
+                        case (STACK_INT):
+                            pop(stack, &val_int);
+                            aux2[i] = &val_int;
+                            break;
+
+                        case (STACK_LONG):
+                            pop(stack, &val_long);
+                            aux2[i] = &val_long;
+                            break;
+
+                        case (STACK_DOUBLE):
+                            pop(stack, &val_double);
+                            aux2[i] = &val_double;
+                            break;
+
+                        case (STACK_CHAR):
+                            pop(stack, &val_char);
+                            aux2[i] = &val_char;
+                            break;
+
+                        case (STACK_STRING):
+                            break;            
+                }
+
+                push(stack, STACK_CHAR, aux2[0]);
+                push(stack, STACK_CHAR, aux2[1]);
+
+                break;
+            
         }
+
+
     print_stack(stack);
     stack_size(stack);
 
