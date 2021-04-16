@@ -8,7 +8,7 @@
 #include <math.h>
 
 #include "stack.h"
-
+//#include "stack.c"
 
 // gcc -std=gnu11 -Wall -Weval_longtra -pedantic-errors -O parser.c -lm
 
@@ -34,21 +34,27 @@ void parse(char *line) {
     char *delims = " \t\n";
 
     for (char *token = strtok(line, delims); token != NULL; token = strtok(NULL, delims)) {
-         //char *sobra;
-         //long val_i = strtol(token, &sobra, 10);
+         char *sobra;
+         long val_i = strtol(token, &sobra, 10);
 
         // void push(Stack stack, const enum stack_type type, ...)
         // void pop(Stack stack, void *p)
 
         // vars novas
-        int val_int, val_int2;
-        char val_char, val_char2; 
-        long val_long, val_long2;     
-        double val_double,  val_double2; 
-        void *val_pointer;
+
+        //char val_char, val_char2, val_char3; 
+        long val_long, val_long2; // val_long3;     
+        double val_double,  val_double2; //val_double3;
+        //void *val_pointer, *check4;
+/*      
+        TUDO RELACIONADO AOS "Outops" ESTÁ EM COMMENT
+        int Outop = (int)(stack->top);
+        char Outop2 = (char)(stack->top);
+        long Outop3 = (long)(stack->top);
+        double Outop4 = (double)(stack->top);
+
         
-        /*      
-       
+
         // checks de tipos do top
         // copiar para os casos necessários
 
@@ -63,532 +69,130 @@ void parse(char *line) {
         } else stack->top = check2; // default é int
 
         */
+
         switch (token[0]){ 
 
         // operações básicas
 
-            case '+':
-                switch (top_type(stack)){
-                    case (STACK_INT):
-                        pop(stack, &val_int);
-                        pop(stack, &val_int2);
-                        val_int2 += val_int;
-                        push(stack, STACK_INT, val_int2);
-                        break;
-
-                    case (STACK_LONG):
-                        pop(stack, &val_long);
-                        pop(stack, &val_long2);
-                        val_long2 += val_long;
-                        push(stack, STACK_LONG, val_long2);
-                        break;
-
-                    case (STACK_DOUBLE):
-                        pop(stack, &val_double);
-                        pop(stack, &val_double2);
-                        val_double2 += val_double;
-                        push(stack, STACK_DOUBLE, val_double2);
-                        break;
-
-                    case (STACK_CHAR):
-                        pop(stack, &val_char);
-                        pop(stack, &val_char2);
-                        val_char2 += val_char;
-                        push(stack, STACK_CHAR, val_char2);
-                        break;
-
-                    case (STACK_STRING):
-                        push(stack, STACK_STRING, val_pointer);
-                        break;
-
-                }
+            case '+': 
+                pop(stack, &val_long);
+                pop(stack, &val_long2);
+                val_long2 += val_long;
+                push(stack, STACK_LONG, val_long2);
                 break;
 
             case '-': 
-                switch (top_type(stack)){
-                    case (STACK_INT):
-                        pop(stack, &val_int);
-                        pop(stack, &val_int2);
-                        val_int2 -= val_int;
-                        push(stack, STACK_INT, val_int2);
-                        break;
-
-                    case (STACK_LONG):
-                        pop(stack, &val_long);
-                        pop(stack, &val_long2);
-                        val_long2 -= val_long;
-                        push(stack, STACK_LONG, val_long2);
-                        break;
-
-                    case (STACK_DOUBLE):
-                        pop(stack, &val_double);
-                        pop(stack, &val_double2);
-                        val_double2 -= val_double;
-                        push(stack, STACK_DOUBLE, val_double2);
-                        break;
-
-                    case (STACK_CHAR):
-                        pop(stack, &val_char);
-                        pop(stack, &val_char2);
-                        val_char2 -= val_char;
-                        push(stack, STACK_CHAR, val_char2);
-                        break;
-
-                    case (STACK_STRING):
-                        push(stack, STACK_STRING, val_pointer);
-                        break;
-
-                }
+                pop(stack, &val_long);
+                pop(stack, &val_long2);
+                val_long2 -= val_long;
+                push(stack, STACK_LONG, val_long2);
                 break;
 
-             case '*': 
-                switch (top_type(stack)){
-                    case (STACK_INT):
-                        pop(stack, &val_int);
-                        pop(stack, &val_int2);
-                        val_int2 *= val_int;
-                        push(stack, STACK_INT, val_int2);
-                        break;
-
-                    case (STACK_LONG):
-                        pop(stack, &val_long);
-                        pop(stack, &val_long2);
-                        val_long2 *= val_long;
-                        push(stack, STACK_LONG, val_long2);
-                        break;
-
-                    case (STACK_DOUBLE):
-                        pop(stack, &val_double);
-                        pop(stack, &val_double2);
-                        val_double2 *= val_double;
-                        push(stack, STACK_DOUBLE, val_double2);
-                        break;
-
-                    case (STACK_CHAR):
-                        pop(stack, &val_char);
-                        pop(stack, &val_char2);
-                        val_char2 *= val_char;
-                        push(stack, STACK_CHAR, val_char2);
-                        break;
-
-                    case (STACK_STRING):
-                        push(stack, STACK_STRING, val_pointer);
-                        break;
-
-                }
+            case '*': 
+                pop(stack, &val_long);
+                pop(stack, &val_long2);
+                val_long2 *= val_long;
+                push(stack, STACK_LONG, val_long2);
                 break;
 
             case '/': 
-                switch (top_type(stack)){
-                    case (STACK_INT):
-                        pop(stack, &val_int);
-                        pop(stack, &val_int2);
-                        val_int2 /= val_int;
-                        push(stack, STACK_INT, val_int2);
-                        break;
-
-                    case (STACK_LONG):
-                        pop(stack, &val_long);
-                        pop(stack, &val_long2);
-                        val_long2 /= val_long;
-                        push(stack, STACK_LONG, val_long2);
-                        break;
-
-                    case (STACK_DOUBLE):
-                        pop(stack, &val_double);
-                        pop(stack, &val_double2);
-                        val_double2 /= val_double;
-                        push(stack, STACK_DOUBLE, val_double2);
-                        break;
-
-                    case (STACK_CHAR):
-                        pop(stack, &val_char);
-                        pop(stack, &val_char2);
-                        val_char2 /= val_char;
-                        push(stack, STACK_CHAR, val_char2);
-                        break;
-
-                    case (STACK_STRING):
-                        push(stack, STACK_STRING, val_pointer);
-                        break;
-
-                }
+                pop(stack, &val_long);
+                pop(stack, &val_long2);
+                val_long2 /= val_long;
+                push(stack, STACK_LONG, val_long2);
                 break;
 
         // incrementação e decrementação
 
             case '(': 
-                switch (top_type(stack)){
-                    case (STACK_INT):
-                        pop(stack, &val_int);
-                        pop(stack, &val_int2);
-                        val_int2 += 1;
-                        push(stack, STACK_INT, val_int2);
-                        break;
-
-                    case (STACK_LONG):
-                        pop(stack, &val_long);
-                        pop(stack, &val_long2);
-                        val_long2 += 1;
-                        push(stack, STACK_LONG, val_long2);
-                        break;
-
-                    case (STACK_DOUBLE):
-                        pop(stack, &val_double);
-                        pop(stack, &val_double2);
-                        val_double2 += 1;
-                        push(stack, STACK_DOUBLE, val_double2);
-                        break;
-
-                    case (STACK_CHAR):
-                        pop(stack, &val_char);
-                        pop(stack, &val_char2);
-                        val_char2 += 1;
-                        push(stack, STACK_CHAR, val_char2);
-                        break;
-
-                    case (STACK_STRING):
-                        push(stack, STACK_STRING, val_pointer);
-                        break;
-                }
+                pop(stack, &val_long);
+                val_long -= 1;
+                push(stack, STACK_LONG, val_long2);
                 break;
 
             case ')': 
-                switch (top_type(stack)){
-                    case (STACK_INT):
-                        pop(stack, &val_int);
-                        pop(stack, &val_int2);
-                        val_int2 -= 1;
-                        push(stack, STACK_INT, val_int2);
-                        break;
-
-                    case (STACK_LONG):
-                        pop(stack, &val_long);
-                        pop(stack, &val_long2);
-                        val_long2 -= 1;
-                        push(stack, STACK_LONG, val_long2);
-                        break;
-
-                    case (STACK_DOUBLE):
-                        pop(stack, &val_double);
-                        pop(stack, &val_double2);
-                        val_double2 -= 1;
-                        push(stack, STACK_DOUBLE, val_double2);
-                        break;
-
-                    case (STACK_CHAR):
-                        pop(stack, &val_char);
-                        pop(stack, &val_char2);
-                        val_char2 -= 1;
-                        push(stack, STACK_CHAR, val_char2);
-                        break;
-
-                    case (STACK_STRING):
-                        push(stack, STACK_STRING, val_pointer);
-                        break;
-
-                }
+                pop(stack, &val_long);
+                val_long += 1;
+                push(stack, STACK_LONG, val_long2);
                 break;
 
         // módulo e exponenciação
 
             case '%': 
-                switch (top_type(stack)){
-                    case (STACK_INT):
-                        pop(stack, &val_int);
-                        pop(stack, &val_int2);
-                        val_int2 %= val_int;
-                        push(stack, STACK_INT, val_int2);
-                        break;
-
-                    case (STACK_LONG):
-                        pop(stack, &val_long);
-                        pop(stack, &val_long2);
-                        val_long2 %= val_long;
-                        push(stack, STACK_LONG, val_long2);
-                        break;
-
-                    case (STACK_DOUBLE): // não faz double
-                        break;
-
-                    case (STACK_CHAR):
-                        pop(stack, &val_char);
-                        pop(stack, &val_char2);
-                        val_char2 %= val_char;
-                        push(stack, STACK_CHAR, val_char2);
-                        break;
-
-                    case (STACK_STRING):
-                        push(stack, STACK_STRING, val_pointer);
-                        break;
-
-                }
+                pop(stack, &val_long);
+                pop(stack, &val_long2);
+                val_long2 %= val_long;
+                push(stack, STACK_LONG, val_long2);
                 break;
 
             case '#': 
-                switch (top_type(stack)){
-                    case (STACK_INT):
-                        pop(stack, &val_int);
-                        pop(stack, &val_int2);
-                        val_int2 = pow(val_int2,val_int);
-                        push(stack, STACK_INT, val_int2);
-                        break;
-
-                    case (STACK_LONG):
-                        pop(stack, &val_long);
-                        pop(stack, &val_long2);
-                        val_long2 = pow(val_long2,val_long);
-                        push(stack, STACK_LONG, val_long2);
-                        break;
-
-                    case (STACK_DOUBLE): // não faz double
-                        break;
-
-                    case (STACK_CHAR):
-                        pop(stack, &val_char);
-                        pop(stack, &val_char2);
-                        val_char2 = pow(val_char2,val_char);
-                        push(stack, STACK_CHAR, val_char2);
-                        break;
-
-                    case (STACK_STRING):
-                        push(stack, STACK_STRING, val_pointer);
-                        break;
-
-
-                }
+                pop(stack, &val_long);
+                pop(stack, &val_long2);
+                val_long2 = pow(val_long2,val_long);
+                push(stack, STACK_LONG, val_long2);
                 break;
 
         // tabelas de verdades e bits oriented
 
             case '&': 
-                switch (top_type(stack)){
-                    case (STACK_INT):
-                        pop(stack, &val_int);
-                        pop(stack, &val_int2);
-                        val_int2 &= val_int;
-                        push(stack, STACK_INT, val_int2);
-                        break;
-
-                    case (STACK_LONG):
-                        pop(stack, &val_long);
-                        pop(stack, &val_long2);
-                        val_long2 &= val_long;
-                        push(stack, STACK_LONG, val_long2);
-                        break;
-
-                    case (STACK_DOUBLE): // não faz double
-                        break;
-
-                    case (STACK_CHAR):
-                        pop(stack, &val_char);
-                        pop(stack, &val_char2);
-                        val_char2 &= val_char;
-                        push(stack, STACK_CHAR, val_char2);
-                        break;
-
-                    case (STACK_STRING):
-                        push(stack, STACK_STRING, val_pointer);
-                        break;
-
-                }
+                pop(stack, &val_long);
+                pop(stack, &val_long2);
+                val_long2 &= val_long;
+                push(stack, STACK_LONG, val_long2);
                 break;
 
             case '|':
-                switch (top_type(stack)){
-                    case (STACK_INT):
-                        pop(stack, &val_int);
-                        pop(stack, &val_int2);
-                        val_int2 |= val_int;
-                        push(stack, STACK_INT, val_int2);
-                        break;
-
-                    case (STACK_LONG):
-                        pop(stack, &val_long);
-                        pop(stack, &val_long2);
-                        val_long2 |= val_long;
-                        push(stack, STACK_LONG, val_long2);
-                        break;
-
-                    case (STACK_DOUBLE): // não faz double
-                        break;
-
-                    case (STACK_CHAR):
-                        pop(stack, &val_char);
-                        pop(stack, &val_char2);
-                        val_char2 |= val_char;
-                        push(stack, STACK_CHAR, val_char2);
-                        break;
-
-                    case (STACK_STRING):
-                        push(stack, STACK_STRING, val_pointer);
-                        break;
-
-                }
+                pop(stack, &val_long);
+                pop(stack, &val_long2);
+                val_long2 |= val_long;
+                push(stack, STACK_LONG, val_long2);
                 break;
 
             case '^': 
-                switch (top_type(stack)){
-                    case (STACK_INT):
-                        pop(stack, &val_int);
-                        pop(stack, &val_int2);
-                        val_int2 ^= val_int;
-                        push(stack, STACK_INT, val_int2);
-                        break;
-
-                    case (STACK_LONG):
-                        pop(stack, &val_long);
-                        pop(stack, &val_long2);
-                        val_long2 ^= val_long;
-                        push(stack, STACK_LONG, val_long2);
-                        break;
-
-                    case (STACK_DOUBLE): // não faz double
-                        break;
-
-                    case (STACK_CHAR):
-                        pop(stack, &val_char);
-                        pop(stack, &val_char2);
-                        val_char2 ^= val_char;
-                        push(stack, STACK_CHAR, val_char2);
-                        break;
-
-                    case (STACK_STRING):
-                        push(stack, STACK_STRING, val_pointer);
-                        break;
-
-                }
+                pop(stack, &val_long);
+                pop(stack, &val_long2);
+                val_long2 ^= val_long;
+                push(stack, STACK_LONG, val_long2);
                 break;
             
             case '~': 
-                switch (top_type(stack)){
-                    case (STACK_INT):
-                        pop(stack, &val_int);
-                        val_int = (~val_int);
-                        push(stack, STACK_INT, val_int);
-                        break;
-
-                    case (STACK_LONG):
-                        pop(stack, &val_long);
-                        val_long = (~val_long);
-                        push(stack, STACK_LONG, val_long);
-                        break;
-
-                    case (STACK_DOUBLE): // não faz double
-                        break;
-
-                    case (STACK_CHAR):
-                        pop(stack, &val_char);
-                        val_char = (~val_char);
-                        push(stack, STACK_CHAR, val_char);
-                        break;
-
-                    case (STACK_STRING):
-                        push(stack, STACK_STRING, val_pointer);
-                        break;
-
-                }
-                break;      
+                pop(stack, &val_long);
+                val_long = ((~ val_long));
+                push(stack, STACK_LONG, val_long);
+                break;       
         
-            // conversões do topo da stack || incompleto
-            
+        // conversões do topo da stack || incompleto
+
             case 'i' : // Converter o topo da stack num inteiro
-                switch (top_type(stack)){
-                    case (STACK_INT):
-                        pop(stack, &val_int);
-                        val_int = (int)(val_int);
-                        push(stack, STACK_INT, val_int);
-                        break;
+                pop(stack, &val_long);
+                pop(stack, &val_long2);
 
-                    case (STACK_LONG):
-                        pop(stack, &val_long);
-                        val_long = (int)(val_long);
-                        push(stack, STACK_INT, val_long);
-                        break;
+                int i = (int)&val_long2;
+                push (stack, STACK_INT, i);
 
-                    case (STACK_DOUBLE):
-                        pop(stack, &val_double);
-                        val_double = (int)(val_int);
-                        push(stack, STACK_INT, val_double);
-                        break;
 
-                    case (STACK_CHAR):
-                        pop(stack, &val_char);
-                        val_char = (int)(val_char);
-                        push(stack, STACK_INT, val_char);
-                        break;
-
-                    case (STACK_STRING):
-                        push(stack, STACK_STRING, val_pointer);
-                        break;
-
-                }
-                break; 
+                break;
 
             case 'f' : // Converter o topo da stack num double
-                switch (top_type(stack)){
-                    case (STACK_INT):
-                        pop(stack, &val_int);
-                        val_int = (double)(val_int);
-                        push(stack, STACK_DOUBLE, val_int);
-                        break;
 
-                    case (STACK_LONG):
-                        pop(stack, &val_long);
-                        val_long = (double)(val_long);
-                        push(stack, STACK_DOUBLE, val_long);
-                        break;
+                pop(stack, &val_double);
+                pop(stack, &val_double2);
 
-                    case (STACK_DOUBLE):
-                        pop(stack, &val_double);
-                        val_double = (double)(val_int);
-                        push(stack, STACK_DOUBLE, val_double);
-                        break;
+                
+                push (stack, STACK_DOUBLE, val_double2);
 
-                    case (STACK_CHAR):
-                        pop(stack, &val_char);
-                        val_char = (double)(val_char);
-                        push(stack, STACK_DOUBLE, val_char);
-                        break;
-
-                    case (STACK_STRING):
-                        push(stack, STACK_STRING, val_pointer);
-                        break;
-                }
-                break; 
-
-
-            case 'c' : // Converter o topo da stack para caracter (ascii)
-                switch (top_type(stack)){
-                    case (STACK_INT):
-                        pop(stack, &val_int);
-                        val_int = (char)(val_int);
-                        push(stack, STACK_CHAR, val_int);
-                        break;
-
-                    case (STACK_LONG):
-                        pop(stack, &val_long);
-                        val_long = (char)(val_long);
-                        push(stack, STACK_CHAR, val_long);
-                        break;
-
-                    case (STACK_DOUBLE): // não faz double
-                        break;
-
-                    case (STACK_CHAR):
-                        pop(stack, &val_char);
-                        val_char = (char)(val_char);
-                        push(stack, STACK_CHAR, val_char);
-                        break;
-
-                    case (STACK_STRING):
-                        push(stack, STACK_STRING, val_pointer);
-                        break;
-
-                }
                 break;
-            
-            // ler linhas e imprimir linhas || incompleto
+
+            case 'c' : // Converter o topo da stack para caratere (ascii)
+                pop(stack, &val_long);
+                pop(stack, &val_long2);
+
+                char c = (char)&val_long2;
+                push (stack, STACK_CHAR, c);
+
+                break;
+
+        // ler linhas e imprimir linhas || incompleto
 
             case 'l' : // ler linha abaixo
                 //fgets();
@@ -599,103 +203,104 @@ void parse(char *line) {
                 //fgets();
                 //..
                 break;
+/*               
+            case 'p' : // printar topo || guião 3/4
+                if ((top_type(stack)) == (STACK_CHAR)){
+                    pop(stack, &Outop2);
+                    push(stack, STACK_CHAR, Outop2);
+                } else if ((top_type(stack)) == (STACK_LONG)){
+                    pop(stack, &Outop3);
+                    push(stack, STACK_LONG, Outop3);
+                } else if ((top_type(stack)) == (STACK_DOUBLE)){
+                    pop(stack, &Outop4);
+                    push(stack, STACK_DOUBLE, Outop4);
+                //} else if ((top_type(stack)) == (STACK_STRING)){
+                //    pop(stack, &Outop);
+                //    push(stack, STACK_STRING, Outop);
+                } else {
+                    pop(stack, &Outop);
+                    push(stack, STACK_LONG, Outop);
+                }
+                break;
+
+            case '@' : // Rodar os 3 elementos no topo da stack (inc, apenas feito para 3 longs)
+                pop(stack, &val_long);
+                pop(stack, &val_long2);
+                pop(stack, &val_long3);
+                push(stack, STACK_LONG, val_long);
+                push(stack, STACK_LONG, val_long3);
+                push(stack, STACK_LONG, val_long2);             
+                break;
+
+            case ';' : // Pop
+                if ((top_type(stack)) == (STACK_CHAR)){
+                    pop(stack, &Outop2);
+                } else if ((top_type(stack)) == (STACK_LONG)){
+                    pop(stack, &Outop3);
+                } else if ((top_type(stack)) == (STACK_DOUBLE)){
+                    pop(stack, &Outop4); 
+                } else
+                    pop(stack, &Outop);
+                
+                break;
+
+            case '_' : // Duplicar
+                if ((top_type(stack)) == (STACK_CHAR)){
+                    pop(stack, &Outop);
+                    push(stack, STACK_CHAR, Outop);
+                    push(stack, STACK_CHAR, Outop);
+                } else if ((top_type(stack)) == (STACK_LONG)){
+                    pop(stack, &Outop);
+                    push(stack, STACK_LONG, Outop);
+                    push(stack, STACK_LONG, Outop);
+                } else if ((top_type(stack)) == (STACK_DOUBLE)){
+                    pop(stack, &Outop);
+                    push(stack, STACK_DOUBLE, Outop);
+                    push(stack, STACK_DOUBLE, Outop);  
+                } else if ((top_type(stack)) == (STACK_STRING)){
+                    pop(stack, &Outop);
+                    push(stack, STACK_STRING, Outop);
+                    push(stack, STACK_STRING, Outop);
+                } else { 
+                    pop(stack, &Outop);
+                    push(stack, STACK_LONG, Outop);
+                    push(stack, STACK_LONG, Outop);
+                }
+
+                break; */
             /*
-                case '@' : // Rodar os 3 elementos no topo da stack (inc, apenas feito para 3 longs)
-                    pop(stack, &val_int);
-                    pop(stack, &val_int2);
-                    pop(stack, &val_int3);
+            case '$' : // Copia n-ésimo elemento para o topo da stack, 0 é o topo da stack (inc feito somente para long)
+                int i, n;
 
-                    push(stack, STACK_INT, val_int);
-                    push(stack, STACK_INT, val_int3);
-                    push(stack, STACK_INT, val_int2);             
-                    break;
-               
-                case 'p' : // printar topo || guião 3/4
-                    if ((top_type(stack)) == (STACK_CHAR)){
-                        pop(stack, &Outop2);
-                        push(stack, STACK_CHAR, Outop2);
-                    } else if ((top_type(stack)) == (STACK_LONG)){
-                        pop(stack, &Outop3);
-                        push(stack, STACK_LONG, Outop3);
-                    } else if ((top_type(stack)) == (STACK_DOUBLE)){
-                        pop(stack, &Outop4);
-                        push(stack, STACK_DOUBLE, Outop4);
-                    //} else if ((top_type(stack)) == (STACK_STRING)){
-                    //    pop(stack, &Outop);
-                    //    push(stack, STACK_STRING, Outop);
-                    } else {
-                        pop(stack, &Outop);
-                        push(stack, STACK_LONG, Outop);
-                    }
-                    break;
+                pop(stack, &val_long);
+                pop(stack, &val_long2);
+                push(stack, STACK_LONG, val_long);
+                push(stack, STACK_LONG, val_long2);
 
-                
+                for(i=val_long2;i<0;i--){
+                	n = Outop;
+                	Outop--;                  
+                }
 
-                case ';' : // Pop
-                    if ((top_type(stack)) == (STACK_CHAR)){
-                        pop(stack, &Outop2);
-                    } else if ((top_type(stack)) == (STACK_LONG)){
-                        pop(stack, &Outop3);
-                    } else if ((top_type(stack)) == (STACK_DOUBLE)){
-                        pop(stack, &Outop4); 
-                    } else
-                        pop(stack, &Outop);
-                
-                    break;
-
-                case '_' : // Duplicar
-                    if ((top_type(stack)) == (STACK_CHAR)){
-                        pop(stack, &Outop);
-                        push(stack, STACK_CHAR, Outop);
-                        push(stack, STACK_CHAR, Outop);
-                    } else if ((top_type(stack)) == (STACK_LONG)){
-                        pop(stack, &Outop);
-                        push(stack, STACK_LONG, Outop);
-                        push(stack, STACK_LONG, Outop);
-                    } else if ((top_type(stack)) == (STACK_DOUBLE)){
-                        pop(stack, &Outop);
-                        push(stack, STACK_DOUBLE, Outop);
-                        push(stack, STACK_DOUBLE, Outop);  
-                    } else if ((top_type(stack)) == (STACK_STRING)){
-                        pop(stack, &Outop);
-                        push(stack, STACK_STRING, Outop);
-                        push(stack, STACK_STRING, Outop);
-                    } else { 
-                        pop(stack, &Outop);
-                        push(stack, STACK_LONG, Outop);
-                        push(stack, STACK_LONG, Outop);
-                    }
-
-                    break; */
-                /*
-                case '$' : // Copia n-ésimo elemento para o topo da stack, 0 é o topo da stack (inc feito somente para long)
-                    int i, n;
-
-                    pop(stack, &val_long);
-                    pop(stack, &val_long2);
-                    push(stack, STACK_LONG, val_long);
-                    push(stack, STACK_LONG, val_long2);
-
-                    for(i=val_long2;i<0;i--){
-                       n = Outop;
-                       Outop--;                  
-                    }
-
-                    pop(stack, &n);
-                    push(stack, STACK_LONG, n);
-                    break;
+                pop(stack, &n);
+                push(stack, STACK_LONG, n);
+                break;
            
-                case '\\n': // Trocar os dois elementos do topo da stack (inc, apenas feito para 2 longs)
-                    pop(stack, &val_long);
-                    pop(stack, &val_long2);
-                    push(stack, STACK_LONG,val_long);
-                    push(stack, STACK_LONG,val_long2);
-                    break;
-                */
-            // caso default
+            case '\\n': // Trocar os dois elementos do topo da stack (inc, apenas feito para 2 longs)
+                pop(stack, &val_long);
+                pop(stack, &val_long2);
+                push(stack, STACK_LONG,val_long);
+                push(stack, STACK_LONG,val_long2);
+                break;
+            */
+        // caso default
+
+            default :
+                push(stack, STACK_LONG, val_i);
 
         }
+    }
+
     print_stack(stack);
     stack_size(stack);
-
 }
