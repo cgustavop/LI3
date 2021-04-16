@@ -9,30 +9,34 @@
 #include <string.h>
 
 
-//  Struct that contains stack element  
-
+/// Struct que contém os elementos segundo o seu tipo
 struct stack_element {
     enum stack_type type;
     union {
-        char val_c;
-        int val_i;  
-        long val_l;     
-        double val_d;
-        void *val_p;
+        char val_c;   ///< Elemento do tipo char
+        int val_i;    ///< Elemento do tipo int
+        long val_l;   ///< Elemento do tipo long   
+        double val_d; ///< Elemento do tipo double
+        void *val_p;  ///< Elemento do ser uma string
     } data;
 };
 
-//  Struct that contains stack 
-
+/// Struct que representa os componentes da stack
 struct stack {
-    size_t top;
-    size_t capacity;
-    enum stack_type type;
-    struct stack_element *elements;
+    size_t top;                         ///< Topo da stack (sempre igual a 0)
+    size_t capacity;                    ///< Tamanho da stack
+    enum stack_type type;               ///< Indica o tipo do elemento da stack
+    struct stack_element *elements;     ///< Elemento da stack
 };
 
-//  Creates and returns a new stack of specified type and capacity  
-
+/**
+ * Cria stacks de diferentes tipos
+ *
+ * Recebe os tipos dos quais serão feitos os arrays da nossa stack e reserva a memória necessária definindo os parâmetros da capacidade e o topo nesse array.
+ * No caso de não haver memória suficiente para alocar um novo array resulta num aviso de erro.
+ * 
+ * @returns um array representante da nova stack.
+ */
 struct stack * create_stack(const size_t capacity){
     struct stack *new_stack = malloc(sizeof *new_stack);
     if ( !new_stack ){
@@ -53,14 +57,22 @@ struct stack * create_stack(const size_t capacity){
     return new_stack;
 }
 
-/*  Returns the type of the top element on the stack  */
-
+/**
+ * Indica o tipo do elemento no topo da stack
+ *
+ * @returns tipo do elemento no topo da stack.
+ */
 enum stack_type top_type(struct stack * stack){
   return stack->elements[--stack->top].type;
 }
 
-/*  Pushes an element onto the stack  */
-
+/**
+ * Faz o push de um elemento para a stack
+ *
+ * Recebe o elemento e o seu tipo e compara para guardar no array do tipo correspondente.
+ *
+ * @returns void
+ */
 void push(struct stack * stack, const enum stack_type type, ...){
 
     va_list ap;
@@ -97,8 +109,13 @@ void push(struct stack * stack, const enum stack_type type, ...){
     va_end(ap);
 }
 
-/*  Pops an element from the stack  */
-
+/**
+ * Faz o pop de um elemento para fora da stack
+ *
+ * Retira um elemento da stack.
+ *
+ * @returns void
+ */
 void pop(struct stack * stack, void * p){
 
     switch ( stack->elements[--stack->top].type ) {
@@ -128,7 +145,11 @@ void pop(struct stack * stack, void * p){
     }
 }
 
-
+/**
+ * Imprime os elementos da stack
+ *
+ * @returns void
+ */
 void print_stack(struct stack * stack){
 
   for(int i=0;i<=(int)stack->top;i++){
@@ -160,14 +181,23 @@ void print_stack(struct stack * stack){
 
 }
 
-
-//  Destroys a previously created stack 
-
+/**
+ * Destrói uma stack criada anteriormente
+ *
+ * Apagam-se a stack de forma a libertar memória que não esteja a ser utilizada.
+ * 
+ * @returns void
+ */
 void destroy_stack(struct stack * stack){
     free(stack->elements);
     free(stack);
 } 
 
+/**
+ * Indica o tamanho da stack
+ * 
+ * @returns tamanho da stack.
+ */
 int stack_size(struct stack * stack){
   int cap = stack->capacity;
   return cap;
