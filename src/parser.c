@@ -46,6 +46,7 @@ void parse(char *line) {
         long val_long, val_long2;     
         double val_double,  val_double2; 
         void *val_pointer;
+        char aux[1024]; 
 
         switch (token[0]){ 
 
@@ -505,6 +506,8 @@ void parse(char *line) {
                     case (STACK_STRING):
                         push(stack, STACK_STRING, val_pointer);
                         break;
+                }
+                break;
 
 
             case 'f' : // Converter o topo da stack num double
@@ -538,12 +541,13 @@ void parse(char *line) {
                         break;
                 }
                 break; 
-
+/*
                 pop(stack, &val_double);
                 pop(stack, &val_double2);
 
                 
                 push (stack, STACK_DOUBLE, val_double2);
+*/
 
 
             case 'c' : // Converter o topo da stack para caracter (ascii)
@@ -571,12 +575,20 @@ void parse(char *line) {
 
                     case (STACK_STRING):
                         push(stack, STACK_STRING, val_pointer);
-                        break;            
+                        break;
+                }
+                break;
+
 
         // ler linhas e imprimir linhas || incompleto
 
             case 'l' : // ler linha abaixo
                 //fgets();
+
+                assert(fgets(aux,10240,stdin));
+                for(int i = 0; aux[i]; i++)
+                    push(stack,STACK_CHAR,aux[i]);
+                //push(stack,top_type(aux[i]),aux[i]);
                 // ..
                 break;
 
@@ -584,7 +596,7 @@ void parse(char *line) {
                 //fgets();
                 //..
                 break;
-            
+/*
             case '@' : // Rodar os 3 elementos no topo da stack
                 char aux[3]; 
                 for (int i=0;i<3;i++){
@@ -618,7 +630,8 @@ void parse(char *line) {
                 push(stack, STACK_CHAR, aux[1]); 
 
                 break;
-               
+*/
+            /*
             case 'p' : // printar topo 
                 if ((top_type(stack)) == (STACK_CHAR)){
                     pop(stack, &val_char);
@@ -637,6 +650,7 @@ void parse(char *line) {
                     push(stack, STACK_INT, val_int);
                 }
                 break;
+                */
                 
             
             case ';' : // Pop
@@ -646,8 +660,9 @@ void parse(char *line) {
                      pop(stack, &val_long);
                 } else if ((top_type(stack)) == (STACK_DOUBLE)){
                     pop(stack, &val_double); 
-                } else
+                } else {
                     pop(stack, &val_int);
+                }
                 
                 break;
 
@@ -734,6 +749,7 @@ void parse(char *line) {
 
             
             */
+            /*
             case '\\n': // Trocar os dois elementos do topo da stack
                 char aux2[2]; 
                 for (int i=0;i<2;i++){
@@ -766,8 +782,10 @@ void parse(char *line) {
                 push(stack, STACK_CHAR, aux2[1]);
 
                 break;
+                */
             
         }
+    }
 
 
     print_stack(stack);
