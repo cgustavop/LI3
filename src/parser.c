@@ -397,7 +397,7 @@ void parse(char *line) {
 
             case 'l' : // ler linha abaixo
 
-                assert(fgets(aux,10240,stdin));
+                assert(fgets(aux,sizeof aux,stdin));
                 for(int i = 0; aux[i]; i++)
                     push(stack,STACK_CHAR,aux[i]);
                 break;
