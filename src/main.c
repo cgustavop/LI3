@@ -11,7 +11,9 @@
 #include "stack.h"
 
 
-// gcc -std=gnu11 -Wall -Wextra -pedantic-errors -O main.c -lm
+// gcc -std=gnu11 -Wall -Wextra -pedantic-errors -O *.c -lm
+// void push(Stack stack, const enum stack_type type, ...)
+// void pop(Stack stack, void *p)
 
 /**
  * Esta é a função principal do programa
@@ -22,8 +24,8 @@
  */
 
 
-int main(void){
-    Stack mystack = create_stack(10240);
+int main(){
+    Stack stack = create_stack(10240);
      
     char line[10240];
 
@@ -31,9 +33,9 @@ int main(void){
     assert(line [strlen(line) - 1] == '\n');
 
     parse(line);
-    
-	print_stack(mystack);
-    destroy_stack(mystack);
+
+    print_stack(stack);
+    destroy_stack(stack);
 
     return 0;
 }

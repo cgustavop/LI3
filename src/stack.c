@@ -40,6 +40,7 @@ struct stack {
  */
 struct stack * create_stack(const size_t capacity){
     struct stack *new_stack = malloc(sizeof *new_stack);
+
     if ( !new_stack ){
         perror("couldn't allocate memory for stack");
         exit(EXIT_FAILURE);
@@ -47,8 +48,8 @@ struct stack * create_stack(const size_t capacity){
 
     new_stack->capacity = capacity; // definir capacidade
     new_stack->top = 0; // definir top
+    new_stack->elements = malloc(sizeof *new_stack->elements * capacity); // definir memória necessária
 
-    new_stack->elements = malloc(sizeof *new_stack->elements * capacity);
     if ( !new_stack->elements ){
         free(new_stack);
         perror("couldn't allocate memory for stack elements");
@@ -81,7 +82,7 @@ void push(struct stack * stack, const enum stack_type type, ...){
 
     switch ( type ) {
         case STACK_CHAR:
-            stack->elements[stack->top].data.val_c = (char) va_arg(ap, int);
+            stack->elements[stack->top].data.val_c = (char)va_arg(ap, int);
             break;
 
         case STACK_LONG:
@@ -151,6 +152,8 @@ void pop(struct stack * stack, void * p){
  *
  * @returns void
  */
+
+/* (verificar print_stack))
 void print_stack(struct stack * stack){
 
   for(int i=0;i<=(int)stack->top;i++){
@@ -181,6 +184,37 @@ void print_stack(struct stack * stack){
   printf("\n"); 
 
 }
+*/
+
+void print_stack(struct stack * stack){
+
+  switch (top_type(stack)){
+    case STACK_CHAR:
+      printf("%c\n", (char)stack->top);
+      break;
+
+    case STACK_LONG:
+      printf("%ld\n", stack->top);
+      break;
+
+    case STACK_INT:
+      printf("%i\n", (int)stack->top);
+      break;
+
+    case STACK_DOUBLE:
+      printf("%f\n", (double)stack->top);
+      break;
+
+    case STACK_STRING:
+        break;
+
+    default:
+      printf("%li\n", stack->top);
+      break;
+
+    }
+     
+}
 
 /**
  * Destrói uma stack criada anteriormente
@@ -199,6 +233,7 @@ void destroy_stack(struct stack * stack){
  * 
  * @returns tamanho da stack.
  */
+
 int stack_size(struct stack * stack){
   int cap = stack->capacity;
   return cap;
