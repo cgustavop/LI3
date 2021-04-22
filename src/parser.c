@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
+#include <assert.h>
 
 #include "stack.h"
 
@@ -28,7 +29,7 @@
 
 
 void parse(char *line) {
-    Stack stack = create_stack(100);
+    Stack stack = create_stack(10240);
 
     char *delims = " \t\n";
 
@@ -57,28 +58,28 @@ void parse(char *line) {
                 pop(stack, &val_int2);
                 val_int2 += val_int;
                 push(stack, STACK_INT, val_int2);
-                break;
+            break;
 
             case '-': 
                 pop(stack, &val_int);
                 pop(stack, &val_int2);
                 val_int2 -= val_int;
                 push(stack, STACK_INT, val_int2);
-                break;
+            break;
 
              case '*': 
                 pop(stack, &val_int);
                 pop(stack, &val_int2);
                 val_int2 *= val_int;
                 push(stack, STACK_INT, val_int2);
-                break;
+            break;
 
             case '/': 
                 pop(stack, &val_int);
                 pop(stack, &val_int2);
                 val_int2 /= val_int;
                 push(stack, STACK_INT, val_int2);
-                break;
+            break;
 
         // incrementação e decrementação
 
@@ -87,14 +88,14 @@ void parse(char *line) {
                 pop(stack, &val_int2);
                 val_int2 += 1;
                 push(stack, STACK_INT, val_int2);
-                break;
+            break;
 
             case ')': 
                 pop(stack, &val_int);
                 pop(stack, &val_int2);
                 val_int2 -= 1;
                 push(stack, STACK_INT, val_int2);
-                break;
+            break;
 
         // módulo e exponenciação
 
@@ -103,14 +104,14 @@ void parse(char *line) {
                 pop(stack, &val_int2);
                 val_int2 %= val_int;
                 push(stack, STACK_INT, val_int2);
-                break;
+            break;
                   
             case '#':
                 pop(stack, &val_int);
                 pop(stack, &val_int2);
                 val_int2 = pow(val_int2,val_int);
                 push(stack, STACK_INT, val_int2);
-                break;
+            break;
 
         // tabelas de verdades e bits oriented
 
@@ -119,14 +120,14 @@ void parse(char *line) {
                 pop(stack, &val_int2);
                 val_int2 &= val_int;
                 push(stack, STACK_INT, val_int2);
-                break;
+            break;
 
             case '|':
                 pop(stack, &val_int);
                 pop(stack, &val_int2);
                 val_int2 |= val_int;
                 push(stack, STACK_INT, val_int2);
-                break;
+            break;
 
             case '^':
                 case (STACK_INT):
@@ -134,13 +135,13 @@ void parse(char *line) {
                 pop(stack, &val_int2);
                 val_int2 ^= val_int;
                 push(stack, STACK_INT, val_int2);
-                break;
+            break;
             
             case '~': 
                 pop(stack, &val_int);
                 val_int = (~val_int);
                 push(stack, STACK_INT, val_int);
-                break;
+            break;
 
             // conversões do topo da stack
 
@@ -150,31 +151,31 @@ void parse(char *line) {
                         pop(stack, &val_int);
                         val_int = (int)(val_int);
                         push(stack, STACK_INT, val_int);
-                        break;
+                    break;
 
                     case (STACK_LONG):
                         pop(stack, &val_long);
                         val_long = (int)(val_long);
                         push(stack, STACK_INT, val_long);
-                        break;
+                    break;
 
                     case (STACK_DOUBLE):
                         pop(stack, &val_double);
                         val_double = (int)(val_int);
                         push(stack, STACK_INT, val_double);
-                        break;
+                    break;
 
                     case (STACK_CHAR):
                         pop(stack, &val_char);
                         val_char = (int)(val_char);
                         push(stack, STACK_INT, val_char);
-                        break;
+                    break;
 
                     case (STACK_STRING):
                         push(stack, STACK_STRING, val_pointer);
-                        break;
+                    break;
                 }
-                break;
+            break;
 
 
             case 'f' : // Converter o topo da stack num double
@@ -183,31 +184,31 @@ void parse(char *line) {
                         pop(stack, &val_int);
                         val_int = (double)(val_int);
                         push(stack, STACK_DOUBLE, val_int);
-                        break;
+                    break;
 
                     case (STACK_LONG):
                         pop(stack, &val_long);
                         val_long = (double)(val_long);
                         push(stack, STACK_DOUBLE, val_long);
-                        break;
+                    break;
 
                     case (STACK_DOUBLE):
                         pop(stack, &val_double);
                         val_double = (double)(val_int);
                         push(stack, STACK_DOUBLE, val_double);
-                        break;
+                    break;
 
                     case (STACK_CHAR):
                         pop(stack, &val_char);
                         val_char = (double)(val_char);
                         push(stack, STACK_DOUBLE, val_char);
-                        break;
+                    break;
 
                     case (STACK_STRING):
                         push(stack, STACK_STRING, val_pointer);
-                        break;
+                    break;
                 }
-                break; 
+            break; 
 
             case 'c' : // Converter o topo da stack para caracter (ascii)
                 switch (top_type(stack)){
@@ -215,28 +216,28 @@ void parse(char *line) {
                         pop(stack, &val_int);
                         val_int = (char)(val_int);
                         push(stack, STACK_CHAR, val_int);
-                        break;
+                    break;
 
                     case (STACK_LONG):
                         pop(stack, &val_long);
                         val_long = (char)(val_long);
                         push(stack, STACK_CHAR, val_long);
-                        break;
+                    break;
 
                     case (STACK_DOUBLE): // não faz para double
-                        break;
+                    break;
 
                     case (STACK_CHAR):
                         pop(stack, &val_char);
                         val_char = (char)(val_char);
                         push(stack, STACK_CHAR, val_char);
-                        break;
+                    break;
 
                     case (STACK_STRING):
                         push(stack, STACK_STRING, val_pointer);
-                        break;
+                    break;
                 }
-                break;
+            break;
 
 
         // ler linhas e imprimir linhas || incompleto
@@ -246,12 +247,12 @@ void parse(char *line) {
                 assert(fgets(aux,sizeof aux,stdin));
                 for(int i=0;aux[i];i++)
                     push(stack, STACK_CHAR ,aux[i]);
-                break;
+            break;
 
             case 't' : // ler todas as linhas
                 //fgets();
                 //..
-                break;
+            break;
 /*
             case '@' : // Rodar os 3 elementos no topo da stack
                 char aux[3]; 
@@ -285,7 +286,7 @@ void parse(char *line) {
                 push(stack, STACK_CHAR, aux[2]);
                 push(stack, STACK_CHAR, aux[1]); 
 
-                break;
+            break;
 */
             /*
             case 'p' : // printar topo 
@@ -305,7 +306,7 @@ void parse(char *line) {
                     pop(stack, val_int);
                     push(stack, STACK_INT, val_int);
                 }
-                break;
+            break;
                 */
                 
             
@@ -320,7 +321,7 @@ void parse(char *line) {
                     pop(stack, &val_int);
                 }
                 
-                break;
+            break;
 
             case '_' : // Duplicar
                 if ((top_type(stack)) == (STACK_CHAR)){
@@ -345,7 +346,7 @@ void parse(char *line) {
                     push(stack, STACK_INT, val_int);
                 }
 
-                break;
+            break;
 
             /*
             7 1 4 3 2 $
@@ -476,7 +477,7 @@ void parse(char *line) {
                 else
                     push(stack, STACK_INT, 1);
             break;
-
+            /*
             case 'e&': // E (com shortcut)
                 pop(stack, &val_int);
                 pop(stack, &val_int2);
@@ -512,20 +513,15 @@ void parse(char *line) {
                 else
                     push(stack, STACK_INT, val_int);
             break;
-
+            */
             case '?': // If-Then-Else
 
             break;
-
-
-
-
-            
+         
         }
     }
 
-    //print_stack(stack);
+    print_stack(stack);
     stack_size(stack);
-
 }
 

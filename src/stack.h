@@ -21,8 +21,9 @@ void push(Stack stack, const enum stack_type type, ...);
 void pop(Stack stack, void * p);
 void top(Stack stack, void * p);
 enum stack_type top_type(Stack stack);
-int stack_empty(Stack stack);
-int stack_size(struct stack * stack);
-void print_stack(struct stack * stack);
+enum stack_type stack_peek(Stack stack);
+bool stack_empty(Stack stack);
+int stack_size(Stack stack);
+void print_stack(Stack stack);
 
 #endif  

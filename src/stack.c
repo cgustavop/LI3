@@ -39,18 +39,17 @@ struct stack {
  * @returns um array representante da nova stack.
  */
 struct stack * create_stack(const size_t capacity){
-    struct stack *new_stack = malloc(sizeof *new_stack);
-
-    if ( !new_stack ){
+    struct stack * new_stack = malloc(sizeof *new_stack);
+    if ( !new_stack ) {
         perror("couldn't allocate memory for stack");
         exit(EXIT_FAILURE);
     }
 
-    new_stack->capacity = capacity; // definir capacidade
-    new_stack->top = 0; // definir top
-    new_stack->elements = malloc(sizeof *new_stack->elements * capacity); // definir memória necessária
+    new_stack->capacity = capacity;
+    new_stack->top = 0;
 
-    if ( !new_stack->elements ){
+    new_stack->elements = malloc(sizeof *new_stack->elements * capacity);
+    if ( !new_stack->elements ) {
         free(new_stack);
         perror("couldn't allocate memory for stack elements");
         exit(EXIT_FAILURE);
@@ -58,7 +57,6 @@ struct stack * create_stack(const size_t capacity){
 
     return new_stack;
 }
-
 /**
  * Indica o tipo do elemento no topo da stack
  *
@@ -77,39 +75,42 @@ enum stack_type top_type(struct stack * stack){
  */
 
 void push(struct stack * stack, const enum stack_type type, ...){
+    if ( stack->top == stack->capacity ) {
+        fprintf(stderr, "Stack full!\n");
+        exit(EXIT_FAILURE);
+    }
 
     va_list ap;
     va_start(ap, type);
 
     switch ( type ) {
-        case STACK_CHAR:                            
-            stack->elements[stack->top].data.val_c = (char)va_arg(ap, int);
-            break;
+        case STACK_CHAR:
+          stack->elements[stack->top].data.val_c = (char) va_arg(ap, int);
+        break;
+
+        case STACK_INT:
+          stack->elements[stack->top].data.val_i = va_arg(ap, int);
+        break;
 
         case STACK_LONG:
-            stack->elements[stack->top].data.val_l = va_arg(ap, long);
-            break;
-
-        case STACK_INT: 
-            //*((int*) ap) = stack->elements[stack->top].data.val_i;
-            stack->elements[stack->top].data.val_i = va_arg(ap, int);
-            break;
+          stack->elements[stack->top].data.val_l = va_arg(ap, long);
+        break;
 
         case STACK_DOUBLE:
-            stack->elements[stack->top].data.val_d = va_arg(ap, double);
-            break;
+          stack->elements[stack->top].data.val_d = va_arg(ap, double);
+        break;
 
         case STACK_STRING:
-            stack->elements[stack->top].data.val_p = va_arg(ap, void*);
-            break;
+          stack->elements[stack->top].data.val_p = va_arg(ap, void *);
+        break;
 
         default:
-            fprintf(stderr, "Unknown type in push()\n");
-            exit(EXIT_FAILURE);
+          fprintf(stderr, "Unknown type in stack_push()\n");
+          exit(EXIT_FAILURE);
     }
 
-    stack->elements[stack->top].type = type;
-    stack->top++;
+    stack->elements[stack->top++].type = type;
+
     va_end(ap);
 }
 
@@ -120,103 +121,73 @@ void push(struct stack * stack, const enum stack_type type, ...){
  *
  * @returns void
  */
+
 void pop(struct stack * stack, void * p){
 
-    switch ( stack->elements[stack->top].type ) {
+    if ( stack->top == 0 ) {
+        fprintf(stderr, "Stack empty!\n");
+        exit(EXIT_FAILURE);
+    }
+
+    switch ( stack->elements[--stack->top].type ) {
         case STACK_CHAR:
-            *((char *) p) = stack->elements[stack->top].data.val_c;
-            break;
+          *((char *) p) = stack->elements[stack->top].data.val_c;
+        break;
+
+        case STACK_INT:
+          *((int *) p) = stack->elements[stack->top].data.val_i;
+        break;
 
         case STACK_LONG:
-            *((long *) p) = stack->elements[stack->top].data.val_l;
-            break;
-
-        case STACK_INT: 
-            *((int *) p) = stack->elements[stack->top].data.val_i;
-            break;
+          *((long *) p) = stack->elements[stack->top].data.val_l;
+        break;
 
         case STACK_DOUBLE:
-            *((double *) p) = stack->elements[stack->top].data.val_d;
-            break;
+          *((double *) p) = stack->elements[stack->top].data.val_d;
+        break;
 
         case STACK_STRING:
-            *((void **) p) = stack->elements[stack->top].data.val_p;
-            break;
+          *((void **) p) = stack->elements[stack->top].data.val_p;
+        break;
 
         default:
-            fprintf(stderr, "Unknown type in pop()\n");
-            exit(EXIT_FAILURE);
-    } stack->top--;
+          fprintf(stderr, "Unknown type in stack_pop()\n");
+          exit(EXIT_FAILURE);
+    }
 }
-
 /**
  * Imprime os elementos da stack
  *
  * @returns void
  */
-/*
- (verificar print_stack))
-void print_stack(struct stack * stack){
-
-  for(int i=0;i<=(int)stack->top;i++){
-    switch (top_type(stack)){
-
-      case STACK_CHAR:
-        printf("%c\n", stack->elements[stack->top].data.val_c);
-        break;
-
-      case STACK_LONG:
-        printf("%ld\n", stack->elements[stack->top].data.val_l);
-        break;
-
-     case STACK_INT:
-        printf("%i\n", stack->elements[stack->top].data.val_i);
-        break;
-
-      case STACK_DOUBLE:
-        printf("%f\n", stack->elements[stack->top].data.val_d);
-        break;
-
-      case STACK_STRING:
-        //printf("%p", stack->elements[i].data.val_p);
-        break;
-
-      default: 
-        printf("%li\n", stack->elements[stack->top].data.val_l);
-        break;
-    }
-  }
-
-  printf("\n"); 
-
-}
-*/
-
+// (verificar print_stack)
 void print_stack(struct stack * stack){
 
   switch (top_type(stack)){
     case STACK_CHAR:
-      printf("%c\n", (char)stack->elements[stack->top].data.val_c);
-      break;
+      printf("%c\n", stack->elements[stack->top].data.val_c);
+    break;
 
     case STACK_LONG:
-      printf("%ld\n", (long)stack->elements[stack->top].data.val_l);
-      break;
+      printf("%ld\n", stack->elements[stack->top].data.val_l);
+    break;
 
     case STACK_INT:
-      printf("%i\n", (int)stack->elements[stack->top].data.val_i);
-      break;
+      printf("%i\n", stack->elements[stack->top].data.val_i);
+    break;
 
     case STACK_DOUBLE:
-      printf("%f\n", (double)stack->elements[stack->top].data.val_d);
-      break;
+      printf("%f\n", stack->elements[stack->top].data.val_d);
+    break;
 
     case STACK_STRING:
-        break;
+      while (stack->top != '\0') 
+        printf("%p", stack->elements[stack->top].data.val_p);
+    break;
 
     default: 
-     printf("%d\n", stack->elements[stack->top].data.val_i);
-     break;
+      printf("%d\n", stack->elements[stack->top].data.val_i);
+    break;
 
     }
 }
@@ -242,4 +213,20 @@ void destroy_stack(struct stack * stack){
 int stack_size(struct stack * stack){
   int cap = stack->capacity;
   return cap;
+}
+
+/*  Returns true if the stack is empty  */
+
+bool stack_empty(struct stack * stack) {
+    return stack->top == 0;
+}
+
+enum stack_type stack_peek(struct stack * stack) // se o topo for vazio então stack está empty
+{
+    if ( stack->top == 0 ) {
+        fprintf(stderr, "Stack empty!\n");
+        exit(EXIT_FAILURE);
+    }
+
+    return stack->elements[stack->top - 1].type;
 }
