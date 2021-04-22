@@ -20,7 +20,7 @@ struct stack_element {
         double val_d; ///< Elemento do tipo double
         void *val_p;  ///< Elemento do ser uma string
     } data;
-};
+} ;
 
 /// Struct que representa os componentes da stack
 struct stack {
@@ -75,13 +75,14 @@ enum stack_type top_type(struct stack * stack){
  *
  * @returns void
  */
+
 void push(struct stack * stack, const enum stack_type type, ...){
 
     va_list ap;
     va_start(ap, type);
 
     switch ( type ) {
-        case STACK_CHAR:
+        case STACK_CHAR:                            
             stack->elements[stack->top].data.val_c = (char)va_arg(ap, int);
             break;
 
@@ -89,8 +90,9 @@ void push(struct stack * stack, const enum stack_type type, ...){
             stack->elements[stack->top].data.val_l = va_arg(ap, long);
             break;
 
-        case STACK_INT:
-            *((int*) ap) = stack->elements[stack->top].data.val_i;
+        case STACK_INT: 
+            //*((int*) ap) = stack->elements[stack->top].data.val_i;
+            stack->elements[stack->top].data.val_i = va_arg(ap, int);
             break;
 
         case STACK_DOUBLE:
@@ -106,8 +108,8 @@ void push(struct stack * stack, const enum stack_type type, ...){
             exit(EXIT_FAILURE);
     }
 
-    stack->elements[stack->top++].type = type;
-
+    stack->elements[stack->top].type = type;
+    stack->top++;
     va_end(ap);
 }
 
@@ -120,7 +122,7 @@ void push(struct stack * stack, const enum stack_type type, ...){
  */
 void pop(struct stack * stack, void * p){
 
-    switch ( stack->elements[--stack->top].type ) {
+    switch ( stack->elements[stack->top].type ) {
         case STACK_CHAR:
             *((char *) p) = stack->elements[stack->top].data.val_c;
             break;
@@ -129,7 +131,7 @@ void pop(struct stack * stack, void * p){
             *((long *) p) = stack->elements[stack->top].data.val_l;
             break;
 
-        case STACK_INT:
+        case STACK_INT: 
             *((int *) p) = stack->elements[stack->top].data.val_i;
             break;
 
@@ -144,7 +146,7 @@ void pop(struct stack * stack, void * p){
         default:
             fprintf(stderr, "Unknown type in pop()\n");
             exit(EXIT_FAILURE);
-    }
+    } stack->top--;
 }
 
 /**
@@ -152,31 +154,35 @@ void pop(struct stack * stack, void * p){
  *
  * @returns void
  */
-
-/* (verificar print_stack))
+/*
+ (verificar print_stack))
 void print_stack(struct stack * stack){
 
   for(int i=0;i<=(int)stack->top;i++){
     switch (top_type(stack)){
 
       case STACK_CHAR:
-        printf("%c", stack->elements[i].data.val_c);
+        printf("%c\n", stack->elements[stack->top].data.val_c);
         break;
 
       case STACK_LONG:
-        printf("%ld", stack->elements[i].data.val_l);
+        printf("%ld\n", stack->elements[stack->top].data.val_l);
         break;
 
      case STACK_INT:
-        printf("%i", stack->elements[i].data.val_i);
+        printf("%i\n", stack->elements[stack->top].data.val_i);
         break;
 
       case STACK_DOUBLE:
-        printf("%f", stack->elements[stack->top].data.val_d);
+        printf("%f\n", stack->elements[stack->top].data.val_d);
         break;
 
       case STACK_STRING:
-        printf("%p", stack->elements[i].data.val_p);
+        //printf("%p", stack->elements[i].data.val_p);
+        break;
+
+      default: 
+        printf("%li\n", stack->elements[stack->top].data.val_l);
         break;
     }
   }
@@ -190,30 +196,29 @@ void print_stack(struct stack * stack){
 
   switch (top_type(stack)){
     case STACK_CHAR:
-      printf("%c\n", (char)stack->top);
+      printf("%c\n", (char)stack->elements[stack->top].data.val_c);
       break;
 
     case STACK_LONG:
-      printf("%ld\n", stack->top);
+      printf("%ld\n", (long)stack->elements[stack->top].data.val_l);
       break;
 
     case STACK_INT:
-      printf("%i\n", (int)stack->top);
+      printf("%i\n", (int)stack->elements[stack->top].data.val_i);
       break;
 
     case STACK_DOUBLE:
-      printf("%f\n", (double)stack->top);
+      printf("%f\n", (double)stack->elements[stack->top].data.val_d);
       break;
 
     case STACK_STRING:
         break;
 
-    default:
-      printf("%li\n", stack->top);
-      break;
+    default: 
+     printf("%d\n", stack->elements[stack->top].data.val_i);
+     break;
 
     }
-     
 }
 
 /**

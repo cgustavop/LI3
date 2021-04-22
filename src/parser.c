@@ -52,7 +52,7 @@ void parse(char *line) {
 
         // operações básicas
 
-            case '+':           
+            case '+':        
                 pop(stack, &val_int);
                 pop(stack, &val_int2);
                 val_int2 += val_int;
@@ -443,8 +443,7 @@ void parse(char *line) {
         }
     }
 
-
-    print_stack(stack);
+    //print_stack(stack);
     stack_size(stack);
 
 }
