@@ -439,6 +439,87 @@ void parse(char *line) {
 
                 break;
                 */
+
+            // operações de lógica
+
+            case '=': // Igual
+                pop(stack, &val_int);
+                pop(stack, &val_int2);
+                if(val_int == val_int2)
+                    push(stack, STACK_INT, 1);
+                else
+                    push(stack, STACK_INT, 0);
+            break;
+
+            case '<': // Menor
+                pop(stack, &val_int);
+                pop(stack, &val_int2);
+                if(val_int < val_int2)
+                    push(stack, STACK_INT, 1);
+                else
+                    push(stack, STACK_INT, 0);
+            break;
+
+            case '>': // Maior
+                pop(stack, &val_int);
+                pop(stack, &val_int2);
+                if(val_int > val_int2)
+                    push(stack, STACK_INT, 1);
+                else
+                    push(stack, STACK_INT, 0);
+            break;
+
+            case '!': // Não
+                pop(stack, &val_int);
+                if(val_int != 0)
+                    push(stack, STACK_INT, 0);
+                else
+                    push(stack, STACK_INT, 1);
+            break;
+
+            case 'e&': // E (com shortcut)
+                pop(stack, &val_int);
+                pop(stack, &val_int2);
+                if(val_int != 0 && val_int2 != 0)
+                    push(stack, STACK_INT, val_int2);
+                else
+                    push(stack, STACK_INT, 0);
+            break;
+
+            case 'e|': // OU (com shortcut)
+                pop(stack, &val_int);
+                pop(stack, &val_int2);
+                if(val_int != 0 || val_int2 != 0)
+                    push(stack, STACK_INT, val_int2);
+                else
+                    push(stack, STACK_INT, 0);
+            break;
+
+            case 'e<': // Coloca o menor dos 2 valores na stack
+                pop(stack, &val_int);
+                pop(stack, &val_int2);
+                if(val_int < val_int2)
+                    push(stack, STACK_INT, val_int);
+                else
+                    push(stack, STACK_INT, val_int);
+            break;
+
+            case 'e>': // Coloca o maior dos 2 valores na stack
+                pop(stack, &val_int);
+                pop(stack, &val_int2);
+                if(val_int > val_int2)
+                    push(stack, STACK_INT, val_int);
+                else
+                    push(stack, STACK_INT, val_int);
+            break;
+
+            case '?': // If-Then-Else
+
+            break;
+
+
+
+
             
         }
     }
@@ -447,3 +528,4 @@ void parse(char *line) {
     stack_size(stack);
 
 }
+
