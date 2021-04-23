@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 #include "stack.h"
-#include "math.h"
+#include "maths.h"
 
 int has_type(DATA elem, int mask){
 	return (elem.type & mask) != 0;

@@ -4,7 +4,9 @@
 #include <assert.h>
 
 #include "stack.h"
-#include "math.h"
+#include "maths.h"
+
+// gcc -std=gnu11 -Wall -pedantic-errors -O *.c -lm
 
 int main(void){
 

@@ -8,7 +8,6 @@ typedef enum {LONG = 1, DOUBLE = 2, CHAR = 4, STRING = 8} TYPE;
 
 typedef struct data {
 	TYPE type;
-
 	long LONG;
 	double DOUBLE;
 	char CHAR;

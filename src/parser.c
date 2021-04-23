@@ -3,16 +3,16 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-
 #include "stack.h"
-#include "math.h"
+#include "maths.h"
 
 void parse(char *line) {
-    char *delims = " \t\n";
 
     STACK *s = new_stack();
 
-    for(char *token = strtok(line, delims); token != NULL; token = strtok(NULL, delims)) {
+    char *delims = " \t\n";
+
+    for (char *token = strtok(line, delims); token != NULL; token = strtok(NULL, delims)) {
         char *sobra1;
         char *sobra2;
       
@@ -24,9 +24,6 @@ void parse(char *line) {
        
         else if(strlen(sobra2) == 0)
         	push_DOUBLE(s, val_d);
-        
-        //else if(token[0] != '+')
-        //	push_STRING(s, token); 
 
         else if (strcmp(token, "+") == 0)	// função soma
         	soma(s);
@@ -69,8 +66,11 @@ void parse(char *line) {
 
         else if (strcmp(token, ";") == 0)	// função pop
         	apaga(s);
+
+        else
+            push_STRING(s, token); 
 		}
 
 	print_stack(s);
-	//destroy_stack(stack);
+	free(s);
 }

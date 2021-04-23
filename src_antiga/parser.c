@@ -10,7 +10,7 @@
 
 #include "stack.h"
 
-// gcc -std=gnu11 -Wall -Weval_inttra -pedantic-errors -O parser.c -lm
+// gcc -std=gnu11 -Wall -pedantic-errors -O *.c -lm
 
 /**
  * \brief Esta é a função que vai fazer o parse de uma linha

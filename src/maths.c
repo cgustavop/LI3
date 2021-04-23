@@ -4,7 +4,7 @@
 #include <assert.h>
 #include <math.h>
 
-#include "math.h"
+#include "maths.h"
 #include "stack.h"
 
 void soma(STACK *s){
