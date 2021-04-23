@@ -7,7 +7,7 @@
 #include "maths.h"
 #include "stack.h"
 
-void soma(STACK *s){
+void soma(STACK *s){ // + 
       
     DATA x = pop(s);
     DATA y = pop(s);
@@ -26,7 +26,7 @@ void soma(STACK *s){
     }
 }
 
-void subtrai(STACK *s){
+void subtrai(STACK *s){ // - 
       
     DATA x = pop(s);
     DATA y = pop(s);
@@ -45,7 +45,7 @@ void subtrai(STACK *s){
     }
 }
 
-void multiplica(STACK *s){
+void multiplica(STACK *s){ // * 
 
     DATA x = pop(s);
     DATA y = pop(s);
@@ -65,7 +65,7 @@ void multiplica(STACK *s){
 
 }
 
-void divide(STACK *s){
+void divide(STACK *s){ // /
 
     DATA x = pop(s);
     DATA y = pop(s);
@@ -85,7 +85,7 @@ void divide(STACK *s){
 
 }
 
-void incrementa(STACK *s){
+void incrementa(STACK *s){ // )
     DATA x = pop(s);
 
     if(has_type(x, LONG)){
@@ -96,7 +96,7 @@ void incrementa(STACK *s){
     }
 }
 
-void decrementa(STACK *s){
+void decrementa(STACK *s){ // (
     DATA x = pop(s);
 
     if(has_type(x, LONG)){
@@ -108,7 +108,7 @@ void decrementa(STACK *s){
 }
 
 
-void modulo(STACK *s){
+void modulo(STACK *s){ //  %
       
     DATA x = pop(s);
     DATA y = pop(s);
@@ -117,7 +117,7 @@ void modulo(STACK *s){
         push_LONG(s, y.LONG % x.LONG);
     }
 }
-void expoente(STACK *s){
+void expoente(STACK *s){ // #
       
     DATA x = pop(s);
     DATA y = pop(s);
@@ -136,7 +136,7 @@ void expoente(STACK *s){
     }
 }
 
-void E(STACK *s){
+void E(STACK *s){ // &
       
     DATA x = pop(s);
     DATA y = pop(s);
@@ -147,7 +147,7 @@ void E(STACK *s){
 }
 
 
-void ou(STACK *s){
+void ou(STACK *s){ // |
       
     DATA x = pop(s);
     DATA y = pop(s);
@@ -157,7 +157,7 @@ void ou(STACK *s){
     }
 }
 
-void xor(STACK *s){
+void xor(STACK *s){ // ^
       
     DATA x = pop(s);
     DATA y = pop(s);
@@ -167,7 +167,7 @@ void xor(STACK *s){
     }
 }
 
-void not(STACK *s){
+void not(STACK *s){ // ~
     DATA x = pop(s);
 
     if(has_type(x, LONG)){
@@ -175,8 +175,58 @@ void not(STACK *s){
     }
 }
 
-//POR CORRIGIR CHAR E STRING
-void duplica(STACK *s){
+void intz(STACK *s){ // conversão i
+    DATA x = pop(s);
+
+    if(has_type(x, LONG)){
+        push_LONG(s, x.LONG);
+    }
+    else if(has_type(x, DOUBLE)){
+        push_LONG(s, (long)x.DOUBLE);
+    }
+    else if(has_type(x, CHAR)){
+        push_LONG(s, (long)x.CHAR);
+    }
+    else if(has_type(x, STRING)){
+        push_STRING(s, x.STRING);
+    }
+}
+
+void doublez(STACK *s){ // conversão f
+    DATA x = pop(s);
+
+    if(has_type(x, LONG)){
+        push_DOUBLE(s, (double)x.LONG);
+    }
+    else if(has_type(x, DOUBLE)){
+        push_DOUBLE(s, x.DOUBLE);
+    }
+    else if(has_type(x, CHAR)){
+        push_DOUBLE(s, (double)x.CHAR);
+    }
+    else if(has_type(x, STRING)){
+        push_STRING(s, x.STRING);
+    }
+}
+
+void charz(STACK *s){ // conversão c
+    DATA x = pop(s);
+
+    if(has_type(x, LONG)){
+        push_CHAR(s, (char)x.LONG);
+    }
+    else if(has_type(x, DOUBLE)){
+        push_CHAR(s, (char)x.DOUBLE);
+    }
+    else if(has_type(x, CHAR)){
+        push_CHAR(s, x.CHAR);
+    }
+    else if(has_type(x, STRING)){
+        push_STRING(s, x.STRING);
+    }
+}
+
+void duplica(STACK *s){ // _
     DATA x = pop(s);
 
     if(has_type(x, LONG)){
@@ -197,88 +247,116 @@ void duplica(STACK *s){
     }
 }
 
-void apaga(STACK *s){
-    pop(s);
-}
-/*
-void troca(STACK *s){
+void troca(STACK *s){ /* \ */
     DATA x = pop(s);
     DATA y = pop(s);
 
     if(has_type(x, LONG) && has_type(x, LONG)){
-        push_LONG(s, y);
-        push_LONG(s, x);
+        push_LONG(s, y.LONG);
+        push_LONG(s, x.LONG);
     }
     else if(has_type(x, LONG) && has_type(x, DOUBLE)){
-        push_DOUBLE(s, y);
-        push_LONG(s, x);
+        push_DOUBLE(s, y.DOUBLE);
+        push_LONG(s, x.LONG);
     }
     else if(has_type(x, LONG) && has_type(x, CHAR)){
-        push_CHAR(s, y);
-        push_LONG(s, x);
+        push_CHAR(s, y.CHAR);
+        push_LONG(s, x.LONG);
     }
     else if(has_type(x, LONG) && has_type(x, STRING)){
-        push_STRING(s, y);
-        push_LONG(s, x);
+        push_STRING(s, y.STRING);
+        push_LONG(s, x.LONG);
     }
     else if(has_type(x, DOUBLE) && has_type(x, LONG)){
-        push_LONG(s, y);
-        push_DOUBLE(s, x);
+        push_LONG(s, y.LONG);
+        push_DOUBLE(s, x.DOUBLE);
     }
     else if(has_type(x, DOUBLE) && has_type(x, DOUBLE)){
-        push_DOUBLE(s, y);
-        push_DOUBLE(s, x);
+        push_DOUBLE(s, y.DOUBLE);
+        push_DOUBLE(s, x.DOUBLE);
     }
     else if(has_type(x, DOUBLE) && has_type(x, CHAR)){
-        push_CHAR(s, y);
-        push_DOUBLE(s, x);
+        push_CHAR(s, y.CHAR);
+        push_DOUBLE(s, x.DOUBLE);
     }
     else if(has_type(x, DOUBLE) && has_type(x, STRING)){
-        push_STRING(s, y);
-        push_DOUBLE(s, x);
+        push_STRING(s, y.STRING);
+        push_DOUBLE(s, x.DOUBLE);
     }
     else if(has_type(x, CHAR) && has_type(x, LONG)){
-        push_LONG(s, y);
-        push_CHAR(s, x);
+        push_LONG(s, y.LONG);
+        push_CHAR(s, x.CHAR);
     }
     else if(has_type(x, CHAR) && has_type(x, DOUBLE)){
-        push_DOUBLE(s, y);
-        push_CHAR(s, x);
+        push_DOUBLE(s, y.DOUBLE);
+        push_CHAR(s, x.CHAR);
     }
     else if(has_type(x, CHAR) && has_type(x, CHAR)){
-        push_CHAR(s, y);
-        push_CHAR(s, x);
+        push_CHAR(s, y.CHAR);
+        push_CHAR(s, x.CHAR);
     }
     else if(has_type(x, CHAR) && has_type(x, STRING)){
-        push_STRING(s, y);
-        push_CHAR(s, x);
+        push_STRING(s, y.STRING);
+        push_CHAR(s, x.CHAR);
     }
     else if(has_type(x, STRING) && has_type(x, LONG)){
-        push_LONG(s, y);
-        push_STRING(s, x);
+        push_LONG(s, y.LONG);
+        push_STRING(s, x.STRING);
     }
     else if(has_type(x, STRING) && has_type(x, DOUBLE)){
-        push_DOUBLE(s, y);
-        push_STRING(s, x);
+        push_DOUBLE(s, y.DOUBLE);
+        push_STRING(s, x.STRING);
     }
     else if(has_type(x, STRING) && has_type(x, CHAR)){
-        push_CHAR(s, y);
-        push_STRING(s, x);
+        push_CHAR(s, y.CHAR);
+        push_STRING(s, x.STRING);
     }
     else if(has_type(x, STRING) && has_type(x, STRING)){
-        push_STRING(s, y);
-        push_STRING(s, x);
+        push_STRING(s, y.STRING);
+        push_STRING(s, x.STRING);
     }
 }
 
-void rodar(STACK *s){
+/*
+void rodar(STACK *s){ // @
 
 }
 
-void copia(STACK +S){
+void copia(STACK +S){ // $
 
 }
 */
+/*
+void lerl(STACK *s){ // l
+    char aux[100];
+    assert(fgets(aux,sizeof aux,stdin));
+    for(int i=0;aux[i];i++)
+        pop(s, x.STRING)
+}
+
+void lert(STACK *s){ // t
+    char aux[100];
+    assert(fgets(aux,sizeof aux,stdin));
+    for(int i=0;aux[i];i++)
+        pop(s, x.STRING)
+}
+*/
+
+void printt(STACK *s){ // p
+    DATA x = pop(s);
+    
+    if (has_type(x, LONG))
+        push_LONG(s,x.LONG);
+    else if (has_type(x, DOUBLE))
+        push_DOUBLE(s,x.DOUBLE);
+    else if (has_type(x, CHAR))
+        push_CHAR(s, x.CHAR);
+    else if (has_type(x, STRING)) 
+        push_STRING(s, x.STRING);              
+}
+
+
+
 
 
 

@@ -25,6 +25,9 @@ void parse(char *line) {
         else if(strlen(sobra2) == 0)
         	push_DOUBLE(s, val_d);
 
+
+        // operações base
+
         else if (strcmp(token, "+") == 0)	// função soma
         	soma(s);
 
@@ -49,24 +52,55 @@ void parse(char *line) {
         else if (strcmp(token, "#") == 0)	// função expoente
         	expoente(s);
 
+        // lógicas
+
         else if (strcmp(token, "&") == 0)	// função lógica de disjunção
         	E(s);
 
         else if (strcmp(token, "|") == 0)	// função lógica de conjunção
         	ou(s);
 
-        else if (strcmp(token, "^") == 0)	// função ou exclusivo
+        else if (strcmp(token, "^") == 0)	// função lógica ou exclusivo
         	xor(s);
 
-        else if (strcmp(token, "~") == 0)	// função negação lógica
+        else if (strcmp(token, "~") == 0)	// função lógica negação 
         	not(s);
+
+        // conversões
+
+        else if (strcmp(token, "i") == 0)   // conversão para int
+            intz(s);
+
+        else if (strcmp(token, "f") == 0)   // conversão para double
+            doublez(s);
+
+        else if (strcmp(token, "c") == 0)   // conversão para char (ascii)
+            charz(s);
+
+        // outras
 
         else if (strcmp(token, "_") == 0)	// função duplica
         	duplica(s);
 
-        else if (strcmp(token, ";") == 0)	// função pop
-        	apaga(s);
+        else if (strcmp(token, "\\n") == 0)   // função troca 
+            troca(s);
 
+        // pops e prints
+        
+        else if (strcmp(token, ";") == 0)	// função pop
+            pop(s);
+        
+        else if (strcmp(token, "p") == 0)   // printa top
+            printt(s);
+
+        /*
+        else if (strcmp(token, "l") == 0)   // lê linha abaixo
+            lerl(s);
+
+        else if (strcmp(token, "t") == 0)   // lê todas linhas
+            lert(s); 
+        */
+        // default case
         else
             push_STRING(s, token); 
 		}
