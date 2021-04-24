@@ -77,16 +77,22 @@ void parse(char *line) {
         else if (strcmp(token, "c") == 0)   // conversão para char (ascii)
             charz(s);
 
-        else if (strcmp(token, "c") == 0)   // conversão para string 
+        else if (strcmp(token, "s") == 0)   // conversão para string 
             stringz(s);
         
-        // outras
+        // manipulação da stack
 
         else if (strcmp(token, "_") == 0)	// função duplica
         	duplica(s);
 
-        else if (strcmp(token, "\\n") == 0)   // função troca 
+        else if (strcmp(token, "\\") == 0)   // função troca 
             troca(s);
+
+        else if (strcmp(token, "@") == 0)   // função troca 3 
+            rodar(s);
+
+        else if (strcmp(token, "$") == 0)   // função troca topo por n-esimo
+            copia(s);
 
         // pops e prints
         
@@ -96,13 +102,14 @@ void parse(char *line) {
         else if (strcmp(token, "p") == 0)   // printa top
             printt(s);
 
-        /*
+        
         else if (strcmp(token, "l") == 0)   // lê linha abaixo
             lerl(s);
-
+/*
         else if (strcmp(token, "t") == 0)   // lê todas linhas
             lert(s); 
         */
+
         // default case
         else
             push_STRING(s, token); 
