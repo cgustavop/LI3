@@ -15,6 +15,7 @@ void not(STACK *s);
 void intz(STACK *s);
 void charz(STACK *s);
 void doublez(STACK *s);
+void stringz(STACK *s);
 void duplica(STACK *s);
 void troca(STACK *s);
 //void lerl(STACK *s);

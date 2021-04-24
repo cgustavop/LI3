@@ -226,6 +226,23 @@ void charz(STACK *s){ // conversão c
     }
 }
 
+void stringz(STACK *s){ // conversão s
+    DATA x = pop(s);
+
+    if(has_type(x, LONG)){
+        push_STRING(s, x.STRING);
+    }
+    else if(has_type(x, DOUBLE)){
+        push_STRING(s, x.STRING);
+    }
+    else if(has_type(x, CHAR)){
+        push_STRING(s, x.STRING);
+    }
+    else if(has_type(x, STRING)){
+        push_STRING(s, x.STRING);
+    }
+}
+
 void duplica(STACK *s){ // _
     DATA x = pop(s);
 
