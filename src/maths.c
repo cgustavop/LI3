@@ -432,6 +432,26 @@ void lerl(STACK *s){ // LÊ UMA LINHA ABAIXO "l" ---- AINDA POR ARRANJAR
     //push_STRING(s, (char *)aux);
 }
 /*
+void lerl(STACK *s){
+    char *delims = " \t\n";
+    char aux[1024];
+    fgets(aux,sizeof aux,stdin);
+    for(char *token = strtok(aux, delims);token != NULL;token = strtok(NULL, delims)){
+        char *sobra1;
+        char *sobra2;
+      
+        long val_l = strtol(token, &sobra1, 10);            PODE AJUDAR A FAZER A FUNÇÃO L
+        double val_d = strtod(token, &sobra2);
+
+        if(strlen(sobra1) == 0)
+            push_LONG(s, val_l);
+       
+        else if(strlen(sobra2) == 0)
+            push_DOUBLE(s, val_d);
+    }
+}
+*/
+/*
 void lert(STACK *s){ // t
     char aux[100];
     assert(fgets(aux,sizeof aux,stdin));
