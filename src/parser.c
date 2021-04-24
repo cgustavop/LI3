@@ -77,7 +77,7 @@ void parse(char *line) {
         else if (strcmp(token, "c") == 0)   // conversão para char (ascii)
             charz(s);
 
-        // outras
+        // manipulação da stack
 
         else if (strcmp(token, "_") == 0)	// função duplica
         	duplica(s);

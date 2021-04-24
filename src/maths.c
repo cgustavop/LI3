@@ -384,12 +384,19 @@ void copia(STACK *s){ // COPIA N-ÉSIMO ELEMENTO PARA O TOPO DA STACK "n $"
 }
 
 void lerl(STACK *s){ // LÊ UMA LINHA ABAIXO "l" ---- AINDA POR ARRANJAR
+    
     DATA r;
     char aux[100];
-    assert(fgets(aux,sizeof aux,stdin));
-    for(int i=0;aux[i];i++) {
-       r = pop(s);
 
+    memset(aux, '\0', sizeof(aux));
+    assert(fgets(aux,sizeof aux,stdin));
+    
+    strncpy(r.STRING, aux, 100);
+    
+    //for(int i=0;i < (sizeof aux);i++) r = pop(s);
+    push_STRING(s, r.STRING);
+    
+    /*
         if(has_type(r, LONG)) {
             push_LONG(s, r.LONG);
         }
@@ -402,7 +409,7 @@ void lerl(STACK *s){ // LÊ UMA LINHA ABAIXO "l" ---- AINDA POR ARRANJAR
         else if(has_type(r, STRING)) {
             push_STRING(s, r.STRING);
         }
-    }
+    }*/
     //push_STRING(s, (char *)aux);
 }
 /*
