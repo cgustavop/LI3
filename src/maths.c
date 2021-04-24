@@ -403,6 +403,7 @@ void copia(STACK *s){ // COPIA N-ÉSIMO ELEMENTO PARA O TOPO DA STACK "n $"
 }
 
 void lerl(STACK *s){ // LÊ UMA LINHA ABAIXO "l" ---- AINDA POR ARRANJAR
+<<<<<<< HEAD
     
     char aux[100];
 
@@ -419,6 +420,24 @@ void lerl(STACK *s){ // LÊ UMA LINHA ABAIXO "l" ---- AINDA POR ARRANJAR
     //for(int i=0;i < (sizeof aux);i++) r = pop(s);
     //    push_STRING(s, r.STRING);
     
+=======
+    /*
+    DATA r;
+    char aux[100];
+
+    memset(aux, '\0', sizeof(aux));
+    assert(fgets(aux,sizeof aux,stdin));
+    
+    strncpy(r.STRING, aux, 100);
+    
+    for(int i=0;i < (sizeof aux);i++) r = pop(s);
+        push_STRING(s, r.STRING);
+    */
+    char linee[10240];
+    assert(fgets(linee,10240,stdin)!=NULL);
+    assert(linee[strlen(linee)-1]=='\n');
+    push_STRING(s,linee);
+>>>>>>> 7bba8dfaaa2495d3d786214143c8da85188c5192
     /*
         if(has_type(r, LONG)) {
             push_LONG(s, r.LONG);
@@ -435,6 +454,26 @@ void lerl(STACK *s){ // LÊ UMA LINHA ABAIXO "l" ---- AINDA POR ARRANJAR
     }*/
     //push_STRING(s, (char *)aux);
 }
+/*
+void lerl(STACK *s){
+    char *delims = " \t\n";
+    char aux[1024];
+    fgets(aux,sizeof aux,stdin);
+    for(char *token = strtok(aux, delims);token != NULL;token = strtok(NULL, delims)){
+        char *sobra1;
+        char *sobra2;
+      
+        long val_l = strtol(token, &sobra1, 10);            PODE AJUDAR A FAZER A FUNÇÃO L
+        double val_d = strtod(token, &sobra2);
+
+        if(strlen(sobra1) == 0)
+            push_LONG(s, val_l);
+       
+        else if(strlen(sobra2) == 0)
+            push_DOUBLE(s, val_d);
+    }
+}
+*/
 /*
 void lert(STACK *s){ // t
     char aux[100];
