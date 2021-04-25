@@ -71,7 +71,7 @@ void divide(STACK *s){ // DIVIDIR "/"
     DATA y = pop(s);
 
     if(has_type(x, LONG) && has_type(y, LONG)){
-        push_LONG(s, y.LONG / x.LONG);
+        push_DOUBLE(s, y.LONG / x.LONG);
     }
     else if(has_type(x, DOUBLE) && has_type(y, DOUBLE)){
         push_DOUBLE(s, y.DOUBLE / x.DOUBLE);
@@ -123,16 +123,16 @@ void expoente(STACK *s){ // EXPONENCIAÇÃO "#"
     DATA y = pop(s);
     
     if(has_type(x, LONG) && has_type(y, LONG)){
-        push_LONG(s, pow(y.LONG,x.LONG));
+        push_LONG(s, powl(y.LONG,x.LONG));
     }
     else if(has_type(x, DOUBLE) && has_type(y, DOUBLE)){
-        push_DOUBLE(s, pow(y.DOUBLE,x.DOUBLE));
+        push_DOUBLE(s, powf(y.DOUBLE,x.DOUBLE));
     }
     else if(has_type(x, LONG) && has_type(y, DOUBLE)){
-        push_DOUBLE(s, pow(y.DOUBLE,x.LONG));
+        push_DOUBLE(s, powf(y.DOUBLE,x.LONG));
     }
     else if (has_type(x, DOUBLE) && has_type(y, LONG)){
-        push_DOUBLE(s, pow(y.LONG,y.DOUBLE));
+        push_DOUBLE(s, powf(y.LONG,x.DOUBLE));
     }
 }
 
@@ -188,7 +188,8 @@ void intz(STACK *s){ // CONVERTE O ELEMENTO NO TOPO DA STACK NUM INTEIRO "i"
         push_LONG(s, (long)x.CHAR);
     }
     else if(has_type(x, STRING)){
-        push_STRING(s, x.STRING);
+        long temp = atof(x.STRING);      
+        push_LONG(s,temp);
     }
 }
 
@@ -205,7 +206,8 @@ void doublez(STACK *s){ // CONVERTE O ELEMENTO NO TOPO DA STACK NUM DOUBLE "f"
         push_DOUBLE(s, (double)x.CHAR);
     }
     else if(has_type(x, STRING)){
-        push_STRING(s, x.STRING);
+        double temp = atof(x.STRING);      
+        push_DOUBLE(s,temp);
     }
 }
 
@@ -340,7 +342,20 @@ void troca(STACK *s){ // TROCAR DOIS ELEMENTOS DO TOPO DA STACK "\"
 void rodar(STACK *s){ // RODAR OS 3 ELEMENTOS NO TOPO DA STACK "@"
     DATA z = pop(s);
     DATA y = pop(s);
-    DATA x = pop(s);
+    DATA x = pop(s); // 3x 4y 7z -> 4y 7z 3x
+
+    if(has_type(y, LONG)) {
+        push_LONG(s, y.LONG);
+    }
+    else if(has_type(y, DOUBLE)) {
+        push_DOUBLE(s, y.DOUBLE);
+    }
+    else if(has_type(y, CHAR)) {
+        push_CHAR(s, y.CHAR);
+    }
+    else if(has_type(y, STRING)) {
+        push_STRING(s, y.STRING);
+    }
 
     if(has_type(z, LONG)) {
         push_LONG(s, z.LONG);
@@ -368,24 +383,12 @@ void rodar(STACK *s){ // RODAR OS 3 ELEMENTOS NO TOPO DA STACK "@"
         push_STRING(s, x.STRING);
     }
 
-    if(has_type(y, LONG)) {
-        push_LONG(s, y.LONG);
-    }
-    else if(has_type(y, DOUBLE)) {
-        push_DOUBLE(s, y.DOUBLE);
-    }
-    else if(has_type(y, CHAR)) {
-        push_CHAR(s, y.CHAR);
-    }
-    else if(has_type(y, STRING)) {
-        push_STRING(s, y.STRING);
-    }
 }
 
 void copia(STACK *s){ // COPIA N-ÉSIMO ELEMENTO PARA O TOPO DA STACK "n $"
     DATA n = pop(s);
     DATA x = s->stack[(s->n_elems) - n.LONG - 1];
-    pop(s);
+
     
     if(has_type(x, LONG)) {
         push_LONG(s, x.LONG);
@@ -401,16 +404,15 @@ void copia(STACK *s){ // COPIA N-ÉSIMO ELEMENTO PARA O TOPO DA STACK "n $"
     }
     
 }
-
-void lerl(STACK *s){ // LÊ UMA LINHA ABAIXO "l" ---- AINDA POR ARRANJAR
+/*
+void lerl(STACK *s){
     char aux[10240];
-
     assert(fgets(aux,10240,stdin)!=NULL);
     assert(aux[strlen(aux)-1]=='\n');
-    push_STRING(s, aux);
+    aux[strlen(aux)-1] = '\0';
+    push_STRING(s,aux);
 }
 
-/*
 void lert(STACK *s){ // t
     char aux[100];
     assert(fgets(aux,sizeof aux,stdin));

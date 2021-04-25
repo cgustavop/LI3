@@ -1,3 +1,6 @@
+/**
+ * @file Ficheiro que contem a nossa versão do stack.
+ */
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -7,7 +10,14 @@
 int has_type(DATA elem, int mask){
 	return (elem.type & mask) != 0;
 }
-
+/**
+ * /brief Cria stacks de diferentes tipos
+ *
+ * Recebe os tipos dos quais serão feitos os arrays da nossa stack e reserva a memória necessária definindo os parâmetros da capacidade e o topo nesse array.
+ * No caso de não haver memória suficiente para alocar um novo array resulta num aviso de erro.
+ * 
+ * @returns um array representante da nova stack.
+ */
 STACK *new_stack(){
 	STACK *s = (STACK *) calloc(1, sizeof(STACK));
 	s->size = 100;

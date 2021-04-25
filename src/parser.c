@@ -1,3 +1,6 @@
+/**
+ * @file Funcão que diz respeito ao parser
+ */
 #include <string.h>
 #include <assert.h>
 #include <stdlib.h>
@@ -6,6 +9,24 @@
 #include "stack.h"
 #include "maths.h"
 
+
+/**
+ * \brief Esta é a função que vai fazer o parse de uma linha
+ * 
+ * Analisa a linha inserida e faz a sua separação em operadores e operandos consoante espaços, tabs ou mudanças de linhas.
+ * Interpreta cada token e executa a sua função no contexto da linguagem.
+ *
+ * @param s Struct onde será guardada a stack
+ * @param delims String que indica os separadores dos tokens inseridos
+ * @param line A linha que foi lida e da qual se vai fazer o parse
+ * @param token Operadores contidos na linha
+ * @param sobra1 Vai guardando elementos da stack que não sofreram nenhuma transformação
+ * @param sobra2 Vai guardando elementos da stack que não sofreram nenhuma transformação
+ * @param val_l Variável temporária onde são guardados operandos do tipo long
+ * @param val_d Variável temporária onde são guardados operandos do tipo double
+ * 
+ * @returns void
+ */
 void parse(char *line) {
 
     STACK *s = new_stack();
@@ -102,16 +123,17 @@ void parse(char *line) {
         else if (strcmp(token, "p") == 0)   // printa top
             printt(s);
 
-        else if (strcmp(token, "l") == 0)   // lê linha abaixo
-            lerl(s);
-/*
-        else if (strcmp(token, "t") == 0)   // lê todas linhas
-            lert(s); 
-        */
+        else if (strcmp(token, "l") == 0)  { // lê linha abaixo
 
-        // default case
+            char linee[10240];
+            assert(fgets(linee,10240,stdin)!=NULL);
+            assert(linee[strlen(linee)-1]=='\n');
+            linee[strlen(linee)-1] = '\0';
+            push_STRING(s,linee);
+        }
+
         else
-            push_STRING(s, token); 
+           push_STRING(s, token); 
 		}
 
 	print_stack(s);
