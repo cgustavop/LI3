@@ -403,77 +403,13 @@ void copia(STACK *s){ // COPIA N-ÉSIMO ELEMENTO PARA O TOPO DA STACK "n $"
 }
 
 void lerl(STACK *s){ // LÊ UMA LINHA ABAIXO "l" ---- AINDA POR ARRANJAR
-<<<<<<< HEAD
-    
-    char aux[100];
+    char aux[10240];
 
-    memset(aux, '\0', sizeof(aux));
-    if (fgets(aux,sizeof aux,stdin) != NULL)
-        //strncpy(r.STRING, aux, 100);
-        puts(aux);
-
-    fclose(stdin);
-
-    for (int i=1;i<s->size;i++)
-        stringz(s);
-
-    //for(int i=0;i < (sizeof aux);i++) r = pop(s);
-    //    push_STRING(s, r.STRING);
-    
-=======
-    /*
-    DATA r;
-    char aux[100];
-
-    memset(aux, '\0', sizeof(aux));
-    assert(fgets(aux,sizeof aux,stdin));
-    
-    strncpy(r.STRING, aux, 100);
-    
-    for(int i=0;i < (sizeof aux);i++) r = pop(s);
-        push_STRING(s, r.STRING);
-    */
-    char linee[10240];
-    assert(fgets(linee,10240,stdin)!=NULL);
-    assert(linee[strlen(linee)-1]=='\n');
-    push_STRING(s,linee);
->>>>>>> 7bba8dfaaa2495d3d786214143c8da85188c5192
-    /*
-        if(has_type(r, LONG)) {
-            push_LONG(s, r.LONG);
-        }
-        else if(has_type(r, DOUBLE)) {
-            push_DOUBLE(s, r.DOUBLE);
-        }
-        else if(has_type(r, CHAR)) {
-            push_CHAR(s, r.CHAR);
-        }
-        else if(has_type(r, STRING)) {
-            push_STRING(s, r.STRING);
-        }
-    }*/
-    //push_STRING(s, (char *)aux);
+    assert(fgets(aux,10240,stdin)!=NULL);
+    assert(aux[strlen(aux)-1]=='\n');
+    push_STRING(s, aux);
 }
-/*
-void lerl(STACK *s){
-    char *delims = " \t\n";
-    char aux[1024];
-    fgets(aux,sizeof aux,stdin);
-    for(char *token = strtok(aux, delims);token != NULL;token = strtok(NULL, delims)){
-        char *sobra1;
-        char *sobra2;
-      
-        long val_l = strtol(token, &sobra1, 10);            PODE AJUDAR A FAZER A FUNÇÃO L
-        double val_d = strtod(token, &sobra2);
 
-        if(strlen(sobra1) == 0)
-            push_LONG(s, val_l);
-       
-        else if(strlen(sobra2) == 0)
-            push_DOUBLE(s, val_d);
-    }
-}
-*/
 /*
 void lert(STACK *s){ // t
     char aux[100];
@@ -486,14 +422,15 @@ void lert(STACK *s){ // t
 void printt(STACK *s){ // IMPRIME TOPO DA STACK "p"
     DATA x = pop(s);
     
-    if (has_type(x, LONG))
+    if (has_type(x, LONG)) {
         push_LONG(s,x.LONG);
-    else if (has_type(x, DOUBLE))
+    } else if (has_type(x, DOUBLE)) {
         push_DOUBLE(s,x.DOUBLE);
-    else if (has_type(x, CHAR))
+    } else if (has_type(x, CHAR)) {
         push_CHAR(s, x.CHAR);
-    else if (has_type(x, STRING)) 
+    } else {
         push_STRING(s, x.STRING);            
+    }
 }
 
 

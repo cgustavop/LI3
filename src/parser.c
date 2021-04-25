@@ -102,7 +102,6 @@ void parse(char *line) {
         else if (strcmp(token, "p") == 0)   // printa top
             printt(s);
 
-        
         else if (strcmp(token, "l") == 0)   // lê linha abaixo
             lerl(s);
 /*
