@@ -403,7 +403,7 @@ void copia(STACK *s){ // COPIA N-ÉSIMO ELEMENTO PARA O TOPO DA STACK "n $"
 }
 
 void lerl(STACK *s){ // LÊ UMA LINHA ABAIXO "l" ---- AINDA POR ARRANJAR
-    
+    /*
     DATA r;
     char aux[100];
 
@@ -414,7 +414,11 @@ void lerl(STACK *s){ // LÊ UMA LINHA ABAIXO "l" ---- AINDA POR ARRANJAR
     
     for(int i=0;i < (sizeof aux);i++) r = pop(s);
         push_STRING(s, r.STRING);
-    
+    */
+    char linee[10240];
+    assert(fgets(linee,10240,stdin)!=NULL);
+    assert(linee[strlen(linee)-1]=='\n');
+    push_STRING(s,linee);
     /*
         if(has_type(r, LONG)) {
             push_LONG(s, r.LONG);
