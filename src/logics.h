@@ -1,3 +1,7 @@
+/**
+ * @file logics.h
+ * @brief Header que inicializa as funções do ficheiro logics.c
+ */
 #include "stack.h"
 
 void E(STACK *s);

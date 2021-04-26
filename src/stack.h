@@ -1,3 +1,7 @@
+/**
+ * @file stack.h
+ * @brief Header que inicializa as funções do ficheiro stack.c
+ */
 #ifndef ___STACK_H___
 #define ___STACK_H___
 

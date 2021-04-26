@@ -1,3 +1,7 @@
+/**
+ * @file maths.c
+ * @brief Ficheiro com funções relativas a operações matemáticas
+ */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -6,7 +10,11 @@
 
 #include "maths.h"
 #include "stack.h"
-
+/**
+ * @brief Soma de dois elementos da stack
+ *
+ * Inicializada com o token "+"
+ */
 void soma(STACK *s){ // SOMAR "+"
       
     DATA x = pop(s);
@@ -25,7 +33,11 @@ void soma(STACK *s){ // SOMAR "+"
         push_DOUBLE(s, x.DOUBLE + y.LONG);
     }
 }
-
+/**
+ * @brief Subtração entre dois elementos da stack
+ *
+ * Inicializada com o token "-"
+ */
 void subtrai(STACK *s){ // SUBTRAIR "-"
       
     DATA x = pop(s);
@@ -44,7 +56,11 @@ void subtrai(STACK *s){ // SUBTRAIR "-"
         push_DOUBLE(s, y.LONG - y.DOUBLE);
     }
 }
-
+/**
+ * @brief Multiplicação entre dois elementos da stack
+ *
+ * Inicializada com o token "*"
+ */
 void multiplica(STACK *s){ // MULTIPLICAR "*"
 
     DATA x = pop(s);
@@ -64,7 +80,11 @@ void multiplica(STACK *s){ // MULTIPLICAR "*"
     }
 
 }
-
+/**
+ * @brief Divisão entre dois elementos da stack
+ *
+ * Inicializada com o token "/"
+ */
 void divide(STACK *s){ // DIVIDIR "/"
 
     DATA x = pop(s);
@@ -84,7 +104,11 @@ void divide(STACK *s){ // DIVIDIR "/"
     }
 
 }
-
+/**
+ * @brief Incrementação do elemento no topo da stack
+ *
+ * Inicializada com o token ")"
+ */
 void incrementa(STACK *s){ // INCREMENTAR ")"
     DATA x = pop(s);
 
@@ -98,7 +122,11 @@ void incrementa(STACK *s){ // INCREMENTAR ")"
         push_CHAR(s, x.CHAR + 1);
     }
 }
-
+/**
+ * @brief Decrementação do elemento no topo da stack
+ *
+ * Inicializada com o token "("
+ */
 void decrementa(STACK *s){ // DECREMENTAR "("
     DATA x = pop(s);
 
@@ -112,8 +140,11 @@ void decrementa(STACK *s){ // DECREMENTAR "("
         push_CHAR(s, x.CHAR - 1);
     }
 }
-
-
+/**
+ * @brief Módulo entre dois elementos da stack
+ *
+ * Inicializada com o token "%"
+ */
 void modulo(STACK *s){ //  MÓDULO "%"
       
     DATA x = pop(s);
@@ -132,6 +163,11 @@ void modulo(STACK *s){ //  MÓDULO "%"
         push_DOUBLE(s, fmod(y.LONG ,x.DOUBLE));
     }
 }
+/**
+ * @brief Exponenciação de um elemento segundo outro
+ *
+ * Inicializada com o token "#"
+ */
 void expoente(STACK *s){ // EXPONENCIAÇÃO "#"
       
     DATA x = pop(s);

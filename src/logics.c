@@ -1,3 +1,7 @@
+/**
+ * @file logics.c
+ * @brief Ficheiro com funções relativas a operações lógicas
+ */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -6,7 +10,11 @@
 
 #include "logics.h"
 #include "stack.h"
-
+/**
+ * @brief E lógico entre dois elementos da stack
+ *
+ * Inicializada com o token "&"
+ */
 void E(STACK *s){ // E "&"
       
     DATA x = pop(s);
@@ -16,7 +24,11 @@ void E(STACK *s){ // E "&"
         push_LONG(s, y.LONG & x.LONG);
     }
 }
-
+/**
+ * @brief OU lógico entre dois elementos da stack
+ *
+ * Inicializada com o token "|"
+ */
 void ou(STACK *s){ // OU "|"
       
     DATA x = pop(s);
@@ -26,7 +38,11 @@ void ou(STACK *s){ // OU "|"
         push_LONG(s, y.LONG | x.LONG);
     }
 }
-
+/**
+ * @brief OU Exclusivo (aka XOR) entre dois elementos da stack
+ *
+ * Inicializada com o token "^"
+ */
 void xor(STACK *s){ // XOR "^"
       
     DATA x = pop(s);
@@ -36,7 +52,11 @@ void xor(STACK *s){ // XOR "^"
         push_LONG(s, y.LONG ^ x.LONG);
     }
 }
-
+/**
+ * @brief Negação de um elemento da stack
+ *
+ * Inicializada com o token "~"
+ */
 void not(STACK *s){ // NOT "~"
     DATA x = pop(s);
 
@@ -44,7 +64,11 @@ void not(STACK *s){ // NOT "~"
         push_LONG(s, (~x.LONG));
     }
 }
-
+/**
+ * @brief Teste de igualdade entre os 2 elementos no topo da stack
+ *
+ * Inicializada com o token "="
+ */
 void igual(STACK *s){
     DATA x = pop(s);
     DATA y = pop(s);
@@ -67,7 +91,11 @@ void igual(STACK *s){
     } else
         push_LONG(s, 0);
 }
-
+/**
+ * @brief Teste de comparação dos 2 elementos no topo da stack
+ *
+ * Inicializada com o token "<"
+ */
 void menor(STACK *s){ // <
     DATA x = pop(s);
     DATA y = pop(s);
@@ -122,7 +150,11 @@ void menor(STACK *s){ // <
 
     }
 }
-
+/**
+ * @brief Teste de comparação dos 2 elementos no topo da stack
+ *
+ * Inicializada com o token ">"
+ */
 void maior(STACK *s){ // >
     DATA x = pop(s);
     DATA y = pop(s);
@@ -177,7 +209,11 @@ void maior(STACK *s){ // >
 
     }
 }
-
+/**
+ * @brief Negação do elemento no topo da stack
+ *
+ * Inicializada com o token "!"
+ */
 void nono(STACK *s){ // !
     DATA x = pop(s);
 
@@ -197,8 +233,11 @@ void nono(STACK *s){ // !
         push_STRING(s, x.STRING);
     }
 }
-
-
+/**
+ * @brief E lógico entre dois elementos da stack
+ *
+ * Inicializada com o token "e&"
+ */
 void eE(STACK *s){
     DATA x = pop(s);
     DATA y = pop(s);
@@ -212,7 +251,11 @@ void eE(STACK *s){
         push_LONG(s, 0);
     }
 }
-
+/**
+ * @brief OU lógico entre dois elementos da stack
+ *
+ * Inicializada com o token "e|"
+ */
 void eOU(STACK *s){
     DATA x = pop(s);
     DATA y = pop(s);
@@ -226,7 +269,11 @@ void eOU(STACK *s){
         push_LONG(s, 0);
 }
 
-
+/**
+ * @brief Coloca o menor de 2 valores no topo da stack
+ *
+ * Inicializada com o token "e<"
+ */
 void emenor(STACK *s){
     DATA x = pop(s);
     DATA y = pop(s);
@@ -281,7 +328,11 @@ void emenor(STACK *s){
 
     }
 }
-
+/**
+ * @brief Coloca o maior de 2 valores no topo da stack
+ *
+ * Inicializada com o token "e>"
+ */
 void emaior(STACK *s){
     DATA x = pop(s);
     DATA y = pop(s);

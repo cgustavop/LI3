@@ -1,5 +1,6 @@
 /**
- * @file Funcão que diz respeito ao parser
+ * @file parser.c
+ * @brief Ficheiro relativo à função que analisa e aplica funções entre operadores e operandos
  */
 #include <string.h>
 #include <assert.h>
@@ -9,15 +10,12 @@
 #include "stack.h"
 #include "maths.h" 
 #include "logics.h"
-#include "manipulations.h"
-#include "converts.h"
-#include "pps.h"
-
+#include "manpln.h"
 
 /**
- * \brief Esta é a função que vai fazer o parse de uma linha
+ * @brief Esta é a função que vai fazer o "parse" de uma linha
  * 
- * Analisa a linha inserida e faz a sua separação em operadores e operandos consoante espaços, tabs ou mudanças de linhas.
+ * Analisa a linha inserida e faz a sua separação em operadores e operandos segundo espaços, tabs ou mudanças de linhas.
  * Interpreta cada token e executa a sua função no contexto da linguagem.
  *
  * @param s Struct onde será guardada a stack
@@ -28,7 +26,6 @@
  * @param sobra2 Vai guardando elementos da stack que não sofreram nenhuma transformação
  * @param val_l Variável temporária onde são guardados operandos do tipo long
  * @param val_d Variável temporária onde são guardados operandos do tipo double
- * 
  * @returns void
  */
 void parse(char *line) {
