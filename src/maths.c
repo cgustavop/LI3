@@ -94,6 +94,9 @@ void incrementa(STACK *s){ // INCREMENTAR ")"
     else if(has_type(x, DOUBLE)){
         push_DOUBLE(s, x.DOUBLE + 1);
     }
+    else if(has_type(x, CHAR)){
+        push_CHAR(s, x.CHAR + 1);
+    }
 }
 
 void decrementa(STACK *s){ // DECREMENTAR "("
@@ -105,6 +108,9 @@ void decrementa(STACK *s){ // DECREMENTAR "("
     else if(has_type(x, DOUBLE)){
         push_DOUBLE(s, x.DOUBLE - 1);
     }
+    else if(has_type(x, CHAR)){
+        push_CHAR(s, x.CHAR - 1);
+    }
 }
 
 
@@ -115,6 +121,15 @@ void modulo(STACK *s){ //  MÓDULO "%"
     
     if(has_type(x, LONG) && has_type(y, LONG)){
         push_LONG(s, y.LONG % x.LONG);
+    }
+    else if(has_type(x, LONG) && has_type(y, DOUBLE)){
+        push_DOUBLE(s, fmod(y.DOUBLE ,x.LONG));
+    }
+    else if(has_type(x, DOUBLE) && has_type(y, DOUBLE)){
+        push_DOUBLE(s, fmod(y.DOUBLE ,x.DOUBLE));
+    }
+    else if(has_type(x, DOUBLE) && has_type(y, LONG)){
+        push_DOUBLE(s, fmod(y.LONG ,x.DOUBLE));
     }
 }
 void expoente(STACK *s){ // EXPONENCIAÇÃO "#"
@@ -269,72 +284,33 @@ void duplica(STACK *s){ // DUPLICAR "_"
 }
 
 void troca(STACK *s){ // TROCAR DOIS ELEMENTOS DO TOPO DA STACK "\"
-    DATA x = pop(s);
     DATA y = pop(s);
+    DATA x = pop(s);
 
-    if(has_type(x, LONG) && has_type(y, LONG)){
-        push_LONG(s, x.LONG);
+    if(has_type(y, LONG)) {
         push_LONG(s, y.LONG);
     }
-    else if(has_type(x, LONG) && has_type(y, DOUBLE)){
-        push_LONG(s, x.LONG);
+    else if(has_type(y, DOUBLE)) {
         push_DOUBLE(s, y.DOUBLE);
     }
-    else if(has_type(x, LONG) && has_type(y, CHAR)){
-        push_CHAR(s, x.CHAR);
-        push_LONG(s, y.LONG);
+    else if(has_type(y, CHAR)) {
+        push_CHAR(s, y.CHAR);
     }
-    else if(has_type(x, LONG) && has_type(y, STRING)){
-        push_STRING(s, x.STRING);
-        push_LONG(s, y.LONG);
+    else if(has_type(y, STRING)) {
+        push_STRING(s, y.STRING);
     }
-    else if(has_type(x, DOUBLE) && has_type(y, LONG)){
+
+    if(has_type(x, LONG)) {
         push_LONG(s, x.LONG);
-        push_DOUBLE(s, y.DOUBLE);
     }
-    else if(has_type(x, DOUBLE) && has_type(y, DOUBLE)){
+    else if(has_type(x, DOUBLE)) {
         push_DOUBLE(s, x.DOUBLE);
-        push_DOUBLE(s, y.DOUBLE);
     }
-    else if(has_type(x, DOUBLE) && has_type(y, CHAR)){
+    else if(has_type(x, CHAR)) {
         push_CHAR(s, x.CHAR);
-        push_DOUBLE(s, y.DOUBLE);
     }
-    else if(has_type(x, DOUBLE) && has_type(y, STRING)){
+    else if(has_type(x, STRING)) {
         push_STRING(s, x.STRING);
-        push_DOUBLE(s, y.DOUBLE);
-    }
-    else if(has_type(x, CHAR) && has_type(y, LONG)){
-        push_LONG(s, x.LONG);
-        push_CHAR(s, y.CHAR);
-    }
-    else if(has_type(x, CHAR) && has_type(y, DOUBLE)){
-        push_DOUBLE(s, x.DOUBLE);
-        push_CHAR(s, y.CHAR);
-    }
-    else if(has_type(x, CHAR) && has_type(y, CHAR)){
-        push_CHAR(s, x.CHAR);
-        push_CHAR(s, y.CHAR);
-    }
-    else if(has_type(x, CHAR) && has_type(y, STRING)){
-        push_STRING(s, x.STRING);
-        push_CHAR(s, y.CHAR);
-    }
-    else if(has_type(x, STRING) && has_type(y, LONG)){
-        push_LONG(s, x.LONG);
-        push_STRING(s, y.STRING);
-    }
-    else if(has_type(x, STRING) && has_type(y, DOUBLE)){
-        push_DOUBLE(s, x.DOUBLE);
-        push_STRING(s, y.STRING);
-    }
-    else if(has_type(x, STRING) && has_type(y, CHAR)){
-        push_CHAR(s, x.CHAR);
-        push_STRING(s, y.STRING);
-    }
-    else if(has_type(x, STRING) && has_type(y, STRING)){
-        push_STRING(s, x.STRING);
-        push_STRING(s, y.STRING);
     }
 }
 
