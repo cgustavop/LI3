@@ -6,6 +6,8 @@
 
 #include "stack.h"
 #include "maths.h"
+#include "logics.h"
+#include "manipulations.h"
 
 int has_type(DATA elem, int mask){
 	return (elem.type & mask) != 0;

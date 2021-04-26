@@ -8,8 +8,13 @@
 
 #include "stack.h"
 #include "maths.h"
+#include "logics.h"
+#include "manipulations.h"
+#include "converts.h"
+#include "pps.h"
 
 // gcc -std=gnu11 -Wall -pedantic-errors -O *.c -lm
+
 /*
 int main(){
     Stack stack = create_stack(10240);

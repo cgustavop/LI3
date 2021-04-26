@@ -7,7 +7,11 @@
 #include <stdio.h>
 
 #include "stack.h"
-#include "maths.h"
+#include "maths.h" 
+#include "logics.h"
+#include "manipulations.h"
+#include "converts.h"
+#include "pps.h"
 
 
 /**
