@@ -139,7 +139,42 @@ void parse(char *line) {
 
         else if (strcmp(token, "$") == 0)   // função troca topo por n-esimo
             copia(s);
+/*
+        else if (strcmp(token, )
 
+        else if (strcmp(token, "A") == 0)
+            HEX(s);
+
+        else if (strcmp(token, "B") == 0)
+            HEX(s);
+
+        else if (strcmp(token, "C") == 0)
+            HEX(s);
+
+        else if (strcmp(token, "D") == 0)
+            HEX(s);
+
+        else if (strcmp(token, "E") == 0)
+            HEX(s);
+
+        else if (strcmp(token, "F") == 0)
+            HEX(s);
+
+        else if (strcmp(token, "N") == 0)
+            HEX(s);
+
+        else if (strcmp(token, "S") == 0)
+            HEX(s);
+
+        else if (strcmp(token, "X") == 0)
+            HEX(s);
+
+        else if (strcmp(token, "Y") == 0)
+            HEX(s);
+
+        else if (strcmp(token, "Z") == 0)
+            HEX(s);
+*/
         // pops e prints
         
         else if (strcmp(token, ";") == 0)	// função pop

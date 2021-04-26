@@ -127,6 +127,15 @@ void copia(STACK *s){ // COPIA N-ÉSIMO ELEMENTO PARA O TOPO DA STACK "n $"
     
 }
 /*
+void HEX(STACK *s){ // variaveis
+    DATA x = pop(s);
+    DATA y = pop(s);
+
+    if (has_type(x, CHAR) && x.CHAR = "A")
+        if 
+}
+
+
 void question(STACK *s){ // if then else com os 3 elementos anteriores
     DATA x = pop(s);
     DATA y = pop(s);
