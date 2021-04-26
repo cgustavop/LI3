@@ -91,6 +91,27 @@ void parse(char *line) {
         else if (strcmp(token, "~") == 0)	// função lógica negação 
         	not(s);
 
+        else if (strcmp(token, "=") == 0)   // função lógica igual
+            igual(s);
+
+        else if (strcmp(token, "<") == 0)   // função lógica menor
+            menor(s);
+
+        else if (strcmp(token, ">") == 0)   // função lógica maior
+            maior(s);
+
+        else if (strcmp(token, "e&") == 0)   // função lógica e E
+            eE(s);
+
+        else if (strcmp(token, "e|") == 0)   // função lógica e OU
+            eOU(s);
+        
+        else if (strcmp(token, "e<") == 0)   // função lógica e menor
+            emenor(s);
+
+        else if (strcmp(token, "e>") == 0)   // função lógica e maior
+            emaior(s);
+
         // conversões
 
         else if (strcmp(token, "i") == 0)   // conversão para int
