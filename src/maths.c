@@ -71,7 +71,7 @@ void divide(STACK *s){ // DIVIDIR "/"
     DATA y = pop(s);
 
     if(has_type(x, LONG) && has_type(y, LONG)){
-        push_DOUBLE(s, y.LONG / x.LONG);
+        push_LONG(s, y.LONG / x.LONG);
     }
     else if(has_type(x, DOUBLE) && has_type(y, DOUBLE)){
         push_DOUBLE(s, y.DOUBLE / x.DOUBLE);
@@ -316,9 +316,9 @@ void troca(STACK *s){ // TROCAR DOIS ELEMENTOS DO TOPO DA STACK "\"
 
 
 void rodar(STACK *s){ // RODAR OS 3 ELEMENTOS NO TOPO DA STACK "@"
-    DATA z = pop(s);
+    DATA x = pop(s);
     DATA y = pop(s);
-    DATA x = pop(s); // 3x 4y 7z -> 4y 7z 3x
+    DATA z = pop(s); // a b c -> b c a
 
     if(has_type(y, LONG)) {
         push_LONG(s, y.LONG);
@@ -333,18 +333,6 @@ void rodar(STACK *s){ // RODAR OS 3 ELEMENTOS NO TOPO DA STACK "@"
         push_STRING(s, y.STRING);
     }
 
-    if(has_type(z, LONG)) {
-        push_LONG(s, z.LONG);
-    }
-    else if(has_type(z, DOUBLE)) {
-       push_DOUBLE(s, z.DOUBLE); 
-    }
-    else if(has_type(z, CHAR)) {
-        push_CHAR(s, z.CHAR);
-    }
-    else if(has_type(z, STRING)) {
-        push_STRING(s, z.STRING);
-    }
 
     if(has_type(x, LONG)) {
         push_LONG(s, x.LONG);
@@ -359,6 +347,18 @@ void rodar(STACK *s){ // RODAR OS 3 ELEMENTOS NO TOPO DA STACK "@"
         push_STRING(s, x.STRING);
     }
 
+    if(has_type(z, LONG)) {
+        push_LONG(s, z.LONG);
+    }
+    else if(has_type(z, DOUBLE)) {
+       push_DOUBLE(s, z.DOUBLE); 
+    }
+    else if(has_type(z, CHAR)) {
+        push_CHAR(s, z.CHAR);
+    }
+    else if(has_type(z, STRING)) {
+        push_STRING(s, z.STRING);
+    }
 }
 
 void copia(STACK *s){ // COPIA N-ÉSIMO ELEMENTO PARA O TOPO DA STACK "n $"
