@@ -76,18 +76,26 @@ void igual(STACK *s){
     if(has_type(x, LONG) && has_type(y, LONG)){
         if (x.LONG == y.LONG)
             push_LONG(s, 1);
+        else
+            push_LONG(s, 0);
 
     } else if (has_type(x, DOUBLE) && has_type(y, DOUBLE)){
         if (x.DOUBLE == y.DOUBLE)
             push_LONG(s, 1);
+        else
+            push_LONG(s, 0);
 
     } else if (has_type(x, CHAR) && has_type(y, CHAR)){
         if (x.CHAR == y.CHAR)
             push_LONG(s, 1);
+        else
+            push_LONG(s, 0);
 
     } else if (has_type(x, STRING) && has_type(y, STRING)){
         if (strcmp(x.STRING,y.STRING) == 0)
             push_LONG(s, 1);
+        else
+            push_LONG(s, 0);
     } else
         push_LONG(s, 0);
 }
@@ -219,20 +227,31 @@ void nono(STACK *s){ // !
 
     if (has_type(x, LONG)) {
         if (x.LONG == 0)
-            push_LONG(s, x.LONG + 1);
+            push_LONG(s, 1);
         else if (x.LONG == 1)
-            push_LONG(s, x.LONG - 1);
+            push_LONG(s, 0);
 
     } else if (has_type(x, DOUBLE)) {
-        push_DOUBLE(s, x.DOUBLE);
+        if (x.DOUBLE == 0)
+            push_LONG(s, 1);
+        else if (x.DOUBLE == 1)
+            push_LONG(s, 0);
 
     } else if (has_type(x, CHAR)) {
-        push_DOUBLE(s, x.CHAR);
+        if (x.CHAR == '0')
+            push_LONG(s, 1);
+        else if (x.CHAR == '1')
+            push_LONG(s, 0);
 
     } else if (has_type(x, STRING)){
-        push_STRING(s, x.STRING);
+        if (strcmp(x.STRING,"0") == 0)
+            push_LONG(s, 1);
+        else if ((strcmp(x.STRING,"1") == 0))
+            push_LONG(s, 0);
     }
 }
+
+
 /**
  * @brief E lógico entre dois elementos da stack
  *
@@ -244,13 +263,42 @@ void eE(STACK *s){
     
     if (has_type(x, LONG) && has_type(y, LONG)){
         if ( (x.LONG != 0) && (y.LONG != 0) )
-            push_LONG(s, 1);
+            if (x.LONG > y.LONG)
+                push_LONG(s, x.LONG);
+            else
+                push_LONG(s, y.LONG);
         else
             push_LONG(s, 0);
-    } else {
-        push_LONG(s, 0);
+
+    } else if (has_type(x, DOUBLE) && has_type(y, DOUBLE)){
+        if ( (x.DOUBLE != 0) && (y.LONG != 0) )
+            if (x.DOUBLE > y.DOUBLE)
+                push_LONG(s, (long)x.DOUBLE);
+            else
+                push_LONG(s, (long)y.DOUBLE);
+        else
+            push_LONG(s, 0);
+
+    } else if (has_type(x, DOUBLE) && has_type(y, LONG)){
+        if ( (x.DOUBLE != 0) && (y.LONG != 0) )
+            if (x.DOUBLE > y.LONG)
+                push_LONG(s, (long)x.DOUBLE);
+            else
+                push_LONG(s, y.LONG);
+        else
+            push_LONG(s, 0);
+
+    } else if (has_type(x, LONG) && has_type(y, DOUBLE)){
+        if ( (x.LONG != 0) && (y.DOUBLE != 0) )
+            if (x.LONG > y.DOUBLE)
+                push_LONG(s, x.LONG);
+            else
+                push_LONG(s, (long)y.DOUBLE);
+        else
+            push_LONG(s, 0);
     }
 }
+
 /**
  * @brief OU lógico entre dois elementos da stack
  *

@@ -155,13 +155,130 @@ void HEX(STACK *s){ // variaveis
         if 
 }
 
+*/
 
 void question(STACK *s){ // if then else com os 3 elementos anteriores
     DATA x = pop(s);
     DATA y = pop(s);
     DATA z = pop(s);
+
+    if (has_type(x, LONG)) {
+        if (x.LONG != 0){
+            if (has_type(y, LONG))
+                push_LONG(s, y.LONG);
+
+            else if (has_type(y, DOUBLE))
+                push_DOUBLE(s, y.DOUBLE);
+
+            else if (has_type(y, CHAR))
+                push_CHAR(s, y.CHAR);
+        
+            else if (has_type(y, STRING))
+                push_STRING(s, y.STRING);
+        
+        } else {
+            if (has_type(z, LONG))
+                push_LONG(s, z.LONG);
+
+            else if (has_type(z, DOUBLE))
+                push_DOUBLE(s, z.DOUBLE);
+
+            else if (has_type(z, CHAR))
+                push_CHAR(s, z.CHAR);
+
+            else if (has_type(z, STRING))
+                push_STRING(s, z.STRING);
+        }
+    }
+
+    if (has_type(x, CHAR)) {
+        if (x.CHAR != '0'){
+            if (has_type(y, LONG))
+                push_LONG(s, y.LONG);
+
+            else if (has_type(y, DOUBLE))
+                push_DOUBLE(s, y.DOUBLE);
+
+            else if (has_type(y, CHAR))
+                push_CHAR(s, y.CHAR);
+        
+            else if (has_type(y, STRING))
+                push_STRING(s, y.STRING);
+        
+        } else {
+            if (has_type(z, LONG))
+                push_LONG(s, z.LONG);
+
+            else if (has_type(z, DOUBLE))
+                push_DOUBLE(s, z.DOUBLE);
+
+            else if (has_type(z, CHAR))
+                push_CHAR(s, z.CHAR);
+
+            else if (has_type(z, STRING))
+                push_STRING(s, z.STRING);
+        }
+    }
+
+    if (has_type(x, DOUBLE)){
+        if (x.DOUBLE != 0){
+            if (has_type(y, LONG))
+                push_LONG(s, y.LONG);
+
+            else if (has_type(y, DOUBLE))
+                push_DOUBLE(s, y.DOUBLE);
+
+            else if (has_type(y, CHAR))
+                push_CHAR(s, y.CHAR);
+        
+            else if (has_type(y, STRING))
+                push_STRING(s, y.STRING);
+      
+        } else {
+            if (has_type(z, LONG))
+                push_LONG(s, z.LONG);
+
+            else if (has_type(z, DOUBLE))
+                push_DOUBLE(s, z.DOUBLE);
+
+            else if (has_type(z, CHAR))
+                push_CHAR(s, z.CHAR);
+
+            else if (has_type(z, STRING))
+                push_STRING(s, z.STRING);
+        }
+    }
+
+    if (has_type(x, STRING)) {
+        if (strcmp(x.STRING,"0") != 0){
+            if (has_type(y, LONG))
+                push_LONG(s, y.LONG);
+
+            else if (has_type(y, DOUBLE))
+                push_DOUBLE(s, y.DOUBLE);
+
+            else if (has_type(y, CHAR))
+                push_CHAR(s, y.CHAR);
+        
+            else if (has_type(y, STRING))
+                push_STRING(s, y.STRING);
+        
+        } else {
+            if (has_type(z, LONG))
+                push_LONG(s, z.LONG);
+
+            else if (has_type(z, DOUBLE))
+                push_DOUBLE(s, z.DOUBLE);
+
+            else if (has_type(z, CHAR))
+                push_CHAR(s, z.CHAR);
+
+            else if (has_type(z, STRING))
+                push_STRING(s, z.STRING);
+        }
+    }
 }
-*/
+
 /**
  * @brief Leitura de uma linha
  *

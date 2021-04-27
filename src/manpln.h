@@ -9,7 +9,7 @@ void troca(STACK *s);
 void rodar(STACK *s);
 void copia(STACK *s);
 //void HEX(STACK *s);
-//void question(STACK *s);
+void question(STACK *s);
 
 void intz(STACK *s);
 void charz(STACK *s);

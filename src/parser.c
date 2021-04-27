@@ -91,6 +91,9 @@ void parse(char *line) {
         else if (strcmp(token, "=") == 0)   // função lógica igual
             igual(s);
 
+        else if (strcmp(token, "!") == 0)   // função lógica (não)
+            nono(s);
+
         else if (strcmp(token, "<") == 0)   // função lógica menor
             menor(s);
 
@@ -108,6 +111,9 @@ void parse(char *line) {
 
         else if (strcmp(token, "e>") == 0)   // função lógica e maior
             emaior(s);
+
+        else if (strcmp(token, "e") == 0)   // função lógica e
+            eOU(s);
 
         // conversões
 
@@ -136,9 +142,10 @@ void parse(char *line) {
 
         else if (strcmp(token, "$") == 0)   // função troca topo por n-esimo
             copia(s);
-/*
-        else if (strcmp(token, )
 
+        else if (strcmp(token, "?") == 0)   // função if then else
+            question(s);
+/*
         else if (strcmp(token, "A") == 0)
             HEX(s);
 
