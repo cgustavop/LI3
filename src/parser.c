@@ -146,9 +146,15 @@ void parse(char *line) {
         else if (strcmp(token, "?") == 0)   // função if then else
             question(s);
 
+        else if (strcmp(token, "A") == 0) {  // função if then else
+            letraA(s);
+            //long a = 'A';
+           // push_LONG(s, (long)(s->array[a-65]));
+        }
+        
         else if (strcmp(token, ":A") == 0)   // guardar localmente A
             atributoA(s);
-
+        /*
         else if (strcmp(token, ":B") == 0)   // guardar localmente B
             atributoB(s);
 
@@ -223,7 +229,7 @@ void parse(char *line) {
 
         else if (strcmp(token, ":Z") == 0)   // guardar localmente Z
             atributoZ(s);
-        /*
+        
         else if (strcmp(token, "A") == 0)   // HEX
             if (atributoA(s) != NULL)
                 atributoA(s);

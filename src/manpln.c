@@ -146,20 +146,42 @@ void copia(STACK *s){ // COPIA N-ÉSIMO ELEMENTO PARA O TOPO DA STACK "n $"
     }
     
 }
+void letraA(STACK *s){ // variaveis
+    long a = 'A';
+    //push_LONG(s, (long)s->array[a-65]);
+    TYPE x = (s->array[a-65]->type);
+    if (x == LONG) {
+        push_LONG(s, (long)s->array[a-65]);
+    }
+    else if (x == DOUBLE) {
+        push_DOUBLE(s, (s->array[a-65])->DOUBLE);
+    }
+    else if (x == CHAR) {
+        push_CHAR(s, (s->array[a-65])->CHAR);
+    }
+    else if (x == STRING) {
+        push_STRING(s, (s->array[a-65])->STRING);
+    }
+}
 
 void atributoA(STACK *s){ // variaveis
     DATA x = pop(s);
-    
-    if (has_type(x, LONG)) {
-        push_LONG(s, x.LONG);
+    long a = 'A';
 
+    if (has_type(x, LONG)) {
+        s->array[a-65]->LONG = x.LONG;
+        push_LONG(s, x.LONG);
+    
     } else if (has_type(x, DOUBLE)) {
+        s->array[a-65]->DOUBLE = x.DOUBLE;
         push_DOUBLE(s, x.DOUBLE);
 
     } else if (has_type(x, CHAR)) {
+        s->array[a-65]->CHAR = x.CHAR;
         push_CHAR(s, x.CHAR);
 
     } else if (has_type(x, STRING)) {
+        s->array[a-65]->STRING = x.STRING;
         push_STRING(s, x.STRING);
     }
 }

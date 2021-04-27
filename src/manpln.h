@@ -10,6 +10,7 @@ void rodar(STACK *s);
 void copia(STACK *s);
 void question(STACK *s);
 
+void letraA(STACK *s);
 void atributoA(STACK *s);
 void atributoB(STACK *s);
 void atributoC(STACK *s);

@@ -17,7 +17,7 @@
  * 
  * @param elem Elemento que queremos avaliar
  * @param mask Máscara que representa um tipo de dados
- * @returns 0 se o elemento for do tipo da mascará e diferente de 0 caso contrário.
+ * @returns 0 se o elemento for do tipo da máscara e diferente de 0 caso contrário.
  */
 int has_type(DATA elem, int mask){
 	return (elem.type & mask) != 0;
@@ -32,6 +32,8 @@ int has_type(DATA elem, int mask){
 STACK *new_stack(){
 	STACK *s = (STACK *) calloc(1, sizeof(STACK));
 	s->size = 100;
+	s->array[0]= (DATA *) 10; s->array[1]= (DATA *) 11; s->array[2]= (DATA *) 12; s->array[3]= (DATA *) 13; s->array[4]= (DATA *) 14; s->array[5]= (DATA *) 15; // definição por omissão A a F
+	s->array[13]= (DATA *) '\n'; s->array[18]= (DATA *) ' '; s->array[23]= (DATA *) 1; s->array[24]= (DATA *) 2; s->array[25]= (DATA *) 3; // definição por omissão N, S, X, Y, Z
 	s->stack = (DATA *) calloc(s->size, sizeof(DATA));
 	return s;
 }
