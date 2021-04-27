@@ -145,157 +145,164 @@ void parse(char *line) {
 
         else if (strcmp(token, "?") == 0)   // função if then else
             question(s);
-
-        else if (strcmp(token, "A") == 0) {  // função if then else
-            letraA(s);
-            //long a = 'A';
-           // push_LONG(s, (long)(s->array[a-65]));
-        }
         
         else if (strcmp(token, ":A") == 0)   // guardar localmente A
-            atributoA(s);
-        /*
+            atributoA(s, 'A');
+        
+        
         else if (strcmp(token, ":B") == 0)   // guardar localmente B
-            atributoB(s);
+            atributoA(s, 'B');
 
         else if (strcmp(token, ":C") == 0)   // guardar localmente C
-            atributoC(s);
+            atributoA(s, 'C');
 
         else if (strcmp(token, ":D") == 0)   // guardar localmente D
-            atributoD(s);
+            atributoA(s, 'D');
 
         else if (strcmp(token, ":E") == 0)   // guardar localmente E
-            atributoE(s);
+            atributoA(s, 'E');
 
         else if (strcmp(token, ":F") == 0)   // guardar localmente F
-            atributoF(s);
+            atributoA(s, 'F');
 
         else if (strcmp(token, ":G") == 0)   // guardar localmente G
-            atributoG(s);
+            atributoA(s, 'G');
 
         else if (strcmp(token, ":H") == 0)   // guardar localmente H
-            atributoH(s);
+            atributoA(s, 'H');
 
         else if (strcmp(token, ":I") == 0)   // guardar localmente I
-            atributoI(s);
+            atributoA(s, 'I');
 
         else if (strcmp(token, ":J") == 0)   // guardar localmente J
-            atributoJ(s);
+            atributoA(s, 'J');
 
         else if (strcmp(token, ":K") == 0)   // guardar localmente K
-            atributoK(s);
+            atributoA(s, 'K');
 
         else if (strcmp(token, ":L") == 0)   // guardar localmente L
-            atributoL(s);
+            atributoA(s, 'L');
 
         else if (strcmp(token, ":M") == 0)   // guardar localmente M
-            atributoM(s);
+            atributoA(s, 'M');
 
         else if (strcmp(token, ":N") == 0)   // guardar localmente N 
-            atributoN(s);
+            atributoA(s, 'N');
 
         else if (strcmp(token, ":O") == 0)   // guardar localmente O 
-            atributoO(s);
+            atributoA(s, 'O');
 
         else if (strcmp(token, ":P") == 0)   // guardar localmente P
-            atributoP(s);
+            atributoA(s, 'P');
 
         else if (strcmp(token, ":Q") == 0)   // guardar localmente Q
-            atributoQ(s);
+            atributoA(s, 'Q');
 
         else if (strcmp(token, ":R") == 0)   // guardar localmente R 
-            atributoR(s);
+            atributoA(s, 'R');
 
         else if (strcmp(token, ":S") == 0)   // guardar localmente S
-            atributoS(s);
+            atributoA(s, 'S');
 
         else if (strcmp(token, ":T") == 0)   // guardar localmente T
-            atributoT(s);
+            atributoA(s, 'T');
 
         else if (strcmp(token, ":U") == 0)   // guardar localmente U
-            atributoU(s);
+            atributoA(s, 'U');
 
         else if (strcmp(token, ":V") == 0)   // guardar localmente V 
-            atributoV(s);
+            atributoA(s, 'V');
 
         else if (strcmp(token, ":W") == 0)   // guardar localmente W
-            atributoW(s);
+            atributoA(s, 'W');
 
         else if (strcmp(token, ":X") == 0)   // guardar localmente X
-            atributoX(s);
+            atributoA(s, 'X');
 
         else if (strcmp(token, ":Y") == 0)   // guardar localmente Y 
-            atributoY(s);
+            atributoA(s, 'Y');
 
         else if (strcmp(token, ":Z") == 0)   // guardar localmente Z
-            atributoZ(s);
+            atributoA(s, 'Z');
         
         else if (strcmp(token, "A") == 0)   // HEX
-            if (atributoA(s) != NULL)
-                atributoA(s);
-            else
-                push_LONG(s,10);
+            letraA(s, 'A');
 
         else if (strcmp(token, "B") == 0)   // HEX
-            if (atributoB(s) != NULL)
-                atributoB(s);
-            else
-                push_LONG(s,11);
+            letraA(s, 'B');
 
         else if (strcmp(token, "C") == 0)   // HEX
-            if (atributoC(s) != NULL)
-                atributoC(s);
-            else
-                push_LONG(s,12);
+            letraA(s, 'C');
 
         else if (strcmp(token, "D") == 0)   // HEX
-            if (atributoD(s) != NULL)
-                atributoD(s);
-            else
-                push_LONG(s,13);
+            letraA(s, 'D');
 
         else if (strcmp(token, "E") == 0)   // HEX
-            if (atributoE(s) != NULL)
-                atributoE(s);
-            else
-                push_LONG(s,14);
+            letraA(s, 'E');
 
         else if (strcmp(token, "F") == 0)   // HEX
-            if (atributoF(s) != NULL)
-                atributoF(s);
-            else
-                push_LONG(s,15);
+            letraA(s, 'F');
 
-        else if (strcmp(token, "N") == 0)   // tab
-            if (atributoN(s) != NULL)
-                atributoN(s);
-            else
-                push_CHAR(s,'\n');
+        else if (strcmp(token, "G") == 0)   // HEX
+            letraA(s, 'G');
 
-        else if (strcmp(token, "S") == 0)   // space
-            if (atributoS(s) != NULL)
-                atributoS(s);
-            else
-                push_CHAR(s,' ');
+        else if (strcmp(token, "H") == 0)   // HEX
+            letraA(s, 'H');
+
+        else if (strcmp(token, "I") == 0)   // HEX
+            letraA(s, 'I');
+
+        else if (strcmp(token, "J") == 0)   // HEX
+            letraA(s, 'J');
+
+        else if (strcmp(token, "K") == 0)   // HEX
+            letraA(s, 'K');
+
+        else if (strcmp(token, "L") == 0)   // tab
+            letraA(s, 'L');
+
+        else if (strcmp(token, "M") == 0)   // HEX
+            letraA(s, 'M');
+
+        else if (strcmp(token, "N") == 0)   // HEX
+            letraA(s, 'N');
+
+        else if (strcmp(token, "O") == 0)   // HEX
+            letraA(s, 'O');
+
+        else if (strcmp(token, "P") == 0)   // HEX
+            letraA(s, 'P');
+
+        else if (strcmp(token, "Q") == 0)   // HEX
+            letraA(s, 'Q');
+
+        else if (strcmp(token, "R") == 0)   // space
+            letraA(s, 'R');
+
+        else if (strcmp(token, "S") == 0)   // HEX
+            letraA(s, 'S');
+
+        else if (strcmp(token, "T") == 0)   // HEX
+            letraA(s, 'T');
+
+        else if (strcmp(token, "U") == 0)   // HEX
+            letraA(s, 'U');
+
+        else if (strcmp(token, "V") == 0)   // HEX
+            letraA(s, 'V');
+
+        else if (strcmp(token, "W") == 0)   // HEX
+            letraA(s, 'W');
 
         else if (strcmp(token, "X") == 0)   // x
-            if (atributoX(s) != NULL)
-                atributoX(s);
-            else
-                push_LONG(s, 0);
+            letraA(s, 'X');
 
         else if (strcmp(token, "Y") == 0)   // y
-            if (atributoY(s) != NULL)
-                atributoY(s);
-            else
-                push_LONG(s, 1);
+            letraA(s, 'Y');
 
         else if (strcmp(token, "Z") == 0)   // z
-            if (atributoZ(s) != NULL)
-                atributoZ(s);
-            else
-                push_LONG(s, 2);
-*/
+            letraA(s, 'Z');
+
         // pops e prints
         
         else if (strcmp(token, ";") == 0)	// função pop

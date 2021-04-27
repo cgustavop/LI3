@@ -32,8 +32,17 @@ int has_type(DATA elem, int mask){
 STACK *new_stack(){
 	STACK *s = (STACK *) calloc(1, sizeof(STACK));
 	s->size = 100;
-	s->array[0]= (DATA *) 10; s->array[1]= (DATA *) 11; s->array[2]= (DATA *) 12; s->array[3]= (DATA *) 13; s->array[4]= (DATA *) 14; s->array[5]= (DATA *) 15; // definição por omissão A a F
-	s->array[13]= (DATA *) '\n'; s->array[18]= (DATA *) ' '; s->array[23]= (DATA *) 1; s->array[24]= (DATA *) 2; s->array[25]= (DATA *) 3; // definição por omissão N, S, X, Y, Z
+	s->array[0].LONG = 10; s->array[0].type= LONG;
+	s->array[1].LONG = 11; s->array[1].type= LONG;
+	s->array[2].LONG = 12; s->array[2].type= LONG;
+	s->array[3].LONG = 13; s->array[3].type= LONG;
+	s->array[4].LONG = 14; s->array[4].type= LONG;
+	s->array[5].LONG = 15; s->array[5].type= LONG; // definição por omissão A a F
+	s->array[13].CHAR = '\n'; s->array[13].type= CHAR;
+	s->array[18].CHAR = ' '; s->array[18].type= CHAR;
+	s->array[23].LONG = 1; s->array[23].type= LONG;
+	s->array[24].LONG = 2; s->array[24].type= LONG;
+	s->array[25].LONG = 3; s->array[25].type= LONG; // definição por omissão N, S, X, Y, Z
 	s->stack = (DATA *) calloc(s->size, sizeof(DATA));
 	return s;
 }

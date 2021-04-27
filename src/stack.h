@@ -19,7 +19,7 @@ typedef struct data {
 } DATA;
 
 typedef struct stack{
-	DATA *array[26];
+	DATA array[26];
 	DATA *stack;
 	int size;
 	int n_elems;
