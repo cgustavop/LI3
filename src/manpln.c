@@ -284,7 +284,6 @@ void question(STACK *s){ // if then else com os 3 elementos anteriores
  *
  * Inicializada com o token "l"
  *
- * @note Função definida como amostra. Por motivos desconhecidos a função dá erro nos testes quando definida fora do parser.
  */
 void lerl(STACK *s){
     char aux[10240];

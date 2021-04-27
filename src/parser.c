@@ -188,12 +188,7 @@ void parse(char *line) {
             printt(s);
 
         else if (strcmp(token, "l") == 0)  { // lê linha abaixo
-
-            char linee[10240];
-            assert(fgets(linee,10240,stdin)!=NULL);
-            assert(linee[strlen(linee)-1]=='\n');
-            linee[strlen(linee)-1] = '\0';
-            push_STRING(s,linee);
+            lerl(s);
         }
 
         else
