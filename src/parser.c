@@ -145,40 +145,40 @@ void parse(char *line) {
 
         else if (strcmp(token, "?") == 0)   // função if then else
             question(s);
-/*
+
         else if (strcmp(token, "A") == 0)
-            HEX(s);
+            push_LONG(s,10);
 
         else if (strcmp(token, "B") == 0)
-            HEX(s);
+            push_LONG(s,11);
 
         else if (strcmp(token, "C") == 0)
-            HEX(s);
+            push_LONG(s,12);
 
         else if (strcmp(token, "D") == 0)
-            HEX(s);
+            push_LONG(s,13);
 
         else if (strcmp(token, "E") == 0)
-            HEX(s);
+            push_LONG(s,14);
 
         else if (strcmp(token, "F") == 0)
-            HEX(s);
+            push_LONG(s,15);
 
         else if (strcmp(token, "N") == 0)
-            HEX(s);
+            push_CHAR(s,'\n');
 
         else if (strcmp(token, "S") == 0)
-            HEX(s);
+            push_CHAR(s,' ');
 
         else if (strcmp(token, "X") == 0)
-            HEX(s);
+            push_LONG(s,0);
 
         else if (strcmp(token, "Y") == 0)
-            HEX(s);
+            push_LONG(s,1);
 
         else if (strcmp(token, "Z") == 0)
-            HEX(s);
-*/
+            push_LONG(s,2);
+
         // pops e prints
         
         else if (strcmp(token, ";") == 0)	// função pop
