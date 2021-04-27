@@ -186,17 +186,3 @@ void expoente(STACK *s){ // EXPONENCIAÇÃO "#"
         push_DOUBLE(s, powf(y.LONG,x.DOUBLE));
     }
 }
-
-void hex(STACK *s, DATA x){
-
-
-    if(has_type(x, LONG))
-        push_LONG(s, x.LONG);
-    else if(has_type(x, DOUBLE))
-        push_DOUBLE(s, x.DOUBLE);    
-    else if(has_type(x, CHAR))
-        push_CHAR(s, x.CHAR);   
-    else if(has_type(x, STRING))
-        push_STRING(s, x.STRING);
-
-}

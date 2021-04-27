@@ -146,16 +146,450 @@ void copia(STACK *s){ // COPIA N-ÉSIMO ELEMENTO PARA O TOPO DA STACK "n $"
     }
     
 }
-/*
-void HEX(STACK *s){ // variaveis
-    DATA x = pop(s);
-    DATA y = pop(s);
 
-    if (has_type(x, CHAR) && x.CHAR = "A")
-        if 
+void atributoA(STACK *s){ // variaveis
+    DATA x = pop(s);
+    
+    if (has_type(x, LONG)) {
+        push_LONG(s, x.LONG);
+
+    } else if (has_type(x, DOUBLE)) {
+        push_DOUBLE(s, x.DOUBLE);
+
+    } else if (has_type(x, CHAR)) {
+        push_CHAR(s, x.CHAR);
+
+    } else if (has_type(x, STRING)) {
+        push_STRING(s, x.STRING);
+    }
 }
 
-*/
+void atributoB(STACK *s){ // variaveis
+    DATA x = pop(s);
+    
+    if (has_type(x, LONG)) {
+        push_LONG(s, x.LONG);
+
+    } else if (has_type(x, DOUBLE)) {
+        push_DOUBLE(s, x.DOUBLE);
+
+    } else if (has_type(x, CHAR)) {
+        push_CHAR(s, x.CHAR);
+
+    } else if (has_type(x, STRING)) {
+        push_STRING(s, x.STRING);
+    }
+}
+
+void atributoC(STACK *s){ // variaveis
+    DATA x = pop(s);
+    
+    if (has_type(x, LONG)) {
+        push_LONG(s, x.LONG);
+
+    } else if (has_type(x, DOUBLE)) {
+        push_DOUBLE(s, x.DOUBLE);
+
+    } else if (has_type(x, CHAR)) {
+        push_CHAR(s, x.CHAR);
+
+    } else if (has_type(x, STRING)) {
+        push_STRING(s, x.STRING);
+    }
+}
+
+void atributoD(STACK *s){ // variaveis
+    DATA x = pop(s);
+    
+    if (has_type(x, LONG)) {
+        push_LONG(s, x.LONG);
+
+    } else if (has_type(x, DOUBLE)) {
+        push_DOUBLE(s, x.DOUBLE);
+
+    } else if (has_type(x, CHAR)) {
+        push_CHAR(s, x.CHAR);
+
+    } else if (has_type(x, STRING)) {
+        push_STRING(s, x.STRING);
+    }
+}
+
+void atributoE(STACK *s){ // variaveis
+    DATA x = pop(s);
+    
+    if (has_type(x, LONG)) {
+        push_LONG(s, x.LONG);
+
+    } else if (has_type(x, DOUBLE)) {
+        push_DOUBLE(s, x.DOUBLE);
+
+    } else if (has_type(x, CHAR)) {
+        push_CHAR(s, x.CHAR);
+
+    } else if (has_type(x, STRING)) {
+        push_STRING(s, x.STRING);
+    }
+}
+
+void atributoF(STACK *s){ // variaveis
+    DATA x = pop(s);
+    
+    if (has_type(x, LONG)) {
+        push_LONG(s, x.LONG);
+
+    } else if (has_type(x, DOUBLE)) {
+        push_DOUBLE(s, x.DOUBLE);
+
+    } else if (has_type(x, CHAR)) {
+        push_CHAR(s, x.CHAR);
+
+    } else if (has_type(x, STRING)) {
+        push_STRING(s, x.STRING);
+    }
+}
+
+void atributoG(STACK *s){ // variaveis
+    DATA x = pop(s);
+    
+    if (has_type(x, LONG)) {
+        push_LONG(s, x.LONG);
+
+    } else if (has_type(x, DOUBLE)) {
+        push_DOUBLE(s, x.DOUBLE);
+
+    } else if (has_type(x, CHAR)) {
+        push_CHAR(s, x.CHAR);
+
+    } else if (has_type(x, STRING)) {
+        push_STRING(s, x.STRING);
+    }
+}
+
+void atributoH(STACK *s){ // variaveis
+    DATA x = pop(s);
+    
+    if (has_type(x, LONG)) {
+        push_LONG(s, x.LONG);
+
+    } else if (has_type(x, DOUBLE)) {
+        push_DOUBLE(s, x.DOUBLE);
+
+    } else if (has_type(x, CHAR)) {
+        push_CHAR(s, x.CHAR);
+
+    } else if (has_type(x, STRING)) {
+        push_STRING(s, x.STRING);
+    }
+}
+
+void atributoI(STACK *s){ // variaveis
+    DATA x = pop(s);
+    
+    if (has_type(x, LONG)) {
+        push_LONG(s, x.LONG);
+
+    } else if (has_type(x, DOUBLE)) {
+        push_DOUBLE(s, x.DOUBLE);
+
+    } else if (has_type(x, CHAR)) {
+        push_CHAR(s, x.CHAR);
+
+    } else if (has_type(x, STRING)) {
+        push_STRING(s, x.STRING);
+    }
+}
+
+void atributoJ(STACK *s){ // variaveis
+    DATA x = pop(s);
+    
+    if (has_type(x, LONG)) {
+        push_LONG(s, x.LONG);
+
+    } else if (has_type(x, DOUBLE)) {
+        push_DOUBLE(s, x.DOUBLE);
+
+    } else if (has_type(x, CHAR)) {
+        push_CHAR(s, x.CHAR);
+
+    } else if (has_type(x, STRING)) {
+        push_STRING(s, x.STRING);
+    }
+}
+
+void atributoK(STACK *s){ // variaveis
+    DATA x = pop(s);
+    
+    if (has_type(x, LONG)) {
+        push_LONG(s, x.LONG);
+
+    } else if (has_type(x, DOUBLE)) {
+        push_DOUBLE(s, x.DOUBLE);
+
+    } else if (has_type(x, CHAR)) {
+        push_CHAR(s, x.CHAR);
+
+    } else if (has_type(x, STRING)) {
+        push_STRING(s, x.STRING);
+    }
+}
+
+void atributoL(STACK *s){ // variaveis
+    DATA x = pop(s);
+    
+    if (has_type(x, LONG)) {
+        push_LONG(s, x.LONG);
+
+    } else if (has_type(x, DOUBLE)) {
+        push_DOUBLE(s, x.DOUBLE);
+
+    } else if (has_type(x, CHAR)) {
+        push_CHAR(s, x.CHAR);
+
+    } else if (has_type(x, STRING)) {
+        push_STRING(s, x.STRING);
+    }
+}
+
+void atributoM(STACK *s){ // variaveis
+    DATA x = pop(s);
+    
+    if (has_type(x, LONG)) {
+        push_LONG(s, x.LONG);
+
+    } else if (has_type(x, DOUBLE)) {
+        push_DOUBLE(s, x.DOUBLE);
+
+    } else if (has_type(x, CHAR)) {
+        push_CHAR(s, x.CHAR);
+
+    } else if (has_type(x, STRING)) {
+        push_STRING(s, x.STRING);
+    }
+}
+
+void atributoN(STACK *s){ // variaveis
+    DATA x = pop(s);
+    
+    if (has_type(x, LONG)) {
+        push_LONG(s, x.LONG);
+
+    } else if (has_type(x, DOUBLE)) {
+        push_DOUBLE(s, x.DOUBLE);
+
+    } else if (has_type(x, CHAR)) {
+        push_CHAR(s, x.CHAR);
+
+    } else if (has_type(x, STRING)) {
+        push_STRING(s, x.STRING);
+    }
+}
+
+void atributoO(STACK *s){ // variaveis
+    DATA x = pop(s);
+    
+    if (has_type(x, LONG)) {
+        push_LONG(s, x.LONG);
+
+    } else if (has_type(x, DOUBLE)) {
+        push_DOUBLE(s, x.DOUBLE);
+
+    } else if (has_type(x, CHAR)) {
+        push_CHAR(s, x.CHAR);
+
+    } else if (has_type(x, STRING)) {
+        push_STRING(s, x.STRING);
+    }
+}
+
+void atributoP(STACK *s){ // variaveis
+    DATA x = pop(s);
+    
+    if (has_type(x, LONG)) {
+        push_LONG(s, x.LONG);
+
+    } else if (has_type(x, DOUBLE)) {
+        push_DOUBLE(s, x.DOUBLE);
+
+    } else if (has_type(x, CHAR)) {
+        push_CHAR(s, x.CHAR);
+
+    } else if (has_type(x, STRING)) {
+        push_STRING(s, x.STRING);
+    }
+}
+
+void atributoQ(STACK *s){ // variaveis
+    DATA x = pop(s);
+    
+    if (has_type(x, LONG)) {
+        push_LONG(s, x.LONG);
+
+    } else if (has_type(x, DOUBLE)) {
+        push_DOUBLE(s, x.DOUBLE);
+
+    } else if (has_type(x, CHAR)) {
+        push_CHAR(s, x.CHAR);
+
+    } else if (has_type(x, STRING)) {
+        push_STRING(s, x.STRING);
+    }
+}
+
+void atributoR(STACK *s){ // variaveis
+    DATA x = pop(s);
+    
+    if (has_type(x, LONG)) {
+        push_LONG(s, x.LONG);
+
+    } else if (has_type(x, DOUBLE)) {
+        push_DOUBLE(s, x.DOUBLE);
+
+    } else if (has_type(x, CHAR)) {
+        push_CHAR(s, x.CHAR);
+
+    } else if (has_type(x, STRING)) {
+        push_STRING(s, x.STRING);
+    }
+}
+
+void atributoS(STACK *s){ // variaveis
+    DATA x = pop(s);
+    
+    if (has_type(x, LONG)) {
+        push_LONG(s, x.LONG);
+
+    } else if (has_type(x, DOUBLE)) {
+        push_DOUBLE(s, x.DOUBLE);
+
+    } else if (has_type(x, CHAR)) {
+        push_CHAR(s, x.CHAR);
+
+    } else if (has_type(x, STRING)) {
+        push_STRING(s, x.STRING);
+    }
+}
+
+void atributoT(STACK *s){ // variaveis
+    DATA x = pop(s);
+    
+    if (has_type(x, LONG)) {
+        push_LONG(s, x.LONG);
+
+    } else if (has_type(x, DOUBLE)) {
+        push_DOUBLE(s, x.DOUBLE);
+
+    } else if (has_type(x, CHAR)) {
+        push_CHAR(s, x.CHAR);
+
+    } else if (has_type(x, STRING)) {
+        push_STRING(s, x.STRING);
+    }
+}
+
+void atributoU(STACK *s){ // variaveis
+    DATA x = pop(s);
+    
+    if (has_type(x, LONG)) {
+        push_LONG(s, x.LONG);
+
+    } else if (has_type(x, DOUBLE)) {
+        push_DOUBLE(s, x.DOUBLE);
+
+    } else if (has_type(x, CHAR)) {
+        push_CHAR(s, x.CHAR);
+
+    } else if (has_type(x, STRING)) {
+        push_STRING(s, x.STRING);
+    }
+}
+
+void atributoV(STACK *s){ // variaveis
+    DATA x = pop(s);
+    
+    if (has_type(x, LONG)) {
+        push_LONG(s, x.LONG);
+
+    } else if (has_type(x, DOUBLE)) {
+        push_DOUBLE(s, x.DOUBLE);
+
+    } else if (has_type(x, CHAR)) {
+        push_CHAR(s, x.CHAR);
+
+    } else if (has_type(x, STRING)) {
+        push_STRING(s, x.STRING);
+    }
+}
+
+void atributoW(STACK *s){ // variaveis
+    DATA x = pop(s);
+    
+    if (has_type(x, LONG)) {
+        push_LONG(s, x.LONG);
+
+    } else if (has_type(x, DOUBLE)) {
+        push_DOUBLE(s, x.DOUBLE);
+
+    } else if (has_type(x, CHAR)) {
+        push_CHAR(s, x.CHAR);
+
+    } else if (has_type(x, STRING)) {
+        push_STRING(s, x.STRING);
+    }
+}
+
+void atributoX(STACK *s){ // variaveis
+    DATA x = pop(s);
+    
+    if (has_type(x, LONG)) {
+        push_LONG(s, x.LONG);
+
+    } else if (has_type(x, DOUBLE)) {
+        push_DOUBLE(s, x.DOUBLE);
+
+    } else if (has_type(x, CHAR)) {
+        push_CHAR(s, x.CHAR);
+
+    } else if (has_type(x, STRING)) {
+        push_STRING(s, x.STRING);
+    }
+}
+
+void atributoY(STACK *s){ // variaveis
+    DATA x = pop(s);
+    
+    if (has_type(x, LONG)) {
+        push_LONG(s, x.LONG);
+
+    } else if (has_type(x, DOUBLE)) {
+        push_DOUBLE(s, x.DOUBLE);
+
+    } else if (has_type(x, CHAR)) {
+        push_CHAR(s, x.CHAR);
+
+    } else if (has_type(x, STRING)) {
+        push_STRING(s, x.STRING);
+    }
+}
+
+void atributoZ(STACK *s){ // variaveis
+    DATA x = pop(s);
+    
+    if (has_type(x, LONG)) {
+        push_LONG(s, x.LONG);
+
+    } else if (has_type(x, DOUBLE)) {
+        push_DOUBLE(s, x.DOUBLE);
+
+    } else if (has_type(x, CHAR)) {
+        push_CHAR(s, x.CHAR);
+
+    } else if (has_type(x, STRING)) {
+        push_STRING(s, x.STRING);
+    }
+}
+
+
 
 void question(STACK *s){ // if then else com os 3 elementos anteriores
     DATA x = pop(s);
@@ -320,6 +754,8 @@ void printt(STACK *s){ // IMPRIME TOPO DA STACK "p"
         push_STRING(s, x.STRING);            
     }
 }
+
+
 
 //CONVERSÕES
 /**
