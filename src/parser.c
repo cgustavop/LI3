@@ -223,7 +223,7 @@ void parse(char *line) {
 
         else if (strcmp(token, ":Z") == 0)   // guardar localmente Z
             atributoZ(s);
-
+        /*
         else if (strcmp(token, "A") == 0)   // HEX
             if (atributoA(s) != NULL)
                 atributoA(s);
@@ -289,7 +289,7 @@ void parse(char *line) {
                 atributoZ(s);
             else
                 push_LONG(s, 2);
-
+*/
         // pops e prints
         
         else if (strcmp(token, ";") == 0)	// função pop
@@ -300,6 +300,10 @@ void parse(char *line) {
 
         else if (strcmp(token, "l") == 0)  { // lê linha abaixo
             lerl(s);
+        }
+
+        else if (strcmp(token, "t") == 0)  { // lê linha abaixo
+            lert(s);
         }
 
         else
