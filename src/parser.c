@@ -189,7 +189,7 @@ void parse(char *line) {
         else if (strcmp(token, ":N") == 0)   // guardar localmente N 
             atributoA(s, 'N');
 
-        else if (strcmp(token, ":O") == 0)   // guardar localmente O 
+        else if (strcmp(token, ":O") == 0)   // guardar localmente O
             atributoA(s, 'O');
 
         else if (strcmp(token, ":P") == 0)   // guardar localmente P
@@ -314,11 +314,11 @@ void parse(char *line) {
         else if (strcmp(token, "l") == 0)  { // lê linha abaixo
             lerl(s);
         }
-
+/*
         else if (strcmp(token, "t") == 0)  { // lê linha abaixo
             lert(s);
         }
-
+*/
         else
            push_STRING(s, token); 
 		}

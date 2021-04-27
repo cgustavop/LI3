@@ -40,9 +40,9 @@ STACK *new_stack(){
 	s->array[5].LONG = 15; s->array[5].type= LONG; // definição por omissão A a F
 	s->array[13].CHAR = '\n'; s->array[13].type= CHAR;
 	s->array[18].CHAR = ' '; s->array[18].type= CHAR;
-	s->array[23].LONG = 1; s->array[23].type= LONG;
-	s->array[24].LONG = 2; s->array[24].type= LONG;
-	s->array[25].LONG = 3; s->array[25].type= LONG; // definição por omissão N, S, X, Y, Z
+	s->array[23].LONG = 0; s->array[23].type= LONG;
+	s->array[24].LONG = 1; s->array[24].type= LONG;
+	s->array[25].LONG = 2; s->array[25].type= LONG; // definição por omissão N, S, X, Y, Z
 	s->stack = (DATA *) calloc(s->size, sizeof(DATA));
 	return s;
 }

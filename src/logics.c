@@ -84,7 +84,19 @@ void igual(STACK *s){
             push_LONG(s, 1);
         else
             push_LONG(s, 0);
-
+    
+    } else if(has_type(x, DOUBLE) && has_type(y, LONG)){
+        if ((fmod(x.DOUBLE,1) == 0) && ((long)x.DOUBLE == y.LONG))
+            push_LONG(s, 1);
+        else
+            push_LONG(s, 0);
+    
+    }else if(has_type(y, DOUBLE) && has_type(x, LONG)){
+        if ((fmod(y.DOUBLE,1) == 0) && (x.LONG == (long)y.DOUBLE))
+            push_LONG(s, 1);
+        else
+            push_LONG(s, 0);
+    
     } else if (has_type(x, CHAR) && has_type(y, CHAR)){
         if (x.CHAR == y.CHAR)
             push_LONG(s, 1);
@@ -128,6 +140,20 @@ void menor(STACK *s){ // <
 
     } else if (has_type(x, DOUBLE) && has_type(y, LONG)){
         if (y.LONG < x.DOUBLE)
+            push_LONG(s, 1);
+        else
+            push_LONG(s, 0);
+
+    } else if (has_type(x, LONG) && has_type(y, CHAR)){
+        char a = x.LONG;
+        if (y.CHAR < a)
+            push_LONG(s, 1);
+        else
+            push_LONG(s, 0);
+
+    } else if (has_type(x, CHAR) && has_type(y, LONG)){
+        char a = y.LONG;
+        if (a < x.CHAR)
             push_LONG(s, 1);
         else
             push_LONG(s, 0);
@@ -262,38 +288,62 @@ void eE(STACK *s){
     DATA y = pop(s);
     
     if (has_type(x, LONG) && has_type(y, LONG)){
-        if ( (x.LONG != 0) && (y.LONG != 0) )
-            if (x.LONG > y.LONG)
-                push_LONG(s, x.LONG);
+        
+        long a;
+        if (x.LONG > y.LONG)
+                a = x.LONG;
+            else if (x.LONG < y.LONG)
+                a = y.LONG;
             else
-                push_LONG(s, y.LONG);
+                a = y.LONG;
+
+        if ( (x.LONG != 0) && (y.LONG != 0) )
+            push_LONG(s, a);
         else
             push_LONG(s, 0);
 
     } else if (has_type(x, DOUBLE) && has_type(y, DOUBLE)){
-        if ( (x.DOUBLE != 0) && (y.LONG != 0) )
-            if (x.DOUBLE > y.DOUBLE)
-                push_LONG(s, (long)x.DOUBLE);
+        
+        long a;
+        if (x.DOUBLE > y.DOUBLE)
+                a = (long)x.DOUBLE;
+            else if (x.DOUBLE < y.DOUBLE)
+                a = (long)y.DOUBLE;
             else
-                push_LONG(s, (long)y.DOUBLE);
+                a = (long)y.DOUBLE;
+
+        if ( (x.DOUBLE != 0) && (y.LONG != 0) )
+            push_LONG(s, a);
         else
             push_LONG(s, 0);
 
     } else if (has_type(x, DOUBLE) && has_type(y, LONG)){
-        if ( (x.DOUBLE != 0) && (y.LONG != 0) )
-            if (x.DOUBLE > y.LONG)
-                push_LONG(s, (long)x.DOUBLE);
+
+        long a;
+        if (x.DOUBLE > y.LONG)
+                a = (long)x.DOUBLE;
+            else if (x.DOUBLE < y.LONG)
+                a = y.LONG;
             else
-                push_LONG(s, y.LONG);
+                a = y.LONG;
+
+        if ( (x.DOUBLE != 0) && (y.LONG != 0) )
+            push_LONG(s, a);
         else
             push_LONG(s, 0);
 
     } else if (has_type(x, LONG) && has_type(y, DOUBLE)){
-        if ( (x.LONG != 0) && (y.DOUBLE != 0) )
-            if (x.LONG > y.DOUBLE)
-                push_LONG(s, x.LONG);
+
+        long a;
+        if (x.LONG > y.DOUBLE)
+                a = x.LONG;
+            else if (x.LONG < y.DOUBLE)
+                a = (long)y.DOUBLE;
             else
-                push_LONG(s, (long)y.DOUBLE);
+                a = (long)y.DOUBLE;
+
+        if ( (x.LONG != 0) && (y.DOUBLE != 0) )
+            push_LONG(s, a);
         else
             push_LONG(s, 0);
     }
@@ -305,12 +355,16 @@ void eE(STACK *s){
  * Inicializada com o token "e|"
  */
 void eOU(STACK *s){
-    DATA x = pop(s);
-    DATA y = pop(s);
+    DATA x = pop(s); //0
+    DATA y = pop(s); //A
     
     if (has_type(x, LONG) && has_type(y, LONG)){
+        long a;
+        if (x.LONG < y.LONG) a = y.LONG;
+        else a = x.LONG;
+
         if ( (x.LONG != 0) || (y.LONG != 0) )
-            push_LONG(s, 1);
+            push_LONG(s, a);
         else
             push_LONG(s, 0);
     } else

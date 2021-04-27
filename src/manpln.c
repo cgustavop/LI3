@@ -190,9 +190,9 @@ void atributoA(STACK *s, char letra){ // variaveis
 }
 
 void question(STACK *s){ // if then else com os 3 elementos anteriores
-    DATA x = pop(s);
-    DATA y = pop(s);
     DATA z = pop(s);
+    DATA y = pop(s);
+    DATA x = pop(s);
 
     if (has_type(x, LONG)) {
         if (x.LONG != 0){
@@ -325,7 +325,7 @@ void lerl(STACK *s){
     push_STRING(s,aux);
 }
 
-
+/*
 void lert(STACK *s){ // t
     char aux[10240];
     while (fgets(aux, 10240, stdin) != NULL){
@@ -335,7 +335,7 @@ void lert(STACK *s){ // t
     if (feof(stdin))
        push_STRING(s,aux);
 }
-
+*/
 /**
  * @brief Imprime o topo da stack
  *
