@@ -283,6 +283,7 @@ void nono(STACK *s){ // !
  *
  * Inicializada com o token "e&"
  */
+/*
 void eE(STACK *s){
     DATA x = pop(s);
     DATA y = pop(s);
@@ -348,12 +349,13 @@ void eE(STACK *s){
             push_LONG(s, 0);
     }
 }
-
+*/
 /**
  * @brief OU lógico entre dois elementos da stack
  *
  * Inicializada com o token "e|"
  */
+/*
 void eOU(STACK *s){
     DATA x = pop(s); //0
     DATA y = pop(s); //A
@@ -369,8 +371,68 @@ void eOU(STACK *s){
             push_LONG(s, 0);
     } else
         push_LONG(s, 0);
+
+}
+*/
+void eE(STACK *s){
+    DATA x = pop(s);
+    DATA y = pop(s);
+
+    if (has_type(y, LONG) && y.LONG == 0)
+        push_LONG(s, 0);
+    else if (has_type(x, LONG) && x.LONG == 0)
+        push_LONG(s, 0);
+    else {
+
+        if(has_type(y, LONG))
+            push_LONG(s, y.LONG);
+        else if(has_type(y, DOUBLE))
+            push_DOUBLE(s, y.DOUBLE);
+        else if(has_type(y, CHAR))
+            push_CHAR(s, y.CHAR);
+        else if(has_type(y, STRING))
+            push_STRING(s, y.STRING);
+    }
 }
 
+void eOU(STACK *s){
+    DATA x = pop(s);
+    DATA y = pop(s);
+
+    if (has_type(y, LONG) && y.LONG == 0 && has_type(x, LONG) && x.LONG == 0)
+        push_LONG(s, 0);
+    else if (has_type(y, LONG) && y.LONG == 0){
+        if(has_type(x, LONG))
+            push_LONG(s, x.LONG);
+        else if(has_type(x, DOUBLE))
+            push_DOUBLE(s, x.DOUBLE);
+        else if(has_type(x, CHAR))
+            push_CHAR(s, x.CHAR);
+        else if(has_type(x, STRING))
+            push_STRING(s, x.STRING);
+    }
+    else if (has_type(x, LONG) && x.LONG == 0){
+        if(has_type(y, LONG))
+            push_LONG(s, y.LONG);
+        else if(has_type(y, DOUBLE))
+            push_DOUBLE(s, y.DOUBLE);
+        else if(has_type(y, CHAR))
+            push_CHAR(s, y.CHAR);
+        else if(has_type(y, STRING))
+            push_STRING(s, y.STRING);
+    }
+    else {
+       if(has_type(y, LONG))
+            push_LONG(s, y.LONG);
+        else if(has_type(y, DOUBLE))
+            push_DOUBLE(s, y.DOUBLE);
+        else if(has_type(y, CHAR))
+            push_CHAR(s, y.CHAR);
+        else if(has_type(y, STRING))
+            push_STRING(s, y.STRING); 
+    }
+
+}
 /**
  * @brief Coloca o menor de 2 valores no topo da stack
  *
