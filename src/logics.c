@@ -254,25 +254,25 @@ void nono(STACK *s){ // !
     if (has_type(x, LONG)) {
         if (x.LONG == 0)
             push_LONG(s, 1);
-        else if (x.LONG == 1)
+        else
             push_LONG(s, 0);
 
     } else if (has_type(x, DOUBLE)) {
         if (x.DOUBLE == 0)
             push_LONG(s, 1);
-        else if (x.DOUBLE == 1)
+        else
             push_LONG(s, 0);
 
     } else if (has_type(x, CHAR)) {
-        if (x.CHAR == '0')
+        if (x.CHAR == (char)0)
             push_LONG(s, 1);
-        else if (x.CHAR == '1')
+        else
             push_LONG(s, 0);
 
     } else if (has_type(x, STRING)){
         if (strcmp(x.STRING,"0") == 0)
             push_LONG(s, 1);
-        else if ((strcmp(x.STRING,"1") == 0))
+        else
             push_LONG(s, 0);
     }
 }
