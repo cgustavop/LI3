@@ -277,103 +277,6 @@ void nono(STACK *s){ // !
     }
 }
 
-
-/**
- * @brief E lógico entre dois elementos da stack
- *
- * Inicializada com o token "e&"
- */
-/*
-void eE(STACK *s){
-    DATA x = pop(s);
-    DATA y = pop(s);
-    
-    if (has_type(x, LONG) && has_type(y, LONG)){
-        
-        long a;
-        if (x.LONG > y.LONG)
-                a = x.LONG;
-            else if (x.LONG < y.LONG)
-                a = y.LONG;
-            else
-                a = y.LONG;
-
-        if ( (x.LONG != 0) && (y.LONG != 0) )
-            push_LONG(s, a);
-        else
-            push_LONG(s, 0);
-
-    } else if (has_type(x, DOUBLE) && has_type(y, DOUBLE)){
-        
-        long a;
-        if (x.DOUBLE > y.DOUBLE)
-                a = (long)x.DOUBLE;
-            else if (x.DOUBLE < y.DOUBLE)
-                a = (long)y.DOUBLE;
-            else
-                a = (long)y.DOUBLE;
-
-        if ( (x.DOUBLE != 0) && (y.LONG != 0) )
-            push_LONG(s, a);
-        else
-            push_LONG(s, 0);
-
-    } else if (has_type(x, DOUBLE) && has_type(y, LONG)){
-
-        long a;
-        if (x.DOUBLE > y.LONG)
-                a = (long)x.DOUBLE;
-            else if (x.DOUBLE < y.LONG)
-                a = y.LONG;
-            else
-                a = y.LONG;
-
-        if ( (x.DOUBLE != 0) && (y.LONG != 0) )
-            push_LONG(s, a);
-        else
-            push_LONG(s, 0);
-
-    } else if (has_type(x, LONG) && has_type(y, DOUBLE)){
-
-        long a;
-        if (x.LONG > y.DOUBLE)
-                a = x.LONG;
-            else if (x.LONG < y.DOUBLE)
-                a = (long)y.DOUBLE;
-            else
-                a = (long)y.DOUBLE;
-
-        if ( (x.LONG != 0) && (y.DOUBLE != 0) )
-            push_LONG(s, a);
-        else
-            push_LONG(s, 0);
-    }
-}
-*/
-/**
- * @brief OU lógico entre dois elementos da stack
- *
- * Inicializada com o token "e|"
- */
-/*
-void eOU(STACK *s){
-    DATA x = pop(s); //0
-    DATA y = pop(s); //A
-    
-    if (has_type(x, LONG) && has_type(y, LONG)){
-        long a;
-        if (x.LONG < y.LONG) a = y.LONG;
-        else a = x.LONG;
-
-        if ( (x.LONG != 0) || (y.LONG != 0) )
-            push_LONG(s, a);
-        else
-            push_LONG(s, 0);
-    } else
-        push_LONG(s, 0);
-
-}
-*/
 void eE(STACK *s){
     DATA x = pop(s);
     DATA y = pop(s);
@@ -382,8 +285,56 @@ void eE(STACK *s){
         push_LONG(s, 0);
     else if (has_type(x, LONG) && x.LONG == 0)
         push_LONG(s, 0);
-    else {
 
+    else if (has_type(x, LONG) && has_type(y, LONG)){
+        if (y.LONG > x.LONG)
+            push_LONG(s, y.LONG);
+        else
+            push_LONG(s, x.LONG);
+
+    } else if (has_type(x, LONG) && has_type(y, DOUBLE)){
+        if (y.DOUBLE > x.LONG)
+            push_DOUBLE(s, y.DOUBLE);
+        else
+            push_LONG(s, x.LONG);
+
+    } else if (has_type(x, DOUBLE) && has_type(y, DOUBLE)){
+        if (y.DOUBLE > x.DOUBLE)
+            push_DOUBLE(s, y.DOUBLE);
+        else
+            push_DOUBLE(s, x.DOUBLE);
+
+    } else if (has_type(x, DOUBLE) && has_type(y, LONG)){
+        if (y.LONG > x.DOUBLE)
+            push_LONG(s, y.LONG);
+        else
+            push_DOUBLE(s, x.DOUBLE);
+
+    } else if (has_type(x, CHAR) && has_type(y, CHAR)){
+        if (y.CHAR > x.CHAR)
+            push_CHAR(s, y.CHAR);
+        else
+            push_CHAR(s, x.CHAR);
+    
+    } else if (has_type(x, CHAR) && has_type(y, STRING)){
+        if ((char)(strlen(y.STRING)) > x.CHAR )
+            push_STRING(s, y.STRING);
+        else 
+            push_CHAR(s, x.CHAR);
+          
+    } else if (has_type(x, STRING) && has_type(y, STRING)){
+        if (strlen(y.STRING) > strlen(x.STRING)) 
+            push_STRING(s, y.STRING);
+        else
+            push_STRING(s , x.STRING);
+
+    } else if (has_type(x, STRING) && has_type(y, CHAR)){
+        if ( (y.CHAR) > (char)(strlen(x.STRING)) )
+            push_CHAR(s, y.CHAR);
+        else
+            push_STRING(s, x.STRING);
+
+    } else {
         if(has_type(y, LONG))
             push_LONG(s, y.LONG);
         else if(has_type(y, DOUBLE))
@@ -391,10 +342,16 @@ void eE(STACK *s){
         else if(has_type(y, CHAR))
             push_CHAR(s, y.CHAR);
         else if(has_type(y, STRING))
-            push_STRING(s, y.STRING);
+            push_STRING(s, y.STRING); 
     }
+
 }
 
+/**
+ * @brief OU lógico entre dois elementos da stack
+ *
+ * Inicializada com o token "e|"
+ */
 void eOU(STACK *s){
     DATA x = pop(s);
     DATA y = pop(s);
