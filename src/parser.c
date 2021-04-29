@@ -6,6 +6,7 @@
 #include <assert.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <ctype.h>
 
 #include "stack.h"
 #include "maths.h" 
@@ -40,288 +41,157 @@ void parse(char *line) {
       
         long val_l = strtol(token, &sobra1, 10);
         double val_d = strtod(token, &sobra2);
-
-        if(strlen(sobra1) == 0)
+      
+        if(strlen(sobra1) == 0)                 // tamanho sobra1 == 0, então é um elemento do tipo LONG (dá push a esse elemento)
         	push_LONG(s, val_l);
        
-        else if(strlen(sobra2) == 0)
+        else if(strlen(sobra2) == 0)            // tamanho sobra2 == 0, então é um elemento do tipo DOUBLE (dá push a esse elemento)
         	push_DOUBLE(s, val_d);
 
+        else if((isupper(token[0])) != 0)       // se for uma letra maiúscula coloca o seu valor na stack
+            letra(s, token[0]);
 
+        else if(strchr(token, ':') != NULL)  {  // se forem detetados ":" pega na letra que está à frente dos pontos
+            char *letra = strchr(token, ':');
+            atributo(s, &letra[1]);             // a letra é inserida como parametro para a função atributo
+        }
+        else {                                  // caso contrário -> operador/char/string -> contemplados nos casos seguintes
+        
+            switch (token[0]) {
         // operações base
 
-        else if (strcmp(token, "+") == 0)	// função soma
-        	soma(s);
+                case '+' :
+        	        soma(s);
+                    break;
+
+                case '-' :
+                    subtrai(s);
+                    break;
+
+                case '*' :
+                    multiplica(s);
+                    break;
+
+                case '/' :
+                    divide(s);
+                    break;
+
+                case ')' :
+                    incrementa(s);
+                    break;
+
+                case '(' :
+                    decrementa(s);
+                    break;
+
+                case '%' :
+                    modulo(s);
+                    break;
+
+                case '#' :
+                    expoente(s);
+                    break;
+
+                case '&' :
+                    E(s);
+                    break;
+
+                case '|' :
+                    ou(s);
+                    break;
+
+                case '^' :
+                    xor(s);
+                    break;
+
+                case '~' :
+                    not(s);
+                    break;
+
+                case '=' :
+                    igual(s);
+                    break;
+
+                case '!' :
+                    nono(s);
+                    break;
+
+                case '<' :
+                    menor(s);
+                    break;
+
+                case '>' :
+                    maior(s);
+                    break;
+
+                case 'e' :
+                    if (strcmp(token, "e&") == 0)
+                        eE(s);
+                    else if (strcmp(token, "e|") == 0)
+                        eOU(s);
+                    else if (strcmp(token, "e<") == 0)
+                        emenor(s);
+                    else if (strcmp(token, "e>") == 0)
+                        emaior(s);
+                    else 
+                        push_CHAR(s, 'e');
+                    break;
+
+                case 'i' :
+                    intz(s);
+                    break;
+
+                case 'f' :
+                    doublez(s);
+                    break;
+
+                case 'c' :
+                    charz(s);
+                    break;
+
+                case 's' :
+                    stringz(s);
+                    break;
+
+                case '_' :
+                    duplica(s);
+                    break;
+
+                case '\\' :
+                    troca(s);
+                    break;
+
+                case ';' :
+                    pop(s);
+                    break;
 
-        else if (strcmp(token, "-") == 0)	// função subtração
-        	subtrai(s);
+                case '@' :
+                    rodar(s);
+                    break;
 
-        else if (strcmp(token, "*") == 0)	// função multiplicação
-        	multiplica(s);
+                case '$' :
+                    copia(s);
+                    break;
 
-        else if (strcmp(token, "/") == 0)	// função divide
-        	divide(s);
+                case '?' :
+                    question(s);
+                    break;
 
-        else if (strcmp(token, ")") == 0)	// função incrementa
-        	incrementa(s);
+                case 'l' :
+                    lerl(s);
+                    break;
 
-        else if (strcmp(token, "(") == 0)	// função decrementa
-        	decrementa(s);
+                case 'p' :
+                    printt(s);
+                    break;
 
-        else if (strcmp(token, "%") == 0)	// função modulo
-        	modulo(s);
+                default:
+                    push_STRING(s, token);
+                    break;
 
-        else if (strcmp(token, "#") == 0)	// função expoente
-        	expoente(s);
-
-        // lógicas
-
-        else if (strcmp(token, "&") == 0)	// função lógica de disjunção
-        	E(s);
-
-        else if (strcmp(token, "|") == 0)	// função lógica de conjunção
-        	ou(s);
-
-        else if (strcmp(token, "^") == 0)	// função lógica ou exclusivo
-        	xor(s);
-
-        else if (strcmp(token, "~") == 0)	// função lógica negação 
-        	not(s);
-
-        else if (strcmp(token, "=") == 0)   // função lógica igual
-            igual(s);
-
-        else if (strcmp(token, "!") == 0)   // função lógica (não)
-            nono(s);
-
-        else if (strcmp(token, "<") == 0)   // função lógica menor
-            menor(s);
-
-        else if (strcmp(token, ">") == 0)   // função lógica maior
-            maior(s);
-
-        else if (strcmp(token, "e&") == 0)   // função lógica e E
-            eE(s);
-
-        else if (strcmp(token, "e|") == 0)   // função lógica e OU
-            eOU(s);
-        
-        else if (strcmp(token, "e<") == 0)   // função lógica e menor
-            emenor(s);
-
-        else if (strcmp(token, "e>") == 0)   // função lógica e maior
-            emaior(s);
-
-        else if (strcmp(token, "e") == 0)   // função lógica e
-            eOU(s);
-
-        // conversões
-
-        else if (strcmp(token, "i") == 0)   // conversão para int
-            intz(s);
-
-        else if (strcmp(token, "f") == 0)   // conversão para double
-            doublez(s);
-
-        else if (strcmp(token, "c") == 0)   // conversão para char (ascii)
-            charz(s);
-
-        else if (strcmp(token, "s") == 0)   // conversão para string 
-            stringz(s);
-        
-        // manipulação da stack
-
-        else if (strcmp(token, "_") == 0)	// função duplica
-        	duplica(s);
-
-        else if (strcmp(token, "\\") == 0)   // função troca 
-            troca(s);
-
-        else if (strcmp(token, "@") == 0)   // função troca 3 
-            rodar(s);
-
-        else if (strcmp(token, "$") == 0)   // função troca topo por n-esimo
-            copia(s);
-
-        else if (strcmp(token, "?") == 0)   // função if then else
-            question(s);
-        
-        else if (strcmp(token, ":A") == 0)   // guardar localmente A
-            atributo(s, 'A');
-        
-        else if (strcmp(token, ":B") == 0)   // guardar localmente B
-            atributo(s, 'B');
-
-        else if (strcmp(token, ":C") == 0)   // guardar localmente C
-            atributo(s, 'C');
-
-        else if (strcmp(token, ":D") == 0)   // guardar localmente D
-            atributo(s, 'D');
-
-        else if (strcmp(token, ":E") == 0)   // guardar localmente E
-            atributo(s, 'E');
-
-        else if (strcmp(token, ":F") == 0)   // guardar localmente F
-            atributo(s, 'F');
-
-        else if (strcmp(token, ":G") == 0)   // guardar localmente G
-            atributo(s, 'G');
-
-        else if (strcmp(token, ":H") == 0)   // guardar localmente H
-            atributo(s, 'H');
-
-        else if (strcmp(token, ":I") == 0)   // guardar localmente I
-            atributo(s, 'I');
-
-        else if (strcmp(token, ":J") == 0)   // guardar localmente J
-            atributo(s, 'J');
-
-        else if (strcmp(token, ":K") == 0)   // guardar localmente K
-            atributo(s, 'K');
-
-        else if (strcmp(token, ":L") == 0)   // guardar localmente L
-            atributo(s, 'L');
-
-        else if (strcmp(token, ":M") == 0)   // guardar localmente M
-            atributo(s, 'M');
-
-        else if (strcmp(token, ":N") == 0)   // guardar localmente N 
-            atributo(s, 'N');
-
-        else if (strcmp(token, ":O") == 0)   // guardar localmente O
-            atributo(s, 'O');
-
-        else if (strcmp(token, ":P") == 0)   // guardar localmente P
-            atributo(s, 'P');
-
-        else if (strcmp(token, ":Q") == 0)   // guardar localmente Q
-            atributo(s, 'Q');
-
-        else if (strcmp(token, ":R") == 0)   // guardar localmente R 
-            atributo(s, 'R');
-
-        else if (strcmp(token, ":S") == 0)   // guardar localmente S
-            atributo(s, 'S');
-
-        else if (strcmp(token, ":T") == 0)   // guardar localmente T
-            atributo(s, 'T');
-
-        else if (strcmp(token, ":U") == 0)   // guardar localmente U
-            atributo(s, 'U');
-
-        else if (strcmp(token, ":V") == 0)   // guardar localmente V 
-            atributo(s, 'V');
-
-        else if (strcmp(token, ":W") == 0)   // guardar localmente W
-            atributo(s, 'W');
-
-        else if (strcmp(token, ":X") == 0)   // guardar localmente X
-            atributo(s, 'X');
-
-        else if (strcmp(token, ":Y") == 0)   // guardar localmente Y 
-            atributo(s, 'Y');
-
-        else if (strcmp(token, ":Z") == 0)   // guardar localmente Z
-            atributo(s, 'Z');
-        
-        else if (strcmp(token, "A") == 0)   // HEX
-            letra(s, 'A');
-
-        else if (strcmp(token, "B") == 0)   // HEX
-            letra(s, 'B');
-
-        else if (strcmp(token, "C") == 0)   // HEX
-            letra(s, 'C');
-
-        else if (strcmp(token, "D") == 0)   // HEX
-            letra(s, 'D');
-
-        else if (strcmp(token, "E") == 0)   // HEX
-            letra(s, 'E');
-
-        else if (strcmp(token, "F") == 0)   // HEX
-            letra(s, 'F');
-
-        else if (strcmp(token, "G") == 0)   // HEX
-            letra(s, 'G');
-
-        else if (strcmp(token, "H") == 0)   // HEX
-            letra(s, 'H');
-
-        else if (strcmp(token, "I") == 0)   // HEX
-            letra(s, 'I');
-
-        else if (strcmp(token, "J") == 0)   // HEX
-            letra(s, 'J');
-
-        else if (strcmp(token, "K") == 0)   // HEX
-            letra(s, 'K');
-
-        else if (strcmp(token, "L") == 0)   // tab
-            letra(s, 'L');
-
-        else if (strcmp(token, "M") == 0)   // HEX
-            letra(s, 'M');
-
-        else if (strcmp(token, "N") == 0)   // HEX
-            letra(s, 'N');
-
-        else if (strcmp(token, "O") == 0)   // HEX
-            letra(s, 'O');
-
-        else if (strcmp(token, "P") == 0)   // HEX
-            letra(s, 'P');
-
-        else if (strcmp(token, "Q") == 0)   // HEX
-            letra(s, 'Q');
-
-        else if (strcmp(token, "R") == 0)   // space
-            letra(s, 'R');
-
-        else if (strcmp(token, "S") == 0)   // HEX
-            letra(s, 'S');
-
-        else if (strcmp(token, "T") == 0)   // HEX
-            letra(s, 'T');
-
-        else if (strcmp(token, "U") == 0)   // HEX
-            letra(s, 'U');
-
-        else if (strcmp(token, "V") == 0)   // HEX
-            letra(s, 'V');
-
-        else if (strcmp(token, "W") == 0)   // HEX
-            letra(s, 'W');
-
-        else if (strcmp(token, "X") == 0)   // x
-            letra(s, 'X');
-
-        else if (strcmp(token, "Y") == 0)   // y
-            letra(s, 'Y');
-
-        else if (strcmp(token, "Z") == 0)   // z
-            letra(s, 'Z');
-
-        // pops e prints
-        
-        else if (strcmp(token, ";") == 0)	// função pop
-            pop(s);
-        
-        else if (strcmp(token, "p") == 0)   // printa top
-            printt(s);
-
-        else if (strcmp(token, "l") == 0)  { // lê linha abaixo
-            lerl(s);
-        }
-/*
-        else if (strcmp(token, "t") == 0)  { // lê linha abaixo
-            lert(s);
-        }
-*/
-        else
-           push_STRING(s, token); 
-		}
-
+            }                   // end of switch
+        }                       // end of else condition
+    }                           // end of for
 	print_stack(s);
 	free(s);
-}
+}                               // end of parser function

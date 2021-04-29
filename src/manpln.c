@@ -164,8 +164,8 @@ void letra(STACK *s, char letra){ // variaveis
     else push_CHAR(s, letra);
 }
 
-void atributo(STACK *s, char letra){ // variaveis
-    long a = letra;
+void atributo(STACK *s, char *letra){ // variaveis
+    long a = (char)*letra;
     DATA x = pop(s);
     if (has_type(x, 1)) {
         s->array[a-65].type = LONG;
