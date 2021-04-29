@@ -13,3 +13,5 @@ void decrementa(STACK *s);
 void modulo(STACK *s);
 void expoente(STACK *s);
 void hex(STACK *s, DATA x);
+
+#endif

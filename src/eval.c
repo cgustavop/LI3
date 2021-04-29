@@ -13,15 +13,15 @@
 #include "logics.h"
 #include "manpln.h"
 
-// gcc -std=gnu11 -Wall -pedantic-errors -O *.c -lm
+// gcc -std=gnu11 -Wall -pedantic-errors -O eval.c -lm
 
 char *seps = "\"[]";
 char *delims = " \t\n"; 
-char **rest = malloc(255 * sizeof(char*));
+char **rest;
 
 char *get_token(char *line, char **rest) { // devolve o token e coloca em rest o restante da string para separar
 
-	char *token = (char *)malloc(sizeof(char)*strlen(line));
+	char *token = (char *)malloc(sizeof(char)*strlen(line));   // fornece memória ao *token
 
 	token = strtok(line, delims);	// guarda um token
 
@@ -30,21 +30,6 @@ char *get_token(char *line, char **rest) { // devolve o token e coloca em rest o
 	return token;
 }
 
-int main(void){
-
-	char line[10240];
-
-    assert(fgets(line, 10240, stdin) != NULL);
-    assert(line[strlen(line) - 1] == '\n');
-
-    printf("%s\n", get_token(line, rest));
-
-    for(; strcmp(*rest, "\0") == 0 ; *rest++){
-    printf("%s\n", *rest);
-	}
-
-    return 0;
-}
 /*
 char *get_delimited(char *line, char *seps, char **rest) { //devolve a parte da linha que contém o string ou array
 
@@ -52,7 +37,7 @@ char *get_delimited(char *line, char *seps, char **rest) { //devolve a parte da 
 
 handle_arithmetic
 
-hancle_logic
+handle_logic
 
 handle_array
 
@@ -62,4 +47,25 @@ STACK eval(char *line, STACK *init_stack){
 
 	
 }
+
+
+char *sumarrays(char ){
+	
+}
 */
+
+int main(void){
+
+	char line[10240];
+
+    assert(fgets(line, 10240, stdin) != NULL);
+    assert(line[strlen(line) - 1] == '\n');
+
+    printf("%s\n", get_token(line, rest));
+    putchar('\n');
+    for(; strcmp(*rest, "\0") == 0 ; *rest++){
+    	printf("%s\n", *rest);
+	}
+
+    return 0;
+}
