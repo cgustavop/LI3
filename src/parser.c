@@ -31,9 +31,9 @@
  */
 void parse(char *line) {
 
-    STACK *s = new_stack();
+    STACK *s = new_stack();                      // criação da stack
 
-    char *delims = " \t\n";
+    char *delims = " \t\n";                      // elementos que representam a separação dos tokens
 
     for (char *token = strtok(line, delims); token != NULL; token = strtok(NULL, delims)) {
         char *sobra1;
@@ -42,89 +42,89 @@ void parse(char *line) {
         long val_l = strtol(token, &sobra1, 10);
         double val_d = strtod(token, &sobra2);
       
-        if(strlen(sobra1) == 0)                 // tamanho sobra1 == 0, então é um elemento do tipo LONG (dá push a esse elemento)
+        if(strlen(sobra1) == 0)                  // tamanho sobra1 == 0, então é um elemento do tipo LONG (dá push a esse elemento)
         	push_LONG(s, val_l);
        
-        else if(strlen(sobra2) == 0)            // tamanho sobra2 == 0, então é um elemento do tipo DOUBLE (dá push a esse elemento)
+        else if(strlen(sobra2) == 0)             // tamanho sobra2 == 0, então é um elemento do tipo DOUBLE (dá push a esse elemento)
         	push_DOUBLE(s, val_d);
 
-        else if((isupper(token[0])) != 0)       // se for uma letra maiúscula coloca o seu valor na stack
+        else if((isupper(token[0])) != 0)        // se for uma letra maiúscula coloca o seu valor na stack
             letra(s, token[0]);
 
-        else if(strchr(token, ':') != NULL)  {  // se forem detetados ":" pega na letra que está à frente dos pontos
+        else if(strchr(token, ':') != NULL)  {   // se forem detetados ":" pega na letra que está à frente dos pontos
             char *letra = strchr(token, ':');
-            atributo(s, &letra[1]);             // a letra é inserida como parametro para a função atributo
+            atributo(s, &letra[1]);              // a letra é inserida como parametro para a função atributo
         }
-        else {                                  // caso contrário -> operador/char/string -> contemplados nos casos seguintes
+        else {                                   // caso contrário -> operador/char/string -> contemplados nos casos seguintes
         
             switch (token[0]) {
         // operações base
 
-                case '+' :
+                case '+' :                       // função soma
         	        soma(s);
                     break;
 
-                case '-' :
+                case '-' :                       // função subtração
                     subtrai(s);
                     break;
 
-                case '*' :
+                case '*' :                       // função multiplicação
                     multiplica(s);
                     break;
 
-                case '/' :
+                case '/' :                       // função divisão
                     divide(s);
                     break;
 
-                case ')' :
+                case ')' :                       // função incrementa
                     incrementa(s);
                     break;
 
-                case '(' :
+                case '(' :                       // função decrementa
                     decrementa(s);
                     break;
 
-                case '%' :
+                case '%' :                       // função módulo
                     modulo(s);
                     break;
 
-                case '#' :
+                case '#' :                       // função exponencialização
                     expoente(s);
                     break;
 
-                case '&' :
+                case '&' :                       // função e lógico
                     E(s);
                     break;
 
-                case '|' :
+                case '|' :                       // função ou lógico
                     ou(s);
                     break;
 
-                case '^' :
+                case '^' :                       // função xor
                     xor(s);
                     break;
 
-                case '~' :
+                case '~' :                       // função negação lógica
                     not(s);
                     break;
 
-                case '=' :
+                case '=' :                       // função igualdade
                     igual(s);
                     break;
 
-                case '!' :
+                case '!' :                       // função negação
                     nono(s);
                     break;
 
-                case '<' :
+                case '<' :                       // função menor que
                     menor(s);
                     break;
 
-                case '>' :
+                case '>' :                       // função maior que
                     maior(s);
                     break;
 
-                case 'e' :
+                case 'e' :                       // funções exclusivas
                     if (strcmp(token, "e&") == 0)
                         eE(s);
                     else if (strcmp(token, "e|") == 0)
@@ -134,58 +134,58 @@ void parse(char *line) {
                     else if (strcmp(token, "e>") == 0)
                         emaior(s);
                     else 
-                        push_CHAR(s, 'e');
+                        push_CHAR(s, 'e');       // caso o "e" detetado seja um simples char
                     break;
 
-                case 'i' :
+                case 'i' :                       // função converte a int
                     intz(s);
                     break;
 
-                case 'f' :
+                case 'f' :                       // função converte a double
                     doublez(s);
                     break;
 
-                case 'c' :
+                case 'c' :                       // função converte a char
                     charz(s);
                     break;
 
-                case 's' :
+                case 's' :                       // função converte a string
                     stringz(s);
                     break;
 
-                case '_' :
+                case '_' :                       // função duplica
                     duplica(s);
                     break;
 
-                case '\\' :
+                case '\\' :                      // troca os 2 elementos no topo da stack
                     troca(s);
                     break;
 
-                case ';' :
+                case ';' :                       // pop a um elemento no topo da stack
                     pop(s);
                     break;
 
-                case '@' :
+                case '@' :                       // troca 3 elementos no topo da stack
                     rodar(s);
                     break;
 
-                case '$' :
+                case '$' :                       // troca o elemento no topo da stack pelo n-ésimo elemento da mesma
                     copia(s);
                     break;
 
-                case '?' :
+                case '?' :                       // if then else com os 3 elementos no topo da stack
                     question(s);
                     break;
 
-                case 'l' :
+                case 'l' :                       // lê uma linha
                     lerl(s);
                     break;
 
-                case 'p' :
+                case 'p' :                       // imprime uma linha
                     printt(s);
                     break;
 
-                default:
+                default:                       // se não se trata de um operador faz push à string
                     push_STRING(s, token);
                     break;
 
