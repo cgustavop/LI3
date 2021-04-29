@@ -32,17 +32,17 @@ int has_type(DATA elem, int mask){
 STACK *new_stack(){
 	STACK *s = (STACK *) calloc(1, sizeof(STACK));
 	s->size = 100;
-	s->array[0].LONG = 10; s->array[0].type= LONG;
-	s->array[1].LONG = 11; s->array[1].type= LONG;
-	s->array[2].LONG = 12; s->array[2].type= LONG;
-	s->array[3].LONG = 13; s->array[3].type= LONG;
-	s->array[4].LONG = 14; s->array[4].type= LONG;
-	s->array[5].LONG = 15; s->array[5].type= LONG; // definição por omissão A a F
-	s->array[13].CHAR = '\n'; s->array[13].type= CHAR;
-	s->array[18].CHAR = ' '; s->array[18].type= CHAR;
-	s->array[23].LONG = 0; s->array[23].type= LONG;
-	s->array[24].LONG = 1; s->array[24].type= LONG;
-	s->array[25].LONG = 2; s->array[25].type= LONG; // definição por omissão N, S, X, Y, Z
+	s->array[0].LONG = 10; s->array[0].type= 1;
+	s->array[1].LONG = 11; s->array[1].type= 1;
+	s->array[2].LONG = 12; s->array[2].type= 1;
+	s->array[3].LONG = 13; s->array[3].type= 1;
+	s->array[4].LONG = 14; s->array[4].type= 1;
+	s->array[5].LONG = 15; s->array[5].type= 1; // definição por omissão A a F
+	s->array[13].CHAR = '\n'; s->array[13].type= 4;
+	s->array[18].CHAR = ' '; s->array[18].type= 4;
+	s->array[23].LONG = 0; s->array[23].type= 1;
+	s->array[24].LONG = 1; s->array[24].type= 1;
+	s->array[25].LONG = 2; s->array[25].type= 1; // definição por omissão N, S, X, Y, Z
 	s->stack = (DATA *) calloc(s->size, sizeof(DATA));
 	return s;
 }
@@ -107,13 +107,13 @@ void print_stack(STACK *s){
 		DATA elem = s->stack[i];
 		TYPE type = elem.type;
 		switch(type){
-			case LONG: printf("%ld", elem.LONG);
+			case 1: printf("%ld", elem.LONG);
 				break;
-			case DOUBLE: printf("%g", elem.DOUBLE);
+			case 2: printf("%g", elem.DOUBLE);
 				break;
-			case CHAR: printf("%c", elem.CHAR);
+			case 4: printf("%c", elem.CHAR);
 				break;
-			case STRING: printf("%s", elem.STRING);
+			case 8: printf("%s", elem.STRING);
 				break;
 		}
 	}
