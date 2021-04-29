@@ -192,6 +192,6 @@ void parse(char *line) {
             }                   // end of switch
         }                       // end of else condition
     }                           // end of for
-	print_stack(s);
-	free(s);
+	print_stack(s);             // print result
+	free(s);                    // clear stack
 }                               // end of parser function
