@@ -10,6 +10,7 @@
 
 #include "manpln.h"
 #include "stack.h"
+
 /**
  * @brief Duplica o elemento no topo da stack
  *
@@ -71,7 +72,6 @@ void troca(STACK *s){ // TROCAR DOIS ELEMENTOS DO TOPO DA STACK "\"
         push_STRING(s, x.STRING);
     }
 }
-
 /**
  * @brief Roda os 3 elementos no topo da stack
  *
@@ -146,6 +146,11 @@ void copia(STACK *s){ // COPIA N-ÉSIMO ELEMENTO PARA O TOPO DA STACK "n $"
     }
     
 }
+/**
+ * @brief Devolve o valor guardado pela variável dada
+ *
+ * Inicializada por qualquer letra maiúscula 
+ */
 void letra(STACK *s, char letra){ // variaveis
     long a = letra;
     TYPE x = (s->array[a-65].type);
@@ -163,7 +168,11 @@ void letra(STACK *s, char letra){ // variaveis
     }
     else push_CHAR(s, letra);
 }
-
+/**
+ * @brief Guarda o elemento no topo da stack na variável dada
+ *
+ * Inicializada com o token ":" mais uma letra maiúscula
+ */
 void atributo(STACK *s, char *letra){ // variaveis
     long a = (char)*letra;
     DATA x = pop(s);
@@ -188,7 +197,11 @@ void atributo(STACK *s, char *letra){ // variaveis
         push_STRING(s, x.STRING);
     }
 }
-
+/**
+ * @brief if then else com os 3 elementos anteriores
+ *
+ * Inicializada com o token "?"
+ */
 void question(STACK *s){ // if then else com os 3 elementos anteriores
     DATA z = pop(s);
     DATA y = pop(s);
@@ -310,7 +323,6 @@ void question(STACK *s){ // if then else com os 3 elementos anteriores
         }
     }
 }
-
 /**
  * @brief Leitura de uma linha
  *

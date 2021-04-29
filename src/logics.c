@@ -112,7 +112,7 @@ void igual(STACK *s){
         push_LONG(s, 0);
 }
 /**
- * @brief Teste de comparação dos 2 elementos no topo da stack
+ * @brief Verifica se o 2º elemento no topo da stack é menor que o 1º  elemento no topo da stack
  *
  * Inicializada com o token "<"
  */
@@ -185,7 +185,7 @@ void menor(STACK *s){ // <
     }
 }
 /**
- * @brief Teste de comparação dos 2 elementos no topo da stack
+ * @brief Verifica se o 2º elemento no topo da stack é maior que o 1º  elemento no topo da stack
  *
  * Inicializada com o token ">"
  */
@@ -276,7 +276,11 @@ void nono(STACK *s){ // !
             push_LONG(s, 0);
     }
 }
-
+/**
+ * @brief E lógico entre dois elementos da stack
+ *
+ * Inicializada com o token "e&"
+ */
 void eE(STACK *s){
     DATA x = pop(s);
     DATA y = pop(s);
@@ -346,7 +350,6 @@ void eE(STACK *s){
     }
 
 }
-
 /**
  * @brief OU lógico entre dois elementos da stack
  *
