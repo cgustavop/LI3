@@ -146,7 +146,7 @@ void copia(STACK *s){ // COPIA N-ÉSIMO ELEMENTO PARA O TOPO DA STACK "n $"
     }
     
 }
-void letraA(STACK *s, char letra){ // variaveis
+void letra(STACK *s, char letra){ // variaveis
     long a = letra;
     TYPE x = (s->array[a-65].type);
     if (x == LONG) {
@@ -164,7 +164,7 @@ void letraA(STACK *s, char letra){ // variaveis
     else push_CHAR(s, letra);
 }
 
-void atributoA(STACK *s, char letra){ // variaveis
+void atributo(STACK *s, char letra){ // variaveis
     long a = letra;
     DATA x = pop(s);
     if (has_type(x, LONG)) {
