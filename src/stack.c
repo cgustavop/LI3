@@ -22,6 +22,7 @@
 int has_type(DATA elem, int mask){
 	return (elem.type & mask) != 0;
 }
+
 /**
  * @brief Função que reserva memória para a stack
  *
@@ -46,6 +47,7 @@ STACK *new_stack(){
 	s->stack = (DATA *) calloc(s->size, sizeof(DATA));
 	return s;
 }
+
 /**
  * @brief Faz push de um elemento para a stack
  *
@@ -64,6 +66,7 @@ void push(STACK *s, DATA elem){
 	s->stack[s->n_elems] = elem;
 	s->n_elems++;
 }
+
 /**
  * @brief Faz pop de um elemento para fora a stack
  *
@@ -76,6 +79,7 @@ DATA pop(STACK *s){
 	s->n_elems--;
 	return s->stack[s->n_elems];
 }
+
 /**
  * @brief Indica o elemento no topo da stack
  * 
@@ -85,6 +89,7 @@ DATA pop(STACK *s){
 DATA top(STACK *s){
 	return s->stack[s->n_elems -1];
 }
+
 /**
  * @brief Indica se a stack está vazia
  * 
@@ -94,6 +99,7 @@ DATA top(STACK *s){
 int is_empty(STACK *s){
 	return (s->n_elems == 0);
 }
+
 /**
  * @brief Imprime a stack
  * 
@@ -106,19 +112,28 @@ void print_stack(STACK *s){
 	for(int i = 0; i <s->n_elems; i++){
 		DATA elem = s->stack[i];
 		TYPE type = elem.type;
+
 		switch(type){
-			case 1: printf("%ld", elem.LONG);
+			case 1	: 
+				printf("%ld", elem.LONG);
 				break;
-			case 2: printf("%g", elem.DOUBLE);
+
+			case 2	:	 
+				printf("%g", elem.DOUBLE);
 				break;
-			case 4: printf("%c", elem.CHAR);
+
+			case 4	: 
+				printf("%c", elem.CHAR);
 				break;
-			case 8: printf("%s", elem.STRING);
+
+			case 8	: 
+				printf("%s", elem.STRING);
 				break;
 		}
 	}
 	printf("\n");
 }
+
 /**
  * @brief Função push para elementos do tipo LONG
  */
@@ -127,7 +142,8 @@ void push_LONG(STACK *s, long val){
 		elem.type = LONG;
 		elem.LONG = val;
 		push(s, elem);
-	}
+}
+
 /**
  * @brief Função push para elementos do tipo DOUBLE
  */
@@ -137,6 +153,7 @@ void push_DOUBLE(STACK *s, double val){
 		elem.DOUBLE = val;
 		push(s, elem);
 	}
+
 /**
  * @brief Função push para elementos do tipo CHAR
  */
@@ -145,7 +162,8 @@ void push_CHAR(STACK *s, char val){
 		elem.type = CHAR;
 		elem.CHAR = val;
 		push(s, elem);
-	}
+}
+
 /**
  * @brief Função push para elementos do tipo STRING
  */
@@ -154,7 +172,8 @@ void push_STRING(STACK *s, char * val){
 		elem.type = STRING;
 		elem.STRING = val;
 		push(s, elem);
-	}
+}
+
 /**
  * @brief Função pop para elementos do tipo LONG
  */
@@ -162,7 +181,8 @@ long pop_LONG(STACK *s){
 		DATA elem = pop(s);
 		assert(elem.type == LONG);
 		return elem.LONG;
-	}
+}
+
 /**
  * @brief Função pop para elementos do tipo DOUBLE
  */
@@ -170,7 +190,8 @@ double pop_DOUBLE(STACK *s){
 		DATA elem = pop(s);
 		assert(elem.type == DOUBLE);
 		return elem.DOUBLE;
-	}
+}
+
 /**
  * @brief Função pop para elementos do tipo CHAR
  */
@@ -178,7 +199,8 @@ char pop_CHAR(STACK *s){
 		DATA elem = pop(s);
 		assert(elem.type == CHAR);
 		return elem.CHAR;
-	}
+}
+
 /**
  * @brief Função pop para elementos do tipo STRING
  */
@@ -186,4 +208,4 @@ char * pop_STRING(STACK *s){
 		DATA elem = pop(s);
 		assert(elem.type == STRING);
 		return elem.STRING;
-	}
+}
