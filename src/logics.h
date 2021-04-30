@@ -16,5 +16,3 @@ void eE(STACK *s);
 void eOU(STACK *s);
 void emenor(STACK *s);
 void emaior(STACK *s);
-
-#endif

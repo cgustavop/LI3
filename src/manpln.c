@@ -20,21 +20,26 @@ void duplica(STACK *s){ // DUPLICAR "_"
 
     DATA x = pop(s);
 
-    if(has_type(x, 1)){
-        push_LONG(s, x.LONG);
-        push_LONG(s, x.LONG);
-    }
-    else if(has_type(x, 2)){
-        push_DOUBLE(s, x.DOUBLE);
-        push_DOUBLE(s, x.DOUBLE);
-    }
-    else if(has_type(x, 4)){
-        push_CHAR(s, x.CHAR);
-        push_CHAR(s, x.CHAR);
-    }
-    else if(has_type(x, 8)){
-        push_STRING(s, x.STRING);
-        push_STRING(s, x.STRING);
+    switch(x.type){
+        case 1 :
+            push_LONG(s, x.LONG);
+            push_LONG(s, x.LONG);
+            break;
+
+        case 2 :
+            push_DOUBLE(s, x.DOUBLE);
+            push_DOUBLE(s, x.DOUBLE);
+            break;
+
+        case 4 :
+            push_CHAR(s, x.CHAR);
+            push_CHAR(s, x.CHAR);
+            break;
+
+        case 8 :
+            push_STRING(s, x.STRING);
+            push_STRING(s, x.STRING);
+            break;
     }
 }
 /**
@@ -46,30 +51,40 @@ void troca(STACK *s){ // TROCAR DOIS ELEMENTOS DO TOPO DA STACK "\"
     DATA y = pop(s);
     DATA x = pop(s);
 
-    if(has_type(y, 1)) {
-        push_LONG(s, y.LONG);
-    }
-    else if(has_type(y, 2)) {
-        push_DOUBLE(s, y.DOUBLE);
-    }
-    else if(has_type(y, 4)) {
-        push_CHAR(s, y.CHAR);
-    }
-    else if(has_type(y, 8)) {
-        push_STRING(s, y.STRING);
+    switch(y.type){
+        case 1 :
+            push_LONG(s, y.LONG);
+            break;
+
+        case 2 :
+            push_DOUBLE(s, y.DOUBLE);
+            break;
+
+        case 4 :
+            push_CHAR(s, y.CHAR);
+            break;
+
+        case 8 :
+            push_STRING(s, y.STRING);
+            break;
     }
 
-    if(has_type(x, 1)) {
-        push_LONG(s, x.LONG);
-    }
-    else if(has_type(x, 2)) {
-        push_DOUBLE(s, x.DOUBLE);
-    }
-    else if(has_type(x, 4)) {
-        push_CHAR(s, x.CHAR);
-    }
-    else if(has_type(x, 8)) {
-        push_STRING(s, x.STRING);
+    switch(x.type){
+        case 1 :
+            push_LONG(s, x.LONG);
+            break;
+
+        case 2 :
+            push_DOUBLE(s, x.DOUBLE);
+            break;
+
+        case 4 :
+            push_CHAR(s, x.CHAR);
+            break;
+
+        case 8 :
+            push_STRING(s, x.STRING);
+            break;
     }
 }
 /**
@@ -82,46 +97,62 @@ void rodar(STACK *s){ // RODAR OS 3 ELEMENTOS NO TOPO DA STACK "@"
     DATA y = pop(s);
     DATA z = pop(s); // a b c -> b c a
 
-    if(has_type(y, 1)) {
-        push_LONG(s, y.LONG);
-    }
-    else if(has_type(y, 2)) {
-        push_DOUBLE(s, y.DOUBLE);
-    }
-    else if(has_type(y, 4)) {
-        push_CHAR(s, y.CHAR);
-    }
-    else if(has_type(y, 8)) {
-        push_STRING(s, y.STRING);
+    switch(y.type){
+        case 1 :
+            push_LONG(s, y.LONG);
+            break;
+
+        case 2 :
+            push_DOUBLE(s, y.DOUBLE);
+            break;
+
+        case 4 :
+            push_CHAR(s, y.CHAR);
+            break;
+
+        case 8 :
+            push_STRING(s, y.STRING);
+            break;
     }
 
 
-    if(has_type(x, 1)) {
-        push_LONG(s, x.LONG);
-    }
-    else if(has_type(x, 2)) {
-        push_DOUBLE(s, x.DOUBLE);
-    }
-    else if(has_type(x, 4)) {
-        push_CHAR(s, x.CHAR);
-    }
-    else if(has_type(x, 8)) {
-        push_STRING(s, x.STRING);
+    switch(x.type){
+        case 1 :
+            push_LONG(s, x.LONG);
+            break;
+
+        case 2 :
+            push_DOUBLE(s, x.DOUBLE);
+            break;
+
+        case 4 :
+            push_CHAR(s, x.CHAR);
+            break;
+
+        case 8 :
+            push_STRING(s, x.STRING);
+            break;
     }
 
-    if(has_type(z, 1)) {
-        push_LONG(s, z.LONG);
-    }
-    else if(has_type(z, 2)) {
-       push_DOUBLE(s, z.DOUBLE); 
-    }
-    else if(has_type(z, 4)) {
-        push_CHAR(s, z.CHAR);
-    }
-    else if(has_type(z, 8)) {
-        push_STRING(s, z.STRING);
+    switch(z.type){
+        case 1 :
+            push_LONG(s, z.LONG);
+            break;
+
+        case 2 :
+            push_DOUBLE(s, z.DOUBLE);
+            break;
+
+        case 4 :
+            push_CHAR(s, z.CHAR);
+            break;
+
+        case 8 :
+            push_STRING(s, z.STRING);
+            break;
     }
 }
+
 /**
  * @brief Copia o n-ésimo elemento para o topo da stack
  *
@@ -132,20 +163,26 @@ void copia(STACK *s){ // COPIA N-ÉSIMO ELEMENTO PARA O TOPO DA STACK "n $"
     DATA x = s->stack[(s->n_elems) - n.LONG - 1];
 
     
-    if(has_type(x, 1)) {
-        push_LONG(s, x.LONG);
-    }
-    else if(has_type(x, 2)) {
-        push_DOUBLE(s, x.DOUBLE);
-    }
-    else if(has_type(x, 4)) {
-        push_CHAR(s, x.CHAR);
-    }
-    else if(has_type(x, 8)) {
-        push_STRING(s, x.STRING);
+    switch(x.type){
+        case 1 :
+            push_LONG(s, x.LONG);
+            break;
+
+        case 2 :
+            push_DOUBLE(s, x.DOUBLE);
+            break;
+
+        case 4 :
+            push_CHAR(s, x.CHAR);
+            break;
+
+        case 8 :
+            push_STRING(s, x.STRING);
+            break;
     }
     
 }
+
 /**
  * @brief Devolve o valor guardado pela variável dada
  *
@@ -154,20 +191,29 @@ void copia(STACK *s){ // COPIA N-ÉSIMO ELEMENTO PARA O TOPO DA STACK "n $"
 void letra(STACK *s, char letra){ // variaveis
     long a = letra;
     TYPE x = (s->array[a-65].type);
-    if (x == 1) {
-        push_LONG(s, s->array[a-65].LONG);
+
+    switch(x){
+        case 1 :
+            push_LONG(s, s->array[a-65].LONG);
+            break;
+
+        case 2 :
+            push_DOUBLE(s, (s->array[a-65]).DOUBLE);
+            break;
+
+        case 4 :
+            push_CHAR(s, (s->array[a-65]).CHAR);
+            break;
+
+        case 8 :
+            push_STRING(s, (s->array[a-65]).STRING);
+            break;
+
+        default:
+            push_CHAR(s, letra);
     }
-    else if (x == 2) {
-        push_DOUBLE(s, (s->array[a-65]).DOUBLE);
-    }
-    else if (x == 4) {
-        push_CHAR(s, (s->array[a-65]).CHAR);
-    }
-    else if (x == 8) {
-        push_STRING(s, (s->array[a-65]).STRING);
-    }
-    else push_CHAR(s, letra);
 }
+
 /**
  * @brief Guarda o elemento no topo da stack na variável dada
  *
@@ -176,153 +222,211 @@ void letra(STACK *s, char letra){ // variaveis
 void atributo(STACK *s, char *letra){ // variaveis
     long a = (char)*letra;
     DATA x = pop(s);
-    if (has_type(x, 1)) {
-        s->array[a-65].type = LONG;
-        s->array[a-65].LONG = x.LONG;
-        push_LONG(s, x.LONG);
 
-    } else if (has_type(x, 2)) {
-        s->array[a-65].type = DOUBLE;
-        s->array[a-65].DOUBLE = x.DOUBLE;
-        push_DOUBLE(s, x.DOUBLE);
+    switch(x.type){
+        case 1 :
+            s->array[a-65].type = LONG;
+            s->array[a-65].LONG = x.LONG;
+            push_LONG(s, x.LONG);
+            break;
 
-    } else if (has_type(x, 4)) {
-        s->array[a-65].type = CHAR;
-        s->array[a-65].CHAR = x.CHAR;
-        push_CHAR(s, x.CHAR);
+        case 2 :
+            s->array[a-65].type = DOUBLE;
+            s->array[a-65].DOUBLE = x.DOUBLE;
+            push_DOUBLE(s, x.DOUBLE);
+            break;
 
-    } else if (has_type(x, 8)) {
-        s->array[a-65].type = STRING;
-        s->array[a-65].STRING = x.STRING;
-        push_STRING(s, x.STRING);
+        case 4 :
+            s->array[a-65].type = CHAR;
+            s->array[a-65].CHAR = x.CHAR;
+            push_CHAR(s, x.CHAR);
+            break;
+
+        case 8 :
+            s->array[a-65].type = STRING;
+            s->array[a-65].STRING = x.STRING;
+            push_STRING(s, x.STRING);
+            break;
     }
 }
+
 /**
  * @brief if then else com os 3 elementos anteriores
  *
- * Inicializada com o token "?"
+ * Inicializada com o token "?
  */
 void question(STACK *s){ // if then else com os 3 elementos anteriores
     DATA z = pop(s);
     DATA y = pop(s);
     DATA x = pop(s);
 
-    if (has_type(x, 1)) {
-        if (x.LONG != 0){
-            if (has_type(y, 1))
-                push_LONG(s, y.LONG);
+    switch(x.type){   
+        case 1 :
+            if (x.LONG != 0){
+                switch(y.type){
+                    case 1:
+                        push_LONG(s, y.LONG);
+                        break;
 
-            else if (has_type(y, 2))
-                push_DOUBLE(s, y.DOUBLE);
+                    case 2:
+                        push_DOUBLE(s, y.DOUBLE);
+                        break;
 
-            else if (has_type(y, 4))
-                push_CHAR(s, y.CHAR);
+                    case 4:
+                        push_CHAR(s, y.CHAR);
+                        break;
+
+                    case 8:
+                        push_STRING(s, y.STRING);
+                        break;
+                }
         
-            else if (has_type(y, 8))
-                push_STRING(s, y.STRING);
+            } else {
+                switch(z.type){
+                    case 1:
+                        push_LONG(s, z.LONG);
+                        break;
+
+                    case 2:
+                        push_DOUBLE(s, z.DOUBLE);
+                        break;
+
+                    case 4:
+                        push_CHAR(s, z.CHAR);
+                        break;
+
+                    case 8:
+                        push_STRING(s, z.STRING);
+                        break;
+                }
+            }
+            break;
+    
+        case 2 :
+            if (x.DOUBLE != 0){
+                                switch(y.type){
+                    case 1:
+                        push_LONG(s, y.LONG);
+                        break;
+
+                    case 2:
+                        push_DOUBLE(s, y.DOUBLE);
+                        break;
+
+                    case 4:
+                        push_CHAR(s, y.CHAR);
+                        break;
+
+                    case 8:
+                        push_STRING(s, y.STRING);
+                        break;
+                }
         
-        } else {
-            if (has_type(z, 1))
-                push_LONG(s, z.LONG);
+            } else {
+                switch(z.type){
+                    case 1:
+                        push_LONG(s, z.LONG);
+                        break;
 
-            else if (has_type(z, 2))
-                push_DOUBLE(s, z.DOUBLE);
+                    case 2:
+                        push_DOUBLE(s, z.DOUBLE);
+                        break;
 
-            else if (has_type(z, 4))
-                push_CHAR(s, z.CHAR);
+                    case 4:
+                        push_CHAR(s, z.CHAR);
+                        break;
 
-            else if (has_type(z, 8))
-                push_STRING(s, z.STRING);
-        }
-    }
+                    case 8:
+                        push_STRING(s, z.STRING);
+                        break;
+                }
+            }
+            break;
 
-    if (has_type(x, 4)) {
-        if (x.CHAR != '0'){
-            if (has_type(y, 1))
-                push_LONG(s, y.LONG);
+        case 4 :
+            if (x.CHAR != '0'){
+                switch(y.type){
+                    case 1:
+                        push_LONG(s, y.LONG);
+                        break;
 
-            else if (has_type(y, 2))
-                push_DOUBLE(s, y.DOUBLE);
+                    case 2:
+                        push_DOUBLE(s, y.DOUBLE);
+                        break;
 
-            else if (has_type(y, 4))
-                push_CHAR(s, y.CHAR);
+                    case 4:
+                        push_CHAR(s, y.CHAR);
+                        break;
+
+                    case 8:
+                        push_STRING(s, y.STRING);
+                        break;
+                }
         
-            else if (has_type(y, 8))
-                push_STRING(s, y.STRING);
+            } else {
+                switch(z.type){
+                    case 1:
+                        push_LONG(s, z.LONG);
+                        break;
+
+                    case 2:
+                        push_DOUBLE(s, z.DOUBLE);
+                        break;
+
+                    case 4:
+                        push_CHAR(s, z.CHAR);
+                        break;
+
+                    case 8:
+                        push_STRING(s, z.STRING);
+                        break;
+                }
+            }
+            break;
+
+        case 8 :
+            if (strcmp(x.STRING,"0") != 0){
+                switch(y.type){
+                    case 1:
+                        push_LONG(s, y.LONG);
+                        break;
+
+                    case 2:
+                        push_DOUBLE(s, y.DOUBLE);
+                        break;
+
+                    case 4:
+                        push_CHAR(s, y.CHAR);
+                        break;
+
+                    case 8:
+                        push_STRING(s, y.STRING);
+                        break;
+                }
         
-        } else {
-            if (has_type(z, 1))
-                push_LONG(s, z.LONG);
+            } else {
+                switch(z.type){
+                    case 1:
+                        push_LONG(s, z.LONG);
+                        break;
 
-            else if (has_type(z, 2))
-                push_DOUBLE(s, z.DOUBLE);
+                    case 2:
+                        push_DOUBLE(s, z.DOUBLE);
+                        break;
 
-            else if (has_type(z, 4))
-                push_CHAR(s, z.CHAR);
+                    case 4:
+                        push_CHAR(s, z.CHAR);
+                        break;
 
-            else if (has_type(z, 8))
-                push_STRING(s, z.STRING);
-        }
-    }
-
-    if (has_type(x, 2)){
-        if (x.DOUBLE != 0){
-            if (has_type(y, 1))
-                push_LONG(s, y.LONG);
-
-            else if (has_type(y, 2))
-                push_DOUBLE(s, y.DOUBLE);
-
-            else if (has_type(y, 4))
-                push_CHAR(s, y.CHAR);
-        
-            else if (has_type(y, 8))
-                push_STRING(s, y.STRING);
-      
-        } else {
-            if (has_type(z, 1))
-                push_LONG(s, z.LONG);
-
-            else if (has_type(z, 2))
-                push_DOUBLE(s, z.DOUBLE);
-
-            else if (has_type(z, 4))
-                push_CHAR(s, z.CHAR);
-
-            else if (has_type(z, 8))
-                push_STRING(s, z.STRING);
-        }
-    }
-
-    if (has_type(x, 8)) {
-        if (strcmp(x.STRING,"0") != 0){
-            if (has_type(y, 1))
-                push_LONG(s, y.LONG);
-
-            else if (has_type(y, 2))
-                push_DOUBLE(s, y.DOUBLE);
-
-            else if (has_type(y, 4))
-                push_CHAR(s, y.CHAR);
-        
-            else if (has_type(y, 8))
-                push_STRING(s, y.STRING);
-        
-        } else {
-            if (has_type(z, 1))
-                push_LONG(s, z.LONG);
-
-            else if (has_type(z, 2))
-                push_DOUBLE(s, z.DOUBLE);
-
-            else if (has_type(z, 4))
-                push_CHAR(s, z.CHAR);
-
-            else if (has_type(z, 8))
-                push_STRING(s, z.STRING);
-        }
+                    case 8:
+                        push_STRING(s, z.STRING);
+                        break;
+                }
+            }
+            break;
     }
 }
+
 /**
  * @brief Leitura de uma linha
  *
@@ -357,18 +461,24 @@ void lert(STACK *s){ // t
 void printt(STACK *s){ // IMPRIME TOPO DA STACK "p"
     DATA x = pop(s);
     
-    if (has_type(x, 1)) {
-        push_LONG(s,x.LONG);
-    } else if (has_type(x, 2)) {
-        push_DOUBLE(s,x.DOUBLE);
-    } else if (has_type(x, 4)) {
-        push_CHAR(s, x.CHAR);
-    } else {
-        push_STRING(s, x.STRING);            
+    switch(x.type){
+        case 1 :
+            push_LONG(s,x.LONG);
+            break;
+
+        case 2 :
+            push_DOUBLE(s,x.DOUBLE);
+            break;
+
+        case 4 :
+            push_CHAR(s, x.CHAR);
+            break;
+
+        case 8 :
+            push_STRING(s, x.STRING);
+            break;            
     }
 }
-
-
 
 //CONVERSÕES
 /**
@@ -379,18 +489,22 @@ void printt(STACK *s){ // IMPRIME TOPO DA STACK "p"
 void intz(STACK *s){ // CONVERTE O ELEMENTO NO TOPO DA STACK NUM INTEIRO "i"
     DATA x = pop(s);
 
-    if(has_type(x, 1)){
-        push_LONG(s, x.LONG);
-    }
-    else if(has_type(x, 2)){
-        push_LONG(s, (long)x.DOUBLE);
-    }
-    else if(has_type(x, 4)){
-        push_LONG(s, (long)x.CHAR);
-    }
-    else if(has_type(x, 8)){
-        long temp = atof(x.STRING);      
-        push_LONG(s,temp);
+    switch(x.type){
+        case 1 :
+            push_LONG(s, x.LONG);
+            break;
+
+        case 2 :
+            push_LONG(s, (long)x.DOUBLE);
+            break;
+
+        case 4 :
+            push_LONG(s, (long)x.CHAR);
+            break;
+
+        case 8 :      
+            push_LONG(s, atof(x.STRING));
+            break;
     }
 }
 /**
@@ -401,18 +515,22 @@ void intz(STACK *s){ // CONVERTE O ELEMENTO NO TOPO DA STACK NUM INTEIRO "i"
 void doublez(STACK *s){ // CONVERTE O ELEMENTO NO TOPO DA STACK NUM DOUBLE "f"
     DATA x = pop(s);
 
-    if(has_type(x, 1)){
-        push_DOUBLE(s, (double)x.LONG);
-    }
-    else if(has_type(x, 2)){
-        push_DOUBLE(s, x.DOUBLE);
-    }
-    else if(has_type(x, 4)){
-        push_DOUBLE(s, (double)x.CHAR);
-    }
-    else if(has_type(x, 8)){
-        double temp = atof(x.STRING);      
-        push_DOUBLE(s,temp);
+    switch(x.type){
+        case 1 :
+            push_DOUBLE(s, (double)x.LONG);
+            break;
+
+        case 2 :
+            push_DOUBLE(s, x.DOUBLE);
+            break;
+
+        case 4 :
+            push_DOUBLE(s, (double)x.CHAR);
+            break;
+
+        case 8 :      
+            push_DOUBLE(s, atof(x.STRING));
+            break;
     }
 }
 /**
@@ -423,17 +541,22 @@ void doublez(STACK *s){ // CONVERTE O ELEMENTO NO TOPO DA STACK NUM DOUBLE "f"
 void charz(STACK *s){ //   CONVERTE O ELEMENTO NO TOPO DA STACK NUM CARATERE "c"
     DATA x = pop(s);
 
-    if(has_type(x, 1)){
-        push_CHAR(s, (char)x.LONG);
-    }
-    else if(has_type(x, 2)){
-        push_CHAR(s, (char)x.DOUBLE);
-    }
-    else if(has_type(x, 4)){
-        push_CHAR(s, x.CHAR);
-    }
-    else if(has_type(x, 8)){
-        push_STRING(s, x.STRING);
+    switch(x.type){
+        case 1 :
+            push_CHAR(s, (char)x.LONG);
+            break;
+
+        case 2 :
+            push_CHAR(s, (char)x.DOUBLE);
+            break;
+
+        case 4 :
+            push_CHAR(s, x.CHAR);
+            break;
+
+        case 8 :
+            push_STRING(s, x.STRING);
+            break;
     }
 }
 /**
@@ -444,16 +567,21 @@ void charz(STACK *s){ //   CONVERTE O ELEMENTO NO TOPO DA STACK NUM CARATERE "c"
 void stringz(STACK *s){ // CONVERTE O ELEMENTO NO TOPO DA STACK NUMA STRING "s"
     DATA x = pop(s);
 
-    if(has_type(x, 1)){
-        push_LONG(s, x.LONG);
-    }
-    else if(has_type(x, 2)){
-        push_DOUBLE(s, x.DOUBLE);
-    }
-    else if(has_type(x, 4)){
-        push_STRING(s, x.STRING);
-    }
-    else if(has_type(x, 8)){
-        push_STRING(s, x.STRING);
+    switch(x.type){
+        case 1 :
+            push_LONG(s, x.LONG);
+            break;
+
+        case 2 :
+            push_DOUBLE(s, x.DOUBLE);
+            break;
+
+        case 4 :
+            push_STRING(s, x.STRING);
+            break;
+
+        case 8 :
+            push_STRING(s, x.STRING);
+            break;
     }
 }
