@@ -217,30 +217,30 @@ void menor(STACK *s){ // <
             switch(y.type){
                 case 1 :
                     if (x.LONG < y.LONG)
-                        push_LONG(s, 1);
+                        push_LONG(s, x.LONG);
                     else
-                        push_LONG(s,0);
+                        push_LONG(s, y.LONG);
                     break;
 
                 case 2 :
-                    if ((fmod(y.DOUBLE, 1) < 0) && (x.LONG < (long)y.DOUBLE))
-                        push_LONG(s, 1);
+                    if (x.LONG < y.DOUBLE)
+                        push_LONG(s, x.LONG);
                     else
-                        push_LONG(s,0);
+                        push_LONG(s, y.DOUBLE);
                     break;
 
                 case 4 :
                     if (x.LONG >= 0 && x.LONG < 9)
                         if (y.CHAR < (char)x.LONG)
-                            push_LONG(s, 1);
+                            push_CHAR(s, y.CHAR);
                         else
-                            push_LONG(s, 0);
+                            push_LONG(s, x.LONG);
                     else
                         push_LONG(s, 0);
                     break;
 
                 case 8 :
-                    push_LONG(s, 0);
+                    push_LONG(s, x.LONG);
                     break;
             }
             break;
@@ -248,31 +248,31 @@ void menor(STACK *s){ // <
         case 2 :
             switch(y.type){
                 case 1 : 
-                    if ((fmod(x.DOUBLE, 1) == 0) && ((long)x.DOUBLE < y.LONG))
-                        push_LONG(s, 1);
+                    if (x.DOUBLE < y.LONG)
+                        push_DOUBLE(s, x.DOUBLE);
                     else
-                        push_LONG(s, 0);
+                        push_LONG(s, y.LONG);
                     break;
             
                 case 2 :
                     if (y.DOUBLE < x.DOUBLE)
-                        push_LONG(s, 1);
+                        push_DOUBLE(s, y.DOUBLE);
                     else
-                        push_LONG(s, 0);
+                        push_DOUBLE(s, x.DOUBLE);
                     break;
 
                 case 4 :
                     if ((fmod(x.DOUBLE, 1) == 0) && (x.DOUBLE >= 0 && x.DOUBLE < 9))
                         if (x.DOUBLE < y.CHAR)
-                            push_LONG(s, 1);
+                            push_DOUBLE(s, x.DOUBLE);
                         else
-                            push_LONG(s, 0);
+                            push_CHAR(s, y.CHAR);
                     else
-                        push_LONG(s, 0);
+                        push_DOUBLE(s, x.DOUBLE);
                     break;
 
                 case 8 :
-                    push_LONG(s, 0);
+                    push_DOUBLE(s, x.DOUBLE);
                     break;
             }
             break;

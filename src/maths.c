@@ -24,11 +24,11 @@ void soma(STACK *s){ // SOMAR "+"
         case 1 : 
             switch(y.type){
                 case 1 :
-                push_LONG(s, x.LONG + y.LONG);
+                push_LONG(s, y.LONG + x.LONG);
                 break;
 
                 case 2 :
-                push_DOUBLE(s, x.LONG + y.DOUBLE);
+                push_DOUBLE(s, y.DOUBLE + x.LONG);
                 break;
 
                 case 4 :
@@ -44,11 +44,11 @@ void soma(STACK *s){ // SOMAR "+"
         case 2 :
             switch(y.type){
                 case 1 :
-                push_DOUBLE(s, x.DOUBLE + y.LONG);
+                push_DOUBLE(s, y.LONG + x.DOUBLE);
                 break;
 
                 case 2 :
-                push_DOUBLE(s, x.DOUBLE + y.DOUBLE);
+                push_DOUBLE(s, y.DOUBLE + x.DOUBLE);
                 break;
 
                 case 4 :
@@ -120,11 +120,11 @@ void subtrai(STACK *s){ // SUBTRAIR "-"
         case 1 : 
             switch(y.type){
                 case 1 :
-                push_LONG(s, x.LONG - y.LONG);
+                push_LONG(s, y.LONG - x.LONG);
                 break;
 
                 case 2 :
-                push_DOUBLE(s, x.LONG - y.DOUBLE);
+                push_DOUBLE(s, y.DOUBLE - x.LONG);
                 break;
 
                 case 4 :
@@ -140,11 +140,11 @@ void subtrai(STACK *s){ // SUBTRAIR "-"
         case 2 :
             switch(y.type){
                 case 1 :
-                push_DOUBLE(s, x.DOUBLE - y.LONG);
+                push_DOUBLE(s, y.LONG - x.DOUBLE);
                 break;
 
                 case 2 :
-                push_DOUBLE(s, x.DOUBLE - y.DOUBLE);
+                push_DOUBLE(s, y.DOUBLE - x.DOUBLE);
                 break;
 
                 case 4 :
