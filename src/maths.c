@@ -20,19 +20,92 @@ void soma(STACK *s){ // SOMAR "+"
     DATA x = pop(s);
     DATA y = pop(s);
     
-    if(has_type(x, 1) && has_type(y, 1)){
-        push_LONG(s, x.LONG + y.LONG);
-    }
-    else if(has_type(x, 2) && has_type(y, 2)){
-        push_DOUBLE(s, x.DOUBLE + y.DOUBLE);
-    }
-    else if(has_type(x, 1) && has_type(y, 2)){
-        push_DOUBLE(s, x.LONG + y.DOUBLE);
-    }
-    else if (has_type(x, 2) && has_type(y, 1)){
-        push_DOUBLE(s, x.DOUBLE + y.LONG);
+    switch(x.type){
+        case 1 : 
+            switch(y.type){
+                case 1 :
+                push_LONG(s, x.LONG + y.LONG);
+                break;
+
+                case 2 :
+                push_DOUBLE(s, x.LONG + y.DOUBLE);
+                break;
+
+                case 4 :
+                push_LONG(s, x.LONG);
+                break;
+
+                case 8 :
+                push_LONG(s, x.LONG);
+                break;
+            }
+            break;
+
+        case 2 :
+            switch(y.type){
+                case 1 :
+                push_DOUBLE(s, x.DOUBLE + y.LONG);
+                break;
+
+                case 2 :
+                push_DOUBLE(s, x.DOUBLE + y.DOUBLE);
+                break;
+
+                case 4 :
+                push_DOUBLE(s, x.DOUBLE);
+                break;
+
+                case 8 :
+                push_DOUBLE(s, x.DOUBLE);
+                break;
+            }
+            break;
+
+        case 4 :
+            switch(y.type){
+                case 1 :
+                push_LONG(s, y.LONG);
+                break;
+
+                case 2 :
+                push_DOUBLE(s, y.DOUBLE);
+                break;
+
+                case 4 :
+                push_CHAR(s, x.CHAR);
+                push_CHAR(s, y.CHAR);
+                break;
+
+                case 8 :
+                push_DOUBLE(s, x.CHAR);
+                break;
+            }
+            break;
+
+        case 8 :
+            switch(y.type){
+                case 1 :
+                push_LONG(s, y.LONG);
+                break;
+
+                case 2 :
+                push_DOUBLE(s, y.DOUBLE);
+                break;
+
+                case 4 :
+                push_STRING(s, x.STRING);
+                break;
+
+                case 8 :
+                push_STRING(s, x.STRING);
+                push_STRING(s, y.STRING);
+                break;
+            }
+            break;
+
     }
 }
+
 /**
  * @brief Subtração entre dois elementos da stack
  *
@@ -43,19 +116,92 @@ void subtrai(STACK *s){ // SUBTRAIR "-"
     DATA x = pop(s);
     DATA y = pop(s);
     
-    if(has_type(x, 1) && has_type(y, 1)){
-        push_LONG(s, y.LONG - x.LONG);
-    }
-    else if(has_type(x, 2) && has_type(y, 2)){
-        push_DOUBLE(s, y.DOUBLE - x.DOUBLE);
-    }
-    else if(has_type(x, 1) && has_type(y, 2)){
-        push_DOUBLE(s, y.DOUBLE - x.LONG);
-    }
-    else if (has_type(x, 2) && has_type(y, 1)){
-        push_DOUBLE(s, y.LONG - y.DOUBLE);
+    switch(x.type){
+        case 1 : 
+            switch(y.type){
+                case 1 :
+                push_LONG(s, x.LONG - y.LONG);
+                break;
+
+                case 2 :
+                push_DOUBLE(s, x.LONG - y.DOUBLE);
+                break;
+
+                case 4 :
+                push_LONG(s, x.LONG);
+                break;
+
+                case 8 :
+                push_LONG(s, x.LONG);
+                break;
+            }
+            break;
+
+        case 2 :
+            switch(y.type){
+                case 1 :
+                push_DOUBLE(s, x.DOUBLE - y.LONG);
+                break;
+
+                case 2 :
+                push_DOUBLE(s, x.DOUBLE - y.DOUBLE);
+                break;
+
+                case 4 :
+                push_DOUBLE(s, x.DOUBLE);
+                break;
+
+                case 8 :
+                push_DOUBLE(s, x.DOUBLE);
+                break;
+            }
+            break;
+
+        case 4 :
+            switch(y.type){
+                case 1 :
+                push_LONG(s, y.LONG);
+                break;
+
+                case 2 :
+                push_DOUBLE(s, y.DOUBLE);
+                break;
+
+                case 4 :
+                push_CHAR(s, x.CHAR);
+                push_CHAR(s, y.CHAR);
+                break;
+
+                case 8 :
+                push_DOUBLE(s, x.CHAR);
+                break;
+            }
+            break;
+
+        case 8 :
+            switch(y.type){
+                case 1 :
+                push_LONG(s, y.LONG);
+                break;
+
+                case 2 :
+                push_DOUBLE(s, y.DOUBLE);
+                break;
+
+                case 4 :
+                push_STRING(s, x.STRING);
+                break;
+
+                case 8 :
+                push_STRING(s, x.STRING);
+                push_STRING(s, y.STRING);
+                break;
+            }
+            break;
+
     }
 }
+
 /**
  * @brief Multiplicação entre dois elementos da stack
  *
@@ -66,20 +212,93 @@ void multiplica(STACK *s){ // MULTIPLICAR "*"
     DATA x = pop(s);
     DATA y = pop(s);
     
-    if(has_type(x, 1) && has_type(y, 1)){
-        push_LONG(s, x.LONG * y.LONG);
-    }
-    else if(has_type(x, 2) && has_type(y, 2)){
-        push_DOUBLE(s, x.DOUBLE * y.DOUBLE);
-    }
-    else if(has_type(x, 1) && has_type(y, 2)){
-        push_DOUBLE(s, x.LONG * y.DOUBLE);
-    }
-    else if (has_type(x, 2) && has_type(y, 1)){
-        push_DOUBLE(s, x.DOUBLE * y.LONG);
+    switch(x.type){
+        case 1 : 
+            switch(y.type){
+                case 1 :
+                push_LONG(s, x.LONG * y.LONG);
+                break;
+
+                case 2 :
+                push_DOUBLE(s, x.LONG * y.DOUBLE);
+                break;
+
+                case 4 :
+                push_LONG(s, x.LONG);
+                break;
+
+                case 8 :
+                push_LONG(s, x.LONG);
+                break;
+            }
+            break;
+
+        case 2 :
+            switch(y.type){
+                case 1 :
+                push_DOUBLE(s, x.DOUBLE * y.LONG);
+                break;
+
+                case 2 :
+                push_DOUBLE(s, x.DOUBLE * y.DOUBLE);
+                break;
+
+                case 4 :
+                push_DOUBLE(s, x.DOUBLE);
+                break;
+
+                case 8 :
+                push_DOUBLE(s, x.DOUBLE);
+                break;
+            }
+            break;
+
+        case 4 :
+            switch(y.type){
+                case 1 :
+                push_LONG(s, y.LONG);
+                break;
+
+                case 2 :
+                push_DOUBLE(s, y.DOUBLE);
+                break;
+
+                case 4 :
+                push_CHAR(s, x.CHAR);
+                push_CHAR(s, y.CHAR);
+                break;
+
+                case 8 :
+                push_DOUBLE(s, x.CHAR);
+                break;
+            }
+            break;
+
+        case 8 :
+            switch(y.type){
+                case 1 :
+                push_LONG(s, y.LONG);
+                break;
+
+                case 2 :
+                push_DOUBLE(s, y.DOUBLE);
+                break;
+
+                case 4 :
+                push_STRING(s, x.STRING);
+                break;
+
+                case 8 :
+                push_STRING(s, x.STRING);
+                push_STRING(s, y.STRING);
+                break;
+            }
+            break;
+
     }
 
 }
+
 /**
  * @brief Divisão entre dois elementos da stack
  *
@@ -90,20 +309,93 @@ void divide(STACK *s){ // DIVIDIR "/"
     DATA x = pop(s);
     DATA y = pop(s);
 
-    if(has_type(x, 1) && has_type(y, 1)){
-        push_LONG(s, y.LONG / x.LONG);
-    }
-    else if(has_type(x, 2) && has_type(y, 2)){
-        push_DOUBLE(s, y.DOUBLE / x.DOUBLE);
-    }
-    else if(has_type(x, 1) && has_type(y, 2)){
-        push_DOUBLE(s, y.DOUBLE / x.LONG);
-    }
-    else if (has_type(x, 2) && has_type(y, 1)){
-        push_DOUBLE(s, y.LONG / x.DOUBLE);
+    switch(x.type){
+        case 1 : 
+            switch(y.type){
+                case 1 :
+                push_LONG(s, x.LONG / y.LONG);
+                break;
+
+                case 2 :
+                push_DOUBLE(s, x.LONG / y.DOUBLE);
+                break;
+
+                case 4 :
+                push_LONG(s, x.LONG);
+                break;
+
+                case 8 :
+                push_LONG(s, x.LONG);
+                break;
+            }
+            break;
+
+        case 2 :
+            switch(y.type){
+                case 1 :
+                push_DOUBLE(s, x.DOUBLE / y.LONG);
+                break;
+
+                case 2 :
+                push_DOUBLE(s, x.DOUBLE / y.DOUBLE);
+                break;
+
+                case 4 :
+                push_DOUBLE(s, x.DOUBLE);
+                break;
+
+                case 8 :
+                push_DOUBLE(s, x.DOUBLE);
+                break;
+            }
+            break;
+
+        case 4 :
+            switch(y.type){
+                case 1 :
+                push_LONG(s, y.LONG);
+                break;
+
+                case 2 :
+                push_DOUBLE(s, y.DOUBLE);
+                break;
+
+                case 4 :
+                push_CHAR(s, x.CHAR);
+                push_CHAR(s, y.CHAR);
+                break;
+
+                case 8 :
+                push_DOUBLE(s, x.CHAR);
+                break;
+            }
+            break;
+
+        case 8 :
+            switch(y.type){
+                case 1 :
+                push_LONG(s, y.LONG);
+                break;
+
+                case 2 :
+                push_DOUBLE(s, y.DOUBLE);
+                break;
+
+                case 4 :
+                push_STRING(s, x.STRING);
+                break;
+
+                case 8 :
+                push_STRING(s, x.STRING);
+                push_STRING(s, y.STRING);
+                break;
+            }
+            break;
+
     }
 
 }
+
 /**
  * @brief Incrementação do elemento no topo da stack
  *
@@ -112,16 +404,25 @@ void divide(STACK *s){ // DIVIDIR "/"
 void incrementa(STACK *s){ // INCREMENTAR ")"
     DATA x = pop(s);
 
-    if(has_type(x, 1)){
-        push_LONG(s, x.LONG + 1);
-    }
-    else if(has_type(x, 2)){
-        push_DOUBLE(s, x.DOUBLE + 1);
-    }
-    else if(has_type(x, 4)){
-        push_CHAR(s, x.CHAR + 1);
+    switch(x.type){
+        case 1 : 
+            push_LONG(s, x.LONG + 1);
+            break;
+
+        case 2 :
+            push_DOUBLE(s, x.DOUBLE + 1);
+            break;
+
+        case 4 : 
+            push_CHAR(s, x.CHAR + 1);
+            break;
+
+        case 8 :
+            push_STRING(s, x.STRING);
+            break;
     }
 }
+
 /**
  * @brief Decrementação do elemento no topo da stack
  *
@@ -130,16 +431,25 @@ void incrementa(STACK *s){ // INCREMENTAR ")"
 void decrementa(STACK *s){ // DECREMENTAR "("
     DATA x = pop(s);
 
-    if(has_type(x, 1)){
-        push_LONG(s, x.LONG - 1);
-    }
-    else if(has_type(x, 2)){
-        push_DOUBLE(s, x.DOUBLE - 1);
-    }
-    else if(has_type(x, 4)){
-        push_CHAR(s, x.CHAR - 1);
+    switch(x.type){
+        case 1 : 
+            push_LONG(s, x.LONG - 1);
+            break;
+
+        case 2 :
+            push_DOUBLE(s, x.DOUBLE - 1);
+            break;
+
+        case 4 : 
+            push_CHAR(s, x.CHAR - 1);
+            break;
+
+        case 8 :
+            push_STRING(s, x.STRING);
+            break;
     }
 }
+
 /**
  * @brief Módulo entre dois elementos da stack
  *
@@ -150,20 +460,93 @@ void modulo(STACK *s){ //  MÓDULO "%"
     DATA x = pop(s);
     DATA y = pop(s);
     
-    if(has_type(x, 1) && has_type(y, 1)){
-        push_LONG(s, y.LONG % x.LONG);
-    }
-    else if(has_type(x, 1) && has_type(y, 2)){
-        push_DOUBLE(s, fmod(y.DOUBLE ,x.LONG));
-    }
-    else if(has_type(x, 2) && has_type(y, 2)){
-        push_DOUBLE(s, fmod(y.DOUBLE ,x.DOUBLE));
-    }
-    else if(has_type(x, 2) && has_type(y, 1)){
-        push_DOUBLE(s, fmod(y.LONG ,x.DOUBLE));
+    switch(x.type){
+        case 1 : 
+            switch(y.type){
+                case 1 :
+                push_LONG(s, x.LONG % y.LONG);
+                break;
+
+                case 2 :
+                push_DOUBLE(s, fmod(x.LONG, y.DOUBLE));
+                break;
+
+                case 4 :
+                push_LONG(s, x.LONG);
+                break;
+
+                case 8 :
+                push_LONG(s, x.LONG);
+                break;
+            }
+            break;
+
+        case 2 :
+            switch(y.type){
+                case 1 :
+                push_DOUBLE(s, fmod(x.DOUBLE, y.LONG));
+                break;
+
+                case 2 :
+                push_DOUBLE(s, fmod(x.DOUBLE, y.DOUBLE));
+                break;
+
+                case 4 :
+                push_DOUBLE(s, x.DOUBLE);
+                break;
+
+                case 8 :
+                push_DOUBLE(s, x.DOUBLE);
+                break;
+            }
+            break;
+
+        case 4 :
+            switch(y.type){
+                case 1 :
+                push_LONG(s, y.LONG);
+                break;
+
+                case 2 :
+                push_DOUBLE(s, y.DOUBLE);
+                break;
+
+                case 4 :
+                push_CHAR(s, x.CHAR);
+                push_CHAR(s, y.CHAR);
+                break;
+
+                case 8 :
+                push_DOUBLE(s, x.CHAR);
+                break;
+            }
+            break;
+
+        case 8 :
+            switch(y.type){
+                case 1 :
+                push_LONG(s, y.LONG);
+                break;
+
+                case 2 :
+                push_DOUBLE(s, y.DOUBLE);
+                break;
+
+                case 4 :
+                push_STRING(s, x.STRING);
+                break;
+
+                case 8 :
+                push_STRING(s, x.STRING);
+                push_STRING(s, y.STRING);
+                break;
+            }
+            break;
+
     }
 }
-/**1
+
+/**
  * @brief Exponenciação de um elemento segundo outro
  *
  * Inicializada com o token "#"
@@ -173,16 +556,88 @@ void expoente(STACK *s){ // EXPONENCIAÇÃO "#"
     DATA x = pop(s);
     DATA y = pop(s);
     
-    if(has_type(x, 1) && has_type(y, 1)){
-        push_LONG(s, powl(y.LONG,x.LONG));
-    }
-    else if(has_type(x, 2) && has_type(y, 2)){
-        push_DOUBLE(s, powf(y.DOUBLE,x.DOUBLE));
-    }
-    else if(has_type(x, 1) && has_type(y, 2)){
-        push_DOUBLE(s, powf(y.DOUBLE,x.LONG));
-    }
-    else if (has_type(x, 2) && has_type(y, 1)){
-        push_DOUBLE(s, powf(y.LONG,x.DOUBLE));
+    switch(x.type){
+        case 1 : 
+            switch(y.type){
+                case 1 :
+                push_LONG(s, powl(y.LONG,x.LONG));
+                break;
+
+                case 2 :
+                push_DOUBLE(s, powf(y.DOUBLE,x.LONG));
+                break;
+
+                case 4 :
+                push_LONG(s, x.LONG);
+                break;
+
+                case 8 :
+                push_LONG(s, x.LONG);
+                break;
+            }
+            break;
+
+        case 2 :
+            switch(y.type){
+                case 1 :
+                push_DOUBLE(s, powf(y.LONG,x.DOUBLE));
+                break;
+
+                case 2 :
+                push_DOUBLE(s, powf(y.DOUBLE,x.DOUBLE));
+                break;
+
+                case 4 :
+                push_DOUBLE(s, x.DOUBLE);
+                break;
+
+                case 8 :
+                push_DOUBLE(s, x.DOUBLE);
+                break;
+            }
+            break;
+
+        case 4 :
+            switch(y.type){
+                case 1 :
+                push_LONG(s, y.LONG);
+                break;
+
+                case 2 :
+                push_DOUBLE(s, y.DOUBLE);
+                break;
+
+                case 4 :
+                push_CHAR(s, x.CHAR);
+                push_CHAR(s, y.CHAR);
+                break;
+
+                case 8 :
+                push_DOUBLE(s, x.CHAR);
+                break;
+            }
+            break;
+
+        case 8 :
+            switch(y.type){
+                case 1 :
+                push_LONG(s, y.LONG);
+                break;
+
+                case 2 :
+                push_DOUBLE(s, y.DOUBLE);
+                break;
+
+                case 4 :
+                push_STRING(s, x.STRING);
+                break;
+
+                case 8 :
+                push_STRING(s, x.STRING);
+                push_STRING(s, y.STRING);
+                break;
+            }
+            break;
+
     }
 }
