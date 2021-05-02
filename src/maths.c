@@ -21,16 +21,16 @@ void soma(STACK *s){ // SOMAR "+"
     DATA y = pop(s);
     
     if(has_type(x, 1) && has_type(y, 1)){
-        push_LONG(s, x.LONG + y.LONG);
+        push_LONG(s, y.LONG + x.LONG);
     }
     else if(has_type(x, 2) && has_type(y, 2)){
-        push_DOUBLE(s, x.DOUBLE + y.DOUBLE);
+        push_DOUBLE(s, y.DOUBLE + x.DOUBLE);
     }
     else if(has_type(x, 1) && has_type(y, 2)){
-        push_DOUBLE(s, x.LONG + y.DOUBLE);
+        push_DOUBLE(s, y.DOUBLE + x.LONG);
     }
     else if (has_type(x, 2) && has_type(y, 1)){
-        push_DOUBLE(s, x.DOUBLE + y.LONG);
+        push_DOUBLE(s, y.LONG + x.DOUBLE);
     }
 }
 /**

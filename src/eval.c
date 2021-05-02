@@ -14,7 +14,7 @@
 #include "manpln.h"
 
 // gcc -std=gnu11 -Wall -pedantic-errors -O eval.c -lm
-
+/*
 char *seps = "\"[]";
 char *delims = " \t\n"; 
 char **rest;
@@ -29,7 +29,7 @@ char *get_token(char *line, char **rest) { // devolve o token e coloca em rest o
 
 	return token;
 }
-
+*/
 /*
 char *get_delimited(char *line, char *seps, char **rest) { //devolve a parte da linha que contém o string ou array
 
@@ -53,7 +53,7 @@ char *sumarrays(char ){
 	
 }
 */
-
+/*
 int main(void){
 
 	char line[10240];
@@ -69,3 +69,4 @@ int main(void){
 
     return 0;
 }
+*/
