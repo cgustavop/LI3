@@ -385,7 +385,7 @@ void question(STACK *s){ // if then else com os 3 elementos anteriores
             break;
 
         case 8 :
-            if (strcmp(x.STRING, "0") != 0){
+            if (strcmp(x.STRING,"0") != 0){
                 switch(y.type){
                     case 1:
                         push_LONG(s, y.LONG);
