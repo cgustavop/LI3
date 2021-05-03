@@ -19,8 +19,9 @@
  *
  * @returns uma constante representativa de um tpe
  */
-typedef enum {LONG = 1, DOUBLE = 2, CHAR = 4, STRING = 8} TYPE;
-
+typedef enum {LONG = 1, DOUBLE = 2, CHAR = 4, STRING = 8, ARRAY = 16} TYPE;
+struct stack;
+typedef struct stack STACK;
 /**
  * Obtem os diferentes types do input utilizado masks
  *
@@ -35,6 +36,7 @@ typedef struct data {
 	double DOUBLE;
 	char CHAR;
 	char *STRING;
+	STACK *ARRAY;
 } DATA;
 
 /**
@@ -64,9 +66,11 @@ void push_LONG(STACK *s, long val);
 void push_DOUBLE(STACK *s, double val);
 void push_CHAR(STACK *s, char val);
 void push_STRING(STACK *s, char * val);
+void push_ARRAY(STACK *s, STACK * val);
 long pop_LONG(STACK *s);
 double pop_DOUBLE(STACK *s);
 char pop_CHAR(STACK *s);
-char * pop_STRING(STACK *s);
+char *pop_STRING(STACK *s);
+STACK *pop_ARRAY(STACK *s);
 
 #endif

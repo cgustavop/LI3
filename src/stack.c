@@ -129,6 +129,10 @@ void print_stack(STACK *s){
 			case 8	: 
 				printf("%s", elem.STRING);
 				break;
+
+			case 16 :
+				print_stack(elem.ARRAY);
+				break;
 		}
 	}
 	printf("\n");
@@ -175,6 +179,16 @@ void push_STRING(STACK *s, char * val){
 }
 
 /**
+ * @brief Função push para elementos do tipo ARRAY
+ */
+void push_ARRAY(STACK *s, STACK * val){
+		DATA elem;
+		elem.type = ARRAY;
+		elem.ARRAY = val;
+		push(s, elem);
+	}
+
+/**
  * @brief Função pop para elementos do tipo LONG
  */
 long pop_LONG(STACK *s){
@@ -209,3 +223,12 @@ char * pop_STRING(STACK *s){
 		assert(elem.type == STRING);
 		return elem.STRING;
 }
+
+/**
+ * @brief Função pop para elementos do tipo ARRAY
+ */
+STACK * pop_ARRAY(STACK *s){
+		DATA elem = pop(s);
+		assert(elem.type == ARRAY);
+		return elem.ARRAY;
+	}

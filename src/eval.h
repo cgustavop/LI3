@@ -1,11 +1,13 @@
-/**
- * @file eval.h
- * @brief Header que inicializa as funções do ficheiro eval.c
- */
-#include "stack.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
-//char *get_token(char *line, char **rest);
-//char *get_delimited(char *line, char *seps, char **rest);
-//char *sum_arrays(char );
+char *restante (char *line);
 
-//#endif
+char *get_token(char *line, char **rest);
+
+char *get_delimited(char *line, char *seps, char **rest);
+
+void handle_array(char *line, STACK *init_stack);
+
+STACK *eval(char *line, STACK *init_stack);
