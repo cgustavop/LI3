@@ -10,6 +10,8 @@
 
 #include "maths.h"
 #include "stack.h"
+
+
 /**
  * @brief Soma de dois elementos da stack
  *
@@ -20,91 +22,91 @@ void soma(STACK *s){ // SOMAR "+"
     DATA x = pop(s);
     DATA y = pop(s);
     
-    switch(x.type){
-        case 1 : 
-            switch(y.type){
-                case 1 :
+    switch(x.type){                                             // switch case para os diferentes tipos de x
+        case 1 :                                                // case quando x é long
+            switch(y.type){                                     // switch case para os diferentes tipos de y enquanto x é long
+                case 1 :                                        // case quando y é long enquanto x é long
                 push_LONG(s, y.LONG + x.LONG);
                 break;
 
-                case 2 :
+                case 2 :                                        // case quando y é double enquanto x é long
                 push_DOUBLE(s, y.DOUBLE + x.LONG);
                 break;
 
-                case 4 :
+                case 4 :                                        // case quando y é char enquanto x é long
                 push_LONG(s, x.LONG);
                 break;
 
-                case 8 :
+                case 8 :                                        // case quando y é string enquanto x é long
                 push_LONG(s, x.LONG);
                 break;
-            }
-            break;
+            }                                                   // fim do switch case para os diferentes tipos de y enquanto x é long
+            break;                                              // fim do case quando x é long
 
-        case 2 :
-            switch(y.type){
-                case 1 :
+        case 2 :                                                // case quando x é double
+            switch(y.type){                                     // switch case para os diferentes tipos de y enquanto x é double
+                case 1 :                                        // case quando y é long enquanto x é double
                 push_DOUBLE(s,  y.LONG + x.DOUBLE);
                 break;
 
-                case 2 :
+                case 2 :                                        // case quando y é double enquanto x é double
                 push_DOUBLE(s,  y.DOUBLE + x.DOUBLE);
                 break;
 
-                case 4 :
+                case 4 :                                        // case quando y é char enquanto x é double
                 push_DOUBLE(s, x.DOUBLE);
                 break;
 
-                case 8 :
+                case 8 :                                        // case quando y é string enquanto x é double
                 push_DOUBLE(s, x.DOUBLE);
                 break;
-            }
-            break;
+            }                                                   // fim do switch case para os diferentes tipos de y enquanto x é double
+            break;                                              // fim do case quando x é double
 
-        case 4 :
-            switch(y.type){
-                case 1 :
+        case 4 :                                                // case quando x é char
+            switch(y.type){                                     // switch case para os diferentes tipos de y enquanto x é char
+                case 1 :                                        // case quando y é long enquanto x é char
                 push_LONG(s, y.LONG);
                 break;
 
-                case 2 :
+                case 2 :                                        // case quando y é double enquanto x é char
                 push_DOUBLE(s, y.DOUBLE);
                 break;
 
-                case 4 :
+                case 4 :                                        // case quando y é char enquanto x é char
                 push_CHAR(s, x.CHAR);
                 push_CHAR(s, y.CHAR);
                 break;
 
-                case 8 :
+                case 8 :                                        // case quando y é string enquanto x é char
                 push_DOUBLE(s, x.CHAR);
                 break;
-            }
-            break;
+            }                                                   // fim do switch case para os diferentes tipos de y enquanto x é char
+            break;                                              // fim do case quando x é char
 
-        case 8 :
-            switch(y.type){
-                case 1 :
+        case 8 :                                                // case quando x é string
+            switch(y.type){                                     // switch case para os diferentes tipos de y enquanto x é string
+                case 1 :                                        // case quando y é long enquanto x é string
                 push_LONG(s, y.LONG);
                 break;
 
-                case 2 :
+                case 2 :                                        // case quando y é double enquanto x é string
                 push_DOUBLE(s, y.DOUBLE);
                 break;
 
-                case 4 :
+                case 4 :                                        // case quando y é char enquanto x é string
                 push_STRING(s, x.STRING);
                 break;
 
-                case 8 :
+                case 8 :                                        // case quando y é string enquanto x é string
                 push_STRING(s, x.STRING);
                 push_STRING(s, y.STRING);
                 break;
-            }
-            break;
+            }                                                   // fim do switch case para os diferentes tipos de y enquanto x é string
+            break;                                              // fim do case quando x é string
 
-    }
-}
+    }                                                           // fim do switch case para os diferentes tipos de x
+}                                                               // fim da função "+"
 
 /**
  * @brief Subtração entre dois elementos da stack
@@ -116,91 +118,91 @@ void subtrai(STACK *s){ // SUBTRAIR "-"
     DATA x = pop(s);
     DATA y = pop(s);
     
-    switch(x.type){
-        case 1 : 
-            switch(y.type){
-                case 1 :
+    switch(x.type){                                             // switch case para os diferentes tipos de x
+        case 1 :                                                // case quando x é long
+            switch(y.type){                                     // switch case para os diferentes tipos de y enquanto x é long
+                case 1 :                                        // case quando y é long enquanto x é long
                 push_LONG(s, y.LONG - x.LONG);
                 break;
 
-                case 2 :
+                case 2 :                                        // case quando y é double enquanto x é long
                 push_DOUBLE(s, y.DOUBLE - x.LONG);
                 break;
 
-                case 4 :
+                case 4 :                                        // case quando y é char enquanto x é long                                       
                 push_LONG(s, x.LONG);
                 break;
 
-                case 8 :
+                case 8 :                                        // case quando y é string enquanto x é long
                 push_LONG(s, x.LONG);
                 break;
-            }
-            break;
+            }                                                   // fim do switch case para os diferentes tipos de y enquanto x é long
+            break;                                              // fim do case quando x é long
 
-        case 2 :
-            switch(y.type){
-                case 1 :
+        case 2 :                                                // case quando x é double                                            
+            switch(y.type){                                     // switch case para os diferentes tipos de y enquanto x é double
+                case 1 :                                        // case quando y é long enquanto x é double
                 push_DOUBLE(s, y.LONG - x.DOUBLE);
                 break;
 
-                case 2 :
+                case 2 :                                        // case quando y é double enquanto x é double
                 push_DOUBLE(s, y.DOUBLE - x.DOUBLE);
                 break;
 
-                case 4 :
+                case 4 :                                        // case quando y é char enquanto x é double
                 push_DOUBLE(s, x.DOUBLE);
                 break;
 
-                case 8 :
+                case 8 :                                        // case quando y é string enquanto x é double
                 push_DOUBLE(s, x.DOUBLE);
                 break;
-            }
-            break;
+            }                                                   // fim do switch case para os diferentes tipos de y enquanto x é double
+            break;                                              // fim do case quando x é double
 
-        case 4 :
-            switch(y.type){
-                case 1 :
+        case 4 :                                                // case quando x é char
+            switch(y.type){                                     // switch case para os diferentes tipos de y enquanto x é char
+                case 1 :                                        // case quando y é long enquanto x é char
                 push_LONG(s, y.LONG);
                 break;
 
-                case 2 :
+                case 2 :                                        // case quando y é double enquanto x é char
                 push_DOUBLE(s, y.DOUBLE);
                 break;
 
-                case 4 :
+                case 4 :                                        // case quando y é char enquanto x é char
                 push_CHAR(s, x.CHAR);
                 push_CHAR(s, y.CHAR);
                 break;
 
-                case 8 :
+                case 8 :                                        // case quando y é string enquanto x é char
                 push_DOUBLE(s, x.CHAR);
                 break;
-            }
-            break;
+            }                                                   // fim do switch case para os diferentes tipos de y enquanto x é char
+            break;                                              // fim do case quando x é char
 
-        case 8 :
-            switch(y.type){
-                case 1 :
+        case 8 :                                                // case quando x é string
+            switch(y.type){                                     // switch case para os diferentes tipos de y enquanto x é string
+                case 1 :                                        // case quando y é long enquanto x é string
                 push_LONG(s, y.LONG);
                 break;
 
-                case 2 :
+                case 2 :                                        // case quando y é double enquanto x é string
                 push_DOUBLE(s, y.DOUBLE);
                 break;
 
-                case 4 :
+                case 4 :                                        // case quando y é char enquanto x é string
                 push_STRING(s, x.STRING);
                 break;
 
-                case 8 :
+                case 8 :                                        // case quando y é string enquanto x é string
                 push_STRING(s, x.STRING);
                 push_STRING(s, y.STRING);
                 break;
-            }
-            break;
+            }                                                   // fim do switch case para os diferentes tipos de y enquanto x é string
+            break;                                              // fim do case quando x é string
 
-    }
-}
+    }                                                           // fim do switch case para os diferentes tipos de x
+}                                                               // fim da função "-"
 
 /**
  * @brief Multiplicação entre dois elementos da stack
@@ -212,92 +214,91 @@ void multiplica(STACK *s){ // MULTIPLICAR "*"
     DATA x = pop(s);
     DATA y = pop(s);
     
-    switch(x.type){
-        case 1 : 
-            switch(y.type){
-                case 1 :
+    switch(x.type){                                             // switch case para os diferentes tipos de x
+        case 1 :                                                // case quando x é long
+            switch(y.type){                                     // switch case para os diferentes tipos de y enquanto x é long
+                case 1 :                                        // case quando y é long enquanto x é long
                 push_LONG(s, x.LONG * y.LONG);
                 break;
 
-                case 2 :
+                case 2 :                                        // case quando y é double enquanto x é long
                 push_DOUBLE(s, x.LONG * y.DOUBLE);
                 break;
 
-                case 4 :
+                case 4 :                                        // case quando y é char enquanto x é long
                 push_LONG(s, x.LONG);
                 break;
 
-                case 8 :
+                case 8 :                                        // case quando y é string enquanto x é long
                 push_LONG(s, x.LONG);
                 break;
-            }
-            break;
+            }                                                   // fim do switch case para os diferentes tipos de y enquanto x é long
+            break;                                              // fim do case quando x é long
 
-        case 2 :
-            switch(y.type){
-                case 1 :
+        case 2 :                                                // case quando x é double
+            switch(y.type){                                     // switch case para os diferentes tipos de y enquanto x é double
+                case 1 :                                        // case quando y é long enquanto x é double
                 push_DOUBLE(s, x.DOUBLE * y.LONG);
                 break;
 
-                case 2 :
+                case 2 :                                        // case quando y é double enquanto x é double
                 push_DOUBLE(s, x.DOUBLE * y.DOUBLE);
                 break;
 
-                case 4 :
+                case 4 :                                        // case quando y é char enquanto x é double
                 push_DOUBLE(s, x.DOUBLE);
                 break;
 
-                case 8 :
+                case 8 :                                        // case quando y é string enquanto x é double
                 push_DOUBLE(s, x.DOUBLE);
                 break;
-            }
-            break;
+            }                                                   // fim do switch case para os diferentes tipos de y enquanto x é double
+            break;                                              // fim do case quando x é double
 
-        case 4 :
-            switch(y.type){
-                case 1 :
+        case 4 :                                                // case quando x é char                                                
+            switch(y.type){                                     // switch case para os diferentes tipos de y enquanto x é char
+                case 1 :                                        // case quando y é long enquanto x é char
                 push_LONG(s, y.LONG);
                 break;
 
-                case 2 :
+                case 2 :                                        // case quando y é double enquanto x é char
                 push_DOUBLE(s, y.DOUBLE);
                 break;
 
-                case 4 :
+                case 4 :                                        // case quando y é char enquanto x é char
                 push_CHAR(s, x.CHAR);
                 push_CHAR(s, y.CHAR);
                 break;
 
-                case 8 :
+                case 8 :                                        // case quando y é string enquanto x é char
                 push_DOUBLE(s, x.CHAR);
                 break;
-            }
-            break;
+            }                                                   // fim do switch case para os diferentes tipos de y enquanto x é char
+            break;                                              // fim do case quando x é char
 
-        case 8 :
-            switch(y.type){
-                case 1 :
+        case 8 :                                                // case quando x é string
+            switch(y.type){                                     // switch case para os diferentes tipos de y enquanto x é string
+                case 1 :                                        // case quando y é long enquanto x é string
                 push_LONG(s, y.LONG);
                 break;
 
-                case 2 :
+                case 2 :                                        // case quando y é double enquanto x é string
                 push_DOUBLE(s, y.DOUBLE);
                 break;
 
-                case 4 :
+                case 4 :                                        // case quando y é char enquanto x é string
                 push_STRING(s, x.STRING);
                 break;
 
-                case 8 :
+                case 8 :                                        // case quando y é string enquanto x é string
                 push_STRING(s, x.STRING);
                 push_STRING(s, y.STRING);
                 break;
-            }
-            break;
+            }                                                   // fim do switch case para os diferentes tipos de y enquanto x é string
+            break;                                              // fim do case quando x é string
 
-    }
-
-}
+    }                                                           // fim do switch case para os diferentes tipos de x
+}                                                               // fim da função "*"
 
 /**
  * @brief Divisão entre dois elementos da stack
@@ -309,92 +310,92 @@ void divide(STACK *s){ // DIVIDIR "/"
     DATA x = pop(s);
     DATA y = pop(s);
 
-    switch(x.type){
-        case 1 : 
-            switch(y.type){
-                case 1 :
+    switch(x.type){                                             // switch case para os diferentes tipos de x
+        case 1 :                                                // case quando x é long
+            switch(y.type){                                     // switch case para os diferentes tipos de y enquanto x é long
+                case 1 :                                        // case quando y é long enquanto x é long
                 push_LONG(s, y.LONG / x.LONG);
                 break;
 
-                case 2 :
+                case 2 :                                        // case quando y é double enquanto x é long
                 push_DOUBLE(s, y.DOUBLE / x.LONG);
                 break;
 
-                case 4 :
+                case 4 :                                        // case quando y é char enquanto x é long
                 push_LONG(s, x.LONG);
                 break;
 
-                case 8 :
+                case 8 :                                        // case quando y é string enquanto x é long
                 push_LONG(s, x.LONG);
                 break;
-            }
-            break;
+            }                                                   // fim do switch case para os diferentes tipos de y enquanto x é long
+            break;                                              // fim do case quando x é long
 
-        case 2 :
-            switch(y.type){
-                case 1 :
+        case 2 :                                                // case quando x é double
+            switch(y.type){                                     // switch case para os diferentes tipos de y enquanto x é double
+                case 1 :                                        // case quando y é long enquanto x é double
                 push_DOUBLE(s, y.LONG / x.DOUBLE);
                 break;
 
-                case 2 :
+                case 2 :                                        // case quando y é double enquanto x é double
                 push_DOUBLE(s, y.DOUBLE / x.DOUBLE);
                 break;
 
-                case 4 :
+                case 4 :                                        // case quando y é char enquanto x é double
                 push_DOUBLE(s, x.DOUBLE);
                 break;
 
-                case 8 :
+                case 8 :                                        // case quando y é string enquanto x é double
                 push_DOUBLE(s, x.DOUBLE);
                 break;
-            }
-            break;
+            }                                                   // fim do switch case para os diferentes tipos de y enquanto x é double
+            break;                                              // fim do case quando x é double
 
-        case 4 :
-            switch(y.type){
-                case 1 :
+        case 4 :                                                // case quando x é char
+            switch(y.type){                                     // switch case para os diferentes tipos de y enquanto x é char
+                case 1 :                                        // case quando y é long enquanto x é char
                 push_LONG(s, y.LONG);
                 break;
 
-                case 2 :
+                case 2 :                                        // case quando y é double enquanto x é char
+
                 push_DOUBLE(s, y.DOUBLE);
                 break;
 
-                case 4 :
+                case 4 :                                        // case quando y é char enquanto x é char
                 push_CHAR(s, x.CHAR);
                 push_CHAR(s, y.CHAR);
                 break;
 
-                case 8 :
+                case 8 :                                        // case quando y é string enquanto x é char
                 push_DOUBLE(s, x.CHAR);
                 break;
-            }
-            break;
+            }                                                   // fim do switch case para os diferentes tipos de y enquanto x é char
+            break;                                              // fim do case quando x é char
 
-        case 8 :
-            switch(y.type){
-                case 1 :
+        case 8 :                                                // case quando x é string                   
+            switch(y.type){                                     // switch case para os diferentes tipos de y enquanto x é string
+                case 1 :                                        // case quando y é long enquanto x é string
                 push_LONG(s, y.LONG);
                 break;
 
-                case 2 :
+                case 2 :                                        // case quando y é double enquanto x é string
                 push_DOUBLE(s, y.DOUBLE);
                 break;
 
-                case 4 :
+                case 4 :                                        // case quando y é char enquanto x é string
                 push_STRING(s, x.STRING);
                 break;
 
-                case 8 :
+                case 8 :                                        // case quando y é string enquanto x é string
                 push_STRING(s, x.STRING);
                 push_STRING(s, y.STRING);
                 break;
-            }
-            break;
+            }                                                   // fim do switch case para os diferentes tipos de y enquanto x é string
+            break;                                              // fim do case quando x é string
 
-    }
-
-}
+    }                                                           // fim do switch case para os diferentes tipos de x
+}                                                               // fim da função "/"                                                                                              
 
 /**
  * @brief Incrementação do elemento no topo da stack
@@ -404,24 +405,24 @@ void divide(STACK *s){ // DIVIDIR "/"
 void incrementa(STACK *s){ // INCREMENTAR ")"
     DATA x = pop(s);
 
-    switch(x.type){
-        case 1 : 
+    switch(x.type){                                             // switch case para os diferentes tipos de x
+        case 1 :                                                // case quando x é long
             push_LONG(s, x.LONG + 1);
-            break;
+            break;                                              // fim do case quando x é long
 
-        case 2 :
+        case 2 :                                                // case quando x é double
             push_DOUBLE(s, x.DOUBLE + 1);
-            break;
+            break;                                              // fim do case quando x é double
 
-        case 4 : 
+        case 4 :                                                // case quando x é char
             push_CHAR(s, x.CHAR + 1);
-            break;
+            break;                                              // fim do case quando x é char
 
-        case 8 :
+        case 8 :                                                // case quando x é string
             push_STRING(s, x.STRING);
-            break;
-    }
-}
+            break;                                              // fim do case quando x é string
+    }                                                           // fim do switch case para os diferentes tipos de x
+}                                                               // fim da função ")"
 
 /**
  * @brief Decrementação do elemento no topo da stack
@@ -431,24 +432,24 @@ void incrementa(STACK *s){ // INCREMENTAR ")"
 void decrementa(STACK *s){ // DECREMENTAR "("
     DATA x = pop(s);
 
-    switch(x.type){
-        case 1 : 
+    switch(x.type){                                             // switch case para os diferentes tipos de x
+        case 1 :                                                // case quando x é long
             push_LONG(s, x.LONG - 1);
-            break;
+            break;                                              // fim do case quando x é long
 
-        case 2 :
+        case 2 :                                                // case quando x é double
             push_DOUBLE(s, x.DOUBLE - 1);
-            break;
+            break;                                              // fim do case quando x é double
 
-        case 4 : 
+        case 4 :                                                // case quando x é char
             push_CHAR(s, x.CHAR - 1);
-            break;
+            break;                                              // fim do case quando x é char
 
-        case 8 :
+        case 8 :                                                // case quando x é string
             push_STRING(s, x.STRING);
-            break;
-    }
-}
+            break;                                              // fim do case quando x é string
+    }                                                           // fim do switch case para os diferentes tipos de x
+}                                                               // fim da função "("
 
 /**
  * @brief Módulo entre dois elementos da stack
@@ -460,91 +461,91 @@ void modulo(STACK *s){ //  MÓDULO "%"
     DATA x = pop(s);
     DATA y = pop(s);
     
-    switch(x.type){
-        case 1 : 
-            switch(y.type){
-                case 1 :
+    switch(x.type){                                             // switch case para os diferentes tipos de x                                                 
+        case 1 :                                                // case quando x é long 
+            switch(y.type){                                     // switch case para os diferentes tipos de y enquanto x é long
+                case 1 :                                        // case quando y é long enquanto x é long
                 push_LONG(s, y.LONG % x.LONG);
                 break;
 
-                case 2 :
+                case 2 :                                        // case quando y é double enquanto x é long
                 push_DOUBLE(s, fmod(y.DOUBLE, x.LONG));
                 break;
 
-                case 4 :
+                case 4 :                                        // case quando y é char enquanto x é long
                 push_LONG(s, x.LONG);
                 break;
 
-                case 8 :
+                case 8 :                                        // case quando y é string enquanto x é long
                 push_LONG(s, x.LONG);
                 break;
-            }
-            break;
+            }                                                   // fim do switch case para os diferentes tipos de y enquanto x é long
+            break;                                              // fim do case quando x é long
 
-        case 2 :
-            switch(y.type){
-                case 1 :
+        case 2 :                                                // case quando x é double
+            switch(y.type){                                     // switch case para os diferentes tipos de y enquanto x é double
+                case 1 :                                        // case quando y é long enquanto x é double
                 push_DOUBLE(s, fmod(y.LONG, x.DOUBLE));
                 break;
 
-                case 2 :
+                case 2 :                                        // case quando y é double enquanto x é double
                 push_DOUBLE(s, fmod(y.DOUBLE, x.DOUBLE));
                 break;
 
-                case 4 :
+                case 4 :                                        // case quando y é char enquanto x é double
                 push_DOUBLE(s, x.DOUBLE);
                 break;
 
-                case 8 :
+                case 8 :                                        // case quando y é string enquanto x é double
                 push_DOUBLE(s, x.DOUBLE);
                 break;
-            }
-            break;
+            }                                                   // fim do switch case para os diferentes tipos de y enquanto x é double
+            break;                                              // fim do case quando x é double
 
-        case 4 :
-            switch(y.type){
-                case 1 :
+        case 4 :                                                // case quando x é char
+            switch(y.type){                                     // switch case para os diferentes tipos de y enquanto x é char
+                case 1 :                                        // case quando y é long enquanto x é char
                 push_LONG(s, y.LONG);
                 break;
 
-                case 2 :
+                case 2 :                                        // case quando y é double enquanto x é char
                 push_DOUBLE(s, y.DOUBLE);
                 break;
 
-                case 4 :
+                case 4 :                                        // case quando y é char enquanto x é char
                 push_CHAR(s, x.CHAR);
                 push_CHAR(s, y.CHAR);
                 break;
 
-                case 8 :
+                case 8 :                                        // case quando y é string enquanto x é char                                      
                 push_DOUBLE(s, x.CHAR);
                 break;
-            }
-            break;
+            }                                                   // fim do switch case para os diferentes tipos de y enquanto x é char
+            break;                                              // fim do case quando x é char
 
-        case 8 :
-            switch(y.type){
-                case 1 :
+        case 8 :                                                // case quando x é string
+            switch(y.type){                                     // switch case para os diferentes tipos de y enquanto x é string
+                case 1 :                                        // case quando y é long enquanto x é string
                 push_LONG(s, y.LONG);
                 break;
 
-                case 2 :
+                case 2 :                                        // case quando y é double enquanto x é string
                 push_DOUBLE(s, y.DOUBLE);
                 break;
 
-                case 4 :
+                case 4 :                                        // case quando y é char enquanto x é string
                 push_STRING(s, x.STRING);
                 break;
 
-                case 8 :
+                case 8 :                                        // case quando y é string enquanto x é string
                 push_STRING(s, x.STRING);
                 push_STRING(s, y.STRING);
-                break;
+                break;                                          // fim do switch case para os diferentes tipos de y enquanto x é string
             }
-            break;
+            break;                                              // fim do case quando x é string                                             
 
-    }
-}
+    }                                                           // fim do switch case para os diferentes tipos de x
+}                                                               // fim da função "%"
 
 /**
  * @brief Exponenciação de um elemento segundo outro
@@ -556,88 +557,88 @@ void expoente(STACK *s){ // EXPONENCIAÇÃO "#"
     DATA x = pop(s);
     DATA y = pop(s);
     
-    switch(x.type){
-        case 1 : 
-            switch(y.type){
-                case 1 :
+    switch(x.type){                                             // switch case para os diferentes tipos de x
+        case 1 :                                                // case quando x é long
+            switch(y.type){                                     // switch case para os diferentes tipos de y enquanto x é long
+                case 1 :                                        // case quando y é long enquanto x é long
                 push_LONG(s, powl(y.LONG,x.LONG));
                 break;
 
-                case 2 :
+                case 2 :                                        // case quando y é double enquanto x é long
                 push_DOUBLE(s, powf(y.DOUBLE,x.LONG));
                 break;
 
-                case 4 :
+                case 4 :                                        // case quando y é char enquanto x é long
                 push_LONG(s, x.LONG);
                 break;
 
-                case 8 :
+                case 8 :                                        // case quando y é string enquanto x é long
                 push_LONG(s, x.LONG);
                 break;
-            }
-            break;
+            }                                                   // fim do switch case para os diferentes tipos de y enquanto x é long
+            break;                                              // fim do case quando x é long
 
-        case 2 :
-            switch(y.type){
-                case 1 :
+        case 2 :                                                // case quando x é double
+            switch(y.type){                                     // switch case para os diferentes tipos de y enquanto x é double
+                case 1 :                                        // case quando y é long enquanto x é double
                 push_DOUBLE(s, powf(y.LONG,x.DOUBLE));
                 break;
 
-                case 2 :
+                case 2 :                                        // case quando y é double enquanto x é double
                 push_DOUBLE(s, powf(y.DOUBLE,x.DOUBLE));
                 break;
 
-                case 4 :
+                case 4 :                                        // case quando y é char enquanto x é double
                 push_DOUBLE(s, x.DOUBLE);
                 break;
 
-                case 8 :
+                case 8 :                                        // case quando y é string enquanto x é double
                 push_DOUBLE(s, x.DOUBLE);
                 break;
-            }
-            break;
+            }                                                   // fim do switch case para os diferentes tipos de y enquanto x é double
+            break;                                              // fim do case quando x é double
 
-        case 4 :
-            switch(y.type){
-                case 1 :
+        case 4 :                                                // case quando x é char
+            switch(y.type){                                     // switch case para os diferentes tipos de y enquanto x é char
+                case 1 :                                        // case quando y é long enquanto x é char
                 push_LONG(s, y.LONG);
                 break;
 
-                case 2 :
+                case 2 :                                        // case quando y é double enquanto x é char
                 push_DOUBLE(s, y.DOUBLE);
                 break;
 
-                case 4 :
+                case 4 :                                        // case quando y é char enquanto x é char
                 push_CHAR(s, x.CHAR);
                 push_CHAR(s, y.CHAR);
                 break;
 
-                case 8 :
+                case 8 :                                        // case quando y é string enquanto x é char
                 push_DOUBLE(s, x.CHAR);
                 break;
-            }
-            break;
+            }                                                   // fim do switch case para os diferentes tipos de y enquanto x é char
+            break;                                              // fim do case quando x é char
 
-        case 8 :
-            switch(y.type){
-                case 1 :
+        case 8 :                                                // case quando x é string
+            switch(y.type){                                     // switch case para os diferentes tipos de y enquanto x é string
+                case 1 :                                        // case quando y é long enquanto x é string
                 push_LONG(s, y.LONG);
                 break;
 
-                case 2 :
+                case 2 :                                        // case quando y é double enquanto x é string
                 push_DOUBLE(s, y.DOUBLE);
                 break;
 
-                case 4 :
+                case 4 :                                        // case quando y é char enquanto x é string
                 push_STRING(s, x.STRING);
                 break;
 
-                case 8 :
+                case 8 :                                        // case quando y é string enquanto x é string
                 push_STRING(s, x.STRING);
                 push_STRING(s, y.STRING);
-                break;
-            }
-            break;
+                break;                                          
+            }                                                   // fim do switch case para os diferentes tipos de y enquanto x é string
+            break;                                              // fim do case quando x é string
 
-    }
-}
+    }                                                           // fim do switch case para os diferentes tipos de x
+}                                                               // fim da função "#"
