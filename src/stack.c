@@ -131,11 +131,47 @@ void print_stack(STACK *s){
 				break;
 
 			case 16 :
-				print_stack(elem.ARRAY);
+				print_array(elem.ARRAY);
 				break;
 		}
 	}
 	printf("\n");
+}
+/**
+ * @brief Imprime um array
+ * 
+ * Percorre a stack correspondente ao array e imprime os elementos nele contidos.
+ *
+ * @param *s Struct onde se encontra os elementos do array
+ * @returns esta função não devolve nenhum valor
+ */
+void print_array(STACK *s){
+	for(int i = 0; i <s->n_elems; i++){
+		DATA elem = s->stack[i];
+		TYPE type = elem.type;
+
+		switch(type){
+			case 1	: 
+				printf("%ld", elem.LONG);
+				break;
+
+			case 2	:	 
+				printf("%g", elem.DOUBLE);
+				break;
+
+			case 4	: 
+				printf("%c", elem.CHAR);
+				break;
+
+			case 8	: 
+				printf("%s", elem.STRING);
+				break;
+
+			case 16 :
+				print_array(elem.ARRAY);
+				break;
+		}
+	}
 }
 
 /**

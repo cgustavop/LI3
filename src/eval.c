@@ -13,8 +13,6 @@
 #include "logics.h"
 #include "manpln.h"
 
-// gcc -std=gnu11 -Wall -pedantic-errors -O *.c -lm
-
 /**
  * @brief Função que nos devolve o maior dos restos do array
  * 
@@ -25,7 +23,8 @@ char *restante (char *line){    // devolve o maior dos restos
 
     char *e, *n, *t, *resto;
     int ei, ni, ti;
-                                
+    
+    if (line) {                          
     e = strchr(line, ' ');        // aponta para line apartir do primeiro espaço
     n = strchr(line, '\n');     // aponta para line apartir do primeiro newline
     t = strchr(line, '\t');        // aponta para line apartir do primeiro tab
@@ -44,6 +43,7 @@ char *restante (char *line){    // devolve o maior dos restos
     if (ei > ti && ei > ni) resto= e;
     else if (ti > ni) resto = t;
     else resto = n;
+    } else resto = NULL;
 
     return resto;
 }
@@ -58,9 +58,14 @@ char *get_token(char *line, char **rest) {  // devolve o token e coloca em "rest
 
     char *token, *resto;
     resto = restante(line);
-
+    
+    if (resto) { 
     token = strndup(line, strlen(line)-strlen(resto));    // guarda o primeiro token da line numa string
-    *rest = strdup(resto + 1);                               // guarda o resto da line numa string
+    *rest = strdup(resto + 1); // guarda o resto da line numa string
+    } else {
+      token = line; //se resto for null, token é null
+      *rest = NULL;
+    }
 
     return token;
 }
@@ -72,7 +77,6 @@ char *get_token(char *line, char **rest) {  // devolve o token e coloca em "rest
  *
  */
 char *seps = " \t\n";
-//char *seps = "\"[]";
 
 /**
  * @brief Função que nos devolve o conteúdo da string ou array
@@ -87,7 +91,6 @@ char *get_delimited(char *line, char *seps, char **rest) { //devolve a parte da 
     char *token;
     char *cpy = strdup(line);
     int aberturas = 1;
-    //int i = 0;
 
     for (token = strtok(cpy, seps); aberturas != 0; token = strtok(NULL, seps)) {
 
@@ -102,36 +105,36 @@ char *get_delimited(char *line, char *seps, char **rest) { //devolve a parte da 
                 if (aberturas == 0) {}
                 else strcat(strcat(array, token) , " ");
                 
-            } else if (strcmp(token, "\"") == 0) {
-                aberturas--;
+            //} else if (strcmp(token, "\"") == 0) {
+              //  aberturas--;
 
             } else strcat(strcat(array, token) , " ");
         
     }
-    
-    *rest = strdup(line + strlen(array) + 2);
+
+    *rest = strdup(line + strlen(array) + 3);
     
     return array;
-} 
+}
 STACK *eval(char *line, STACK *init_stack);
 
 /**
  * @brief Função que nos devolve o conteúdo do array sem os "[" "]"
  * 
- * Obtendo o conteúdo do array é lhe feito um push como uma stack normal
+ * Obtendo o conteúdo do array é lhe feito um push como uma stack para dentro da stack principal.
  *
  */
 void handle_array(char *line, STACK *init_stack) {	// recebe o que está dentro dos parêntesis do array e dá push disso "avaliado" como uma stack
 
 	// eval da line com stack null = stack
 	// push do array na nossa stack na forma de stack
-	STACK *array = NULL;
-	push_ARRAY( init_stack, eval(line, array) );
+	STACK *array = new_stack();
+	push_ARRAY( init_stack, eval(line, array));
 
 }
 
 /**
- * @brief Função do novo parser para arrays inclusivé
+ * @brief Avalia o input token a token
  * 
  *
  *
@@ -140,16 +143,16 @@ STACK *eval(char *line, STACK *init_stack){
 
 	char **rest = malloc(sizeof(char *));
 
-	for (char *token = get_token(line, rest); token != NULL ; line = strdup(*rest)) {
-
+	for (char *token = get_token(line, rest); *rest != NULL ; token = get_token(line, rest)) {
+	
 		char *sobra1, *sobra2;
-
+		
     	long val_l = strtol(token, &sobra1, 10);	
     	double val_d = strtod(token, &sobra2);
       
         if(strlen(sobra1) == 0)                  // tamanho sobra1 == 0, então é um elemento do tipo LONG (dá push a esse elemento)
         	push_LONG(init_stack, val_l);
-       
+
         else if(strlen(sobra2) == 0)             // tamanho sobra2 == 0, então é um elemento do tipo DOUBLE (dá push a esse elemento)
         	push_DOUBLE(init_stack, val_d);
 
@@ -159,14 +162,14 @@ STACK *eval(char *line, STACK *init_stack){
         else if(strchr(token, ':') != NULL)  {   // se forem detetados ":" pega na letra que está à frente dos pontos
             char *letra = strchr(token, ':');
             atributo(init_stack, &letra[1]);              // a letra é inserida como parametro para a função atributo
-        }
+        } 
         else { 
 
         	switch (token[0]) {
 
                 case '[' :
         	        	// retira conteúdo do array para uma line
-        	        handle_array( get_delimited(line, seps, rest) , init_stack);		// trata do conteúdo no interior do array e guarda-o na nossa stack
+        	        handle_array( get_delimited(line + strlen(token), seps, rest) , init_stack);		// trata do conteúdo no interior do array e guarda-o na nossa stack
                     break;
 
                 case '\"' :
@@ -174,6 +177,7 @@ STACK *eval(char *line, STACK *init_stack){
                     break;
 
                 case '+' :                       // função soma
+
         	        soma(init_stack);
                     break;
 
@@ -302,9 +306,13 @@ STACK *eval(char *line, STACK *init_stack){
                     push_STRING(init_stack, token);
                     break;
 
-            }                   // end of switch
-    	}	free(rest);			// pointer "rest" é livre para guardar o resto do get_token da próxima iteração do ciclo for
-
+            }   // end of switch
+                      
+    	}		// end of else condition	
+    	
+    	line = *rest;	// o line adota o conteúdo do rest para continuar a avaliação
+        
  	}
 	return init_stack;			// return the stack evaluated
 }                               // end of eval function
+

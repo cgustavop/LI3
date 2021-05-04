@@ -78,6 +78,9 @@ void not(STACK *s){ // NOT "~"
 
         case 8 :                                    // case de ser 8, de x ser do tipo string
             break;
+
+        case 16 :                                    // case de ser 16, de x ser do tipo array
+            break;
     }                                               // fim do switch case dos tipos de x
 }                                                   // fim do "~"
 
@@ -120,6 +123,9 @@ void igual(STACK *s){ // "="
                 case 8 :                           // case de y ser string enquanto x é long
                     push_LONG(s, 0);
                     break;
+
+                case 16 :                                    // case de ser 16, de x ser do tipo array
+                    break;
             }                                      // fim do switch case dos tipos de y para quando x é long
             break;                                 // fim do case quando x é long
 
@@ -151,6 +157,9 @@ void igual(STACK *s){ // "="
 
                 case 8 :                           // case quando y é string enquanto x é double
                     push_LONG(s, 0);
+                    break;
+
+                case 16 :                                    // case de ser 16, de x ser do tipo array
                     break;
             }                                      // fim do switch case dos tipos de y para quando x é double
             break;                                 // fim do case quando x é double
@@ -187,6 +196,9 @@ void igual(STACK *s){ // "="
                 case 8 :                            // case quando y é string enquanto x é char
                     push_LONG(s, 0);
                     break;
+                
+                case 16 :                                    // case de ser 16, de x ser do tipo array
+                    break;
             }                                       // fim do switch case dos tipos de y para quando x é char
             break;                                  // fim do case quando x é char
 
@@ -210,8 +222,14 @@ void igual(STACK *s){ // "="
                     else
                         push_LONG(s, 0);
                     break;
+
+                case 16 :                                    // case de ser 16, de x ser do tipo array
+                    break;
             }                                       // fim do switch case dos tipos de y para quando x é string
             break;                                  // fim do case quando x é string
+
+        case 16 :                                    // case de ser 16, de x ser do tipo array
+                    break;
     }                                               // fim do switch case dos tipos de x
 }                                                   // fim da função "="
 
@@ -251,6 +269,9 @@ void menor(STACK *s){ // <
                 case 8 :                             // case quando y é string enquanto x é long
                     push_LONG(s, 0);
                     break;
+
+                case 16 :                                    // case de ser 16, de x ser do tipo array
+                    break;
             }                                        // fim do switch case para os diferentes tipos de y enquanto x é long
             break;                                   // fim do case quando x é long
 
@@ -282,6 +303,9 @@ void menor(STACK *s){ // <
 
                 case 8 :                             // case quando y é string enquanto x é double
                     push_LONG(s, 0);
+                    break;
+
+                case 16 :                                    // case de ser 16, de x ser do tipo array
                     break;
             }                                        // fim do switch case para os diferentes tipos de y enquanto x é double
             break;                                   // fim do case quando x é double
@@ -318,6 +342,9 @@ void menor(STACK *s){ // <
                 case 8 :                             // case quando y é string enquanto x é char
                     push_LONG(s, 0);
                     break;
+
+                case 16 :                                    // case de ser 16, de x ser do tipo array
+                    break;
             }                                        // fim do switch case para os diferentes tipos de y enquanto x é char
             break;                                   // fim do case quando x é char
 
@@ -341,8 +368,14 @@ void menor(STACK *s){ // <
                     else
                         push_LONG(s, 0);
                     break;
+
+                case 16 :                                    // case de ser 16, de x ser do tipo array
+                    break;
             }                                        // fim do switch case para os diferentes tipos de y enquanto x é string
             break;                                   // fim do case quando x é string
+
+        case 16 :                                    // case de ser 16, de x ser do tipo array
+                    break;
 
     }                                                // fim do switch case para os diferentes tipos de x
 }                                                    // fim da função "<"
@@ -386,6 +419,9 @@ void maior(STACK *s){ // >
                 case 8 :                            // case quando y é string enquanto x é long
                     push_LONG(s, 0);
                     break;
+
+                case 16 :                                    // case de ser 16, de x ser do tipo array
+                    break;
             }                                       // fim do switch case para os diferentes tipos de y enquanto x é long
             break;                                  // fim do case quando x é long
 
@@ -417,6 +453,9 @@ void maior(STACK *s){ // >
 
                 case 8 :                            // case quando y é string enquanto x é double
                     push_LONG(s, 0);
+                    break;
+
+                case 16 :                                    // case de ser 16, de x ser do tipo array
                     break;
             }                                       // fim do switch case para os diferentes tipos de y enquanto x é double
             break;                                  // fim do case quando x é double
@@ -453,6 +492,9 @@ void maior(STACK *s){ // >
                 case 8 :                            // case quando y é string enquanto x é char
                     push_LONG(s, 0);
                     break;
+
+                case 16 :                                    // case de ser 16, de x ser do tipo array
+                    break;
             }                                       // fim do switch case para os diferentes tipos de y enquanto x é char
             break;                                  // fim do case quando x é char                                      
 
@@ -476,8 +518,14 @@ void maior(STACK *s){ // >
                     else
                         push_LONG(s, 0);
                     break;
+
+                case 16 :                                    // case de ser 16, de x ser do tipo array
+                    break;
             }                                       // fim do switch case para os diferentes tipos de y enquanto x é string
             break;                                  // fim do case quando x é string
+
+        case 16 :                                    // case de ser 16, de x ser do tipo array
+                    break;
 
     }                                               // fim do switch case para os diferentes tipos de x
 }                                                   // fim da função ">"
@@ -518,6 +566,9 @@ void nono(STACK *s){ // !
             else
                 push_LONG(s, 0);
             break;                                  // fim do case quando x é string
+
+        case 16 :                                    // case de ser 16, de x ser do tipo array
+                    break;
 
     }                                               // fim do switch case para os diferentes tipos de x
 }                                                   // fim da função "!"
@@ -562,6 +613,9 @@ void eE(STACK *s){ // e&
                 case 8 :                            // case quando y é string enquanto x é long
                     push_LONG(s, x.LONG);
                     break;
+
+                case 16 :                                    // case de ser 16, de x ser do tipo array
+                    break;
             }                                       // fim do switch case para os diferentes tipos de y enquanto x é long
             break;                                  // fim do case quando x é long
 
@@ -595,6 +649,9 @@ void eE(STACK *s){ // e&
                 case 8 :                            // case quando y é string enquanto x é double
                     push_DOUBLE(s, x.DOUBLE);
                     break;
+
+                case 16 :                                    // case de ser 16, de x ser do tipo array
+                    break;
             }                                       // fim do switch case para os diferentes tipos de y enquanto x é double
             break;                                  // fim do case quando x é double
 
@@ -620,6 +677,9 @@ void eE(STACK *s){ // e&
                         push_STRING(s, y.STRING);
                     else 
                         push_CHAR(s, x.CHAR);
+                    break;
+
+                case 16 :                                    // case de ser 16, de x ser do tipo array
                     break;
             }                                       // fim do switch case para os diferentes tipos de y enquanto x é char
             break;                                  // fim do case quando x é char
@@ -647,8 +707,14 @@ void eE(STACK *s){ // e&
                     else
                         push_STRING(s , x.STRING);
                     break;
+
+                case 16 :                                    // case de ser 16, de x ser do tipo array
+                    break;
             }                                       // fim do switch case para os diferentes tipos de y enquanto x é string
             break;                                  // fim do case quando x é string
+
+        case 16 :                                    // case de ser 16, de x ser do tipo array
+                    break;
 
     }                                               // fim do switch case para os diferentes tipos de x
 }                                                   // fim da função "e&"
@@ -704,6 +770,9 @@ void eOU(STACK *s){ // e|
                     else
                         push_STRING(s, y.STRING);
                     break;
+
+                case 16 :                                    // case de ser 16, de x ser do tipo array
+                    break;
             }                                       // fim do switch case para os diferentes tipos de y enquanto x é long
             break;                                  // fim do case quando x é long
 
@@ -747,6 +816,9 @@ void eOU(STACK *s){ // e|
                             push_DOUBLE(s, x.DOUBLE);
                     else
                         push_STRING(s, y.STRING);
+                    break;
+
+                case 16 :                                    // case de ser 16, de x ser do tipo array
                     break;
             }                                       // fim do switch case para os diferentes tipos de y enquanto x é double
             break;                                  // fim do case quando x é double
@@ -792,6 +864,9 @@ void eOU(STACK *s){ // e|
                     else
                         push_STRING(s, y.STRING);
                     break;
+
+                case 16 :                                    // case de ser 16, de x ser do tipo array
+                    break;
             }                                       // fim do switch case para os diferentes tipos de y enquanto x é char
             break;                                  // fim do case quando x é char
 
@@ -836,8 +911,14 @@ void eOU(STACK *s){ // e|
                     else
                         push_STRING(s, y.STRING);
                     break;
+
+                case 16 :                                    // case de ser 16, de x ser do tipo array
+                    break;
             }                                       // fim do switch case para os diferentes tipos de y enquanto x é string
             break;                                  // fim do case quando x é string
+
+        case 16 :                                    // case de ser 16, de x ser do tipo array
+                    break;
 
     }                                               // fim do switch case para os diferentes tipos de x
 }                                                   // fim da função "e|"
@@ -881,6 +962,9 @@ void emenor(STACK *s){ // e<
                 case 8 :                            // case quando y é string enquanto x é long
                     push_LONG(s, x.LONG);
                     break;
+
+                case 16 :                                    // case de ser 16, de x ser do tipo array
+                    break;
             }                                       // fim do switch case para os diferentes tipos de y enquanto x é long
             break;                                  // fim do case quando x é long
 
@@ -912,6 +996,9 @@ void emenor(STACK *s){ // e<
 
                 case 8 :                            // case quando y é string enquanto x é double
                     push_DOUBLE(s, x.DOUBLE);
+                    break;
+
+                case 16 :                                    // case de ser 16, de x ser do tipo array
                     break;
             }                                       // fim do switch case para os diferentes tipos de y enquanto x é double
             break;                                  // fim do case quando x é double
@@ -951,6 +1038,9 @@ void emenor(STACK *s){ // e<
                     else 
                         push_CHAR(s, x.CHAR);
                     break;
+
+                case 16 :                                    // case de ser 16, de x ser do tipo array
+                    break;
             }                                       // fim do switch case para os diferentes tipos de y enquanto x é char
             break;                                  // fim do case quando x é char
 
@@ -977,8 +1067,14 @@ void emenor(STACK *s){ // e<
                     else
                         push_STRING(s , x.STRING);
                     break;
+
+                case 16 :                                    // case de ser 16, de x ser do tipo array
+                    break;
             }                                       // fim do switch case para os diferentes tipos de y enquanto x é string
             break;                                  // fim do case quando x é string
+
+        case 16 :                                    // case de ser 16, de x ser do tipo array
+                    break;
 
     }                                               // fim do switch case para os diferentes tipos de x
 }                                                   // fim da função "e<"
@@ -1023,6 +1119,9 @@ void emaior(STACK *s){ // e>
                 case 8 :                            // case quando y é string enquanto x é long
                     push_LONG(s, x.LONG);
                     break;
+
+                case 16 :                                    // case de ser 16, de x ser do tipo array
+                    break;
             }                                       // fim do switch case para os diferentes tipos de y enquanto x é long
             break;                                  // fim do case quando x é long
 
@@ -1054,6 +1153,9 @@ void emaior(STACK *s){ // e>
 
                 case 8 :                            // case quando y é string enquanto x é double
                     push_DOUBLE(s, x.DOUBLE);
+                    break;
+
+                case 16 :                                    // case de ser 16, de x ser do tipo array
                     break;
             }                                       // fim do switch case para os diferentes tipos de y enquanto x é double  
             break;                                  // fim do case quando x é double
@@ -1093,6 +1195,9 @@ void emaior(STACK *s){ // e>
                     else 
                         push_CHAR(s, x.CHAR);
                     break;
+
+                case 16 :                                    // case de ser 16, de x ser do tipo array
+                    break;
             }                                       // fim do switch case para os diferentes tipos de y enquanto x é char
             break;                                  // fim do case quando x é char
 
@@ -1119,8 +1224,14 @@ void emaior(STACK *s){ // e>
                     else
                         push_STRING(s , x.STRING);
                     break;
+
+                case 16 :                                    // case de ser 16, de x ser do tipo array
+                    break;
             }                                       // fim do switch case para os diferentes tipos de y enquanto x é string
             break;                                  // fim do case quando x é string
+
+        case 16 :                                    // case de ser 16, de x ser do tipo array
+                    break;
 
     }                                               // fim do switch case para os diferentes tipos de x
 }                                                   // fim da função "e>"

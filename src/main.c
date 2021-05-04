@@ -30,9 +30,9 @@ int main(void){
 
     assert(fgets(line, 10240, stdin) != NULL);
     assert(line[strlen(line) - 1] == '\n');
-
-    eval(line, s);
-    print_stack(s);             // print result
+    
+    s = eval(line, s);
+    print_stack(s); // print result
 	free(s);
 
     return 0;

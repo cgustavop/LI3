@@ -40,6 +40,9 @@ void duplica(STACK *s){ // DUPLICAR "_"
             push_STRING(s, x.STRING);
             push_STRING(s, x.STRING);
             break;
+
+        case 16 :                                    // case de ser 16, de x ser do tipo array
+            break;
     }
 }
 /**
@@ -67,6 +70,9 @@ void troca(STACK *s){ // TROCAR DOIS ELEMENTOS DO TOPO DA STACK "\"
         case 8 :
             push_STRING(s, y.STRING);
             break;
+
+        case 16 :                                    // case de ser 16, de x ser do tipo array
+            break;
     }
 
     switch(x.type){
@@ -84,6 +90,9 @@ void troca(STACK *s){ // TROCAR DOIS ELEMENTOS DO TOPO DA STACK "\"
 
         case 8 :
             push_STRING(s, x.STRING);
+            break;
+
+        case 16 :                                    // case de ser 16, de x ser do tipo array
             break;
     }
 }
@@ -113,6 +122,9 @@ void rodar(STACK *s){ // RODAR OS 3 ELEMENTOS NO TOPO DA STACK "@"
         case 8 :
             push_STRING(s, y.STRING);
             break;
+
+        case 16 :                                    // case de ser 16, de x ser do tipo array
+            break;
     }
 
 
@@ -132,6 +144,9 @@ void rodar(STACK *s){ // RODAR OS 3 ELEMENTOS NO TOPO DA STACK "@"
         case 8 :
             push_STRING(s, x.STRING);
             break;
+
+        case 16 :                                    // case de ser 16, de x ser do tipo array
+            break;
     }
 
     switch(z.type){
@@ -149,6 +164,9 @@ void rodar(STACK *s){ // RODAR OS 3 ELEMENTOS NO TOPO DA STACK "@"
 
         case 8 :
             push_STRING(s, z.STRING);
+            break;
+
+        case 16 :                                    // case de ser 16, de x ser do tipo array
             break;
     }
 }
@@ -178,6 +196,9 @@ void copia(STACK *s){ // COPIA N-ÉSIMO ELEMENTO PARA O TOPO DA STACK "n $"
 
         case 8 :
             push_STRING(s, x.STRING);
+            break;
+
+        case 16 :                                    // case de ser 16, de x ser do tipo array
             break;
     }
     
@@ -247,6 +268,9 @@ void atributo(STACK *s, char *letra){ // variaveis
             s->array[a-65].STRING = x.STRING;
             push_STRING(s, x.STRING);
             break;
+
+        case 16 :                                    // case de ser 16, de x ser do tipo array
+            break;
     }
 }
 
@@ -279,6 +303,9 @@ void question(STACK *s){ // if then else com os 3 elementos anteriores
                     case 8:
                         push_STRING(s, y.STRING);
                         break;
+
+                    case 16 :                                    // case de ser 16, de x ser do tipo array
+                        break;
                 }
         
             } else {
@@ -297,6 +324,9 @@ void question(STACK *s){ // if then else com os 3 elementos anteriores
 
                     case 8:
                         push_STRING(s, z.STRING);
+                        break;
+
+                    case 16 :                                    // case de ser 16, de x ser do tipo array
                         break;
                 }
             }
@@ -320,6 +350,9 @@ void question(STACK *s){ // if then else com os 3 elementos anteriores
                     case 8:
                         push_STRING(s, y.STRING);
                         break;
+
+                    case 16 :                                    // case de ser 16, de x ser do tipo array
+                        break;
                 }
         
             } else {
@@ -338,6 +371,9 @@ void question(STACK *s){ // if then else com os 3 elementos anteriores
 
                     case 8:
                         push_STRING(s, z.STRING);
+                        break;
+
+                    case 16 :                                    // case de ser 16, de x ser do tipo array
                         break;
                 }
             }
@@ -361,6 +397,9 @@ void question(STACK *s){ // if then else com os 3 elementos anteriores
                     case 8:
                         push_STRING(s, y.STRING);
                         break;
+
+                    case 16 :                                    // case de ser 16, de x ser do tipo array
+                        break;
                 }
         
             } else {
@@ -379,6 +418,9 @@ void question(STACK *s){ // if then else com os 3 elementos anteriores
 
                     case 8:
                         push_STRING(s, z.STRING);
+                        break;
+
+                    case 16 :                                    // case de ser 16, de x ser do tipo array
                         break;
                 }
             }
@@ -402,6 +444,9 @@ void question(STACK *s){ // if then else com os 3 elementos anteriores
                     case 8:
                         push_STRING(s, y.STRING);
                         break;
+
+                    case 16 :                                    // case de ser 16, de x ser do tipo array
+                        break;
                 }
         
             } else {
@@ -421,9 +466,16 @@ void question(STACK *s){ // if then else com os 3 elementos anteriores
                     case 8:
                         push_STRING(s, z.STRING);
                         break;
+
+                    case 16 :                                    // case de ser 16, de x ser do tipo array
+                        break;
                 }
             }
+
             break;
+
+        case 16 :                                    // case de ser 16, de x ser do tipo array
+                break;
     }
 }
 
@@ -476,7 +528,11 @@ void printt(STACK *s){ // IMPRIME TOPO DA STACK "p"
 
         case 8 :
             push_STRING(s, x.STRING);
-            break;            
+            break;
+
+        case 16 :
+            push_ARRAY(s, x.ARRAY);                                   // case de ser 16, de x ser do tipo array
+            break;        
     }
 }
 
@@ -505,6 +561,9 @@ void intz(STACK *s){ // CONVERTE O ELEMENTO NO TOPO DA STACK NUM INTEIRO "i"
         case 8 :      
             push_LONG(s, atof(x.STRING));
             break;
+
+        case 16 :                                    // case de ser 16, de x ser do tipo array
+            break;
     }
 }
 /**
@@ -530,6 +589,9 @@ void doublez(STACK *s){ // CONVERTE O ELEMENTO NO TOPO DA STACK NUM DOUBLE "f"
 
         case 8 :      
             push_DOUBLE(s, atof(x.STRING));
+            break;
+
+        case 16 :                                    // case de ser 16, de x ser do tipo array
             break;
     }
 }
@@ -557,6 +619,9 @@ void charz(STACK *s){ //   CONVERTE O ELEMENTO NO TOPO DA STACK NUM CARATERE "c"
         case 8 :
             push_STRING(s, x.STRING);
             break;
+
+        case 16 :                                    // case de ser 16, de x ser do tipo array
+            break;
     }
 }
 /**
@@ -582,6 +647,9 @@ void stringz(STACK *s){ // CONVERTE O ELEMENTO NO TOPO DA STACK NUMA STRING "s"
 
         case 8 :
             push_STRING(s, x.STRING);
+            break;
+
+        case 16 :                                    // case de ser 16, de x ser do tipo array
             break;
     }
 }
