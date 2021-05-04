@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include <ctype.h>
 
+#include "arrays.h"
 #include "stack.h"
 #include "maths.h" 
 #include "logics.h"
@@ -208,8 +209,11 @@ STACK *eval(char *line, STACK *init_stack){
         	        push_STRING(init_stack, get_string(line + strlen(token), seps, rest) );			// retira o que está dentro de aspas e dá push como uma string
                     break;
 
-                case '+' :                       // função soma
+                case ',' :						// função range
+                	range(init_stack);
+                	break;
 
+                case '+' :                       // função soma
         	        soma(init_stack);
                     break;
 

@@ -170,7 +170,7 @@ void subtrai(STACK *s){ // SUBTRAIR "-"
                 push_LONG(s, x.LONG);
                 break;
 
-                case 16 :                                    // case de ser 16, de x ser do tipo array
+                case 16 :                                       // case de ser 16, de x ser do tipo array
                 break;
             }                                                   // fim do switch case para os diferentes tipos de y enquanto x é long
             break;                                              // fim do case quando x é long
@@ -193,7 +193,7 @@ void subtrai(STACK *s){ // SUBTRAIR "-"
                 push_DOUBLE(s, x.DOUBLE);
                 break;
 
-                case 16 :                                    // case de ser 16, de x ser do tipo array
+                case 16 :                                       // case de ser 16, de x ser do tipo array
                 break;
             }                                                   // fim do switch case para os diferentes tipos de y enquanto x é double
             break;                                              // fim do case quando x é double
@@ -217,7 +217,7 @@ void subtrai(STACK *s){ // SUBTRAIR "-"
                 push_DOUBLE(s, x.CHAR);
                 break;
 
-                case 16 :                                    // case de ser 16, de x ser do tipo array
+                case 16 :                                       // case de ser 16, de x ser do tipo array
                 break;
             }                                                   // fim do switch case para os diferentes tipos de y enquanto x é char
             break;                                              // fim do case quando x é char
@@ -241,12 +241,12 @@ void subtrai(STACK *s){ // SUBTRAIR "-"
                 push_STRING(s, y.STRING);
                 break;
 
-                case 16 :                                    // case de ser 16, de x ser do tipo array
+                case 16 :                                        // case de ser 16, de x ser do tipo array
                 break;
             }                                                   // fim do switch case para os diferentes tipos de y enquanto x é string
             break;                                              // fim do case quando x é string
 
-        case 16 :                                    // case de ser 16, de x ser do tipo array
+        case 16 :                                               // case de ser 16, de x ser do tipo array
                 break;
 
     }                                                           // fim do switch case para os diferentes tipos de x
@@ -523,7 +523,7 @@ void incrementa(STACK *s){ // INCREMENTAR ")"
             push_STRING(s, x.STRING);
             break;                                              // fim do case quando x é string
 
-        case 16 :                                    // case de ser 16, de x ser do tipo array
+        case 16 :                                               // case de ser 16, de x ser do tipo array
             break;
     }                                                           // fim do switch case para os diferentes tipos de x
 }                                                               // fim da função ")"

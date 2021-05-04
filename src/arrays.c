@@ -10,6 +10,7 @@
 
 #include "logics.h"
 #include "stack.h"
+#include "eval.h"
 
 void concatenar(STACK *pri, STACK *sec){
 	STACK *aux = new_stack();
@@ -74,3 +75,28 @@ void concatvar(STACK *s, long i){
     }   
 }
 */
+
+void range(STACK *s){
+    DATA x = pop(s);
+    long i;
+
+    switch(x.type){
+        case 1 :
+            for(i = 0;i<=x.LONG;i++)
+                push_LONG(s, i);
+            break;
+
+        case 2 :
+            break;
+
+        case 4 :
+            break;
+
+        case 8 :
+            break;
+
+        case 16 :
+            
+            break;
+    }
+}
