@@ -14,6 +14,13 @@
 #include "manpln.h"
 
 // gcc -std=gnu11 -Wall -pedantic-errors -O *.c -lm
+
+/**
+ * @brief Função que nos devolve o maior dos restos do array
+ * 
+ *
+ *
+ */
 char *restante (char *line){    // devolve o maior dos restos
 
     char *e, *n, *t, *resto;
@@ -41,6 +48,12 @@ char *restante (char *line){    // devolve o maior dos restos
     return resto;
 }
 
+/**
+ * @brief Função que nos devolve o token e coloca o resto do array numa string
+ * 
+ *
+ *
+ */
 char *get_token(char *line, char **rest) {  // devolve o token e coloca em "rest" o que resta da string
 
     char *token, *resto;
@@ -52,9 +65,21 @@ char *get_token(char *line, char **rest) {  // devolve o token e coloca em "rest
     return token;
 }
 
+/**
+ * @brief Os separadores de strings num array
+ * 
+ * Verificar se o que separa os diferentes argumentos são whitespaces, tabs ou newlines
+ *
+ */
 char *seps = " \t\n";
 //char *seps = "\"[]";
 
+/**
+ * @brief Função que nos devolve o conteúdo da string ou array
+ * 
+ *
+ *
+ */
 char *get_delimited(char *line, char *seps, char **rest) { //devolve a parte da linha que contém o interior da string ou array
 
     char *array = malloc(sizeof(char)*strlen(line));
@@ -87,9 +112,15 @@ char *get_delimited(char *line, char *seps, char **rest) { //devolve a parte da 
     *rest = strdup(line + strlen(array) + 2);
     
     return array;
-}
+} 
 STACK *eval(char *line, STACK *init_stack);
 
+/**
+ * @brief Função que nos devolve o conteúdo do array sem os "[" "]"
+ * 
+ * Obtendo o conteúdo do array é lhe feito um push como uma stack normal
+ *
+ */
 void handle_array(char *line, STACK *init_stack) {	// recebe o que está dentro dos parêntesis do array e dá push disso "avaliado" como uma stack
 
 	// eval da line com stack null = stack
@@ -99,6 +130,12 @@ void handle_array(char *line, STACK *init_stack) {	// recebe o que está dentro 
 
 }
 
+/**
+ * @brief Função do novo parser para arrays inclusivé
+ * 
+ *
+ *
+ */
 STACK *eval(char *line, STACK *init_stack){
 
 	char **rest = malloc(sizeof(char *));

@@ -12,22 +12,29 @@
  * Oferece a possibilidade de nomear types por constantes
  *
  * Recebe os diferentes tipos e atribui-lhes uma constante
- * LONG = 1
- * DOUBLE = 2
- * CHAR = 4
- * STRING= 8
+ * @param LONG = 1
+ * @param DOUBLE = 2
+ * @param CHAR = 4
+ * @param STRING= 8
  *
  * @returns uma constante representativa de um tpe
  */
 typedef enum {LONG = 1, DOUBLE = 2, CHAR = 4, STRING = 8, ARRAY = 16} TYPE;
 struct stack;
 typedef struct stack STACK;
+
 /**
  * Obtem os diferentes types do input utilizado masks
  *
  * Recebe os elementos dos quais pertencerão à stack e atribui-lhes a mask do tipo.
  * O tipo tem de ser obrigatoriamente um destes, não há caso para tal indefinição.
- * 
+ * @param tipos são definidos como type
+ * @param um long é representado por LONG
+ * @param um double é representado por DOUBLE
+ * @param um char é representado por CHAR
+ * @param uma string é representada por *STRING
+ * @param um array é representado por *ARRAY
+ *
  * @returns um elemento com o tipo.
  */
 typedef struct data {
@@ -45,6 +52,11 @@ typedef struct data {
  * Recebe os elementos dos quais serão feitos os arrays da nossa stack e reserva a memória necessária definindo os parâmetros de tamanho, separando o array de letras.
  * No caso de não haver memória suficiente para alocar um novo array resulta num aviso de erro.
  * 
+ * @param um array tem no máximo 26 chars, letras do abcedário
+ * @param uma stack tem os elementos dados na stack
+ * @param obtem um tamanho pre definido
+ * @param obtemos qual é o elemento
+ *
  * @returns um array representante da nova stack.
  */
 typedef struct stack{
