@@ -112,7 +112,34 @@ char *get_delimited(char *line, char *seps, char **rest) { //devolve a parte da 
         
     }
 
-    *rest = strdup(line + strlen(array) + 3);
+    *rest = strdup(line + strlen(array) + 3);   // devolve o resto da string fora do array
+    
+    return array;
+}
+
+char *get_string(char *line, char *seps, char **rest) { //devolve a parte da linha que contém o interior da string ou array
+
+    char *array = malloc(sizeof(char)*strlen(line));
+    memset( array, '\0', sizeof(char)*strlen(line));
+    char *token;
+    char *cpy = strdup(line);
+    int aberturas = 1;
+
+    for (token = strtok(cpy, seps); aberturas != 0; token = strtok(NULL, seps)) {
+
+            if (strcmp(token, "\"") == 0) {
+              aberturas--;
+
+            } else if(strchr(token, '\"') != NULL)  {   // se forem detetados " coladas a letras pega nas letras que estão antes
+                token[strlen(token)-1] = '\0';
+                strcat(array, token);
+                aberturas--;
+
+            } else strcat(strcat(array, token) , " ");
+        
+    }
+
+    *rest = strdup(line + strlen(array) + 3); // devolve o resto da string fora das aspas
     
     return array;
 }
@@ -163,6 +190,11 @@ STACK *eval(char *line, STACK *init_stack){
             char *letra = strchr(token, ':');
             atributo(init_stack, &letra[1]);              // a letra é inserida como parametro para a função atributo
         } 
+
+        else if(strchr(token, '\"') != NULL)  {   // se forem detetadas aspas com uma letra
+            char *letra = strcat(token + 1, " ");
+            push_STRING(init_stack, get_string(strcat(letra, line), seps, rest) );
+        }
         else { 
 
         	switch (token[0]) {
@@ -173,7 +205,7 @@ STACK *eval(char *line, STACK *init_stack){
                     break;
 
                 case '\"' :
-        	        push_STRING(init_stack, get_delimited(line, seps, rest));			// retira o que está dentro de aspas e dá push como uma string
+        	        push_STRING(init_stack, get_string(line + strlen(token), seps, rest) );			// retira o que está dentro de aspas e dá push como uma string
                     break;
 
                 case '+' :                       // função soma
