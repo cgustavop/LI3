@@ -10,7 +10,7 @@
 
 #include "maths.h"
 #include "stack.h"
-
+#include "arrays.h"
 
 /**
  * @brief Soma de dois elementos da stack
@@ -117,7 +117,25 @@ void soma(STACK *s){ // SOMAR "+"
             }                                                   // fim do switch case para os diferentes tipos de y enquanto x é string
             break;                                              // fim do case quando x é string
 
-        case 16 :                                    // case de ser 16, de x ser do tipo array
+        case 16 :
+            switch(y.type){                                    // case de ser 16, de x ser do tipo array
+                case 1 :
+                break;
+
+                case 2 :
+                break;
+
+                case 4 :
+                break;
+
+                case 8 :
+                break;
+
+                case 16 :
+                concatenar(y.ARRAY,x.ARRAY);
+                push_ARRAY(s, y.ARRAY);
+                break;
+            }
                 break;
 
     }                                                           // fim do switch case para os diferentes tipos de x
@@ -263,11 +281,7 @@ void multiplica(STACK *s){ // MULTIPLICAR "*"
                 push_LONG(s, x.LONG);
                 break;
 
-                case 16 :                                       // case quando y é array enquanto x é long           
-                while(x.LONG != 0){
-                push_ARRAY(s, y.ARRAY);
-                x.LONG --;
-                }
+                case 16 :                                       // case quando y é array enquanto x é long         
                 break;
             }                                                   // fim do switch case para os diferentes tipos de y enquanto x é long
             break;                                              // fim do case quando x é long
@@ -349,10 +363,6 @@ void multiplica(STACK *s){ // MULTIPLICAR "*"
         case 16 :                                               // case quando x é array
             switch(y.type){                                     // switch case para os diferentes tipos de y enquanto x é array
                 case 1 :                                        // case quando y é long enquanto x é array
-                while(y.LONG != 0){
-                push_ARRAY(s, x.ARRAY);
-                y.LONG --;
-                }
                 break;
 
                 case 2 :                                        // case quando y é double enquanto x é array
