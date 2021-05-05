@@ -4,6 +4,7 @@
  */
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "stack.h"
 #include "maths.h"
@@ -38,9 +39,11 @@ STACK *new_stack(){
 	s->array[2].LONG = 12; s->array[2].type= 1;
 	s->array[3].LONG = 13; s->array[3].type= 1;
 	s->array[4].LONG = 14; s->array[4].type= 1;
-	s->array[5].LONG = 15; s->array[5].type= 1; // definição por omissão A a F
-	s->array[13].CHAR = '\n'; s->array[13].type= 4;
-	s->array[18].CHAR = ' '; s->array[18].type= 4;
+	s->array[5].LONG = 15; s->array[5].type= 1; 	// definição por omissão A a F
+	s->array[13].CHAR = '\n'; s->array[13].type= 4;	// definição por omissão N (new line)
+	s->array[18].STRING = (char *) malloc(sizeof(char));
+	memset(s->array[18].STRING, ' ', sizeof(char));
+	s->array[18].type= 8;							// definição por omissão S (space em forma de string)
 	s->array[23].LONG = 0; s->array[23].type= 1;
 	s->array[24].LONG = 1; s->array[24].type= 1;
 	s->array[25].LONG = 2; s->array[25].type= 1; // definição por omissão N, S, X, Y, Z

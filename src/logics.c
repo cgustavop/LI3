@@ -1234,7 +1234,7 @@ void emaior(STACK *s){ // e>
                     break;
 
                 case 8 :                            // case quando y é string enquanto x é string
-                    if (strlen(y.STRING) > strlen(x.STRING)) 
+                    if ((strlen(y.STRING) > strlen(x.STRING)) == 0)
                         push_STRING(s, y.STRING);
                     else
                         push_STRING(s , x.STRING);

@@ -85,7 +85,8 @@ void soma(STACK *s){ // SOMAR "+"
                 break;
 
                 case 8 :                                        // case quando y é string enquanto x é char
-                push_DOUBLE(s, x.CHAR);
+                strncat(y.STRING, &(x.CHAR), 1);
+                push_STRING(s, y.STRING);
                 break;
 
                 case 16 :                                    // case de ser 16, de x ser do tipo array
@@ -104,12 +105,11 @@ void soma(STACK *s){ // SOMAR "+"
                 break;
 
                 case 4 :                                        // case quando y é char enquanto x é string
-                push_STRING(s, x.STRING);
                 break;
 
                 case 8 :                                        // case quando y é string enquanto x é string
-                push_STRING(s, x.STRING);
-                push_STRING(s, y.STRING);
+                    strcat(y.STRING, x.STRING);
+                    push_STRING(s, y.STRING);
                 break;
 
                 case 16 :                                    // case de ser 16, de x ser do tipo array

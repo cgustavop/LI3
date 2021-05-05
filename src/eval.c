@@ -195,6 +195,12 @@ STACK *eval(char *line, STACK *init_stack){
             push_STRING(init_stack, get_string(line, seps, rest));  // faz push da strin depois de delimitada pelas aspas
 
         }
+        else if(strcmp(token, "N/") == 0) {
+            nspace(init_stack);
+        }
+        else if(strcmp(token, "S/") == 0) {
+            sspace(init_stack);
+        }
         else { 
 
         	switch (token[0]) {
@@ -324,14 +330,6 @@ STACK *eval(char *line, STACK *init_stack){
                 case '?' :                       // if then else com os 3 elementos no topo da stack
                     question(init_stack);
                     break;
-
-                case "S/" :                        // separar string por whitespaces
-                	sspace(init_stack);
-                	break;
-
-                case "N/" :                       // separar string por newlines
-                	nspace(init_stack);
-                	break;
 
                 case 'l' :                       // lê uma linha
                     lerl(init_stack);

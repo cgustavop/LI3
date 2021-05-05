@@ -127,7 +127,7 @@ void despejo(STACK *s){
 
 void sspace(STACK *s){
     DATA x = pop(s);
-    int i;
+    long i;
 
     switch(x.type){
         case 1 :
@@ -140,7 +140,7 @@ void sspace(STACK *s){
             break;
 
         case 8 :
-            for (i = 0; i < strlen(x.STRING); i++) {
+            for (i = 0; i <  (long)(strlen(x.STRING)); i++) {
                 if(strchr(x.STRING, ' '))
                     push_ARRAY(s, x.ARRAY);
             }
@@ -153,7 +153,7 @@ void sspace(STACK *s){
 
 void nspace(STACK *s){
     DATA x = pop(s);
-    int i;
+    long i;
 
     switch(x.type){
         case 1 :
@@ -166,7 +166,7 @@ void nspace(STACK *s){
             break;
 
         case 8 :
-            for (i = 0; i < strlen(x.STRING); i++) {
+            for (i = 0; i <  (long)(strlen(x.STRING)); i++) {
                 if(strchr(x.STRING, '\n'))
                     push_ARRAY(s, x.ARRAY);
             }
