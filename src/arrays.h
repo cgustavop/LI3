@@ -9,4 +9,5 @@ void range(STACK *s);
 void sspace(STACK *s);
 void nspace(STACK *s);
 void seek(long n, STACK *array, STACK *stack);
+void seeknstring(long n, char *string, STACK *stack);
 void concatvar(STACK *s, long i);

@@ -123,7 +123,7 @@ void igual(STACK *s){ // "="
                     break;
 
                 case 8 :                           // case de y ser string enquanto x é long
-                    push_LONG(s, 0);
+                    seeknstring(x.LONG, y.STRING, s);
                     break;
 
                 case 16 :

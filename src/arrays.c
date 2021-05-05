@@ -206,15 +206,25 @@ void seek(long n, STACK *array, STACK *stack) {
     }
 }
 
-void concatvar(STACK *s, long i){
-    STACK *aux = s;
-    STACK *aux2 = s;
+
+void seeknstring(long n, char *string, STACK *stack) {
+
+    char *ch = strndup(string + n, 1);
+    push_STRING(stack, ch);
     
+}
+
+void concatvar(STACK *s, long i){
+    
+    STACK *aux = new_stack();
+    STACK aux2 = *s;
+    i--;
+
     while(i > 0){
 
-        aux2 = s;
+        aux2 = *s;
 
-        concatenar(aux,aux2);
+        concatenar(aux,&aux2);
         
         i--;
     }
