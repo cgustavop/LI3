@@ -270,10 +270,12 @@ void menor(STACK *s){ // <
                     break;
 
                 case 8 :                             // case quando y é string enquanto x é long
-                    push_LONG(s, 0);
+                    push_STRING(s, strndup(y.STRING, sizeof(char) * x.LONG));
                     break;
 
                 case 16 :                                    // case de ser 16, de x ser do tipo array
+                    takeXstart(x.LONG, y.ARRAY);
+                    push_ARRAY(s, y.ARRAY);
                     break;
             }                                        // fim do switch case para os diferentes tipos de y enquanto x é long
             break;                                   // fim do case quando x é long
@@ -426,11 +428,12 @@ void maior(STACK *s){ // >
                         push_LONG(s, 0);
                     break;
 
-                case 8 :                            // case quando y é string enquanto x é long
-                    push_LONG(s, 0);
+                case 8 :                            // case quando y é string enquanto x é long                   
+                    push_STRING(s, strdup(y.STRING + strlen(y.STRING) - x.LONG));
                     break;
 
-                case 16 :                                    // case de ser 16, de x ser do tipo array
+                case 16 :                                    // case de ser 16, de x ser do tipo array                    
+                    push_ARRAY(s , takeXend(x.LONG, y.ARRAY));
                     break;
             }                                       // fim do switch case para os diferentes tipos de y enquanto x é long
             break;                                  // fim do case quando x é long

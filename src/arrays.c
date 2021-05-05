@@ -12,9 +12,39 @@
 #include "stack.h"
 #include "eval.h"
 
+void inverteArray(STACK *input, STACK *output) { // função auxiliar para inverter um array
+
+    while(input->n_elems > 0){
+    DATA x = pop(input);
+                            // case quando x é long
+            switch(x.type){                                     
+                case 1 :                                        
+                push_LONG(output, x.LONG);
+                break;
+
+                case 2 :                                        
+                push_DOUBLE(output, x.DOUBLE);
+                break;
+
+                case 4 :                                                                              
+                push_CHAR(output, x.CHAR);
+                break;
+
+                case 8 :                                        
+                push_STRING(output, x.STRING);
+                break;
+
+                case 16 :
+                push_ARRAY(output, x.ARRAY);                                   
+                break;
+            }
+    }
+}
 
 void concatenar(STACK *pri, STACK *sec){
+
 	STACK *aux = new_stack();
+
 	while(sec->n_elems > 0){
 	DATA x = pop(sec);
                             // case quando x é long
@@ -39,32 +69,9 @@ void concatenar(STACK *pri, STACK *sec){
                 push_ARRAY(aux, x.ARRAY);                                   
                 break;
             }
-    }                                                   
-    while(aux->n_elems > 0){
-	DATA x = pop(aux);
-                            // case quando x é long
-            switch(x.type){                                     
-                case 1 :                                        
-                push_LONG(pri, x.LONG);
-                break;
-
-                case 2 :                                        
-                push_DOUBLE(pri, x.DOUBLE);
-                break;
-
-                case 4 :                                                                              
-                push_CHAR(pri, x.CHAR);
-                break;
-
-                case 8 :                                        
-                push_STRING(pri, x.STRING);
-                break;
-
-                case 16 :
-                push_ARRAY(pri, x.ARRAY);                                   
-                break;
-            }
     }
+
+    inverteArray(aux, pri);
     free(aux);     
 }
 
@@ -90,6 +97,7 @@ void range(STACK *s){
             break;
 
         case 8 :
+            push_LONG(s, strlen(x.STRING));
             break;
 
         case 16 :              
@@ -97,28 +105,6 @@ void range(STACK *s){
             break;
     }
 }
-/*
-void despejo(STACK *s){
-    DATA x = pop(s);
-
-    switch(x.type){
-        case 1 :
-            break;
-
-        case 2 :
-            break;
-
-        case 4 :
-            break;
-
-        case 8 :
-            break;
-
-        case 16 :
-            concatenar(s, x.ARRAY);
-            break;
-    }
-} */
 
 void sspace(STACK *s){
     DATA x = pop(s);
@@ -204,6 +190,53 @@ void seek(long n, STACK *array, STACK *stack) {
             break;
     
     }
+}
+
+void takeXstart(long n, STACK *array) { // n <
+
+    long vezes = (array->n_elems) - n;
+
+    for(long i = 0; i < vezes; i++) {
+        pop(array);
+    }
+}
+
+STACK *takeXend(long n, STACK *array) { // n >
+
+    STACK *store = new_stack();
+    STACK *aux = new_stack();
+
+    for(long i = 0; i < n; i++) {
+        
+        DATA z = pop(array);
+
+        switch (z.type) {
+
+            case 1 :
+                push_LONG(aux, z.LONG);
+                break;
+
+            case 2 :
+                push_DOUBLE(aux, z.DOUBLE);
+                break;
+
+            case 4 :
+                push_CHAR(aux, z.CHAR);
+                break;
+
+            case 8 :
+                push_STRING(aux, z.STRING);
+                break;
+
+            case 16 :
+                push_ARRAY(aux, z.ARRAY);
+                break;
+        }
+    }
+
+    inverteArray(aux, store);
+    free(aux); 
+    return store;
 }
 
 
