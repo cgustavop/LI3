@@ -100,3 +100,25 @@ void range(STACK *s){
             break;
     }
 }
+/*
+void despejo(STACK *s){
+    DATA x = pop(s);
+
+    switch(x.type){
+        case 1 :
+            break;
+
+        case 2 :
+            break;
+
+        case 4 :
+            break;
+
+        case 8 :
+            break;
+
+        case 16 :
+            concatenar(s, x.ARRAY);
+            break;
+    }
+} */

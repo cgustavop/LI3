@@ -10,6 +10,7 @@
 
 #include "logics.h"
 #include "stack.h"
+#include "arrays.h"
 
 /**
  * @brief E lógico entre dois elementos da stack
@@ -80,6 +81,7 @@ void not(STACK *s){ // NOT "~"
             break;
 
         case 16 :                                    // case de ser 16, de x ser do tipo array
+            concatenar(s, x.ARRAY);
             break;
     }                                               // fim do switch case dos tipos de x
 }                                                   // fim do "~"

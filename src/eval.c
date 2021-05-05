@@ -85,7 +85,7 @@ char *seps = " \t\n";
  *
  *
  */
-char *get_delimited(char *line, char *seps, char **rest) { //devolve a parte da linha que contém o interior da string ou array
+char *get_delimited(char *line, char *seps, char **rest) { //devolve a parte da linha que contém o interior do array
 
     char *array = malloc(sizeof(char)*strlen(line));
     memset( array, '\0', sizeof(char)*strlen(line));
@@ -118,7 +118,7 @@ char *get_delimited(char *line, char *seps, char **rest) { //devolve a parte da 
     return array;
 }
 
-char *get_string(char *line, char *seps, char **rest) { //devolve a parte da linha que contém o interior da string ou array
+char *get_string(char *line, char *seps, char **rest) { //devolve a parte da linha que contém o interior da string
 
     char *array = malloc(sizeof(char)*strlen(line));
     memset( array, '\0', sizeof(char)*strlen(line));
@@ -158,9 +158,7 @@ void handle_array(char *line, STACK *init_stack) {	// recebe o que está dentro 
 	// push do array na nossa stack na forma de stack
 	STACK *array = new_stack();
 	push_ARRAY( init_stack, eval(line, array));
-
 }
-
 /**
  * @brief Avalia o input token a token
  * 
@@ -193,8 +191,9 @@ STACK *eval(char *line, STACK *init_stack){
         } 
 
         else if(strchr(token, '\"') != NULL)  {   // se forem detetadas aspas com uma letra
-            char *letra = strcat(token + 1, " ");
-            push_STRING(init_stack, get_string(strcat(letra, line), seps, rest) );
+            memset(line, ' ', 1);                 // faz cair as primeiras aspas mesmo que estejam coladas a uma palavra
+            push_STRING(init_stack, get_string(line, seps, rest));  // faz push da strin depois de delimitada pelas aspas
+
         }
         else { 
 
@@ -203,10 +202,6 @@ STACK *eval(char *line, STACK *init_stack){
                 case '[' :
         	        	// retira conteúdo do array para uma line
         	        handle_array( get_delimited(line + strlen(token), seps, rest) , init_stack);		// trata do conteúdo no interior do array e guarda-o na nossa stack
-                    break;
-
-                case '\"' :
-        	        push_STRING(init_stack, get_string(line + strlen(token), seps, rest) );			// retira o que está dentro de aspas e dá push como uma string
                     break;
 
                 case ',' :						// função range
@@ -257,7 +252,7 @@ STACK *eval(char *line, STACK *init_stack){
                     xor(init_stack);
                     break;
 
-                case '~' :                       // função negação lógica
+                case '~' :                       // função negação lógica e despejo de arrays na stack
                     not(init_stack);
                     break;
 
