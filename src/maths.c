@@ -281,7 +281,9 @@ void multiplica(STACK *s){ // MULTIPLICAR "*"
                 push_LONG(s, x.LONG);
                 break;
 
-                case 16 :                                       // case quando y é array enquanto x é long         
+                case 16 :                                       // case quando y é array enquanto x é long
+                concatvar(y.ARRAY, x.LONG);
+                push_ARRAY(s, y.ARRAY);         
                 break;
             }                                                   // fim do switch case para os diferentes tipos de y enquanto x é long
             break;                                              // fim do case quando x é long
@@ -363,6 +365,8 @@ void multiplica(STACK *s){ // MULTIPLICAR "*"
         case 16 :                                               // case quando x é array
             switch(y.type){                                     // switch case para os diferentes tipos de y enquanto x é array
                 case 1 :                                        // case quando y é long enquanto x é array
+                concatvar(x.ARRAY, y.LONG);
+                push_ARRAY(s, x.ARRAY); 
                 break;
 
                 case 2 :                                        // case quando y é double enquanto x é array

@@ -68,15 +68,6 @@ void concatenar(STACK *pri, STACK *sec){
     free(aux);     
 }
 
-/*
-void concatvar(STACK *s, long i){
-	while(i > 0){
-	concatenar(s,s);
-    i--;
-    }   
-}
-*/
-
 void range(STACK *s){
     DATA x = pop(s);
     STACK *array = new_stack();
@@ -214,3 +205,34 @@ void seek(long n, STACK *array, STACK *stack) {
     
     }
 }
+
+void concatvar(STACK *s, long i){
+    STACK *aux = s;
+    STACK *aux2 = s;
+    
+    while(i > 0){
+
+        aux2 = s;
+
+        concatenar(aux,aux2);
+        
+        i--;
+    }
+
+    concatenar(s,aux);
+}   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
