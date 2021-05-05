@@ -493,17 +493,17 @@ void lerl(STACK *s){
     push_STRING(s,aux);
 }
 
-/*
+
 void lert(STACK *s){ // t
     char aux[10240];
-    while (fgets(aux, 10240, stdin) != NULL){
-       fgets(aux, 10240, stdin);
-    }
-
+    assert(fgets(aux,10240,stdin)!=NULL);
+    assert(aux[strlen(aux)-1]=='\n');
+    aux[strlen(aux)-1] = '\0';
     if (feof(stdin))
-       push_STRING(s,aux);
+       push_STRING(s,aux);   
 }
-*/
+
+
 /**
  * @brief Imprime o topo da stack
  *
