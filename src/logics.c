@@ -126,7 +126,8 @@ void igual(STACK *s){ // "="
                     push_LONG(s, 0);
                     break;
 
-                case 16 :                                    // case de ser 16, de x ser do tipo array
+                case 16 :
+                    seek(x.LONG, y.ARRAY, s);
                     break;
             }                                      // fim do switch case dos tipos de y para quando x é long
             break;                                 // fim do case quando x é long

@@ -79,13 +79,17 @@ void concatvar(STACK *s, long i){
 
 void range(STACK *s){
     DATA x = pop(s);
+    STACK *array = new_stack();
     long i;
 
 
     switch(x.type){
         case 1 :
-            for (i = 0;i<x.LONG;i++)
-                push_LONG(s, i);
+            for (i = 0;i<x.LONG;i++) {
+                push_LONG(array, i);
+            }
+                push_ARRAY(s, array);
+
             break;
 
         case 2 :
@@ -173,6 +177,39 @@ void nspace(STACK *s){
             break;
 
         case 16 :
+            break;
+    
+    }
+}
+
+void seek(long n, STACK *array, STACK *stack) {
+
+    DATA nelem; long i = 0; //n++;
+
+    while(i <= (array->n_elems) - n) {
+        nelem = pop(array); 
+        i++;
+    } nelem = pop(array);
+
+    switch(nelem.type){
+        case 1 :
+            push_LONG(stack, nelem.LONG);
+            break;
+
+        case 2 :
+            push_DOUBLE(stack, nelem.DOUBLE);
+            break;
+
+        case 4 :
+            push_CHAR(stack, nelem.CHAR);
+            break;
+
+        case 8 :
+            push_STRING(stack, nelem.STRING);
+            break;
+
+        case 16 :
+            push_ARRAY(stack, nelem.ARRAY);
             break;
     
     }

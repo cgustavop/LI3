@@ -9,3 +9,4 @@ void range(STACK *s);
 //void despejo(STACK *s);
 void sspace(STACK *s);
 void nspace(STACK *s);
+void seek(long n, STACK *array, STACK *stack);
