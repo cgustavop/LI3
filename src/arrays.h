@@ -7,3 +7,5 @@ void concatenar(STACK *pri, STACK *sec);
 //void concatvar(STACK *s, long i);
 void range(STACK *s);
 //void despejo(STACK *s);
+void sspace(STACK *s);
+void nspace(STACK *s);

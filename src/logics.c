@@ -367,11 +367,18 @@ void menor(STACK *s){ // <
                 case 8 :                             // case quando y é string enquanto x é string
                     if (strlen(y.STRING) < strlen(x.STRING))
                         push_LONG(s, 1);
+                    else if (strlen(y.STRING) == strlen(x.STRING))
+                        if (strcmp(y.STRING, x.STRING) < 0)
+                            push_LONG(s, 1);
+                        else if (strcmp(y.STRING, x.STRING) >= 0)
+                            push_LONG(s, 0);
+                        else
+                            push_LONG(s, 0);
                     else
-                        push_LONG(s, 0);
+                        push_LONG(s,0);
                     break;
 
-                case 16 :                                    // case de ser 16, de x ser do tipo array
+                case 16 :                            // case de ser 16, de x ser do tipo array
                     break;
             }                                        // fim do switch case para os diferentes tipos de y enquanto x é string
             break;                                   // fim do case quando x é string
@@ -517,9 +524,15 @@ void maior(STACK *s){ // >
                 case 8 :                            // case quando y é string enquanto x é string
                     if (strlen(y.STRING) > strlen(x.STRING))
                         push_LONG(s, 1);
+                    else if (strlen(y.STRING) == strlen(x.STRING))
+                        if (strcmp(y.STRING, x.STRING) <= 0)
+                            push_LONG(s, 0);
+                        else if (strcmp(y.STRING, x.STRING) > 0)
+                            push_LONG(s, 1);
+                        else
+                            push_LONG(s, 0);
                     else
-                        push_LONG(s, 0);
-                    break;
+                        push_LONG(s,0);
 
                 case 16 :                                    // case de ser 16, de x ser do tipo array
                     break;

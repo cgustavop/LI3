@@ -12,6 +12,7 @@
 #include "stack.h"
 #include "eval.h"
 
+
 void concatenar(STACK *pri, STACK *sec){
 	STACK *aux = new_stack();
 	while(sec->n_elems > 0){
@@ -80,9 +81,10 @@ void range(STACK *s){
     DATA x = pop(s);
     long i;
 
+
     switch(x.type){
         case 1 :
-            for(i = 0;i<=x.LONG;i++)
+            for (i = 0;i<x.LONG;i++)
                 push_LONG(s, i);
             break;
 
@@ -95,8 +97,8 @@ void range(STACK *s){
         case 8 :
             break;
 
-        case 16 :
-            
+        case 16 :              
+            push_LONG(s, x.ARRAY->n_elems);
             break;
     }
 }
@@ -122,3 +124,56 @@ void despejo(STACK *s){
             break;
     }
 } */
+
+void sspace(STACK *s){
+    DATA x = pop(s);
+    int i;
+
+    switch(x.type){
+        case 1 :
+            break;
+
+        case 2 :
+            break;
+
+        case 4 :
+            break;
+
+        case 8 :
+            for (i = 0; i < strlen(x.STRING); i++) {
+                if(strchr(x.STRING, ' '))
+                    push_ARRAY(s, x.ARRAY);
+            }
+            break;
+
+        case 16 :
+            break;
+    }
+}
+
+void nspace(STACK *s){
+    DATA x = pop(s);
+    int i;
+
+    switch(x.type){
+        case 1 :
+            break;
+
+        case 2 :
+            break;
+
+        case 4 :
+            break;
+
+        case 8 :
+            for (i = 0; i < strlen(x.STRING); i++) {
+                if(strchr(x.STRING, '\n'))
+                    push_ARRAY(s, x.ARRAY);
+            }
+            break;
+
+        case 16 :
+            break;
+    
+    }
+}

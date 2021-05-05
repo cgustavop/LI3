@@ -325,6 +325,14 @@ STACK *eval(char *line, STACK *init_stack){
                     question(init_stack);
                     break;
 
+                case "S/" :                        // separar string por whitespaces
+                	sspace(init_stack);
+                	break;
+
+                case "N/" :                       // separar string por newlines
+                	nspace(init_stack);
+                	break;
+
                 case 'l' :                       // lê uma linha
                     lerl(init_stack);
                     break;
