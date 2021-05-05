@@ -20,6 +20,6 @@ void doublez(STACK *s);
 void stringz(STACK *s);
 
 void lerl(STACK *s);
-//void lert(STACK *s);
+void lert(STACK *s);
 void printt(STACK *s);
 

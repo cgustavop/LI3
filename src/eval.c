@@ -278,6 +278,16 @@ STACK *eval(char *line, STACK *init_stack){
                     maior(init_stack);
                     break;
 
+                case 'S' :                      // função que separa por whitespaces
+                    if (strcmp(token, "S/") == 0)
+                        sspace(init_stack);
+                    break;
+
+                case 'N' :                      // função que separa por newlines
+                    if (strcmp(token, "N/") == 0)
+                        nspace(init_stack);
+                    break;
+
                 case 'e' :                       // funções exclusivas
                     if (strcmp(token, "e&") == 0)
                         eE(init_stack);
@@ -333,6 +343,10 @@ STACK *eval(char *line, STACK *init_stack){
 
                 case 'l' :                       // lê uma linha
                     lerl(init_stack);
+                    break;
+
+                case 't' :                       // lê todo o input
+                    lert(init_stack);
                     break;
 
                 case 'p' :                       // imprime uma linha
