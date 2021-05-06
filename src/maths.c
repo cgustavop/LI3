@@ -493,8 +493,7 @@ void divide(STACK *s){ // DIVIDIR "/"
                 break;
 
                 case 8 :                                        // case quando y é string enquanto x é string
-                push_STRING(s, x.STRING);
-                push_STRING(s, y.STRING);
+                subarray (s, x.STRING, y.STRING);
                 break;
 
                 case 16 :                                    // case de ser 16, de x ser do tipo array
@@ -778,8 +777,7 @@ void expoente(STACK *s){ // EXPONENCIAÇÃO "#"
                 break;
 
                 case 8 :                                        // case quando y é string enquanto x é string
-                push_STRING(s, x.STRING);
-                push_STRING(s, y.STRING);
+                push_LONG(s, strsearch(x.STRING, y.STRING));
                 break;  
 
                 case 16 :                                    // case de ser 16, de x ser do tipo array

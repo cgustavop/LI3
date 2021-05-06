@@ -109,7 +109,7 @@ void range(STACK *s){
 
 void whiteSpaces(STACK *stack, char *string) {
     
-    char *delims = " \t";
+    char *delims = " \t\n";
     char *cpy = strdup(string);
     STACK *array = new_stack();
                 
@@ -154,7 +154,6 @@ void sspace(STACK *s){
             break;
     }
 }
-
 
 void nspace(STACK *s){
     DATA x = pop(s);
@@ -464,4 +463,37 @@ char *concatAny(DATA elem, char *string) {
     strcat(caratere, string);
     return caratere;
 
+}
+
+long strsearch(char *sub, char *string) {
+    
+    long n = strlen(sub);
+    long index = -1;
+
+    for(long i = 0; strcmp(string + i + n - 1, "\0") != 0 ; i++) {
+        if (strcmp(strndup(string + i, n), sub) == 0) {
+            index = i;
+            break;
+        }
+    }
+    
+    return index;
+}
+
+void subarray (STACK *stack, char *sub, char *string) {
+
+    STACK *array = new_stack();
+    long n = strlen(sub);
+    char *cpy = strdup(string);
+
+    for(long i = 0; strcmp(string + i, "\0") != 0 ; i++) {
+        if (strcmp(strndup(string, n), sub) == 0) {
+            push_STRING(array, strndup(cpy, i));
+            i += n;
+            string = strdup(cpy + i + 1);
+        }
+        else string = strdup(cpy + i);
+    }
+    
+    push_ARRAY(stack, array);
 }

@@ -555,7 +555,7 @@ void lert(STACK *s){ // t
     memset( string, '\0', sizeof(char)*10240);
 
     while (fgets(aux,10240,stdin) != NULL && aux[0] != '\n') {
-        aux[strcspn(aux,"\n")] = ' ';
+        aux[strcspn(aux,"\n")] = '\n';
         strcat(string, aux);
     } 
 

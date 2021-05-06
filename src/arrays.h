@@ -21,3 +21,5 @@ void removeUltArray(STACK *stack, STACK *array);
 void removePrimArray(STACK *stack, STACK *array);
 void concatSTART(DATA elem, STACK* array);
 char *concatAny(DATA elem, char *string);
+long strsearch(char *sub, char *string);
+void subarray (STACK *stack, char *sub, char *string);
