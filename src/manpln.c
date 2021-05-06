@@ -547,7 +547,12 @@ void lerl(STACK *s){
     push_STRING(s,aux);
 }
 
-
+/**
+ * @brief Leitura de todo o input
+ *
+ * Inicializada com o token "t"
+ *
+ */
 void lert(STACK *s){ // t
     
     char aux[10240];
