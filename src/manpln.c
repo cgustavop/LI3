@@ -485,6 +485,50 @@ void question(STACK *s){ // if then else com os 3 elementos anteriores
             break;
 
         case 16 :                                    // case de ser 16, de x ser do tipo array
+            if (x.ARRAY->n_elems != 0){
+                switch(y.type){
+                    case 1:
+                        push_LONG(s, y.LONG);
+                        break;
+
+                    case 2:
+                        push_DOUBLE(s, y.DOUBLE);
+                        break;
+
+                    case 4:
+                        push_CHAR(s, y.CHAR);
+                        break;
+
+                    case 8:
+                        push_STRING(s, y.STRING);
+                        break;
+
+                    case 16 :                                    // case de ser 16, de x ser do tipo array
+                        break;
+                }
+        
+            } else {
+                switch(z.type){
+                    case 1:
+                        push_LONG(s, z.LONG);
+                        break;
+
+                    case 2:
+                        push_DOUBLE(s, z.DOUBLE);
+                        break;
+
+                    case 4:
+                        push_CHAR(s, z.CHAR);
+                        break;
+
+                    case 8:
+                        push_STRING(s, z.STRING);
+                        break;
+
+                    case 16 :                                    // case de ser 16, de x ser do tipo array
+                        break;
+                }
+            }
                 break;
     }
 }

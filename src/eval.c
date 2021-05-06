@@ -335,7 +335,7 @@ STACK *eval(char *line, STACK *init_stack){
                 case '>' :                       // função maior que
                     maior(init_stack);
                     break;
-
+                /*
                 case 'S' :                      // função que separa por whitespaces
                     if (strcmp(token, "S/") == 0)
                         sspace(init_stack);
@@ -345,7 +345,7 @@ STACK *eval(char *line, STACK *init_stack){
                     if (strcmp(token, "N/") == 0)
                         nspace(init_stack);
                     break;
-
+                */
                 case 'e' :                       // funções exclusivas
                     if (strcmp(token, "e&") == 0)
                         eE(init_stack);

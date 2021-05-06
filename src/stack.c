@@ -42,7 +42,8 @@ STACK *new_stack(){
 	s->array[5].LONG = 15; s->array[5].type= 1; 	// definição por omissão A a F
 	s->array[13].CHAR = '\n'; s->array[13].type= 4;	// definição por omissão N (new line)
 	s->array[18].STRING = (char *) malloc(sizeof(char));
-	memset(s->array[18].STRING, ' ', sizeof(char));
+	//memset(s->array[18].STRING, ' ', sizeof(char));
+	s->array[18].STRING = strdup(" ");
 	s->array[18].type= 8;							// definição por omissão S (space em forma de string)
 	s->array[23].LONG = 0; s->array[23].type= 1;
 	s->array[24].LONG = 1; s->array[24].type= 1;

@@ -42,6 +42,8 @@ void soma(STACK *s){ // SOMAR "+"
                 break;
 
                 case 16 :                                    // case de ser 16, de x ser do tipo array
+                push_LONG(y.ARRAY, x.LONG);
+                push_ARRAY(s, y.ARRAY);
                 break;
             }                                                   // fim do switch case para os diferentes tipos de y enquanto x é long
             break;                                              // fim do case quando x é long
@@ -120,6 +122,8 @@ void soma(STACK *s){ // SOMAR "+"
         case 16 :
             switch(y.type){                                    // case de ser 16, de x ser do tipo array
                 case 1 :
+                concatSTART(y, x.ARRAY);
+                push_ARRAY(s, x.ARRAY);
                 break;
 
                 case 2 :
@@ -278,7 +282,8 @@ void multiplica(STACK *s){ // MULTIPLICAR "*"
                 break;
 
                 case 8 :                                        // case quando y é string enquanto x é long
-                push_LONG(s, x.LONG);
+                concatvarstr(y.STRING, x.LONG);
+                push_STRING(s, y.STRING);
                 break;
 
                 case 16 :                                       // case quando y é array enquanto x é long
