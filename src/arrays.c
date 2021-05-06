@@ -480,19 +480,14 @@ long strsearch(char *sub, char *string) {
     return index;
 }
 
-void subarray (STACK *stack, char *sub, char *string) {
-
-    STACK *array = new_stack();
-    long n = strlen(sub);
+void subarray(STACK *stack, char *sub, char *string) {
+    
+    char *delims = sub;
     char *cpy = strdup(string);
-
-    for(long i = 0; strcmp(string + i, "\0") != 0 ; i++) {
-        if (strcmp(strndup(string, n), sub) == 0) {
-            push_STRING(array, strndup(cpy, i));
-            i += n;
-            string = strdup(cpy + i + 1);
-        }
-        else string = strdup(cpy + i);
+    STACK *array = new_stack();
+                
+    for (char *token = strtok(cpy, delims); token != NULL; token = strtok(NULL, delims)) {
+            push_STRING(array, token);
     }
     
     push_ARRAY(stack, array);
