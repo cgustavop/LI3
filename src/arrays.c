@@ -265,17 +265,70 @@ void concatvar(STACK *s, long i){
     concatenar(s,aux);
 }   
 
+void removeUltArray(STACK *stack, STACK *array) {
 
+    DATA z  = pop(array);
+    
+    push_ARRAY(stack, array);
+    
+    switch (z.type) {
 
+            case 1 :
+                push_LONG(stack, z.LONG);
+                break;
 
+            case 2 :
+                push_DOUBLE(stack, z.DOUBLE);
+                break;
 
+            case 4 :
+                push_CHAR(stack, z.CHAR);
+                break;
 
+            case 8 :
+                push_STRING(stack, z.STRING);
+                break;
 
+            case 16 :
+                push_ARRAY(stack, z.ARRAY);
+                break;
+        }
+}
 
+void removePrimArray(STACK *stack, STACK *array) {
 
+    STACK *store = new_stack();
+    STACK *store2 = new_stack();
 
+    inverteArray(array, store);
 
+    DATA z = pop(store);
 
+    inverteArray(store, store2);
 
+    push_ARRAY(stack, store2);
 
+    switch (z.type) {
 
+            case 1 :
+                push_LONG(stack, z.LONG);
+                break;
+
+            case 2 :
+                push_DOUBLE(stack, z.DOUBLE);
+                break;
+
+            case 4 :
+                push_CHAR(stack, z.CHAR);
+                break;
+
+            case 8 :
+                push_STRING(stack, z.STRING);
+                break;
+
+            case 16 :
+                push_ARRAY(stack, z.ARRAY);
+                break;
+        }
+
+}

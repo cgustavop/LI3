@@ -8,3 +8,4 @@ char *get_delimited(char *line, char *seps, char **rest);
 char *get_string(char *line, char *seps, char **rest);
 void handle_array(char *line, STACK *init_stack);
 STACK *eval(char *line, STACK *init_stack);
+void arraycopy(STACK *stack, STACK *array);

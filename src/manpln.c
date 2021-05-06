@@ -495,12 +495,18 @@ void lerl(STACK *s){
 
 
 void lert(STACK *s){ // t
+    
     char aux[10240];
-    assert(fgets(aux,10240,stdin)!=NULL);
-    assert(aux[strlen(aux)-1]=='\n');
-    aux[strlen(aux)-1] = '\0';
-    if (feof(stdin))
-       push_STRING(s,aux);   
+    char *string = malloc(sizeof(char)*10240);
+    memset( string, '\0', sizeof(char)*10240);
+
+    while (fgets(aux,10240,stdin) != NULL && aux[0] != '\n') {
+        aux[strcspn(aux,"\n")] = '\0';
+        //puts(aux);
+        strcat(string, aux);
+    } 
+
+    push_STRING(s,string);
 }
 
 

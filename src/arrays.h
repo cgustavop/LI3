@@ -14,3 +14,5 @@ void takeXstart(long n, STACK *array);
 STACK *takeXend(long n, STACK *array);
 void seeknstring(long n, char *string, STACK *stack);
 void concatvar(STACK *s, long i);
+void removeUltArray(STACK *stack, STACK *array);
+void removePrimArray(STACK *stack, STACK *array);

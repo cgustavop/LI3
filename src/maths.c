@@ -507,7 +507,7 @@ void divide(STACK *s){ // DIVIDIR "/"
  *
  * Inicializada com o token ")"
  */
-void incrementa(STACK *s){ // INCREMENTAR ")"
+void incrementa(STACK *s){ // INCREMENTAR e remove último de array ou string ")"
     DATA x = pop(s);
 
     switch(x.type){                                             // switch case para os diferentes tipos de x
@@ -524,10 +524,12 @@ void incrementa(STACK *s){ // INCREMENTAR ")"
             break;                                              // fim do case quando x é char
 
         case 8 :                                                // case quando x é string
-            push_STRING(s, x.STRING);
+            push_STRING(s, strndup(x.STRING, strlen(x.STRING) - 1));
+            push_STRING(s, strndup(x.STRING - 1, sizeof(char)));
             break;                                              // fim do case quando x é string
 
         case 16 :                                               // case de ser 16, de x ser do tipo array
+            removeUltArray(s, x.ARRAY);
             break;
     }                                                           // fim do switch case para os diferentes tipos de x
 }                                                               // fim da função ")"
@@ -537,7 +539,7 @@ void incrementa(STACK *s){ // INCREMENTAR ")"
  *
  * Inicializada com o token "("
  */
-void decrementa(STACK *s){ // DECREMENTAR "("
+void decrementa(STACK *s){ // DECREMENTAR e remove primeiro de array ou string "("
     DATA x = pop(s);
 
     switch(x.type){                                             // switch case para os diferentes tipos de x
@@ -554,10 +556,12 @@ void decrementa(STACK *s){ // DECREMENTAR "("
             break;                                              // fim do case quando x é char
 
         case 8 :                                                // case quando x é string
-            push_STRING(s, x.STRING);
+            push_STRING(s, x.STRING + 1);
+            push_STRING(s, strndup(x.STRING, sizeof(char)));
             break;                                              // fim do case quando x é string
 
         case 16 :                                    // case de ser 16, de x ser do tipo array
+            removePrimArray(s, x.ARRAY);
             break;
     }                                                           // fim do switch case para os diferentes tipos de x
 }                                                               // fim da função "("

@@ -77,7 +77,6 @@ char *get_token(char *line, char **rest) {  // devolve o token e coloca em "rest
  * Verificar se o que separa os diferentes argumentos são whitespaces, tabs ou newlines
  *
  */
-char *seps = " \t\n";
 
 /**
  * @brief Função que nos devolve o conteúdo da string ou array
@@ -117,12 +116,17 @@ char *get_delimited(char *line, char *seps, char **rest) { //devolve a parte da 
     
     return array;
 }
-
+/*
 char *get_string(char *line, char *seps, char **rest) { //devolve a parte da linha que contém o interior da string
 
     char *array = malloc(sizeof(char)*strlen(line));
     memset( array, '\0', sizeof(char)*strlen(line));
+
+    char *string = malloc(sizeof(char)*strlen(line));
+    memset( string, '\0', sizeof(char)*strlen(line));
+
     char *token;
+
     char *cpy = strdup(line);
     int aberturas = 1;
 
@@ -137,14 +141,65 @@ char *get_string(char *line, char *seps, char **rest) { //devolve a parte da lin
                 aberturas--;
 
             } else strcat(strcat(array, token) , " ");
-        
+
     }
 
     *rest = strdup(line + strlen(array) + 3); // devolve o resto da string fora das aspas
-    
+
+    long isZero = strtol(strndup(*rest, sizeof(char)), &token, 10);
+
+    if (isZero == 0) {
+        strcat(strcat(string, " "), array);
+        
+        array = strdup(string);
+    }
+    isZero = strtol(strndup(*rest, sizeof(char)), &token, 10);
+    if (isZero == 0) {
+        *rest = strdup(*rest + 1);
+    }
+
     return array;
 }
+*/
+char *get_string(char *line, char **rest) { //devolve a parte da linha que contém o interior da string
+
+    char *array = malloc(sizeof(char)*strlen(line));
+    memset( array, '\0', sizeof(char)*strlen(line));
+
+    char *letra;
+    int aberturas = 2;
+
+    for (long i = 0; aberturas != 0; i++) {
+
+        letra = strndup(line + i, sizeof(char));
+
+            if (strcmp(letra, " ") == 0) {
+              strcat(array, letra);
+
+            } else if (strcmp(letra, "\"") == 0) {
+              aberturas--;
+
+            } else if(strchr(letra, '\"') != NULL)  {   // se forem detetados " coladas a letras pega nas letras que estão antes
+                letra[strlen(letra)-1] = '\0';
+                strcat(array, letra);
+                aberturas--;
+
+            } else strcat(array, letra);
+
+    }
+
+    *rest = strdup(line + strlen(array) + 3); // devolve o resto da string fora das aspas
+
+    return array;
+}
+
 STACK *eval(char *line, STACK *init_stack);
+
+void arraycopy(STACK *stack, STACK *array) {
+
+    for (long i = 0; i < 26; i++)
+    stack->array[i] = array->array[i];
+}
 
 /**
  * @brief Função que nos devolve o conteúdo do array sem os "[" "]"
@@ -158,6 +213,7 @@ void handle_array(char *line, STACK *init_stack) {	// recebe o que está dentro 
 	// push do array na nossa stack na forma de stack
 	STACK *array = new_stack();
 	push_ARRAY( init_stack, eval(line, array));
+    arraycopy(init_stack, array);
 }
 /**
  * @brief Avalia o input token a token
@@ -166,6 +222,8 @@ void handle_array(char *line, STACK *init_stack) {	// recebe o que está dentro 
  *
  */
 STACK *eval(char *line, STACK *init_stack){
+
+    char *seps = " \t\n";
 
 	char **rest = malloc(sizeof(char *));
 
@@ -191,8 +249,8 @@ STACK *eval(char *line, STACK *init_stack){
         } 
 
         else if(strchr(token, '\"') != NULL)  {   // se forem detetadas aspas com uma letra
-            memset(line, ' ', 1);                 // faz cair as primeiras aspas mesmo que estejam coladas a uma palavra
-            push_STRING(init_stack, get_string(line, seps, rest));  // faz push da strin depois de delimitada pelas aspas
+            //memset(line, ' ', sizeof(char));                // faz cair as primeiras aspas mesmo que estejam coladas a uma palavra
+            push_STRING(init_stack, get_string(line, rest));  // faz push da strin depois de delimitada pelas aspas
 
         }
         else if(strcmp(token, "N/") == 0) {
