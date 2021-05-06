@@ -236,7 +236,15 @@ STACK *eval(char *line, STACK *init_stack){
 
         else if(strlen(sobra2) == 0)             // tamanho sobra2 == 0, então é um elemento do tipo DOUBLE (dá push a esse elemento)
         	push_DOUBLE(init_stack, val_d);
+        
+        else if(strcmp(token, "S/") == 0) {
+            sspace(init_stack);
+        }
 
+        else if(strcmp(token, "N/") == 0) {
+            nspace(init_stack);
+        }
+        
         else if((isupper(token[0])) != 0)        // se for uma letra maiúscula coloca o seu valor na stack
             letra(init_stack, token[0]);
 
@@ -250,12 +258,7 @@ STACK *eval(char *line, STACK *init_stack){
             push_STRING(init_stack, get_string(line, rest));  // faz push da strin depois de delimitada pelas aspas
 
         }
-        else if(strcmp(token, "N/") == 0) {
-            nspace(init_stack);
-        }
-        else if(strcmp(token, "S/") == 0) {
-            sspace(init_stack);
-        }
+        
         else { 
 
         	switch (token[0]) {

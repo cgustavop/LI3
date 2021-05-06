@@ -120,6 +120,19 @@ void whiteSpaces(STACK *stack, char *string) {
     push_ARRAY(stack, array);
 }
 
+void newLines(STACK *stack, char *string) {
+
+    char *delims = "\n";
+    char *cpy = strdup(string);
+    STACK *array = new_stack();
+                
+    for (char *token = strtok(cpy, delims); token != NULL; token = strtok(NULL, delims)) {
+            push_STRING(array, token);
+    }
+    
+    push_ARRAY(stack, array);
+}
+
 void sspace(STACK *s){
     DATA x = pop(s);
 
@@ -145,7 +158,6 @@ void sspace(STACK *s){
 
 void nspace(STACK *s){
     DATA x = pop(s);
-    long i;
 
     switch(x.type){
         case 1 :
@@ -158,10 +170,7 @@ void nspace(STACK *s){
             break;
 
         case 8 :
-            for (i = 0; i <  (long)(strlen(x.STRING)); i++) {
-                if(strchr(x.STRING, '\n'))
-                    push_ARRAY(s, x.ARRAY);
-            }
+            newLines(s, x.STRING);
             break;
 
         case 16 :
