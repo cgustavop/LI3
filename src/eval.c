@@ -61,8 +61,13 @@ char *get_token(char *line, char **rest) {  // devolve o token e coloca em "rest
     resto = restante(line);
     
     if (resto) { 
-    token = strndup(line, strlen(line)-strlen(resto));    // guarda o primeiro token da line numa string
-    *rest = strdup(resto + 1); // guarda o resto da line numa string
+        if (strcmp(strndup(resto + 1, sizeof(char)), " ") == 0) { 
+            token = strndup(line, strlen(line)-strlen(resto + 1));    // guarda o primeiro token da line numa string
+            *rest = strdup(resto + 2); // guarda o resto da line numa string
+        } else {
+            token = strndup(line, strlen(line)-strlen(resto));    // guarda o primeiro token da line numa string
+            *rest = strdup(resto + 1); // guarda o resto da line numa string
+        }
     } else {
       token = line; //se resto for null, token é null
       *rest = NULL;
@@ -70,13 +75,6 @@ char *get_token(char *line, char **rest) {  // devolve o token e coloca em "rest
 
     return token;
 }
-
-/**
- * @brief Os separadores de strings num array
- * 
- * Verificar se o que separa os diferentes argumentos são whitespaces, tabs ou newlines
- *
- */
 
 /**
  * @brief Função que nos devolve o conteúdo da string ou array
@@ -104,9 +102,6 @@ char *get_delimited(char *line, char *seps, char **rest) { //devolve a parte da 
                 aberturas--;
                 if (aberturas == 0) {}
                 else strcat(strcat(array, token) , " ");
-                
-            //} else if (strcmp(token, "\"") == 0) {
-              //  aberturas--;
 
             } else strcat(strcat(array, token) , " ");
         
@@ -167,6 +162,7 @@ char *get_string(char *line, char **rest) { //devolve a parte da linha que cont�
     memset( array, '\0', sizeof(char)*strlen(line));
 
     char *letra;
+
     int aberturas = 2;
 
     for (long i = 0; aberturas != 0; i++) {
@@ -226,6 +222,7 @@ STACK *eval(char *line, STACK *init_stack){
     char *seps = " \t\n";
 
 	char **rest = malloc(sizeof(char *));
+
 
 	for (char *token = get_token(line, rest); *rest != NULL ; token = get_token(line, rest)) {
 	
@@ -335,17 +332,7 @@ STACK *eval(char *line, STACK *init_stack){
                 case '>' :                       // função maior que
                     maior(init_stack);
                     break;
-                /*
-                case 'S' :                      // função que separa por whitespaces
-                    if (strcmp(token, "S/") == 0)
-                        sspace(init_stack);
-                    break;
 
-                case 'N' :                      // função que separa por newlines
-                    if (strcmp(token, "N/") == 0)
-                        nspace(init_stack);
-                    break;
-                */
                 case 'e' :                       // funções exclusivas
                     if (strcmp(token, "e&") == 0)
                         eE(init_stack);

@@ -106,9 +106,22 @@ void range(STACK *s){
     }
 }
 
+
+void whiteSpaces(STACK *stack, char *string) {
+    
+    char *delims = " \t";
+    char *cpy = strdup(string);
+    STACK *array = new_stack();
+                
+    for (char *token = strtok(cpy, delims); token != NULL; token = strtok(NULL, delims)) {
+            push_STRING(array, token);
+    }
+    
+    push_ARRAY(stack, array);
+}
+
 void sspace(STACK *s){
     DATA x = pop(s);
-    long i;
 
     switch(x.type){
         case 1 :
@@ -121,16 +134,14 @@ void sspace(STACK *s){
             break;
 
         case 8 :
-            for (i = 0; i <  (long)(strlen(x.STRING)); i++) {
-                if(strchr(x.STRING, ' '))
-                    push_ARRAY(s, x.ARRAY);
-            }
+            whiteSpaces(s, x.STRING);            
             break;
 
         case 16 :
             break;
     }
 }
+
 
 void nspace(STACK *s){
     DATA x = pop(s);
@@ -161,12 +172,13 @@ void nspace(STACK *s){
 
 void seek(long n, STACK *array, STACK *stack) {
 
-    DATA nelem; long i = 0; //n++;
+    DATA nelem; long i = 0;
+    long ne = array->n_elems - n;
 
-    while(i <= (array->n_elems) - n) {
+    while(i < ne) {
         nelem = pop(array); 
         i++;
-    } nelem = pop(array);
+    }
 
     switch(nelem.type){
         case 1 :
@@ -273,6 +285,19 @@ void concatvarstr(char *string, long n) {
 
         strcat(string, copia);
     }
+}
+
+char *concatstr(char *dest, char *src) {    // devolve as strings concatenadas sem alterar as originais
+
+    long dsize = sizeof(char)*(strlen(dest)+strlen(src));
+    char *d = malloc(dsize);
+    
+    strncpy (d, dest, dsize - 1);
+    d[dsize - 1] = '\0';
+    size_t n = strlen (d);
+    strncat (d, src, dsize - n);
+    
+    return d;
 }
 
 void removeUltArray(STACK *stack, STACK *array) {
@@ -398,4 +423,36 @@ void concatEND(DATA elem, STACK* array) { // transforma um long num array com um
                 push_ARRAY(array, elem.ARRAY);
                 break;
         }
+}
+
+char *concatAny(DATA elem, char *string) {
+
+    long tamanho = sizeof(char)*(strlen(string)+2);
+    char *caratere = malloc(tamanho);
+    caratere[tamanho - 1] = '\0';
+
+    switch (elem.type) {
+
+            case 1 :
+                caratere[0] = (char)elem.LONG;
+                break;
+
+            case 2 :
+                caratere[0] = (char)elem.DOUBLE;
+                break;
+
+            case 4 :
+                caratere[0] = elem.CHAR;
+                break;
+
+            case 8 :
+                break;
+
+            case 16 :
+                break;
+        }
+
+    strcat(caratere, string);
+    return caratere;
+
 }

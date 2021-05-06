@@ -99,19 +99,19 @@ void soma(STACK *s){ // SOMAR "+"
         case 8 :                                                // case quando x é string
             switch(y.type){                                     // switch case para os diferentes tipos de y enquanto x é string
                 case 1 :                                        // case quando y é long enquanto x é string
-                push_LONG(s, y.LONG);
+                    push_STRING(s,concatAny(y, x.STRING));
                 break;
 
                 case 2 :                                        // case quando y é double enquanto x é string
-                push_DOUBLE(s, y.DOUBLE);
+                    push_STRING(s,concatAny(y, x.STRING));
                 break;
 
                 case 4 :                                        // case quando y é char enquanto x é string
+                    push_STRING(s,concatAny(y, x.STRING));
                 break;
 
                 case 8 :                                        // case quando y é string enquanto x é string
-                    strcat(y.STRING, x.STRING);
-                    push_STRING(s, y.STRING);
+                    push_STRING(s, concatstr(y.STRING, x.STRING));
                 break;
 
                 case 16 :                                    // case de ser 16, de x ser do tipo array
