@@ -10,6 +10,7 @@
 
 #include "manpln.h"
 #include "stack.h"
+#include "arrays.h"
 
 /**
  * @brief Duplica o elemento no topo da stack
@@ -42,9 +43,13 @@ void duplica(STACK *s){ // DUPLICAR "_"
             break;
 
         case 16 :                                    // case de ser 16, de x ser do tipo array
+            concatvar(x.ARRAY, 2);
+            push_ARRAY(s, x.ARRAY);
             break;
     }
+
 }
+
 /**
  * @brief Troca os 2 elementos no topo da stack
  *
@@ -71,7 +76,8 @@ void troca(STACK *s){ // TROCAR DOIS ELEMENTOS DO TOPO DA STACK "\"
             push_STRING(s, y.STRING);
             break;
 
-        case 16 :                                    // case de ser 16, de x ser do tipo array
+        case 16 :                                   
+            push_ARRAY(s, y.ARRAY);
             break;
     }
 
@@ -93,6 +99,7 @@ void troca(STACK *s){ // TROCAR DOIS ELEMENTOS DO TOPO DA STACK "\"
             break;
 
         case 16 :                                    // case de ser 16, de x ser do tipo array
+            push_ARRAY(s, x.ARRAY);
             break;
     }
 }
@@ -124,6 +131,7 @@ void rodar(STACK *s){ // RODAR OS 3 ELEMENTOS NO TOPO DA STACK "@"
             break;
 
         case 16 :                                    // case de ser 16, de x ser do tipo array
+            push_ARRAY(s, y.ARRAY);
             break;
     }
 
@@ -146,6 +154,7 @@ void rodar(STACK *s){ // RODAR OS 3 ELEMENTOS NO TOPO DA STACK "@"
             break;
 
         case 16 :                                    // case de ser 16, de x ser do tipo array
+            push_ARRAY(s, x.ARRAY);
             break;
     }
 
@@ -167,6 +176,7 @@ void rodar(STACK *s){ // RODAR OS 3 ELEMENTOS NO TOPO DA STACK "@"
             break;
 
         case 16 :                                    // case de ser 16, de x ser do tipo array
+             push_ARRAY(s, z.ARRAY);
             break;
     }
 }
@@ -502,7 +512,6 @@ void lert(STACK *s){ // t
 
     while (fgets(aux,10240,stdin) != NULL && aux[0] != '\n') {
         aux[strcspn(aux,"\n")] = '\0';
-        //puts(aux);
         strcat(string, aux);
     } 
 

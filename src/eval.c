@@ -209,10 +209,10 @@ void arraycopy(STACK *stack, STACK *array) {
  */
 void handle_array(char *line, STACK *init_stack) {	// recebe o que está dentro dos parêntesis do array e dá push disso "avaliado" como uma stack
 
-	// eval da line com stack null = stack
-	// push do array na nossa stack na forma de stack
-	STACK *array = new_stack();
-	push_ARRAY( init_stack, eval(line, array));
+	
+	
+	STACK *array = new_stack();						// eval da line com stack null = stack
+	push_ARRAY( init_stack, eval(line, array));		// push do array na nossa stack na forma de stack
     arraycopy(init_stack, array);
 }
 /**
