@@ -280,6 +280,9 @@ void atributo(STACK *s, char *letra){ // variaveis
             break;
 
         case 16 :                                    // case de ser 16, de x ser do tipo array
+            s->array[a-65].type = ARRAY;
+            s->array[a-65].ARRAY = x.ARRAY;
+            push_ARRAY(s, x.ARRAY);
             break;
     }
 }

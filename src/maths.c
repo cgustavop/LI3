@@ -529,7 +529,7 @@ void incrementa(STACK *s){ // INCREMENTAR e remove último de array ou string ")
 
         case 8 :                                                // case quando x é string
             push_STRING(s, strndup(x.STRING, strlen(x.STRING) - 1));
-            push_STRING(s, strndup(x.STRING - 1, sizeof(char)));
+            push_STRING(s, strndup(x.STRING + strlen(x.STRING) -1, sizeof(char)));
             break;                                              // fim do case quando x é string
 
         case 16 :                                               // case de ser 16, de x ser do tipo array
