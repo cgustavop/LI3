@@ -7,7 +7,7 @@
 void E(STACK *s);
 void ou(STACK *s);
 void xor(STACK *s);
-void not(STACK *s);
+void not(STACK *s, DATA *vars);
 void igual(STACK *s);
 void menor(STACK *s);
 void maior(STACK *s);

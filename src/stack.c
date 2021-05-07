@@ -125,6 +125,7 @@ void print_stack(STACK *s){
 				break;
 
             case 32 :
+            	printf("%s", elem.BLOCO);
                 break;
 		}
 	}

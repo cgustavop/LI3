@@ -61,7 +61,7 @@ void xor(STACK *s){ // XOR "^"
  *
  * Inicializada com o token "~"
  */
-void not(STACK *s){ // NOT "~"
+void not(STACK *s, DATA *vars){ // NOT "~"
     DATA x = pop(s);
 
     switch(x.type){                                 // switch case para os diferentes tipos de x
@@ -85,6 +85,7 @@ void not(STACK *s){ // NOT "~"
             break;
 
         case 32 :
+            aplica(s, x, vars);    
             break;
     }                                               // fim do switch case dos tipos de x
 }                                                   // fim do "~"

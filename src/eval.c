@@ -116,7 +116,7 @@ char *get_bloco(char *line, char *seps, char **rest) { //devolve a parte da linh
 
     char *bloco = malloc(sizeof(char)*strlen(line));
     memset( bloco, '\0', sizeof(char)*strlen(line));
-    memset( bloco, '{', sizeof(char));
+    memset( bloco, '{', sizeof(char)); memset( bloco + 1, ' ', sizeof(char));
     char *token;
     char *cpy = strdup(line);
     int aberturas = 1;
@@ -129,14 +129,16 @@ char *get_bloco(char *line, char *seps, char **rest) { //devolve a parte da linh
                 strcat(strcat(bloco, token) , " ");
                 
             } else if (strcmp(token, "}") == 0) {              
+                
                 aberturas--;
-                strcat(strcat(bloco, token) , " ");
+                if (aberturas == 0) { strcat(bloco, token);
+                } else strcat(strcat(bloco, token) , " ");
 
             } else strcat(strcat(bloco, token) , " ");
         
     }
 
-    *rest = strdup(line + strlen(bloco) + 2);   // devolve o resto da string fora do bloco
+    *rest = strdup(line + strlen(bloco) );   // devolve o resto da string fora do bloco
     
     return bloco;
 }
@@ -281,7 +283,7 @@ STACK *eval(char *line, STACK *init_stack, DATA *vars){
                     break;
 
                 case '%' :                       // função módulo
-                    modulo(init_stack);
+                    modulo(init_stack, vars);
                     break;
 
                 case '#' :                       // função exponencialização
@@ -301,7 +303,7 @@ STACK *eval(char *line, STACK *init_stack, DATA *vars){
                     break;
 
                 case '~' :                       // função negação lógica e despejo de arrays na stack
-                    not(init_stack);
+                    not(init_stack, vars);
                     break;
 
                 case '=' :                       // função igualdade

@@ -84,6 +84,7 @@ void troca(STACK *s){ // TROCAR DOIS ELEMENTOS DO TOPO DA STACK "\"
             break;
 
         case 32 :
+            push_BLOCO(s, y.BLOCO);
             break;
     }
 
@@ -109,6 +110,7 @@ void troca(STACK *s){ // TROCAR DOIS ELEMENTOS DO TOPO DA STACK "\"
             break;
 
         case 32 :
+            push_BLOCO(s, x.BLOCO);
             break;
     }
 }
@@ -266,6 +268,7 @@ void letra(STACK *s, char letra, DATA *array){ // variaveis
             break;
 
         case 32 :
+            push_BLOCO(s, (array[a-65]).BLOCO);
             break;
 
         default:
@@ -314,6 +317,9 @@ void atributo(STACK *s, char *letra, DATA *array){ // variaveis
             break;
 
         case 32 :
+            array[a-65].type = BLOCO;
+            array[a-65].BLOCO = x.BLOCO;
+            push_BLOCO(s, x.BLOCO);
             break;
     }
 }
@@ -714,6 +720,17 @@ void printt(STACK *s){ // IMPRIME TOPO DA STACK "p"
     }
 }
 
+long stringToLong(char *string) {
+
+    long result;
+
+    if (strlen(string) < 1)
+        result = (int)string[0];
+    else result = atol(string);
+    
+    return result;
+}
+
 //CONVERSÕES
 /**
  * @brief Converte o elemento no topo da stack num inteiro
@@ -737,7 +754,7 @@ void intz(STACK *s){ // CONVERTE O ELEMENTO NO TOPO DA STACK NUM INTEIRO "i"
             break;
 
         case 8 :      
-            push_LONG(s, atof(x.STRING));
+            push_LONG(s, stringToLong(x.STRING));
             break;
 
         case 16 :                                    // case de ser 16, de x ser do tipo array

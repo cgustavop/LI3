@@ -123,7 +123,13 @@ void whiteSpaces(STACK *stack, char *string) {
     STACK *array = new_stack();
                 
     for (char *token = strtok(cpy, delims); token != NULL; token = strtok(NULL, delims)) {
-            push_STRING(array, token);
+            char *aspeado = malloc(sizeof(char)*strlen(string));
+            memset(aspeado, '\0', strlen(aspeado));
+            memset(aspeado, '\"', 1);
+            strcat(strcat(aspeado, token), "\"");
+            push_STRING(array, aspeado);
+        //push_STRING(array, token);
+            
     }
     
     push_ARRAY(stack, array);
@@ -536,4 +542,68 @@ void subarray(STACK *stack, char *sub, char *string) {
     }
     
     push_ARRAY(stack, array);
+}
+
+// FUNÇÕES LIGADAS A BLOCOS
+
+char *DATAtoSTR(DATA elem) {
+
+    char *string = malloc(sizeof(char)*10240);
+    memset(string, '\0', strlen(string));   
+
+    switch (elem.type) {
+
+            case 1 :
+                sprintf(string, "%ld", elem.LONG);
+                break;
+
+            case 2 :
+                sprintf(string, "%f", elem.DOUBLE);
+                break;
+
+            case 4 :
+                string[0] = elem.CHAR;
+                break;
+
+            case 8 :
+                string = strdup(elem.STRING);
+                break;
+
+            case 16 :
+                break;
+
+            case 32 :
+                string = strdup(elem.BLOCO);
+                break;
+        }
+
+    return string;
+}
+
+void aplica(STACK *stack, DATA bloco, DATA *vars) {
+
+    DATA elem = pop(stack);
+ 
+    eval(strcat(DATAtoSTR(elem), strndup(bloco.BLOCO + 1, strlen(bloco.BLOCO) - 1)), stack, vars);
+
+}
+
+void map(STACK *stack, DATA bloco, STACK *array, DATA *vars) {
+
+
+    char *cpy = strdup(bloco.BLOCO); //cópia do bloco
+    
+    STACK copia = *array;
+    STACK *store = new_stack();
+    inverteArray(&copia, store);
+
+    long vezes = array->n_elems;
+
+    for (long i = vezes; i > 0; i--){
+
+        DATA elem = pop(store);
+        eval(strcat(DATAtoSTR(elem), strndup(cpy + 1, strlen(cpy) - 1)), stack, vars);
+        cpy = strdup(bloco.BLOCO);
+    }
+
 }

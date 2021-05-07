@@ -23,3 +23,6 @@ void concatSTART(DATA elem, STACK* array);
 char *concatAny(DATA elem, char *string);
 long strsearch(char *sub, char *string);
 void subarray (STACK *stack, char *sub, char *string);
+char *DATAtoSTR(DATA elem);
+void aplica (STACK *stack, DATA bloco, DATA *vars);
+void map(STACK *stack, DATA bloco, STACK *array, DATA *vars);

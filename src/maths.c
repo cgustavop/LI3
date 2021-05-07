@@ -647,7 +647,7 @@ void decrementa(STACK *s){ // DECREMENTAR e remove primeiro de array ou string "
  *
  * Inicializada com o token "%"
  */
-void modulo(STACK *s){ //  MÓDULO "%"
+void modulo(STACK *s, DATA *vars){ //  MÓDULO "%"
       
     DATA x = pop(s);
     DATA y = pop(s);
@@ -763,11 +763,33 @@ void modulo(STACK *s){ //  MÓDULO "%"
             break;  
 
         case 32 :
+            switch(y.type) {                                     // switch case para os diferentes tipos de y enquanto x é string
+                case 1 :                                        // case quando y é long enquanto x é string
+                
+                break;
+
+                case 2 :                                        // case quando y é double enquanto x é string
+                
+                break;
+
+                case 4 :                                        // case quando y é char enquanto x é string
+                break;
+
+                case 8 :                                        // case quando y é string enquanto x é string
+                break;                                          // fim do switch case para os diferentes tipos de y enquanto x é string
+
+                case 16 :                                    // case de ser 16, de x ser do tipo array
+                map(s, x, y.ARRAY, vars);
+                break;
+
+                case 32 :
+                break;
+            
             break;                                         
 
-    }                                                           // fim do switch case para os diferentes tipos de x
-}                                                               // fim da função "%"
-
+        }                                                           // fim do switch case para os diferentes tipos de x
+    }                                                               // fim da função "%"
+}
 /**
  * @brief Exponenciação de um elemento segundo outro
  *
