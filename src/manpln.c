@@ -240,6 +240,10 @@ void letra(STACK *s, char letra){ // variaveis
             push_STRING(s, (s->array[a-65]).STRING);
             break;
 
+        case 16 :
+            push_ARRAY(s, (s->array[a-65]).ARRAY);
+            break;
+
         default:
             push_CHAR(s, letra);
     }
