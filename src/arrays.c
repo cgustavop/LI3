@@ -37,6 +37,9 @@ void inverteArray(STACK *input, STACK *output) { // função auxiliar para inver
                 case 16 :
                 push_ARRAY(output, x.ARRAY);                                   
                 break;
+
+                case 32 :
+                break;
             }
     }
 }
@@ -67,6 +70,9 @@ void concatenar(STACK *pri, STACK *sec){
 
                 case 16 :
                 push_ARRAY(aux, x.ARRAY);                                   
+                break;
+
+                case 32 :
                 break;
             }
     }
@@ -103,6 +109,9 @@ void range(STACK *s){
         case 16 :              
             push_LONG(s, x.ARRAY->n_elems);
             break;
+
+                case 32 :
+                break;
     }
 }
 
@@ -152,6 +161,9 @@ void sspace(STACK *s){
 
         case 16 :
             break;
+
+                case 32 :
+                break;
     }
 }
 
@@ -174,6 +186,9 @@ void nspace(STACK *s){
 
         case 16 :
             break;
+
+                case 32 :
+                break;
     
     }
 }
@@ -210,6 +225,9 @@ void seek(long n, STACK *array, STACK *stack) {
         case 16 :
             push_ARRAY(stack, nelem.ARRAY);
             break;
+
+                case 32 :
+                break;
     
     }
 }
@@ -252,6 +270,9 @@ STACK *takeXend(long n, STACK *array) { // n >
 
             case 16 :
                 push_ARRAY(aux, z.ARRAY);
+                break;
+
+                case 32 :
                 break;
         }
     }
@@ -343,6 +364,9 @@ void removeUltArray(STACK *stack, STACK *array) {
             case 16 :
                 push_ARRAY(stack, z.ARRAY);
                 break;
+
+            case 32 :
+                break;
         }
 }
 
@@ -381,6 +405,9 @@ void removePrimArray(STACK *stack, STACK *array) {
             case 16 :
                 push_ARRAY(stack, z.ARRAY);
                 break;
+
+            case 32 :
+                break;
         }
 
 }
@@ -411,6 +438,9 @@ void concatSTART(DATA elem, STACK* array) { // transforma um long num array com 
             case 16 :
                 push_ARRAY(store, elem.ARRAY);
                 break;
+
+            case 32 :
+                break;
     }
 
     inverteArray(store, array);
@@ -439,6 +469,9 @@ void concatEND(DATA elem, STACK* array) { // transforma um long num array com um
             case 16 :
                 push_ARRAY(array, elem.ARRAY);
                 break;
+
+            case 32 :
+                break;
         }
 }
 
@@ -466,6 +499,9 @@ char *concatAny(DATA elem, char *string) {
                 break;
 
             case 16 :
+                break;
+
+            case 32 :
                 break;
         }
 

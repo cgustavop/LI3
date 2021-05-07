@@ -112,6 +112,35 @@ char *get_delimited(char *line, char *seps, char **rest) { //devolve a parte da 
     return array;
 }
 
+char *get_bloco(char *line, char *seps, char **rest) { //devolve a parte da linha que contém o interior do array
+
+    char *bloco = malloc(sizeof(char)*strlen(line));
+    memset( bloco, '\0', sizeof(char)*strlen(line));
+    memset( bloco, '{', sizeof(char));
+    char *token;
+    char *cpy = strdup(line);
+    int aberturas = 1;
+
+    for (token = strtok(cpy, seps); aberturas != 0; token = strtok(NULL, seps)) {
+
+            if (strcmp(token, "{") == 0) {
+              
+                aberturas++;
+                strcat(strcat(bloco, token) , " ");
+                
+            } else if (strcmp(token, "}") == 0) {              
+                aberturas--;
+                strcat(strcat(bloco, token) , " ");
+
+            } else strcat(strcat(bloco, token) , " ");
+        
+    }
+
+    *rest = strdup(line + strlen(bloco) + 2);   // devolve o resto da string fora do bloco
+    
+    return bloco;
+}
+
 char *get_string(char *line, char **rest) { //devolve a parte da linha que contém o interior da string
 
     char *array = malloc(sizeof(char)*strlen(line));
@@ -144,6 +173,8 @@ char *get_string(char *line, char **rest) { //devolve a parte da linha que cont�
 
     return array;
 }
+
+
 
 STACK *eval(char *line, STACK *init_stack, DATA *vars);
 /**
@@ -215,6 +246,10 @@ STACK *eval(char *line, STACK *init_stack, DATA *vars){
                 case '[' :
         	        	// retira conteúdo do array para uma line
         	        handle_array( get_delimited(line + strlen(token), seps, rest) , init_stack, vars);		// trata do conteúdo no interior do array e guarda-o na nossa stack
+                    break;
+
+                case '{' :                      // função range
+                    push_BLOCO(init_stack, get_bloco(line + strlen(token), seps, rest));
                     break;
 
                 case ',' :						// função range

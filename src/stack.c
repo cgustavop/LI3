@@ -123,6 +123,9 @@ void print_stack(STACK *s){
 			case 16 :
 				print_array(elem.ARRAY);
 				break;
+
+            case 32 :
+                break;
 		}
 	}
 	printf("\n");
@@ -159,6 +162,10 @@ void print_array(STACK *s){
 
 			case 16 :
 				print_array(elem.ARRAY);
+				break;
+
+			case 32 :
+				printf("%s", elem.BLOCO);
 				break;
 		}
 	}
@@ -211,6 +218,16 @@ void push_ARRAY(STACK *s, STACK * val){
 		DATA elem;
 		elem.type = ARRAY;
 		elem.ARRAY = val;
+		push(s, elem);
+	}
+
+/**
+ * @brief Função push para elementos do tipo bloco
+ */
+void push_BLOCO(STACK *s, char * val){
+		DATA elem;
+		elem.type = BLOCO;
+		elem.BLOCO = val;
 		push(s, elem);
 	}
 

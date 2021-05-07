@@ -19,7 +19,7 @@
  *
  * @returns uma constante representativa de um tpe
  */
-typedef enum {LONG = 1, DOUBLE = 2, CHAR = 4, STRING = 8, ARRAY = 16} TYPE;
+typedef enum {LONG = 1, DOUBLE = 2, CHAR = 4, STRING = 8, ARRAY = 16, BLOCO = 32} TYPE;
 struct stack;
 typedef struct stack STACK;
 /**
@@ -37,6 +37,7 @@ typedef struct data {
 	char CHAR;
 	char *STRING;
 	STACK *ARRAY;
+	char *BLOCO;
 } DATA;
 
 /**
@@ -67,6 +68,7 @@ void push_DOUBLE(STACK *s, double val);
 void push_CHAR(STACK *s, char val);
 void push_STRING(STACK *s, char * val);
 void push_ARRAY(STACK *s, STACK * val);
+void push_BLOCO(STACK *s, char * val);
 long pop_LONG(STACK *s);
 double pop_DOUBLE(STACK *s);
 char pop_CHAR(STACK *s);
