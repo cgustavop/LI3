@@ -180,11 +180,13 @@ void nspace(STACK *s){
 
 void seek(long n, STACK *array, STACK *stack) {
 
+    STACK arraycpy = *array;
+    
     DATA nelem; long i = 0;
     long ne = array->n_elems - n;
 
     while(i < ne) {
-        nelem = pop(array); 
+        nelem = pop(&arraycpy); 
         i++;
     }
 
@@ -309,10 +311,16 @@ char *concatstr(char *dest, char *src) {    // devolve as strings concatenadas s
 }
 
 void removeUltArray(STACK *stack, STACK *array) {
-
-    DATA z  = pop(array);
     
-    push_ARRAY(stack, array);
+    STACK copia = *array;
+    STACK *store = new_stack();
+    STACK *store2 = new_stack();
+
+    inverteArray(&copia, store);
+    inverteArray(store, store2);
+
+    DATA z = pop(store2);
+    push_ARRAY(stack, store2);
     
     switch (z.type) {
 
@@ -340,10 +348,11 @@ void removeUltArray(STACK *stack, STACK *array) {
 
 void removePrimArray(STACK *stack, STACK *array) {
 
+    STACK copia = *array;
     STACK *store = new_stack();
     STACK *store2 = new_stack();
 
-    inverteArray(array, store);
+    inverteArray(&copia, store);
 
     DATA z = pop(store);
 

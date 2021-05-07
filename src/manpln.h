@@ -10,8 +10,8 @@ void rodar(STACK *s);
 void copia(STACK *s);
 void question(STACK *s);
 
-void atributo(STACK *s, char *letra);
-void letra(STACK *s, char letra);
+void atributo(STACK *s, char *letra, DATA *array);
+void letra(STACK *s, char letra, DATA *array);
 
 
 void intz(STACK *s);

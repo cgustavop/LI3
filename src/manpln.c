@@ -219,29 +219,29 @@ void copia(STACK *s){ // COPIA N-ÉSIMO ELEMENTO PARA O TOPO DA STACK "n $"
  *
  * Inicializada por qualquer letra maiúscula 
  */
-void letra(STACK *s, char letra){ // variaveis
+void letra(STACK *s, char letra, DATA *array){ // variaveis
     long a = letra;
-    TYPE x = (s->array[a-65].type);
+    TYPE x = (array[a-65].type);
 
     switch(x){
         case 1 :
-            push_LONG(s, s->array[a-65].LONG);
+            push_LONG(s, array[a-65].LONG);
             break;
 
         case 2 :
-            push_DOUBLE(s, (s->array[a-65]).DOUBLE);
+            push_DOUBLE(s, (array[a-65]).DOUBLE);
             break;
 
         case 4 :
-            push_CHAR(s, (s->array[a-65]).CHAR);
+            push_CHAR(s, (array[a-65]).CHAR);
             break;
 
         case 8 :
-            push_STRING(s, (s->array[a-65]).STRING);
+            push_STRING(s, (array[a-65]).STRING);
             break;
 
         case 16 :
-            push_ARRAY(s, (s->array[a-65]).ARRAY);
+            push_ARRAY(s, (array[a-65]).ARRAY);
             break;
 
         default:
@@ -254,38 +254,38 @@ void letra(STACK *s, char letra){ // variaveis
  *
  * Inicializada com o token ":" mais uma letra maiúscula
  */
-void atributo(STACK *s, char *letra){ // variaveis
+void atributo(STACK *s, char *letra, DATA *array){ // variaveis
     long a = (char)*letra;
     DATA x = pop(s);
 
     switch(x.type){
         case 1 :
-            s->array[a-65].type = LONG;
-            s->array[a-65].LONG = x.LONG;
+            array[a-65].type = LONG;
+            array[a-65].LONG = x.LONG;
             push_LONG(s, x.LONG);
             break;
 
         case 2 :
-            s->array[a-65].type = DOUBLE;
-            s->array[a-65].DOUBLE = x.DOUBLE;
+            array[a-65].type = DOUBLE;
+            array[a-65].DOUBLE = x.DOUBLE;
             push_DOUBLE(s, x.DOUBLE);
             break;
 
         case 4 :
-            s->array[a-65].type = CHAR;
-            s->array[a-65].CHAR = x.CHAR;
+            array[a-65].type = CHAR;
+            array[a-65].CHAR = x.CHAR;
             push_CHAR(s, x.CHAR);
             break;
 
         case 8 :
-            s->array[a-65].type = STRING;
-            s->array[a-65].STRING = x.STRING;
+            array[a-65].type = STRING;
+            array[a-65].STRING = x.STRING;
             push_STRING(s, x.STRING);
             break;
 
         case 16 :                                    // case de ser 16, de x ser do tipo array
-            s->array[a-65].type = ARRAY;
-            s->array[a-65].ARRAY = x.ARRAY;
+            array[a-65].type = ARRAY;
+            array[a-65].ARRAY = x.ARRAY;
             push_ARRAY(s, x.ARRAY);
             break;
     }

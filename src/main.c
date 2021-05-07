@@ -27,11 +27,14 @@ int main(void){
 
 	STACK *s = new_stack();
     char line[10240];
+    DATA *vars[26];
+    for(int i = 0; i < 26; i++) vars[i] = (DATA *)malloc(sizeof(DATA));
+    allocvars(*vars);//DATA array[26];
 
     assert(fgets(line, 10240, stdin) != NULL);
     assert(line[strlen(line) - 1] == '\n');
     
-    s = eval(line, s);
+    s = eval(line, s, *vars);
     print_stack(s); // print result
 	free(s);
 

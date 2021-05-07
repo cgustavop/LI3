@@ -111,51 +111,7 @@ char *get_delimited(char *line, char *seps, char **rest) { //devolve a parte da 
     
     return array;
 }
-/*
-char *get_string(char *line, char *seps, char **rest) { //devolve a parte da linha que contém o interior da string
 
-    char *array = malloc(sizeof(char)*strlen(line));
-    memset( array, '\0', sizeof(char)*strlen(line));
-
-    char *string = malloc(sizeof(char)*strlen(line));
-    memset( string, '\0', sizeof(char)*strlen(line));
-
-    char *token;
-
-    char *cpy = strdup(line);
-    int aberturas = 1;
-
-    for (token = strtok(cpy, seps); aberturas != 0; token = strtok(NULL, seps)) {
-
-            if (strcmp(token, "\"") == 0) {
-              aberturas--;
-
-            } else if(strchr(token, '\"') != NULL)  {   // se forem detetados " coladas a letras pega nas letras que estão antes
-                token[strlen(token)-1] = '\0';
-                strcat(array, token);
-                aberturas--;
-
-            } else strcat(strcat(array, token) , " ");
-
-    }
-
-    *rest = strdup(line + strlen(array) + 3); // devolve o resto da string fora das aspas
-
-    long isZero = strtol(strndup(*rest, sizeof(char)), &token, 10);
-
-    if (isZero == 0) {
-        strcat(strcat(string, " "), array);
-        
-        array = strdup(string);
-    }
-    isZero = strtol(strndup(*rest, sizeof(char)), &token, 10);
-    if (isZero == 0) {
-        *rest = strdup(*rest + 1);
-    }
-
-    return array;
-}
-*/
 char *get_string(char *line, char **rest) { //devolve a parte da linha que contém o interior da string
 
     char *array = malloc(sizeof(char)*strlen(line));
@@ -189,27 +145,20 @@ char *get_string(char *line, char **rest) { //devolve a parte da linha que cont�
     return array;
 }
 
-STACK *eval(char *line, STACK *init_stack);
-
-void arraycopy(STACK *stack, STACK *array) {
-
-    for (long i = 0; i < 26; i++)
-    stack->array[i] = array->array[i];
-}
-
+STACK *eval(char *line, STACK *init_stack, DATA *vars);
 /**
  * @brief Função que nos devolve o conteúdo do array sem os "[" "]"
  * 
  * Obtendo o conteúdo do array é lhe feito um push como uma stack para dentro da stack principal.
  *
  */
-void handle_array(char *line, STACK *init_stack) {	// recebe o que está dentro dos parêntesis do array e dá push disso "avaliado" como uma stack
+void handle_array(char *line, STACK *init_stack, DATA *vars) {	// recebe o que está dentro dos parêntesis do array e dá push disso "avaliado" como uma stack
 
 	
 	
 	STACK *array = new_stack();						// eval da line com stack null = stack
-	push_ARRAY( init_stack, eval(line, array));		// push do array na nossa stack na forma de stack
-    arraycopy(init_stack, array);
+	push_ARRAY( init_stack, eval(line, array, vars));		// push do array na nossa stack na forma de stack
+
 }
 /**
  * @brief Avalia o input token a token
@@ -217,7 +166,7 @@ void handle_array(char *line, STACK *init_stack) {	// recebe o que está dentro 
  *
  *
  */
-STACK *eval(char *line, STACK *init_stack){
+STACK *eval(char *line, STACK *init_stack, DATA *vars){
 
     char *seps = " \t\n";
 
@@ -246,11 +195,11 @@ STACK *eval(char *line, STACK *init_stack){
         }
         
         else if((isupper(token[0])) != 0)        // se for uma letra maiúscula coloca o seu valor na stack
-            letra(init_stack, token[0]);
+            letra(init_stack, token[0], vars);
 
         else if(strchr(token, ':') != NULL)  {   // se forem detetados ":" pega na letra que está à frente dos pontos
             char *letra = strchr(token, ':');
-            atributo(init_stack, &letra[1]);              // a letra é inserida como parametro para a função atributo
+            atributo(init_stack, &letra[1], vars);              // a letra é inserida como parametro para a função atributo
         } 
 
         else if(strchr(token, '\"') != NULL)  {   // se forem detetadas aspas com uma letra
@@ -265,7 +214,7 @@ STACK *eval(char *line, STACK *init_stack){
 
                 case '[' :
         	        	// retira conteúdo do array para uma line
-        	        handle_array( get_delimited(line + strlen(token), seps, rest) , init_stack);		// trata do conteúdo no interior do array e guarda-o na nossa stack
+        	        handle_array( get_delimited(line + strlen(token), seps, rest) , init_stack, vars);		// trata do conteúdo no interior do array e guarda-o na nossa stack
                     break;
 
                 case ',' :						// função range

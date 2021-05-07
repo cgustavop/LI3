@@ -48,7 +48,6 @@ typedef struct data {
  * @returns um array representante da nova stack.
  */
 typedef struct stack{
-	DATA array[26];
 	DATA *stack;
 	int size;
 	int n_elems;
@@ -73,5 +72,6 @@ double pop_DOUBLE(STACK *s);
 char pop_CHAR(STACK *s);
 char *pop_STRING(STACK *s);
 STACK *pop_ARRAY(STACK *s);
+void allocvars(DATA *array);
 
 #endif
