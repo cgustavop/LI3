@@ -287,7 +287,7 @@ STACK *eval(char *line, STACK *init_stack, DATA *vars){
                     break;
 
                 case '*' :                       // função multiplicação
-                    multiplica(init_stack);
+                    multiplica(init_stack, vars);
                     break;
 
                 case '/' :                       // função divisão

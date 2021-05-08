@@ -6,7 +6,7 @@
 
 void soma(STACK *s);
 void subtrai(STACK *s);
-void multiplica(STACK *s);
+void multiplica(STACK *s, DATA *vars);
 void divide(STACK *s);
 void incrementa(STACK *s);
 void decrementa(STACK *s);

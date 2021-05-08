@@ -294,7 +294,7 @@ void subtrai(STACK *s){ // SUBTRAIR "-"
  *
  * Inicializada com o token "*"
  */
-void multiplica(STACK *s){ // MULTIPLICAR "*"
+void multiplica(STACK *s, DATA *vars){ // MULTIPLICAR "*"
 
     DATA x = pop(s);
     DATA y = pop(s);
@@ -437,11 +437,31 @@ void multiplica(STACK *s){ // MULTIPLICAR "*"
                 break;
 
                 case 32 :
-                break;
+                break;                                          
             }
             break;
 
         case 32 :
+            switch(y.type){
+                case 1 :
+                break;
+
+                case 2 :
+                break;
+
+                case 4 :
+                break;
+
+                case 8 :
+                break;
+
+                case 16 :
+                fold(s, x, y.ARRAY, vars);
+                break;
+
+                case 32 :
+                break;
+            }
             break;
             
 

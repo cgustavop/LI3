@@ -216,31 +216,8 @@ void range(STACK *s){ // DATA *vars (não esquecer de meter quando a função fi
             break;
 
         case 32 :
-            switch(y.type){                                    
-                case 1 :
-                push_LONG(s, y.LONG);
-                break;
 
-                case 2 :
-                push_DOUBLE(s, y.DOUBLE);
-                break;
-
-                case 4 :
-                push_CHAR(s, y.LONG);
-                break;
-
-                case 8 :
-                push_STRING(s, y.STRING);
-                break;
-
-                case 16 :
-                //filter(s, x, y.ARRAY, vars);
-                break;
-
-                case 32 :
-                push_BLOCO(s, y.BLOCO);
-                break;
-            }
+            //filter(s, x, y.ARRAY, vars);
             //filter(s, x, vars);
 
             break;
@@ -837,12 +814,27 @@ void filter(STACK *stack, DATA bloco, DATA *vars){
 }
 */
 
+/*
+void filter(STACK *stack, DATA bloco, STACK *array, DATA *vars){
+    
+    Vou meter aqui o que pensei em fazer para a filter:
+    -faz-se a função map com o bloco dado (se calhar é melhor ser uma cópia do bloco), o array dado (mais uma vez melhor ser copia) e com um array vazio;
+    -esse map vai nos dar um array chamado result com o bloco calculado para cada elemento;
+    -com esse tal result podemos verificar que resultados do map dariam 0 ou diferente para cada elemento do array dado e assim retira-se os elementos do array original
+    que com bloco deram 0;
+    -para isso vai-se dando pop ao resultado e ao array (ao mesmo tempo) e se o pop do resultado der 0 n se volta a dar push ao elemento do array (é melhor dar push para outra
+    stack vazia)
+    -no fim inverte-se o array e damos push desse array para a stack;
+}
+*/
+
 /**
  * @brief Função final da "*" para blocos aplicado a arrays
  *
  * Função que faz umas espécie de fold para arrays
  *
 */
+/*
 void fold(STACK *stack, DATA bloco, STACK *array, DATA *vars){
 
     STACK *result = new_stack();
@@ -867,6 +859,32 @@ void fold(STACK *stack, DATA bloco, STACK *array, DATA *vars){
     push_LONG(stack, l_transform);
 
 }
+*/
+void fold(STACK *stack, DATA bloco, STACK *array, DATA *vars){
+
+    //objetivo principal: fazer o eval de todos os elementos da stack mais o que está dentro do bloco long nelems = array->n_elems; (-1?) vezes
+    //inverter o array
+    long nelems = array->n_elems;
+    STACK copia = *array;
+    STACK *store = new_stack();
+    inverteArray(&copia, store);
+    char *aux = strdup(bloco.BLOCO);
+    char *snd = strndup(aux + 1, strlen(aux) - 1);
+    char *fst;
+
+    for (long i = nelems; i > 1; i--){                  // dá o que está dentro do bloco, nelems vezes (-1?), numa string
+        snd = strcat(snd,strndup(aux + 1, strlen(aux) - 1));
+    }
+
+    for (long i = nelems; i > 0; i--){                  // dá o que está dentro do array numa string            
+        DATA elem = pop(store);
+        fst = strcat(fst,DATAtoSTR(elem));
+    }
+
+    eval(strcat(fst, snd), stack, vars);                // junta as duas strings para dar o resultado no eval
+
+}
+
 
 /**
  * @brief Função auxiliar da "$" que ordena o arrayu
