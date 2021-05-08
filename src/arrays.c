@@ -683,7 +683,7 @@ void aplica(STACK *stack, DATA bloco, DATA *vars) {
 
 void map(STACK *stack, DATA bloco, STACK *array, DATA *vars) {
 
-
+    STACK *result = new_stack();
     char *cpy = strdup(bloco.BLOCO); //cópia do bloco
     
     STACK copia = *array;
@@ -695,10 +695,10 @@ void map(STACK *stack, DATA bloco, STACK *array, DATA *vars) {
     for (long i = vezes; i > 0; i--){
 
         DATA elem = pop(store);
-        eval(strcat(DATAtoSTR(elem), strndup(cpy + 1, strlen(cpy) - 1)), stack, vars);
+        eval(strcat(DATAtoSTR(elem), strndup(cpy + 1, strlen(cpy) - 1)), result, vars);
         cpy = strdup(bloco.BLOCO);
     }
-
+    push_ARRAY(stack, result);
 }
 
 STACK *sortArray (STACK *array) {             // organiza um array de forma crescente
@@ -731,6 +731,26 @@ STACK *sortArray (STACK *array) {             // organiza um array de forma cres
 
 }
 
+void auxOrdena(STACK *stack, DATA bloco, STACK *array, DATA *vars) {
+
+
+    char *cpy = strdup(bloco.BLOCO); //cópia do bloco
+    
+    STACK copia = *array;
+    STACK *store = new_stack();
+    inverteArray(&copia, store);
+
+    long vezes = array->n_elems;
+
+    for (long i = vezes; i > 0; i--){
+
+        DATA elem = pop(store);
+        eval(strcat(DATAtoSTR(elem), strndup(cpy + 1, strlen(cpy) - 1)), stack, vars);
+        cpy = strdup(bloco.BLOCO);
+    }
+
+}
+
 void ordena(STACK *stack, DATA bloco, DATA *vars) {
 
     DATA elem = pop(stack);
@@ -740,7 +760,7 @@ void ordena(STACK *stack, DATA bloco, DATA *vars) {
     switch (elem.type) {
 
             case 16:
-                map(mapped, bloco, elem.ARRAY, vars);
+                auxOrdena(mapped, bloco, elem.ARRAY, vars);
                 push_ARRAY(stack, sortArray(mapped));
                 break;
 

@@ -762,7 +762,7 @@ long stringToLong(char *string) {
 
     long result;
 
-    if (strlen(string) < 1)
+    if (strlen(string) <= 1)
         result = (int)string[0];
     else result = atol(string);
     
