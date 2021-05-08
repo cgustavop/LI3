@@ -114,6 +114,7 @@ void troca(STACK *s){ // TROCAR DOIS ELEMENTOS DO TOPO DA STACK "\"
             break;
     }
 }
+
 /**
  * @brief Roda os 3 elementos no topo da stack
  *
@@ -754,10 +755,9 @@ void printt(STACK *s){ // IMPRIME TOPO DA STACK "p"
     }
 }
 
-<<<<<<< HEAD
+
 /** CONVERSÕES */
 
-=======
 long stringToLong(char *string) {
 
     long result;
@@ -769,8 +769,6 @@ long stringToLong(char *string) {
     return result;
 }
 
-//CONVERSÕES
->>>>>>> 618f59dc37240838aa51246e629db9f242be4390
 /**
  * @brief Converte o elemento no topo da stack num inteiro
  *
@@ -835,6 +833,7 @@ void doublez(STACK *s){ // CONVERTE O ELEMENTO NO TOPO DA STACK NUM DOUBLE "f"
             break;
     }
 }
+
 /**
  * @brief Converte o elemento no topo da stack num char
  *
@@ -867,6 +866,7 @@ void charz(STACK *s){ //   CONVERTE O ELEMENTO NO TOPO DA STACK NUM CARATERE "c"
             break;
     }
 }
+
 /**
  * @brief Converte o elemento no topo da stack numa string
  *

@@ -152,9 +152,7 @@ void whiteSpaces(STACK *stack, char *string) {
             memset(aspeado, '\0', strlen(aspeado));
             memset(aspeado, '\"', 1);
             strcat(strcat(aspeado, token), "\"");
-            push_STRING(array, aspeado);
-        //push_STRING(array, token);
-            
+            push_STRING(array, aspeado);         
     }
     
     push_ARRAY(stack, array);
@@ -556,7 +554,6 @@ void concatSTART(DATA elem, STACK* array) { // transforma um long num array com 
     inverteArray(store, array);
 }
 
-<<<<<<< HEAD
 /**
  * @brief Função que concatena um elemento de tipo DATA no array
  *
@@ -564,37 +561,6 @@ void concatSTART(DATA elem, STACK* array) { // transforma um long num array com 
  *
  * @return Faz return à string do array mais o elemento concatenado
 */
-=======
-void concatEND(DATA elem, STACK* array) { // transforma um long num array com um elemento
-
-    switch (elem.type) {
-
-            case 1 :
-                push_LONG(array, elem.LONG);
-                break;
-
-            case 2 :
-                push_DOUBLE(array, elem.DOUBLE);
-                break;
-
-            case 4 :
-                push_CHAR(array, elem.CHAR);
-                break;
-
-            case 8 :
-                push_STRING(array, elem.STRING);
-                break;
-
-            case 16 :
-                push_ARRAY(array, elem.ARRAY);
-                break;
-
-            case 32 :
-                break;
-        }
-}
-
->>>>>>> 618f59dc37240838aa51246e629db9f242be4390
 char *concatAny(DATA elem, char *string) {
 
     long tamanho = sizeof(char)*(strlen(string)+2);

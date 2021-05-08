@@ -790,6 +790,7 @@ void modulo(STACK *s, DATA *vars){ //  MÓDULO "%"
         }                                                           // fim do switch case para os diferentes tipos de x
     }                                                               // fim da função "%"
 }
+
 /**
  * @brief Exponenciação de um elemento segundo outro
  *

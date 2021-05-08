@@ -8,25 +8,11 @@
 #include <stdbool.h>
 #include <assert.h>
 
-<<<<<<< HEAD
+
 /** Atribuição de constantes aos tipos (masks) */
-typedef enum {LONG = 1, DOUBLE = 2, CHAR = 4, STRING = 8, ARRAY = 16} TYPE;
+typedef enum {LONG = 1, DOUBLE = 2, CHAR = 4, STRING = 8, ARRAY = 16, BLOCO = 32} TYPE;
 
 /* pré definição da stack */
-=======
-/**
- * Oferece a possibilidade de nomear types por constantes
- *
- * Recebe os diferentes tipos e atribui-lhes uma constante
- * LONG = 1
- * DOUBLE = 2
- * CHAR = 4
- * STRING= 8
- *
- * @returns uma constante representativa de um tpe
- */
-typedef enum {LONG = 1, DOUBLE = 2, CHAR = 4, STRING = 8, ARRAY = 16, BLOCO = 32} TYPE;
->>>>>>> 618f59dc37240838aa51246e629db9f242be4390
 struct stack;
 
 /** pré definição dos tipos stack */
@@ -46,17 +32,12 @@ typedef struct data {
 	char *STRING;
 	/** tipo array */
 	STACK *ARRAY;
+	/** tipo bloco */
 	char *BLOCO;
 } DATA;
 
-/** Stack */
 typedef struct stack{
-<<<<<<< HEAD
 	/** array com todos os possíveis chars para atributos (abcedário) */
-	DATA array[26];
-	/** input da stack */
-=======
->>>>>>> 618f59dc37240838aa51246e629db9f242be4390
 	DATA *stack;
 	/** espaço de memória total que a stack permite */
 	int size;

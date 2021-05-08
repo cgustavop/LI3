@@ -637,12 +637,9 @@ void nono(STACK *s){ // !
 
         case 16 :                                    // case de ser 16, de x ser do tipo array
             break;
-<<<<<<< HEAD
-=======
 
         case 32 :
             break;
->>>>>>> 618f59dc37240838aa51246e629db9f242be4390
 
     }                                               // fim do switch case para os diferentes tipos de x
 }                                                   // fim da função "!"

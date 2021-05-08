@@ -114,16 +114,6 @@ char *get_delimited(char *line, char *seps, char **rest) { // devolve a parte da
     return array;
 }
 
-<<<<<<< HEAD
-/**
- * @brief Função que devolve o conteúdo da string
- *
- * Se dentro do array existir strings identificadas, trata de separar as strings dadas como input e o resto do array como outra string
- *
- * @returns Returns do array em strings
-*/
-char *get_string(char *line, char **rest) { // devolve a parte da linha que contém o interior da string
-=======
 char *get_bloco(char *line, char *seps, char **rest) { //devolve a parte da linha que contém o interior do array
 
     char *bloco = malloc(sizeof(char)*strlen(line));
@@ -155,8 +145,14 @@ char *get_bloco(char *line, char *seps, char **rest) { //devolve a parte da linh
     return bloco;
 }
 
-char *get_string(char *line, char **rest) { //devolve a parte da linha que contém o interior da string
->>>>>>> 618f59dc37240838aa51246e629db9f242be4390
+/**
+ * @brief Função que devolve o conteúdo da string
+ *
+ * Se dentro do array existir strings identificadas, trata de separar as strings dadas como input e o resto do array como outra string
+ *
+ * @returns Returns do array em strings
+*/
+char *get_string(char *line, char **rest) { // devolve a parte da linha que contém o interior da string
 
     char *array = malloc(sizeof(char)*strlen(line));
     memset( array, '\0', sizeof(char)*strlen(line));
@@ -189,7 +185,7 @@ char *get_string(char *line, char **rest) { //devolve a parte da linha que cont�
     return array;
 }
 
-<<<<<<< HEAD
+
 /** 
  * @brief Função que copia um array para a stack 
  *
@@ -205,24 +201,13 @@ void arraycopy(STACK *stack, STACK *array) {
 /** Pré definição de uma stack eval para a função "handle_array" */
 STACK *eval(char *line, STACK *init_stack);
 
-=======
-
-
-STACK *eval(char *line, STACK *init_stack, DATA *vars);
->>>>>>> 618f59dc37240838aa51246e629db9f242be4390
 /**
  * @brief Função que nos devolve o conteúdo do array sem os "[" "]"
  * 
  * Obtendo o conteúdo do array é lhe feito um push como uma stack para dentro da stack principal.
  *
  */
-<<<<<<< HEAD
-void handle_array(char *line, STACK *init_stack) {	// recebe o que está dentro dos parêntesis do array e dá push disso "avaliado" como uma stack
-=======
 void handle_array(char *line, STACK *init_stack, DATA *vars) {	// recebe o que está dentro dos parêntesis do array e dá push disso "avaliado" como uma stack
-
-	
->>>>>>> 618f59dc37240838aa51246e629db9f242be4390
 	
 	STACK *array = new_stack();						// eval da line com stack null = stack
 	push_ARRAY( init_stack, eval(line, array, vars));		// push do array na nossa stack na forma de stack
