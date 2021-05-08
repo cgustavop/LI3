@@ -133,26 +133,58 @@ char *DATAtoSTR(DATA elem) {
 
     return string;
 }
+<<<<<<< HEAD
 /*
 void filter(STACK *stack, DATA bloco, STACK *array, DATA *vars){
     
+=======
 
-    STACK *result = new_stack();
-    char *cpy = strdup(bloco.BLOCO); //cópia do bloco
+/*
+void filter(STACK *stack, DATA bloco, DATA *vars){
+>>>>>>> 926716ae751a3324d101de0979431ffa827c0a0d
 
-    long vezes = array->n_elems;
+    DATA array = pop(stack);
 
-    for (long i = 0;i<vezes;i++){
+    switch(array.type){
+        case 1 :
+            break;
 
-        DATA elem = pop(array);
-        if (eval(strcat(DATAtoSTR(elem), strndup(cpy + 1, strlen(cpy) - 1)), result, vars))
-            push_LONG(stack, i);
+        case 2 :
+            break;
 
-        cpy = strdup(bloco.BLOCO);
-    }
-    push_ARRAY(stack, result);
+        case 4 :
+            break;
+
+        case 8 :
+            break;
+
+        case 16 :              
+            STACK *result = new_stack();
+            char *cpy = strdup(bloco.BLOCO); //cópia do bloco
+
+            long vezes = array->n_elems;
+
+            for (long i = 0;i<vezes;i++){
+
+                DATA elem = pop(array);
+                if (eval(strcat(DATAtoSTR(elem), strndup(cpy + 1, strlen(cpy) - 1)), result, vars))
+                    push_LONG(stack, i);
+
+                cpy = strdup(bloco.BLOCO);
+                }
+                push_ARRAY(stack, result);
+                break;
+
+        case 32 :
+            //filter(s, x, y.ARRAY, vars);
+            break;
+    } 
 }
 */
+<<<<<<< HEAD
+=======
+
+>>>>>>> 926716ae751a3324d101de0979431ffa827c0a0d
 /**
  * @brief Função range e filter ","
  *
@@ -161,193 +193,37 @@ void filter(STACK *stack, DATA bloco, STACK *array, DATA *vars){
  * Caso seja bloco vai filtrar as posições em que a condição dos blocos é verdade
  *
 */
-
-void range(STACK *s, DATA *vars){ // SOMAR "+"
-      
+void range(STACK *s){ // DATA *vars (não esquecer de meter quando a função filter estiver feita)
     DATA x = pop(s);
-    DATA y = pop(s);
     STACK *array = new_stack();
     long i;
-    
-    switch(x.type){                                             
-        case 1 :                                               
-            switch(y.type){                                    
-                case 1 :                                     
-                push_LONG(s, y.LONG);
-                for (i = 0;i<x.LONG;i++) {
+
+
+    switch(x.type){
+        case 1 :
+            for (i = 0;i<x.LONG;i++) {
                 push_LONG(array, i);
-                }
-                push_ARRAY(s, array);
-
-                break;
-
-                case 2 :                                      
-                push_DOUBLE(s, y.DOUBLE);
-                for (i = 0;i<x.LONG;i++) {
-                push_LONG(array, i);
-                }
-                push_ARRAY(s, array);
-
-                break;
-
-                case 4 :                                    
-                push_CHAR(s, y.LONG);
-                for (i = 0;i<x.LONG;i++) {
-                push_LONG(array, i);
-                }
-                push_ARRAY(s, array);
-
-                break;
-
-                case 8 :                                       
-                push_STRING(s, y.STRING);
-                for (i = 0;i<x.LONG;i++) {
-                push_LONG(array, i);
-                }
-                push_ARRAY(s, array);
-
-                break;
-
-                case 16 :                                  
-                push_ARRAY(s, y.ARRAY);
-                for (i = 0;i<x.LONG;i++) {
-                push_LONG(array, i);
-                }
-                push_ARRAY(s, array);
-
-                break;
-
-                case 32 :
-                push_BLOCO(s, y.BLOCO);
-                break;
-            }                                                   
-            break;                                            
-
-        case 2 :                                              
-            switch(y.type){                                     
-                case 1 :
-                push_LONG(s, y.LONG);                                       
-                break;
-
-                case 2 :
-                push_DOUBLE(s, y.DOUBLE);                                      
-                break;
-
-                case 4 :
-                push_CHAR(s, y.LONG);                                       
-                break;
-
-                case 8 :
-                push_STRING(s, y.STRING);                                       
-                break;
-
-                case 16 :
-                push_ARRAY(s, y.ARRAY);                               
-                break;
-
-                case 32 :
-                push_BLOCO(s, y.BLOCO);
-                break;
-            }                                            
-            break;                                            
-
-        case 4 :                                             
-            switch(y.type){                                  
-                case 1 :
-                push_LONG(s, y.LONG);                                      
-                break;
-
-                case 2 :
-                push_DOUBLE(s, y.DOUBLE);                                      
-                break;
-
-                case 4 :
-                push_CHAR(s, y.LONG);                                        
-                break;
-
-                case 8 :
-                push_STRING(s, y.STRING);                                      
-                break;
-
-                case 16 :
-                push_ARRAY(s, y.ARRAY);                                    
-                break;
-
-                case 32 :
-                push_BLOCO(s, y.BLOCO);
-                break;
-            }                                                   
-            break;                                           
-
-        case 8 :                                              
-            switch(y.type){                                    
-                case 1 :
-                push_LONG(s, y.LONG);
-                push_LONG(s, strlen(x.STRING));                                      
-                break;
-
-                case 2 :
-                push_DOUBLE(s, y.DOUBLE);
-                push_LONG(s, strlen(x.STRING));                                       
-                break;
-
-                case 4 :
-                push_CHAR(s, y.LONG);
-                push_LONG(s, strlen(x.STRING));                                     
-                break;
-
-                case 8 :
-                push_STRING(s, y.STRING);
-                push_LONG(s, strlen(x.STRING));                                      
-                break;
-
-                case 16 :
-                push_ARRAY(s, y.ARRAY);
-                push_LONG(s, strlen(x.STRING));                                   
-                break;
-
-                case 32 :
-                push_BLOCO(s, y.BLOCO);
-                push_LONG(s, strlen(x.STRING));
-                break;
-            }                                                   
-            break;                                              
-
-        case 16 :
-            switch(y.type){                                    
-                case 1 :
-                push_LONG(s, y.LONG);
-                push_LONG(s, x.ARRAY->n_elems);
-                break;
-
-                case 2 :
-                push_DOUBLE(s, y.DOUBLE);
-                push_LONG(s, x.ARRAY->n_elems);
-                break;
-
-                case 4 :
-                push_CHAR(s, y.LONG);
-                push_LONG(s, x.ARRAY->n_elems);
-                break;
-
-                case 8 :
-                push_STRING(s, y.STRING);
-                push_LONG(s, x.ARRAY->n_elems);
-                break;
-
-                case 16 :
-                push_ARRAY(s, y.ARRAY);
-                push_LONG(s, x.ARRAY->n_elems);
-                break;
-
-                case 32 :
-                push_BLOCO(s, y.BLOCO);
-                push_LONG(s, x.ARRAY->n_elems);
-                break;
             }
+                push_ARRAY(s, array);
+
+            break;
+
+        case 2 :
+            break;
+
+        case 4 :
+            break;
+
+        case 8 :
+            push_LONG(s, strlen(x.STRING));
+            break;
+
+        case 16 :              
+            push_LONG(s, x.ARRAY->n_elems);
             break;
 
         case 32 :
+<<<<<<< HEAD
             switch(y.type){                                    
                 case 1 :
                 push_LONG(s, y.LONG);
@@ -373,10 +249,13 @@ void range(STACK *s, DATA *vars){ // SOMAR "+"
                 push_BLOCO(s, y.BLOCO);
                 break;
             }
+=======
+            //filter(s, x, vars);
+>>>>>>> 926716ae751a3324d101de0979431ffa827c0a0d
             break;
+    }
+}
 
-    }                                                           // fim do switch case para os diferentes tipos de x
-}               
 /**
  * @brief Função auxiliar para a função do operador S/
  *
