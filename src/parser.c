@@ -27,7 +27,7 @@
  * @param sobra2 Vai guardando elementos da stack que não sofreram nenhuma transformação
  * @param val_l Variável temporária onde são guardados operandos do tipo long
  * @param val_d Variável temporária onde são guardados operandos do tipo double
- * @returns void
+ * 
  */
 void parse(char *line) {
 

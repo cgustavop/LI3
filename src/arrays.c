@@ -12,6 +12,13 @@
 #include "stack.h"
 #include "eval.h"
 
+
+/**
+ * @brief Função que inverte um array
+ *
+ * Objetivo de auxiliar outras funções que necessitem inverter um array
+ *
+*/
 void inverteArray(STACK *input, STACK *output) { // função auxiliar para inverter um array
 
     while(input->n_elems > 0){
@@ -41,15 +48,21 @@ void inverteArray(STACK *input, STACK *output) { // função auxiliar para inver
     }
 }
 
+/**
+ * @brief Função que concatena duas strings
+ *
+ * Obtendo duas arrays, ou seja duas stacks copia a segunda array e a primeira, invertendo ao fim a primeira array
+ *
+*/
 void concatenar(STACK *pri, STACK *sec){
 
 	STACK *aux = new_stack();
 
 	while(sec->n_elems > 0){
 	DATA x = pop(sec);
-                            // case quando x é long
+                            
             switch(x.type){                                     
-                case 1 :                                        
+                case 1 :                       // case quando x é long                                   
                 push_LONG(aux, x.LONG);
                 break;
 
@@ -75,6 +88,13 @@ void concatenar(STACK *pri, STACK *sec){
     free(aux);     
 }
 
+/**
+ * @brief Função range ","
+ *
+ * Caso seja long fará um array com todos os longs entre 0 e x, não inclusivé (range semelhante ao de Python)
+ * Caso seja um array devolve o tamanho do array, ou seja, a quantidade de elementos existentes dentro do array
+ *
+*/
 void range(STACK *s){
     DATA x = pop(s);
     STACK *array = new_stack();
@@ -106,7 +126,12 @@ void range(STACK *s){
     }
 }
 
-
+/**
+ * @brief Função auxiliar para a função do operador S/
+ *
+ * Separa a string por whitespaces
+ *
+*/
 void whiteSpaces(STACK *stack, char *string) {
     
     char *delims = " \t\n";
@@ -120,19 +145,12 @@ void whiteSpaces(STACK *stack, char *string) {
     push_ARRAY(stack, array);
 }
 
-void newLines(STACK *stack, char *string) {
-
-    char *delims = "\n";
-    char *cpy = strdup(string);
-    STACK *array = new_stack();
-                
-    for (char *token = strtok(cpy, delims); token != NULL; token = strtok(NULL, delims)) {
-            push_STRING(array, token);
-    }
-    
-    push_ARRAY(stack, array);
-}
-
+/**
+ * @brief Função auxiliar para a função do operador S/
+ *
+ * Separa a string por whitespaces caso, o topo da stack seja string
+ *
+*/
 void sspace(STACK *s){
     DATA x = pop(s);
 
@@ -155,6 +173,31 @@ void sspace(STACK *s){
     }
 }
 
+/**
+ * @brief Função auxiliar para a função do operador N/
+ *
+ * Separa a string por newlines
+ *
+*/
+void newLines(STACK *stack, char *string) {
+
+    char *delims = "\n";
+    char *cpy = strdup(string);
+    STACK *array = new_stack();
+                
+    for (char *token = strtok(cpy, delims); token != NULL; token = strtok(NULL, delims)) {
+            push_STRING(array, token);
+    }
+    
+    push_ARRAY(stack, array);
+}
+
+/**
+ * @brief Função do operador N/
+ *
+ * Separa a string por newlines caso o topo da stack seja string
+ *
+*/
 void nspace(STACK *s){
     DATA x = pop(s);
 
@@ -178,6 +221,12 @@ void nspace(STACK *s){
     }
 }
 
+/**
+ * @brief Função "=" para arrays 
+ *
+ * Percorre o array em busca de uma array incluida ou igual à outra
+ *
+*/
 void seek(long n, STACK *array, STACK *stack) {
 
     DATA nelem; long i = 0;
@@ -212,6 +261,25 @@ void seek(long n, STACK *array, STACK *stack) {
     }
 }
 
+/**
+ * @brief Função "=" para strings
+ *
+ * Percorre a string em busca de uma string incluida ou igual à outra
+ *
+*/
+void seeknstring(long n, char *string, STACK *stack) {
+
+    char *ch = strndup(string + n, 1);
+    push_STRING(stack, ch);
+    
+}
+
+/**
+ * @brief Função "<" para arrays 
+ *
+ * Retira do array os elementos menores do que n valor dado ao longo que percorre o array
+ *
+*/
 void takeXstart(long n, STACK *array) { // n <
 
     long vezes = (array->n_elems) - n;
@@ -221,6 +289,13 @@ void takeXstart(long n, STACK *array) { // n <
     }
 }
 
+/**
+ * @brief Função ">" para arrays 
+ *
+ * Retira do array os elementos maiores do que n valor dado enquanto que percorre o array invertendo-a ao fim para obter a stack na mesma ordem
+ * 
+ * @returns Faz return da stack
+*/
 STACK *takeXend(long n, STACK *array) { // n >
 
     STACK *store = new_stack();
@@ -259,14 +334,12 @@ STACK *takeXend(long n, STACK *array) { // n >
     return store;
 }
 
-
-void seeknstring(long n, char *string, STACK *stack) {
-
-    char *ch = strndup(string + n, 1);
-    push_STRING(stack, ch);
-    
-}
-
+/**
+ * @brief Função "*" para arrays 
+ *
+ * Função que concatena n vezes arrays
+ *
+*/
 void concatvar(STACK *s, long i){
     
     STACK *aux = new_stack();
@@ -285,6 +358,12 @@ void concatvar(STACK *s, long i){
     concatenar(s,aux);
 }
 
+/**
+ * @brief Função "*" para arrays 
+ *
+ * Função que concatena n vezes strings
+ *
+*/
 void concatvarstr(char *string, long n) {
 
     char *copia = strdup(string);
@@ -295,6 +374,13 @@ void concatvarstr(char *string, long n) {
     }
 }
 
+/**
+ * @brief Função "+" para strings
+ *
+ * Função que concatena strings
+ *
+ * @returns String concatenada não alterando as originais
+*/
 char *concatstr(char *dest, char *src) {    // devolve as strings concatenadas sem alterar as originais
 
     long dsize = sizeof(char)*(strlen(dest)+strlen(src));
@@ -308,6 +394,12 @@ char *concatstr(char *dest, char *src) {    // devolve as strings concatenadas s
     return d;
 }
 
+/**
+ * @brief Função que remove o ultimo elemento de um array
+ *
+ * Função "(" para arrays
+ *
+*/
 void removeUltArray(STACK *stack, STACK *array) {
 
     DATA z  = pop(array);
@@ -338,6 +430,12 @@ void removeUltArray(STACK *stack, STACK *array) {
         }
 }
 
+/**
+ * @brief Função que remove o primeiro elemento de um array
+ *
+ * Função ")" para arrays
+ *
+*/
 void removePrimArray(STACK *stack, STACK *array) {
 
     STACK *store = new_stack();
@@ -376,6 +474,12 @@ void removePrimArray(STACK *stack, STACK *array) {
 
 }
 
+/**
+ * @brief Função que transforma um long num array com um elemento
+ *
+ * Função que concatena um long a um array vazio 
+ *
+*/
 void concatSTART(DATA elem, STACK* array) { // transforma um long num array com um elemento
 
     STACK *store = new_stack();
@@ -407,32 +511,13 @@ void concatSTART(DATA elem, STACK* array) { // transforma um long num array com 
     inverteArray(store, array);
 }
 
-void concatEND(DATA elem, STACK* array) { // transforma um long num array com um elemento
-
-    switch (elem.type) {
-
-            case 1 :
-                push_LONG(array, elem.LONG);
-                break;
-
-            case 2 :
-                push_DOUBLE(array, elem.DOUBLE);
-                break;
-
-            case 4 :
-                push_CHAR(array, elem.CHAR);
-                break;
-
-            case 8 :
-                push_STRING(array, elem.STRING);
-                break;
-
-            case 16 :
-                push_ARRAY(array, elem.ARRAY);
-                break;
-        }
-}
-
+/**
+ * @brief Função que concatena um elemento de tipo DATA no array
+ *
+ * Concatena um elemento dado como input em um array
+ *
+ * @return Faz return à string do array mais o elemento concatenado
+*/
 char *concatAny(DATA elem, char *string) {
 
     long tamanho = sizeof(char)*(strlen(string)+2);
@@ -465,6 +550,13 @@ char *concatAny(DATA elem, char *string) {
 
 }
 
+/**
+ * @brief Função que procura substring numa string
+ *
+ * Percorre a string procurando uma substring de tamanho n
+ *
+ * @return return = -1 case não exista, caso contrário devolve o indice da substring na string
+*/
 long strsearch(char *sub, char *string) {
     
     long n = strlen(sub);
@@ -480,6 +572,12 @@ long strsearch(char *sub, char *string) {
     return index;
 }
 
+/**
+ * @brief Função que procura um array dentro de um array
+ *
+ * Percorre o array até encontrar o segundo array, vai printando como string as várias vezes em que o array aparece no input
+ * 
+*/
 void subarray(STACK *stack, char *sub, char *string) {
     
     char *delims = sub;

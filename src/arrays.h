@@ -3,10 +3,10 @@
  * @brief Header que inicializa as funções do ficheiro arrays.c
  */
 #include "stack.h"
+
 void inverteArray(STACK *input, STACK *output);
 void concatenar(STACK *pri, STACK *sec);
 void range(STACK *s);
-//void despejo(STACK *s);
 void sspace(STACK *s);
 void whiteSpaces(STACK *stack, char *string);
 void nspace(STACK *s);

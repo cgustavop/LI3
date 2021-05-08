@@ -607,7 +607,8 @@ void printt(STACK *s){ // IMPRIME TOPO DA STACK "p"
     }
 }
 
-//CONVERSÕES
+/** CONVERSÕES */
+
 /**
  * @brief Converte o elemento no topo da stack num inteiro
  *

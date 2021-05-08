@@ -8,49 +8,40 @@
 #include <stdbool.h>
 #include <assert.h>
 
-/**
- * Oferece a possibilidade de nomear types por constantes
- *
- * Recebe os diferentes tipos e atribui-lhes uma constante
- * LONG = 1
- * DOUBLE = 2
- * CHAR = 4
- * STRING= 8
- *
- * @returns uma constante representativa de um tpe
- */
+/** Atribuição de constantes aos tipos (masks) */
 typedef enum {LONG = 1, DOUBLE = 2, CHAR = 4, STRING = 8, ARRAY = 16} TYPE;
+
+/* pré definição da stack */
 struct stack;
+
+/** pré definição dos tipos stack */
 typedef struct stack STACK;
-/**
- * Obtem os diferentes types do input utilizado masks
- *
- * Recebe os elementos dos quais pertencerão à stack e atribui-lhes a mask do tipo.
- * O tipo tem de ser obrigatoriamente um destes, não há caso para tal indefinição.
- * 
- * @returns um elemento com o tipo.
- */
+
+/** Tipos possíveis de data */
 typedef struct data {
+	/** forma de identificar um tipo */
 	TYPE type;
+	/** tipo long */
 	long LONG;
+	/** tipo double */
 	double DOUBLE;
+	/** tipo char */
 	char CHAR;
+	/** tipo string */
 	char *STRING;
+	/** tipo array */
 	STACK *ARRAY;
 } DATA;
 
-/**
- * Cria stacks de diferentes tipos
- *
- * Recebe os elementos dos quais serão feitos os arrays da nossa stack e reserva a memória necessária definindo os parâmetros de tamanho, separando o array de letras.
- * No caso de não haver memória suficiente para alocar um novo array resulta num aviso de erro.
- * 
- * @returns um array representante da nova stack.
- */
+/** Stack */
 typedef struct stack{
+	/** array com todos os possíveis chars para atributos (abcedário) */
 	DATA array[26];
+	/** input da stack */
 	DATA *stack;
+	/** espaço de memória total que a stack permite */
 	int size;
+	/** número de elementos dados para a stack */
 	int n_elems;
 } STACK;
 

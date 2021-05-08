@@ -468,7 +468,7 @@ void maior(STACK *s){ // >
                     push_LONG(s, 0);
                     break;
 
-                case 16 :                                    // case de ser 16, de x ser do tipo array
+                case 16 :                           // case de ser 16, de x ser do tipo array
                     break;
             }                                       // fim do switch case para os diferentes tipos de y enquanto x é double
             break;                                  // fim do case quando x é double
@@ -587,7 +587,7 @@ void nono(STACK *s){ // !
             break;                                  // fim do case quando x é string
 
         case 16 :                                    // case de ser 16, de x ser do tipo array
-                    break;
+            break;
 
     }                                               // fim do switch case para os diferentes tipos de x
 }                                                   // fim da função "!"

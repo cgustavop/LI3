@@ -17,8 +17,9 @@
 /**
  * @brief Função que nos devolve o maior dos restos do array
  * 
- *
- *
+ * Recebe a line e dessa line vai buscar o seu resto, ou seja diferente do operandos e operadores no topo da stack
+ * 
+ * @returns Faz return ao maior resto do rest
  */
 char *restante (char *line){    // devolve o maior dos restos
 
@@ -52,7 +53,7 @@ char *restante (char *line){    // devolve o maior dos restos
 /**
  * @brief Função que nos devolve o token e coloca o resto do array numa string
  * 
- *
+ * Esta função tem como objetivo substituir o uso da função anteriormente utilizada "strtok" para obter tokens, de modo a conseguir trabalhar com arrays
  *
  */
 char *get_token(char *line, char **rest) {  // devolve o token e coloca em "rest" o que resta da string
@@ -77,12 +78,13 @@ char *get_token(char *line, char **rest) {  // devolve o token e coloca em "rest
 }
 
 /**
- * @brief Função que nos devolve o conteúdo da string ou array
+ * @brief Função que devolve o conteúdo do array
  * 
+ * Verifica onde acaba o array delimitando o seu conteúdo e conseguindo assim, passar a trabalhar apenas com o seu interior
  *
- *
+ * @returns Faz return do array agora string, string essa que é só a parte que não está no rest
  */
-char *get_delimited(char *line, char *seps, char **rest) { //devolve a parte da linha que contém o interior do array
+char *get_delimited(char *line, char *seps, char **rest) { // devolve a parte da linha que contém o interior do array
 
     char *array = malloc(sizeof(char)*strlen(line));
     memset( array, '\0', sizeof(char)*strlen(line));
@@ -111,52 +113,15 @@ char *get_delimited(char *line, char *seps, char **rest) { //devolve a parte da 
     
     return array;
 }
-/*
-char *get_string(char *line, char *seps, char **rest) { //devolve a parte da linha que contém o interior da string
 
-    char *array = malloc(sizeof(char)*strlen(line));
-    memset( array, '\0', sizeof(char)*strlen(line));
-
-    char *string = malloc(sizeof(char)*strlen(line));
-    memset( string, '\0', sizeof(char)*strlen(line));
-
-    char *token;
-
-    char *cpy = strdup(line);
-    int aberturas = 1;
-
-    for (token = strtok(cpy, seps); aberturas != 0; token = strtok(NULL, seps)) {
-
-            if (strcmp(token, "\"") == 0) {
-              aberturas--;
-
-            } else if(strchr(token, '\"') != NULL)  {   // se forem detetados " coladas a letras pega nas letras que estão antes
-                token[strlen(token)-1] = '\0';
-                strcat(array, token);
-                aberturas--;
-
-            } else strcat(strcat(array, token) , " ");
-
-    }
-
-    *rest = strdup(line + strlen(array) + 3); // devolve o resto da string fora das aspas
-
-    long isZero = strtol(strndup(*rest, sizeof(char)), &token, 10);
-
-    if (isZero == 0) {
-        strcat(strcat(string, " "), array);
-        
-        array = strdup(string);
-    }
-    isZero = strtol(strndup(*rest, sizeof(char)), &token, 10);
-    if (isZero == 0) {
-        *rest = strdup(*rest + 1);
-    }
-
-    return array;
-}
+/**
+ * @brief Função que devolve o conteúdo da string
+ *
+ * Se dentro do array existir strings identificadas, trata de separar as strings dadas como input e o resto do array como outra string
+ *
+ * @returns Returns do array em strings
 */
-char *get_string(char *line, char **rest) { //devolve a parte da linha que contém o interior da string
+char *get_string(char *line, char **rest) { // devolve a parte da linha que contém o interior da string
 
     char *array = malloc(sizeof(char)*strlen(line));
     memset( array, '\0', sizeof(char)*strlen(line));
@@ -175,7 +140,7 @@ char *get_string(char *line, char **rest) { //devolve a parte da linha que cont�
             } else if (strcmp(letra, "\"") == 0) {
               aberturas--;
 
-            } else if(strchr(letra, '\"') != NULL)  {   // se forem detetados " coladas a letras pega nas letras que estão antes
+            } else if(strchr(letra, '\"') != NULL)  {   // se forem detetados "" coladas a letras pega nas letras que estão antes
                 letra[strlen(letra)-1] = '\0';
                 strcat(array, letra);
                 aberturas--;
@@ -189,13 +154,20 @@ char *get_string(char *line, char **rest) { //devolve a parte da linha que cont�
     return array;
 }
 
-STACK *eval(char *line, STACK *init_stack);
-
+/** 
+ * @brief Função que copia um array para a stack 
+ *
+ * Utilizando um ciclo "for" a função vai percorrendo um array, dado como input, elemento a elemento e colocando pela mesma ordem na stack principal 
+ *
+*/
 void arraycopy(STACK *stack, STACK *array) {
 
     for (long i = 0; i < 26; i++)
-    stack->array[i] = array->array[i];
+    	stack->array[i] = array->array[i];
 }
+
+/** Pré definição de uma stack eval para a função "handle_array" */
+STACK *eval(char *line, STACK *init_stack);
 
 /**
  * @brief Função que nos devolve o conteúdo do array sem os "[" "]"
@@ -204,18 +176,29 @@ void arraycopy(STACK *stack, STACK *array) {
  *
  */
 void handle_array(char *line, STACK *init_stack) {	// recebe o que está dentro dos parêntesis do array e dá push disso "avaliado" como uma stack
-
-	
 	
 	STACK *array = new_stack();						// eval da line com stack null = stack
 	push_ARRAY( init_stack, eval(line, array));		// push do array na nossa stack na forma de stack
     arraycopy(init_stack, array);
 }
+
 /**
- * @brief Avalia o input token a token
+ * @brief Função que substituiu o antigo parser para agora array
  * 
+ * Analisa a linha inserida e faz a sua separação em operadores e operandos segundo whitespaces, horizontal tabs ou newlines.
+ * Enquanto que está a utilizar x operador com y's operandos guarda o resto da stack no rest
+ * Interpreta cada token e executa a sua função no contexto da linguagem.
  *
+ * @param seps Tipos de separados que existem, whitespaces, horizontal tab, newlines
+ * @param rest Memória respetiva ao resto da stack 
+ * @param line A linha que foi lida e da qual se vai fazer o parse
+ * @param token Operadores contidos na linha
+ * @param sobra1 Vai guardando elementos da stack que não sofreram nenhuma transformação
+ * @param sobra2 Vai guardando elementos da stack que não sofreram nenhuma transformação
+ * @param val_l Variável temporária onde são guardados operandos do tipo long
+ * @param val_d Variável temporária onde são guardados operandos do tipo double
  *
+ * @returns Faz return da stack após a realização das funções definidas para os operandos dados como input
  */
 STACK *eval(char *line, STACK *init_stack){
 
@@ -233,15 +216,15 @@ STACK *eval(char *line, STACK *init_stack){
       
         if(strlen(sobra1) == 0)                  // tamanho sobra1 == 0, então é um elemento do tipo LONG (dá push a esse elemento)
         	push_LONG(init_stack, val_l);
-
+  
         else if(strlen(sobra2) == 0)             // tamanho sobra2 == 0, então é um elemento do tipo DOUBLE (dá push a esse elemento)
         	push_DOUBLE(init_stack, val_d);
         
-        else if(strcmp(token, "S/") == 0) {
+        else if(strcmp(token, "S/") == 0) {		// operando S/
             sspace(init_stack);
         }
 
-        else if(strcmp(token, "N/") == 0) {
+        else if(strcmp(token, "N/") == 0) {		// operando N/
             nspace(init_stack);
         }
         
