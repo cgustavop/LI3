@@ -13,7 +13,7 @@ void question(STACK *s);
 void atributo(STACK *s, char *letra, DATA *array);
 void letra(STACK *s, char letra, DATA *array);
 
-
+long stringToLong(char *string);
 void intz(STACK *s);
 void charz(STACK *s);
 void doublez(STACK *s);
