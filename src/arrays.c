@@ -133,15 +133,11 @@ char *DATAtoSTR(DATA elem) {
 
     return string;
 }
-<<<<<<< HEAD
-/*
-void filter(STACK *stack, DATA bloco, STACK *array, DATA *vars){
-    
-=======
+
 
 /*
 void filter(STACK *stack, DATA bloco, DATA *vars){
->>>>>>> 926716ae751a3324d101de0979431ffa827c0a0d
+
 
     DATA array = pop(stack);
 
@@ -181,10 +177,7 @@ void filter(STACK *stack, DATA bloco, DATA *vars){
     } 
 }
 */
-<<<<<<< HEAD
-=======
 
->>>>>>> 926716ae751a3324d101de0979431ffa827c0a0d
 /**
  * @brief Função range e filter ","
  *
@@ -223,7 +216,6 @@ void range(STACK *s){ // DATA *vars (não esquecer de meter quando a função fi
             break;
 
         case 32 :
-<<<<<<< HEAD
             switch(y.type){                                    
                 case 1 :
                 push_LONG(s, y.LONG);
@@ -249,9 +241,8 @@ void range(STACK *s){ // DATA *vars (não esquecer de meter quando a função fi
                 push_BLOCO(s, y.BLOCO);
                 break;
             }
-=======
             //filter(s, x, vars);
->>>>>>> 926716ae751a3324d101de0979431ffa827c0a0d
+
             break;
     }
 }
@@ -760,6 +751,12 @@ void subarray(STACK *stack, char *sub, char *string) {
 
 // FUNÇÕES LIGADAS A BLOCOS
 
+/**
+ * @brief Função "~"
+ *
+ * Função que executa o código de blocos
+ *
+*/
 void aplica(STACK *stack, DATA bloco, DATA *vars) {
 
     DATA elem = pop(stack);
@@ -768,6 +765,12 @@ void aplica(STACK *stack, DATA bloco, DATA *vars) {
 
 }
 
+/**
+ * @brief Função "%"
+ *
+ * Função que realiza uma espécia de map para strings utilizando o bloco
+ *
+*/
 void mapstring(STACK *stack, DATA bloco, char * string, DATA *vars) {
 
     char *cpy = strdup(string); // cópia da string
@@ -788,6 +791,12 @@ void mapstring(STACK *stack, DATA bloco, char * string, DATA *vars) {
     push_STRING(stack, cpy);
 }
 
+/**
+ * @brief Função "%"
+ *
+ * Função que realiza uma espécia de map para arrays utilizando o bloco
+ *
+*/
 void map(STACK *stack, DATA bloco, STACK *array, DATA *vars) {
 
     STACK *result = new_stack();
@@ -807,6 +816,7 @@ void map(STACK *stack, DATA bloco, STACK *array, DATA *vars) {
     }
     push_ARRAY(stack, result);
 }
+
 /*
 void filter(STACK *stack, DATA bloco, DATA *vars){
 
@@ -825,6 +835,13 @@ void filter(STACK *stack, DATA bloco, DATA *vars){
     }
     push_ARRAY(stack, result);
 }
+*/
+
+/**
+ * @brief Função final da "*" para blocos aplicado a arrays
+ *
+ * Função que faz umas espécie de fold para arrays
+ *
 */
 void fold(STACK *stack, DATA bloco, STACK *array, DATA *vars){
 
@@ -851,6 +868,13 @@ void fold(STACK *stack, DATA bloco, STACK *array, DATA *vars){
 
 }
 
+/**
+ * @brief Função auxiliar da "$" que ordena o arrayu
+ *
+ * Função que ordena de forma crescente os elementos do array
+ *
+ * @returns retorna o array ordenado
+*/
 STACK *sortArray (STACK *array) {             // organiza um array de forma crescente
 
     STACK *sorted = new_stack();            // onde iremos guardar o array ordenado
@@ -881,6 +905,12 @@ STACK *sortArray (STACK *array) {             // organiza um array de forma cres
 
 }
 
+/**
+ * @brief Função auxiliar da "$"
+ *
+ * Função que ordena os elementos em conjunto com o bloco percorrendo a lista e comparando sempre com o maior elemento
+ *
+*/
 void auxOrdena(STACK *stack, DATA bloco, STACK *array, DATA *vars) {
 
 
@@ -901,6 +931,12 @@ void auxOrdena(STACK *stack, DATA bloco, STACK *array, DATA *vars) {
 
 }
 
+/**
+ * @brief Função final da "$"
+ *
+ * Função que ordena de forma crescente, os elementos do array, através do uso do bloco
+ *
+*/
 void ordena(STACK *stack, DATA bloco, DATA *vars) {
 
     DATA elem = pop(stack);
