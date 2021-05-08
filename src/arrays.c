@@ -744,7 +744,7 @@ void map(STACK *stack, DATA bloco, STACK *array, DATA *vars) {
 }
 
 void filter(STACK *stack, DATA bloco, DATA *vars){
-    
+
     STACK *result = new_stack();
     char *cpy = strdup(bloco.BLOCO); //cópia do bloco
 
@@ -759,6 +759,26 @@ void filter(STACK *stack, DATA bloco, DATA *vars){
         cpy = strdup(bloco.BLOCO);
     }
     push_ARRAY(stack, result);
+}
+
+void fold(STACK *stack, DATA bloco, STACK *array, DATA *vars){
+
+    STACK *result = new_stack();
+    char *cpy = strdup(bloco.BLOCO); //cópia do bloco
+    
+    STACK copia = *array;
+    STACK *store = new_stack();
+    inverteArray(&copia, store);
+
+    long vezes = array->n_elems;
+
+    for (long i = vezes; i > 0; i--){
+
+        DATA elem = pop(store);
+        eval(strcat(DATAtoSTR(elem), strndup(cpy + 1, strlen(cpy) - 1)), result, vars);
+        cpy = strdup(bloco.BLOCO);
+    }
+    push_LONG(stack, result);
 }
 
 STACK *sortArray (STACK *array) {             // organiza um array de forma crescente
