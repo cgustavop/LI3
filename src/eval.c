@@ -185,21 +185,8 @@ char *get_string(char *line, char **rest) { // devolve a parte da linha que cont
     return array;
 }
 
-
-/** 
- * @brief Função que copia um array para a stack 
- *
- * Utilizando um ciclo "for" a função vai percorrendo um array, dado como input, elemento a elemento e colocando pela mesma ordem na stack principal 
- *
-*/
-void arraycopy(STACK *stack, STACK *array) {
-
-    for (long i = 0; i < 26; i++)
-    	stack->array[i] = array->array[i];
-}
-
 /** Pré definição de uma stack eval para a função "handle_array" */
-STACK *eval(char *line, STACK *init_stack);
+STACK *eval(char *line, STACK *init_stack, DATA *vars);
 
 /**
  * @brief Função que nos devolve o conteúdo do array sem os "[" "]"
