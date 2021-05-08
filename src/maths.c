@@ -325,6 +325,7 @@ void multiplica(STACK *s){ // MULTIPLICAR "*"
                 break;
 
                 case 32 :
+
                 break;
             }                                                   // fim do switch case para os diferentes tipos de y enquanto x é long
             break;                                              // fim do case quando x é long
@@ -441,7 +442,7 @@ void multiplica(STACK *s){ // MULTIPLICAR "*"
             break;
 
         case 32 :
-                break;
+            break;
             
 
     }                                                           // fim do switch case para os diferentes tipos de x

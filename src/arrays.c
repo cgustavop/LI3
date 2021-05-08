@@ -8,6 +8,7 @@
 #include <assert.h>
 #include <math.h>
 
+#include "manpln.h"
 #include "logics.h"
 #include "stack.h"
 #include "eval.h"
@@ -95,7 +96,7 @@ void concatenar(STACK *pri, STACK *sec){
 }
 
 char *DATAtoSTR(DATA elem) {
-
+    STACK *store = new_stack();
     char *string = malloc(sizeof(char)*10240);
     memset(string, '\0', strlen(string));   
 
@@ -118,6 +119,11 @@ char *DATAtoSTR(DATA elem) {
                 break;
 
             case 16 :
+                inverteArray(elem.ARRAY, store);
+                for (long i = 0;i<elem.ARRAY->n_elems;i++){
+                    DATA x = pop(store);
+                    DATAtoSTR(x);
+                }
                 break;
 
             case 32 :
@@ -127,7 +133,7 @@ char *DATAtoSTR(DATA elem) {
 
     return string;
 }
-
+/*
 void filter(STACK *stack, DATA bloco, STACK *array, DATA *vars){
     
 
@@ -146,7 +152,7 @@ void filter(STACK *stack, DATA bloco, STACK *array, DATA *vars){
     }
     push_ARRAY(stack, result);
 }
-
+*/
 /**
  * @brief Função range e filter ","
  *
@@ -360,7 +366,7 @@ void range(STACK *s, DATA *vars){ // SOMAR "+"
                 break;
 
                 case 16 :
-                filter(s, x, y.ARRAY, vars);
+                //filter(s, x, y.ARRAY, vars);
                 break;
 
                 case 32 :
@@ -922,8 +928,7 @@ void map(STACK *stack, DATA bloco, STACK *array, DATA *vars) {
     }
     push_ARRAY(stack, result);
 }
-
-<<<<<<< HEAD
+/*
 void filter(STACK *stack, DATA bloco, DATA *vars){
 
     STACK *result = new_stack();
@@ -941,15 +946,15 @@ void filter(STACK *stack, DATA bloco, DATA *vars){
     }
     push_ARRAY(stack, result);
 }
-
+*/
 void fold(STACK *stack, DATA bloco, STACK *array, DATA *vars){
 
     STACK *result = new_stack();
     char *cpy = strdup(bloco.BLOCO); //cópia do bloco
-    
-    STACK copia = *array;
+    char *transform;
+    long l_transform;
+
     STACK *store = new_stack();
-    inverteArray(&copia, store);
 
     long vezes = array->n_elems;
 
@@ -959,11 +964,14 @@ void fold(STACK *stack, DATA bloco, STACK *array, DATA *vars){
         eval(strcat(DATAtoSTR(elem), strndup(cpy + 1, strlen(cpy) - 1)), result, vars);
         cpy = strdup(bloco.BLOCO);
     }
-    push_LONG(stack, result);
+    push_ARRAY(stack, result);
+    DATA copy = pop(stack);
+    transform = DATAtoSTR(copy);
+    l_transform = stringToLong(transform);
+    push_LONG(stack, l_transform);
+
 }
 
-=======
->>>>>>> ab3c5c5a0ef1b2b3fd7e561d85a3448a14943c44
 STACK *sortArray (STACK *array) {             // organiza um array de forma crescente
 
     STACK *sorted = new_stack();            // onde iremos guardar o array ordenado

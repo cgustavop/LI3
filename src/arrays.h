@@ -27,7 +27,7 @@ char *DATAtoSTR(DATA elem);
 void aplica (STACK *stack, DATA bloco, DATA *vars);
 void map(STACK *stack, DATA bloco, STACK *array, DATA *vars);
 void mapstring(STACK *stack, DATA bloco, char * string, DATA *vars);
-void filter(STACK *stack, DATA bloco, STACK *array, DATA *vars);
+//void filter(STACK *stack, DATA bloco, DATA *vars);
 void fold(STACK *stack, DATA bloco, STACK *array, DATA *vars);
 STACK *sortArray (STACK *array);
 void ordena(STACK *stack, DATA bloco, DATA *vars);
