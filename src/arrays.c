@@ -86,7 +86,7 @@ void concatenar(STACK *pri, STACK *sec){
                 break;
 
                 case 32 :
-                break;
+                    break;
             }
     }
 
@@ -95,14 +95,16 @@ void concatenar(STACK *pri, STACK *sec){
 }
 
 /**
- * @brief Função range ","
+ * @brief Função range e filter ","
  *
  * Caso seja long fará um array com todos os longs entre 0 e x, não inclusivé (range semelhante ao de Python)
  * Caso seja um array devolve o tamanho do array, ou seja, a quantidade de elementos existentes dentro do array
+ * Caso seja bloco vai filtrar as posições em que a condição dos blocos é verdade
  *
 */
-void range(STACK *s){
+void range(STACK *s, DATA *vars){
     DATA x = pop(s);
+    DATA y = pop(s);
     STACK *array = new_stack();
     long i;
 
@@ -130,8 +132,28 @@ void range(STACK *s){
             push_LONG(s, x.ARRAY->n_elems);
             break;
 
+        case 32 :
+            switch(y.type){
+                case 1 :
+                    break;
+
+                case 2 :
+                    break;
+
+                case 4 :
+                    break;
+
+                case 8 :
+                    break;
+
+                case 16 :
+                    filter(s, x, y.ARRAY, vars);
+                    break;
+
                 case 32 :
-                break;
+                    break;
+            }
+            break;
     }
 }
 
@@ -184,8 +206,8 @@ void sspace(STACK *s){
         case 16 :
             break;
 
-                case 32 :
-                break;
+        case 32 :
+            break;
     }
 }
 
@@ -234,8 +256,8 @@ void nspace(STACK *s){
         case 16 :
             break;
 
-                case 32 :
-                break;
+        case 32 :
+            break;
     
     }
 }
@@ -279,8 +301,8 @@ void seek(long n, STACK *array, STACK *stack) {
             push_ARRAY(stack, nelem.ARRAY);
             break;
 
-                case 32 :
-                break;
+        case 32 :
+            break;
     
     }
 }
@@ -351,8 +373,8 @@ STACK *takeXend(long n, STACK *array) { // n >
                 push_ARRAY(aux, z.ARRAY);
                 break;
 
-                case 32 :
-                break;
+            case 32 :
+            break;
         }
     }
 
@@ -681,6 +703,26 @@ void aplica(STACK *stack, DATA bloco, DATA *vars) {
 
 }
 
+void mapstring(STACK *stack, DATA bloco, char * string, DATA *vars) {
+
+    char *cpy = strdup(string); // cópia da string
+    push_STRING(stack, cpy); // colocar a string numa stack
+
+    STACK copia = *stack; // fazer copia da stack com astring
+    STACK *store = new_stack(); // guardar a string na stack
+    inverteArray(&copia, store);
+
+    long vezes = strlen(string);
+
+    for (long i = vezes; i > 0; i--){
+
+        DATA elem = pop(store);
+        eval(strcat(DATAtoSTR(elem), strndup(cpy + 1, strlen(cpy) - 1)), stack, vars);
+        cpy = strdup(bloco.BLOCO);
+    }
+    push_STRING(stack, cpy);
+}
+
 void map(STACK *stack, DATA bloco, STACK *array, DATA *vars) {
 
     STACK *result = new_stack();
@@ -701,9 +743,27 @@ void map(STACK *stack, DATA bloco, STACK *array, DATA *vars) {
     push_ARRAY(stack, result);
 }
 
+void filter(STACK *stack, DATA bloco, DATA *vars){
+    
+    STACK *result = new_stack();
+    char *cpy = strdup(bloco.BLOCO); //cópia do bloco
+
+    long vezes = array->n_elems;
+
+    for (long i = 0;i<vezes;i++){
+
+        DATA elem = pop(array);
+        if (eval(strcat(DATAtoSTR(elem), strndup(cpy + 1, strlen(cpy) - 1)), result, vars))
+            push_LONG(stack, i);
+
+        cpy = strdup(bloco.BLOCO);
+    }
+    push_ARRAY(stack, result);
+}
+
 STACK *sortArray (STACK *array) {             // organiza um array de forma crescente
 
-    STACK *sorted = new_stack();            // onde iremos guardar o array rdenado
+    STACK *sorted = new_stack();            // onde iremos guardar o array ordenado
     STACK cpy = *sorted;                    // cópia do array ordenado para comparar os elementos que lá estão
 
     DATA a = pop(array);    

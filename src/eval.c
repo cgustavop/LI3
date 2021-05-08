@@ -275,7 +275,7 @@ STACK *eval(char *line, STACK *init_stack, DATA *vars){
                     break;
 
                 case ',' :						// função range
-                	range(init_stack);
+                	range(init_stack, vars);
                 	break;
 
                 case '+' :                       // função soma

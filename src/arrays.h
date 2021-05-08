@@ -6,7 +6,7 @@
 
 void inverteArray(STACK *input, STACK *output);
 void concatenar(STACK *pri, STACK *sec);
-void range(STACK *s);
+void range(STACK *s, DATA *vars);
 void sspace(STACK *s);
 void whiteSpaces(STACK *stack, char *string);
 void nspace(STACK *s);
@@ -26,5 +26,7 @@ void subarray (STACK *stack, char *sub, char *string);
 char *DATAtoSTR(DATA elem);
 void aplica (STACK *stack, DATA bloco, DATA *vars);
 void map(STACK *stack, DATA bloco, STACK *array, DATA *vars);
+void mapstring(STACK *stack, DATA bloco, char * string, DATA *vars);
+void filter(STACK *stack, DATA bloco, STACK *array, DATA *vars);
 STACK *sortArray (STACK *array);
 void ordena(STACK *stack, DATA bloco, DATA *vars);

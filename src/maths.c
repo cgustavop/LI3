@@ -776,10 +776,11 @@ void modulo(STACK *s, DATA *vars){ //  MÓDULO "%"
                 break;
 
                 case 8 :                                        // case quando y é string enquanto x é string
+                    mapstring(s, x, y.STRING, vars);
                 break;                                          // fim do switch case para os diferentes tipos de y enquanto x é string
 
                 case 16 :                                    // case de ser 16, de x ser do tipo array
-                map(s, x, y.ARRAY, vars);
+                    map(s, x, y.ARRAY, vars);
                 break;
 
                 case 32 :
