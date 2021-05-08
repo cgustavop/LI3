@@ -45,6 +45,9 @@ void soma(STACK *s){ // SOMAR "+"
                 push_LONG(y.ARRAY, x.LONG);
                 push_ARRAY(s, y.ARRAY);
                 break;
+
+                case 32 :
+                break;
             }                                                   // fim do switch case para os diferentes tipos de y enquanto x é long
             break;                                              // fim do case quando x é long
 
@@ -67,6 +70,9 @@ void soma(STACK *s){ // SOMAR "+"
                 break;
 
                 case 16 :                                    // case de ser 16, de x ser do tipo array
+                break;
+
+                case 32 :
                 break;
             }                                                   // fim do switch case para os diferentes tipos de y enquanto x é double
             break;                                              // fim do case quando x é double
@@ -93,6 +99,9 @@ void soma(STACK *s){ // SOMAR "+"
 
                 case 16 :                                    // case de ser 16, de x ser do tipo array
                 break;
+
+                case 32 :
+                break;
             }                                                   // fim do switch case para os diferentes tipos de y enquanto x é char
             break;                                              // fim do case quando x é char
 
@@ -115,6 +124,9 @@ void soma(STACK *s){ // SOMAR "+"
                 break;
 
                 case 16 :                                    // case de ser 16, de x ser do tipo array
+                break;
+
+                case 32 :
                 break;
             }                                                   // fim do switch case para os diferentes tipos de y enquanto x é string
             break;                                              // fim do case quando x é string
@@ -139,8 +151,14 @@ void soma(STACK *s){ // SOMAR "+"
                 concatenar(y.ARRAY,x.ARRAY);
                 push_ARRAY(s, y.ARRAY);
                 break;
+
+                case 32 :
+                break;
             }
                 break;
+
+        case 32 :
+            break;
 
     }                                                           // fim do switch case para os diferentes tipos de x
 }                                                               // fim da função "+"
@@ -176,6 +194,9 @@ void subtrai(STACK *s){ // SUBTRAIR "-"
 
                 case 16 :                                       // case de ser 16, de x ser do tipo array
                 break;
+
+                case 32 :
+                break;
             }                                                   // fim do switch case para os diferentes tipos de y enquanto x é long
             break;                                              // fim do case quando x é long
 
@@ -198,6 +219,9 @@ void subtrai(STACK *s){ // SUBTRAIR "-"
                 break;
 
                 case 16 :                                       // case de ser 16, de x ser do tipo array
+                break;
+
+                case 32 :
                 break;
             }                                                   // fim do switch case para os diferentes tipos de y enquanto x é double
             break;                                              // fim do case quando x é double
@@ -223,6 +247,9 @@ void subtrai(STACK *s){ // SUBTRAIR "-"
 
                 case 16 :                                       // case de ser 16, de x ser do tipo array
                 break;
+
+                case 32 :
+                break;
             }                                                   // fim do switch case para os diferentes tipos de y enquanto x é char
             break;                                              // fim do case quando x é char
 
@@ -247,10 +274,16 @@ void subtrai(STACK *s){ // SUBTRAIR "-"
 
                 case 16 :                                        // case de ser 16, de x ser do tipo array
                 break;
+
+                case 32 :
+                break;
             }                                                   // fim do switch case para os diferentes tipos de y enquanto x é string
             break;                                              // fim do case quando x é string
 
         case 16 :                                               // case de ser 16, de x ser do tipo array
+                break;
+
+        case 32 :
                 break;
 
     }                                                           // fim do switch case para os diferentes tipos de x
@@ -290,6 +323,9 @@ void multiplica(STACK *s){ // MULTIPLICAR "*"
                 concatvar(y.ARRAY, x.LONG);
                 push_ARRAY(s, y.ARRAY);         
                 break;
+
+                case 32 :
+                break;
             }                                                   // fim do switch case para os diferentes tipos de y enquanto x é long
             break;                                              // fim do case quando x é long
 
@@ -313,6 +349,9 @@ void multiplica(STACK *s){ // MULTIPLICAR "*"
 
                 case 16 :
                 push_DOUBLE(s, x.DOUBLE);                       // case quando y é array enquanto x é double
+                break;
+
+                case 32 :
                 break;
             }                                                   // fim do switch case para os diferentes tipos de y enquanto x é double
             break;                                              // fim do case quando x é double
@@ -339,6 +378,9 @@ void multiplica(STACK *s){ // MULTIPLICAR "*"
                 case 16 :                                       // case quando y é array enquanto x é char
                 push_CHAR(s, x.CHAR);
                 break;
+
+                case 32 :
+                break;
             }                                                   // fim do switch case para os diferentes tipos de y enquanto x é char
             break;                                              // fim do case quando x é char
 
@@ -363,6 +405,9 @@ void multiplica(STACK *s){ // MULTIPLICAR "*"
 
                 case 16 :                                       // case quando y é array enquanto x é string
                 push_STRING(s, x.STRING);
+                break;
+
+                case 32 :
                 break;
             }                                                   // fim do switch case para os diferentes tipos de y enquanto x é string
             break;                                              // fim do case quando x é string
@@ -389,8 +434,14 @@ void multiplica(STACK *s){ // MULTIPLICAR "*"
                 case 16 :
                 push_ARRAY(s, x.ARRAY);                         // case quando y é array enquanto x é array
                 break;
+
+                case 32 :
+                break;
             }
             break;
+
+        case 32 :
+                break;
             
 
     }                                                           // fim do switch case para os diferentes tipos de x
@@ -427,6 +478,9 @@ void divide(STACK *s){ // DIVIDIR "/"
 
                 case 16 :                                    // case de ser 16, de x ser do tipo array
                 break;
+
+                case 32 :
+                break;
             }                                                   // fim do switch case para os diferentes tipos de y enquanto x é long
             break;                                              // fim do case quando x é long
 
@@ -449,6 +503,9 @@ void divide(STACK *s){ // DIVIDIR "/"
                 break;
 
                 case 16 :                                    // case de ser 16, de x ser do tipo array
+                break;
+
+                case 32 :
                 break;
             }                                                   // fim do switch case para os diferentes tipos de y enquanto x é double
             break;                                              // fim do case quando x é double
@@ -475,6 +532,9 @@ void divide(STACK *s){ // DIVIDIR "/"
 
                 case 16 :                                    // case de ser 16, de x ser do tipo array
                 break;
+
+                case 32 :
+                break;
             }                                                   // fim do switch case para os diferentes tipos de y enquanto x é char
             break;                                              // fim do case quando x é char
 
@@ -498,10 +558,16 @@ void divide(STACK *s){ // DIVIDIR "/"
 
                 case 16 :                                    // case de ser 16, de x ser do tipo array
                 break;
+
+                case 32 :
+                break;
             }                                                   // fim do switch case para os diferentes tipos de y enquanto x é string
             break;                                              // fim do case quando x é string
 
         case 16 :                                    // case de ser 16, de x ser do tipo array
+                break;
+
+        case 32 :
                 break;
     }                                                           // fim do switch case para os diferentes tipos de x
 }                                                               // fim da função "/"                                                                                              
@@ -535,6 +601,9 @@ void incrementa(STACK *s){ // INCREMENTAR e remove último de array ou string ")
         case 16 :                                               // case de ser 16, de x ser do tipo array
             removeUltArray(s, x.ARRAY);
             break;
+
+        case 32 :
+            break;
     }                                                           // fim do switch case para os diferentes tipos de x
 }                                                               // fim da função ")"
 
@@ -567,6 +636,9 @@ void decrementa(STACK *s){ // DECREMENTAR e remove primeiro de array ou string "
         case 16 :                                    // case de ser 16, de x ser do tipo array
             removePrimArray(s, x.ARRAY);
             break;
+
+        case 32 :
+            break;
     }                                                           // fim do switch case para os diferentes tipos de x
 }                                                               // fim da função "("
 
@@ -575,7 +647,7 @@ void decrementa(STACK *s){ // DECREMENTAR e remove primeiro de array ou string "
  *
  * Inicializada com o token "%"
  */
-void modulo(STACK *s){ //  MÓDULO "%"
+void modulo(STACK *s, DATA *vars){ //  MÓDULO "%"
       
     DATA x = pop(s);
     DATA y = pop(s);
@@ -601,6 +673,9 @@ void modulo(STACK *s){ //  MÓDULO "%"
 
                 case 16 :                                    // case de ser 16, de x ser do tipo array
                 break;
+
+                case 32 :
+                break;
             }                                                   // fim do switch case para os diferentes tipos de y enquanto x é long
             break;                                              // fim do case quando x é long
 
@@ -623,6 +698,9 @@ void modulo(STACK *s){ //  MÓDULO "%"
                 break;
 
                 case 16 :                                    // case de ser 16, de x ser do tipo array
+                break;
+
+                case 32 :
                 break;
             }                                                   // fim do switch case para os diferentes tipos de y enquanto x é double
             break;                                              // fim do case quando x é double
@@ -648,6 +726,9 @@ void modulo(STACK *s){ //  MÓDULO "%"
 
                 case 16 :                                    // case de ser 16, de x ser do tipo array
                 break;
+
+                case 32 :
+                break;
             }                                                   // fim do switch case para os diferentes tipos de y enquanto x é char
             break;                                              // fim do case quando x é char
 
@@ -672,15 +753,43 @@ void modulo(STACK *s){ //  MÓDULO "%"
 
                 case 16 :                                    // case de ser 16, de x ser do tipo array
                 break;
+
+                case 32 :
+                break;
             }
             break;                                              // fim do case quando x é string 
 
         case 16 :
-            break;                                           
+            break;  
 
-    }                                                           // fim do switch case para os diferentes tipos de x
-}                                                               // fim da função "%"
+        case 32 :
+            switch(y.type) {                                     // switch case para os diferentes tipos de y enquanto x é string
+                case 1 :                                        // case quando y é long enquanto x é string
+                
+                break;
 
+                case 2 :                                        // case quando y é double enquanto x é string
+                
+                break;
+
+                case 4 :                                        // case quando y é char enquanto x é string
+                break;
+
+                case 8 :                                        // case quando y é string enquanto x é string
+                break;                                          // fim do switch case para os diferentes tipos de y enquanto x é string
+
+                case 16 :                                    // case de ser 16, de x ser do tipo array
+                map(s, x, y.ARRAY, vars);
+                break;
+
+                case 32 :
+                break;
+            
+            break;                                         
+
+        }                                                           // fim do switch case para os diferentes tipos de x
+    }                                                               // fim da função "%"
+}
 /**
  * @brief Exponenciação de um elemento segundo outro
  *
@@ -712,6 +821,9 @@ void expoente(STACK *s){ // EXPONENCIAÇÃO "#"
 
                 case 16 :                                    // case de ser 16, de x ser do tipo array
                 break;
+
+                case 32 :
+                break;
             }                                                   // fim do switch case para os diferentes tipos de y enquanto x é long
             break;                                              // fim do case quando x é long
 
@@ -734,6 +846,9 @@ void expoente(STACK *s){ // EXPONENCIAÇÃO "#"
                 break;
 
                 case 16 :                                    // case de ser 16, de x ser do tipo array
+                break;
+
+                case 32 :
                 break;
             }                                                   // fim do switch case para os diferentes tipos de y enquanto x é double
             break;                                              // fim do case quando x é double
@@ -759,6 +874,9 @@ void expoente(STACK *s){ // EXPONENCIAÇÃO "#"
 
                 case 16 :                                    // case de ser 16, de x ser do tipo array
                 break;
+
+                case 32 :
+                break;
             }                                                   // fim do switch case para os diferentes tipos de y enquanto x é char
             break;                                              // fim do case quando x é char
 
@@ -781,12 +899,18 @@ void expoente(STACK *s){ // EXPONENCIAÇÃO "#"
                 break;  
 
                 case 16 :                                    // case de ser 16, de x ser do tipo array
-                break;                                        
+                break; 
+
+                case 32 :
+                break;                                       
             }                                                   // fim do switch case para os diferentes tipos de y enquanto x é string
             break;                                              // fim do case quando x é string
 
         case 16 :                                    // case de ser 16, de x ser do tipo array
                 break;
+
+        case 32 :
+            break;
 
     }                                                           // fim do switch case para os diferentes tipos de x
 }                                                               // fim da função "#"

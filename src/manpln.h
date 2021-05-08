@@ -7,11 +7,11 @@
 void duplica(STACK *s);
 void troca(STACK *s);
 void rodar(STACK *s);
-void copia(STACK *s);
+void copia(STACK *s, DATA *vars);
 void question(STACK *s);
 
-void atributo(STACK *s, char *letra);
-void letra(STACK *s, char letra);
+void atributo(STACK *s, char *letra, DATA *array);
+void letra(STACK *s, char letra, DATA *array);
 
 
 void intz(STACK *s);

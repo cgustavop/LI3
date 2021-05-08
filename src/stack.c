@@ -34,20 +34,6 @@ int has_type(DATA elem, int mask){
 STACK *new_stack(){
 	STACK *s = (STACK *) calloc(1, sizeof(STACK));
 	s->size = 100;
-	s->array[0].LONG = 10; s->array[0].type= 1;
-	s->array[1].LONG = 11; s->array[1].type= 1;
-	s->array[2].LONG = 12; s->array[2].type= 1;
-	s->array[3].LONG = 13; s->array[3].type= 1;
-	s->array[4].LONG = 14; s->array[4].type= 1;
-	s->array[5].LONG = 15; s->array[5].type= 1; 	// definição por omissão A a F
-	s->array[13].CHAR = '\n'; s->array[13].type= 4;	// definição por omissão N (new line)
-	s->array[18].STRING = (char *) malloc(sizeof(char));
-	//memset(s->array[18].STRING, ' ', sizeof(char));
-	s->array[18].STRING = strdup(" ");
-	s->array[18].type= 8;							// definição por omissão S (space em forma de string)
-	s->array[23].LONG = 0; s->array[23].type= 1;
-	s->array[24].LONG = 1; s->array[24].type= 1;
-	s->array[25].LONG = 2; s->array[25].type= 1; // definição por omissão N, S, X, Y, Z
 	s->stack = (DATA *) calloc(s->size, sizeof(DATA));
 	return s;
 }
@@ -137,6 +123,10 @@ void print_stack(STACK *s){
 			case 16 :
 				print_array(elem.ARRAY);
 				break;
+
+            case 32 :
+            	printf("%s", elem.BLOCO);
+                break;
 		}
 	}
 	printf("\n");
@@ -173,6 +163,10 @@ void print_array(STACK *s){
 
 			case 16 :
 				print_array(elem.ARRAY);
+				break;
+
+			case 32 :
+				printf("%s", elem.BLOCO);
 				break;
 		}
 	}
@@ -229,6 +223,16 @@ void push_ARRAY(STACK *s, STACK * val){
 	}
 
 /**
+ * @brief Função push para elementos do tipo bloco
+ */
+void push_BLOCO(STACK *s, char * val){
+		DATA elem;
+		elem.type = BLOCO;
+		elem.BLOCO = val;
+		push(s, elem);
+	}
+
+/**
  * @brief Função pop para elementos do tipo LONG
  */
 long pop_LONG(STACK *s){
@@ -272,3 +276,32 @@ STACK * pop_ARRAY(STACK *s){
 		assert(elem.type == ARRAY);
 		return elem.ARRAY;
 	}
+
+void allocvars(DATA *array) { // regista os valores das variáveis num array multi-tipo
+
+	
+	array[0].LONG = 10; array[0].type= 1;
+	
+	array[1].LONG = 11; array[1].type= 1;
+	
+	array[2].LONG = 12; array[2].type= 1;	
+	
+	array[3].LONG = 13; array[3].type= 1;
+	
+	array[4].LONG = 14; array[4].type= 1;
+	
+	array[5].LONG = 15; array[5].type= 1;
+
+		// definição por omissão A a F
+	array[13].CHAR = '\n'; array[13].type= 4;
+		// definição por omissão N (new line)
+	
+	array[18].STRING = strdup(" "); array[18].type= 8;							// definição por omissão S (space em forma de string)
+	
+	array[23].LONG = 0; array[23].type= 1;
+	
+	array[24].LONG = 1; array[24].type= 1;
+	
+	array[25].LONG = 2; array[25].type= 1; // definição por omissão N, S, X, Y, Z
+
+}

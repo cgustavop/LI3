@@ -114,6 +114,7 @@ char *get_delimited(char *line, char *seps, char **rest) { // devolve a parte da
     return array;
 }
 
+<<<<<<< HEAD
 /**
  * @brief Função que devolve o conteúdo da string
  *
@@ -122,6 +123,40 @@ char *get_delimited(char *line, char *seps, char **rest) { // devolve a parte da
  * @returns Returns do array em strings
 */
 char *get_string(char *line, char **rest) { // devolve a parte da linha que contém o interior da string
+=======
+char *get_bloco(char *line, char *seps, char **rest) { //devolve a parte da linha que contém o interior do array
+
+    char *bloco = malloc(sizeof(char)*strlen(line));
+    memset( bloco, '\0', sizeof(char)*strlen(line));
+    memset( bloco, '{', sizeof(char)); memset( bloco + 1, ' ', sizeof(char));
+    char *token;
+    char *cpy = strdup(line);
+    int aberturas = 1;
+
+    for (token = strtok(cpy, seps); aberturas != 0; token = strtok(NULL, seps)) {
+
+            if (strcmp(token, "{") == 0) {
+              
+                aberturas++;
+                strcat(strcat(bloco, token) , " ");
+                
+            } else if (strcmp(token, "}") == 0) {              
+                
+                aberturas--;
+                if (aberturas == 0) { strcat(bloco, token);
+                } else strcat(strcat(bloco, token) , " ");
+
+            } else strcat(strcat(bloco, token) , " ");
+        
+    }
+
+    *rest = strdup(line + strlen(bloco) );   // devolve o resto da string fora do bloco
+    
+    return bloco;
+}
+
+char *get_string(char *line, char **rest) { //devolve a parte da linha que contém o interior da string
+>>>>>>> 618f59dc37240838aa51246e629db9f242be4390
 
     char *array = malloc(sizeof(char)*strlen(line));
     memset( array, '\0', sizeof(char)*strlen(line));
@@ -154,6 +189,7 @@ char *get_string(char *line, char **rest) { // devolve a parte da linha que cont
     return array;
 }
 
+<<<<<<< HEAD
 /** 
  * @brief Função que copia um array para a stack 
  *
@@ -169,17 +205,28 @@ void arraycopy(STACK *stack, STACK *array) {
 /** Pré definição de uma stack eval para a função "handle_array" */
 STACK *eval(char *line, STACK *init_stack);
 
+=======
+
+
+STACK *eval(char *line, STACK *init_stack, DATA *vars);
+>>>>>>> 618f59dc37240838aa51246e629db9f242be4390
 /**
  * @brief Função que nos devolve o conteúdo do array sem os "[" "]"
  * 
  * Obtendo o conteúdo do array é lhe feito um push como uma stack para dentro da stack principal.
  *
  */
+<<<<<<< HEAD
 void handle_array(char *line, STACK *init_stack) {	// recebe o que está dentro dos parêntesis do array e dá push disso "avaliado" como uma stack
+=======
+void handle_array(char *line, STACK *init_stack, DATA *vars) {	// recebe o que está dentro dos parêntesis do array e dá push disso "avaliado" como uma stack
+
+	
+>>>>>>> 618f59dc37240838aa51246e629db9f242be4390
 	
 	STACK *array = new_stack();						// eval da line com stack null = stack
-	push_ARRAY( init_stack, eval(line, array));		// push do array na nossa stack na forma de stack
-    arraycopy(init_stack, array);
+	push_ARRAY( init_stack, eval(line, array, vars));		// push do array na nossa stack na forma de stack
+
 }
 
 /**
@@ -200,7 +247,7 @@ void handle_array(char *line, STACK *init_stack) {	// recebe o que está dentro 
  *
  * @returns Faz return da stack após a realização das funções definidas para os operandos dados como input
  */
-STACK *eval(char *line, STACK *init_stack){
+STACK *eval(char *line, STACK *init_stack, DATA *vars){
 
     char *seps = " \t\n";
 
@@ -229,11 +276,11 @@ STACK *eval(char *line, STACK *init_stack){
         }
         
         else if((isupper(token[0])) != 0)        // se for uma letra maiúscula coloca o seu valor na stack
-            letra(init_stack, token[0]);
+            letra(init_stack, token[0], vars);
 
         else if(strchr(token, ':') != NULL)  {   // se forem detetados ":" pega na letra que está à frente dos pontos
             char *letra = strchr(token, ':');
-            atributo(init_stack, &letra[1]);              // a letra é inserida como parametro para a função atributo
+            atributo(init_stack, &letra[1], vars);              // a letra é inserida como parametro para a função atributo
         } 
 
         else if(strchr(token, '\"') != NULL)  {   // se forem detetadas aspas com uma letra
@@ -248,7 +295,11 @@ STACK *eval(char *line, STACK *init_stack){
 
                 case '[' :
         	        	// retira conteúdo do array para uma line
-        	        handle_array( get_delimited(line + strlen(token), seps, rest) , init_stack);		// trata do conteúdo no interior do array e guarda-o na nossa stack
+        	        handle_array( get_delimited(line + strlen(token), seps, rest) , init_stack, vars);		// trata do conteúdo no interior do array e guarda-o na nossa stack
+                    break;
+
+                case '{' :                      // função range
+                    push_BLOCO(init_stack, get_bloco(line + strlen(token), seps, rest));
                     break;
 
                 case ',' :						// função range
@@ -280,7 +331,7 @@ STACK *eval(char *line, STACK *init_stack){
                     break;
 
                 case '%' :                       // função módulo
-                    modulo(init_stack);
+                    modulo(init_stack, vars);
                     break;
 
                 case '#' :                       // função exponencialização
@@ -300,7 +351,7 @@ STACK *eval(char *line, STACK *init_stack){
                     break;
 
                 case '~' :                       // função negação lógica e despejo de arrays na stack
-                    not(init_stack);
+                    not(init_stack, vars);
                     break;
 
                 case '=' :                       // função igualdade
@@ -365,7 +416,7 @@ STACK *eval(char *line, STACK *init_stack){
                     break;
 
                 case '$' :                       // troca o elemento no topo da stack pelo n-ésimo elemento da mesma
-                    copia(init_stack);
+                    copia(init_stack, vars);
                     break;
 
                 case '?' :                       // if then else com os 3 elementos no topo da stack
