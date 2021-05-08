@@ -607,3 +607,51 @@ void map(STACK *stack, DATA bloco, STACK *array, DATA *vars) {
     }
 
 }
+
+STACK *sortArray (STACK *array) {             // organiza um array de forma crescente
+
+    STACK *sorted = new_stack();            // onde iremos guardar o array rdenado
+    STACK cpy = *sorted;                    // cópia do array ordenado para comparar os elementos que lá estão
+
+    DATA a = pop(array);    
+    push_LONG(sorted, a.LONG);
+
+    long nelems = array->n_elems;
+    
+    for (long i = nelems; i > 0; i--) {
+        
+        cpy = *sorted;
+        DATA x = pop(array);
+        DATA y = pop(&cpy);
+
+        if (x.LONG < y.LONG) {              // se o que está no array ordenado é maior do que o novo elemento
+
+            y = pop(sorted);                //dá o pop "real" do elemento maior
+            push_LONG(sorted, x.LONG);      //insere o novo elemento menor
+            push_LONG(sorted, y.LONG);      //coloca o maior de volta ao topo
+
+        } else push_LONG(sorted, x.LONG);    //se o que está no array já é menor do que o que queremos inserir então só insere
+
+    }
+
+    return sorted;
+
+}
+
+void ordena(STACK *stack, DATA bloco, DATA *vars) {
+
+    DATA elem = pop(stack);
+    STACK *mapped = new_stack();    // array resultante do map do bloco com o array
+
+
+    switch (elem.type) {
+
+            case 16:
+                map(mapped, bloco, elem.ARRAY, vars);
+                push_ARRAY(stack, sortArray(mapped));
+                break;
+
+            default:
+            break;
+        }
+}

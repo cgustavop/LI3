@@ -368,7 +368,7 @@ STACK *eval(char *line, STACK *init_stack, DATA *vars){
                     break;
 
                 case '$' :                       // troca o elemento no topo da stack pelo n-ésimo elemento da mesma
-                    copia(init_stack);
+                    copia(init_stack, vars);
                     break;
 
                 case '?' :                       // if then else com os 3 elementos no topo da stack

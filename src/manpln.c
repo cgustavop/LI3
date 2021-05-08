@@ -206,34 +206,63 @@ void rodar(STACK *s){ // RODAR OS 3 ELEMENTOS NO TOPO DA STACK "@"
  *
  * Inicializada com os tokens "n $"
  */
-void copia(STACK *s){ // COPIA N-ÉSIMO ELEMENTO PARA O TOPO DA STACK "n $"
+void copia(STACK *s, DATA *vars){ // COPIA N-ÉSIMO ELEMENTO PARA O TOPO DA STACK "n $"
     DATA n = pop(s);
-    DATA x = s->stack[(s->n_elems) - n.LONG - 1];
 
-    
-    switch(x.type){
-        case 1 :
-            push_LONG(s, x.LONG);
-            break;
+    if (has_type(n,32) == 0){
+        DATA x = s->stack[(s->n_elems) - n.LONG - 1];
 
-        case 2 :
-            push_DOUBLE(s, x.DOUBLE);
-            break;
+        switch(x.type){
+            case 1 :
+                push_LONG(s, x.LONG);
+                break;
 
-        case 4 :
-            push_CHAR(s, x.CHAR);
-            break;
+            case 2 :
+                push_DOUBLE(s, x.DOUBLE);
+                break;
 
-        case 8 :
-            push_STRING(s, x.STRING);
-            break;
+            case 4 :
+                push_CHAR(s, x.CHAR);
+                break;
 
-        case 16 :                                    // case de ser 16, de x ser do tipo array
-            break;
+            case 8 :
+                push_STRING(s, x.STRING);
+                break;
 
-        case 32 :
-            break;
+            case 16 :                                    // case de ser 16, de x ser do tipo array
+                break;
+
+            case 32 :
+                break;
+        }
     }
+    else {
+
+        switch(n.type){
+            case 1 :
+                break;
+
+            case 2 :
+                break;
+
+            case 4 :
+                break;
+
+            case 8 :
+                break;
+
+            case 16 :                                    // case de ser 16, de x ser do tipo array
+                break;
+
+            case 32 :
+            ordena(s, n, vars);
+                break;
+
+    }
+
+}
+
+
     
 }
 
