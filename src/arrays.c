@@ -95,6 +95,12 @@ void concatenar(STACK *pri, STACK *sec){
     free(aux);     
 }
 
+/**
+ * @brief Função que converte qualquer tipo de dados para string
+ *
+ * Seja qual for o tipo do elemento introduzido converte para a sua representação em string
+ *
+*/
 char *DATAtoSTR(DATA elem) {
     STACK *store = new_stack();
     char *string = malloc(sizeof(char)*10240);
@@ -184,7 +190,7 @@ void filter(STACK *stack, DATA bloco, DATA *vars){
  * Caso seja long fará um array com todos os longs entre 0 e x, não inclusivé (range semelhante ao de Python)
  * Caso seja um array devolve o tamanho do array, ou seja, a quantidade de elementos existentes dentro do array
  * Caso seja bloco vai filtrar as posições em que a condição dos blocos é verdade
- *
+ * 
 */
 void range(STACK *s){ // DATA *vars (não esquecer de meter quando a função filter estiver feita)
     DATA x = pop(s);

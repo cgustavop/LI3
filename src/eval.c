@@ -114,6 +114,13 @@ char *get_delimited(char *line, char *seps, char **rest) { // devolve a parte da
     return array;
 }
 
+/**
+ * @brief Função que devolve o conteúdo de um bloco
+ *
+ * Devolve em forma de string o que se encontra entre a ocorrência de chavetas que chamam a função
+ *
+ * @returns Returns do array em strings
+*/
 char *get_bloco(char *line, char *seps, char **rest) { //devolve a parte da linha que contém o interior do array
 
     char *bloco = malloc(sizeof(char)*strlen(line));
@@ -148,7 +155,7 @@ char *get_bloco(char *line, char *seps, char **rest) { //devolve a parte da linh
 /**
  * @brief Função que devolve o conteúdo da string
  *
- * Se dentro do array existir strings identificadas, trata de separar as strings dadas como input e o resto do array como outra string
+ * Devolve em forma de string o que se encontra entre a ocorrência de aspas que chamam a função
  *
  * @returns Returns do array em strings
 */
@@ -192,7 +199,7 @@ STACK *eval(char *line, STACK *init_stack, DATA *vars);
  * @brief Função que nos devolve o conteúdo do array sem os "[" "]"
  * 
  * Obtendo o conteúdo do array é lhe feito um push como uma stack para dentro da stack principal.
- *
+ * @returns Esta função não retorna valores
  */
 void handle_array(char *line, STACK *init_stack, DATA *vars) {	// recebe o que está dentro dos parêntesis do array e dá push disso "avaliado" como uma stack
 	

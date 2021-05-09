@@ -12,7 +12,7 @@
 /** Atribuição de constantes aos tipos (masks) */
 typedef enum {LONG = 1, DOUBLE = 2, CHAR = 4, STRING = 8, ARRAY = 16, BLOCO = 32} TYPE;
 
-/* pré definição da stack */
+/** pré definição da stack */
 struct stack;
 
 /** pré definição dos tipos stack */
@@ -36,6 +36,7 @@ typedef struct data {
 	char *BLOCO;
 } DATA;
 
+/** definição da struct e do tipo stack */
 typedef struct stack{
 	/** array com todos os possíveis chars para atributos (abcedário) */
 	DATA *stack;
@@ -45,7 +46,6 @@ typedef struct stack{
 	int n_elems;
 } STACK;
 
-void parse(char *line);
 int has_type(DATA elem, int mask);
 STACK *new_stack();
 void push(STACK *s, DATA elem);

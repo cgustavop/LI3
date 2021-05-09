@@ -277,6 +277,9 @@ STACK * pop_ARRAY(STACK *s){
 		return elem.ARRAY;
 	}
 
+/**
+ * @brief Define os valores por omissão das variáveis da stack
+ */
 void allocvars(DATA *array) { // regista os valores das variáveis num array multi-tipo
 
 	
