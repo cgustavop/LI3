@@ -31,3 +31,4 @@ void filter(STACK *stack, DATA bloco, DATA *vars);
 void fold(STACK *stack, DATA bloco, STACK *array, DATA *vars);
 STACK *sortArray (STACK *array);
 void ordena(STACK *stack, DATA bloco, DATA *vars);
+void trufy(STACK *stack, DATA bloco, DATA *vars);
