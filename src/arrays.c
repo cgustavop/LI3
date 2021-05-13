@@ -47,6 +47,7 @@ void inverteArray(STACK *input, STACK *output) { // função auxiliar para inver
                 break;
 
                 case 32 :
+                push_BLOCO(output, x.BLOCO);
                 break;
             }
     }
@@ -844,26 +845,34 @@ void map(STACK *stack, DATA bloco, STACK *array, DATA *vars) {
 void fold(STACK *stack, DATA bloco, STACK *array, DATA *vars){
 
     //objetivo principal: fazer o eval de todos os elementos da stack mais o que está dentro do bloco long nelems = array->n_elems; (-1?) vezes
+    
+    //criar aux
     //inverter o array
-    long nelems = array->n_elems;
-    STACK copia = *array;
+    //while
+    //pop 2 elems
+    //passar dois elementos a string
+    //tirar chavetas do bloco
+    //concatenar a string com o bloco
+    //eval do resultado para a aux
+    //fim do while
+    //push do aux para a stack
+
+    long nelems = array->n_elems - 1;
+
     STACK *store = new_stack();
-    inverteArray(&copia, store);
-    char *aux = strdup(bloco.BLOCO);
-    char *snd = strndup(aux + 1, strlen(aux) - 1);
-    char *fst;
+    inverteArray(array, store);
 
-    for (long i = nelems; i > 1; i--){                  // dá o que está dentro do bloco, nelems vezes (-1?), numa string
-        snd = strcat(snd,strndup(aux + 1, strlen(aux) - 1));
+    char *operator = strndup((bloco.BLOCO + 2), strlen(bloco.BLOCO) - 2); // tira as chavetas do bloco
+
+    for(long i = 0; i < nelems; i++) {
+
+        DATA a = pop(store);
+        DATA b = pop(store);
+
+       eval(strcat(strcat(strcat(strcat(DATAtoSTR(a), " "), DATAtoSTR(b)), " "), operator), store, vars); // transforma a e b em string e junta com o bloco na forma de string
     }
 
-    for (long i = nelems; i > 0; i--){                  // dá o que está dentro do array numa string            
-        DATA elem = pop(store);
-        fst = strcat(fst,DATAtoSTR(elem));
-    }
-
-    eval(strcat(fst, snd), stack, vars);                // junta as duas strings para dar o resultado no eval
-
+    push_ARRAY(stack, store);
 }
 
 
