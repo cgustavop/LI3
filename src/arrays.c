@@ -197,8 +197,7 @@ void range(STACK *s){ // DATA *vars (não esquecer de meter quando a função fi
     STACK *array = new_stack();
     long i;
 
-
-    switch(x.type){
+    switch(x.type){                             // switch case para os diferentes tipos de x
         case 1 :
             for (i = 0;i<x.LONG;i++) {
                 push_LONG(array, i);

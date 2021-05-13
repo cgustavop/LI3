@@ -157,6 +157,11 @@ char *get_bloco(char *line, char *seps, char **rest) { //devolve a parte da linh
  *
  * Devolve em forma de string o que se encontra entre a ocorrência de aspas que chamam a função
  *
+ * @param rest Memória respetiva ao resto da stack 
+ * @param line String que irá ser retirada do input
+ * @param array Array que irá conter a cópia das strings a ser retirada
+ * @param letra Guarda o interior das strings
+ *
  * @returns Returns do array em strings
 */
 char *get_string(char *line, char **rest) { // devolve a parte da linha que contém o interior da string
@@ -178,7 +183,7 @@ char *get_string(char *line, char **rest) { // devolve a parte da linha que cont
             } else if (strcmp(letra, "\"") == 0) {
               aberturas--;
 
-            } else if(strchr(letra, '\"') != NULL)  {   // se forem detetados "" coladas a letras pega nas letras que estão antes
+            } else if(strchr(letra, '\"') != NULL)  {   // se forem detetados aspas coladas a letras pega nas letras que estão antes
                 letra[strlen(letra)-1] = '\0';
                 strcat(array, letra);
                 aberturas--;
@@ -199,6 +204,7 @@ STACK *eval(char *line, STACK *init_stack, DATA *vars);
  * @brief Função que nos devolve o conteúdo do array sem os "[" "]"
  * 
  * Obtendo o conteúdo do array é lhe feito um push como uma stack para dentro da stack principal.
+ * 
  * @returns Esta função não retorna valores
  */
 void handle_array(char *line, STACK *init_stack, DATA *vars) {	// recebe o que está dentro dos parêntesis do array e dá push disso "avaliado" como uma stack
