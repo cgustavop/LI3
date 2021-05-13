@@ -732,7 +732,7 @@ void subarray(STACK *stack, char *sub, char *string) {
     push_ARRAY(stack, array);
 }
 
-// FUNÇÕES LIGADAS A BLOCOS
+/* FUNÇÕES LIGADAS A BLOCOS */
 
 /**
  * @brief Função "~"
