@@ -157,10 +157,11 @@ char *get_bloco(char *line, char *seps, char **rest) { //devolve a parte da linh
  *
  * Devolve em forma de string o que se encontra entre a ocorrência de aspas que chamam a função
  *
- * @param rest Memória respetiva ao resto da stack 
  * @param line String que irá ser retirada do input
+ * @param rest Memória respetiva ao resto da stack 
  * @param array Array que irá conter a cópia das strings a ser retirada
  * @param letra Guarda o interior das strings
+ * @param aberturas Retirar o espaço dos parenteses mais o espaço dos blocos
  *
  * @returns Returns do array em strings
 */

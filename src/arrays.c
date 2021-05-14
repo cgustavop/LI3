@@ -974,16 +974,39 @@ void trufy(STACK *stack, DATA bloco, DATA *vars){
     STACK *result = new_stack();
     char *cpy = strdup(bloco.BLOCO); // cópia do bloco
     
-    STACK copia = *array;
+    DATA array = pop(stack);
     STACK *store = new_stack();
-    inverteArray(&copia, store);
 
-    while (store) {
-        DATA elem = pop(store);
-        while (eval(strcat(DATAtoSTR(elem), strndup(cpy + 1, strlen(cpy) - 1)), result, vars))
+    switch(array.type){
+        case 1 :
+            break;
 
-        cpy = strdup(bloco.BLOCO);
+        case 2 :
+            break;
+
+        case 4 :
+            break;
+
+        case 8 :
+            break;
+
+        case 16 :
+            STACK copia = array.ARRAY;
+            inverteArray(&copia, store);
+
+            while (store->stack[store->n_elems] != 0) {
+                DATA elem = pop(store);
+                eval(strcat(DATAtoSTR(elem), strndup(cpy + 1, strlen(cpy) - 1)), result, vars);
+                pop(result);
+                cpy = strdup(bloco.BLOCO);
+            }
+
+            result = store;
+            push_ARRAY(stack, result);
+            break;
+
+        case 32 :               // não há operações entre blocos
+            break;
     }
-    result = store;
-    push_ARRAY(stack, result);
+    
 }
