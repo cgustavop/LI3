@@ -141,49 +141,88 @@ char *DATAtoSTR(DATA elem) {
     return string;
 }
 
-
 /*
-void filter(STACK *stack, DATA bloco, DATA *vars){
+    
+    Vou meter aqui o que pensei em fazer para a filter:
+    -faz-se a função map com o bloco dado (se calhar é melhor ser uma cópia do bloco), 
+    o array dado (mais uma vez melhor ser copia) e com um array vazio;
 
+    -esse map vai nos dar um array chamado result com o bloco calculado para cada elemento;
 
-    DATA array = pop(stack);
+    -com esse tal result podemos verificar que resultados do map dariam 0 ou 
+    diferente para cada elemento do array dado e assim retira-se os elementos do array original
+    que com bloco deram 0;
 
-    switch(array.type){
-        case 1 :
-            break;
+    -para isso vai-se dando pop ao resultado e ao array (ao mesmo tempo) e 
+    se o pop do resultado der 0 n se volta a dar push ao elemento do array (é melhor dar push para outra
+    stack vazia)
 
-        case 2 :
-            break;
-
-        case 4 :
-            break;
-
-        case 8 :
-            break;
-
-        case 16 :              
-            STACK *result = new_stack();
-            char *cpy = strdup(bloco.BLOCO); //cópia do bloco
-
-            long vezes = array->n_elems;
-
-            for (long i = 0;i<vezes;i++){
-
-                DATA elem = pop(array);
-                if (eval(strcat(DATAtoSTR(elem), strndup(cpy + 1, strlen(cpy) - 1)), result, vars))
-                    push_LONG(stack, i);
-
-                cpy = strdup(bloco.BLOCO);
-                }
-                push_ARRAY(stack, result);
-                break;
-
-        case 32 :
-            //filter(s, x, y.ARRAY, vars);
-            break;
-    } 
+    -no fim inverte-se o array e damos push desse array para a stack;
 }
 */
+/**
+ * @brief "Função "," para arrays com ou sem utilizar blocos
+ *
+ * Função que filtra a posição do input no input caso seja diferente de 0
+ *
+*/
+void filter(STACK *stack, DATA bloco, DATA *vars){
+
+    DATA array = pop(stack);
+    STACK *auxmap = new_stack();     // array que irá conter resultado pôs map
+    char *cpy = strdup(bloco.BLOCO); // cópia do bloco
+    STACK *copia = array.ARRAY;       // cópia do array
+    STACK copia2 = *copia;
+    STACK *store = new_stack();      // array pre invertido
+    inverteArray(&copia2, store);     // array invertido
+    STACK *result = new_stack();     // array final
+
+    long vezes = (array.ARRAY)->n_elems;
+
+    for (long i = vezes; i > 0; i--){
+        DATA elem = pop(store);
+        eval(strcat(DATAtoSTR(elem), strndup(cpy + 1, strlen(cpy) - 1)), auxmap, vars);
+        cpy = strdup(bloco.BLOCO);
+    }
+
+    for (long j = vezes; j > 0; j--) {
+        DATA elem2 = pop(auxmap);
+        DATA elemresult = pop(array.ARRAY);
+        switch(elem2.type){
+            case 1 :
+                if (elem2.LONG != 0)
+                    push_LONG(result, elemresult.LONG);
+                break;
+
+            case 2 :
+                if (elem2.DOUBLE != 0)
+                    push_DOUBLE(result, elemresult.DOUBLE);
+                break;
+
+            case 4 :
+                if (elem2.CHAR != '0')
+                    push_CHAR(result, elemresult.CHAR);
+                break;
+
+            case 8 :
+                if (strcmp(elem2.STRING, "0") != 0)
+                    push_STRING(result, elemresult.STRING);
+                break;
+
+            case 16 :
+                break;
+
+            case 32 :               // dentro de arrays não há blocos
+                break;   
+        }
+    }
+
+    STACK copiainvertida = *result;
+    STACK *resulta = new_stack();               // array pre invertido
+    inverteArray(&copiainvertida, resulta);     // array invertido
+    push_ARRAY(stack, resulta);
+
+}
 
 /**
  * @brief Função range e filter ","
@@ -193,13 +232,12 @@ void filter(STACK *stack, DATA bloco, DATA *vars){
  * Caso seja bloco vai filtrar as posições em que a condição dos blocos é verdade
  * 
 */
-void range(STACK *s){ // DATA *vars (não esquecer de meter quando a função filter estiver feita)
+void range(STACK *s, DATA *vars){
     DATA x = pop(s);
     STACK *array = new_stack();
     long i;
 
-
-    switch(x.type){
+    switch(x.type){                             // switch case para os diferentes tipos de x
         case 1 :
             for (i = 0;i<x.LONG;i++) {
                 push_LONG(array, i);
@@ -223,10 +261,7 @@ void range(STACK *s){ // DATA *vars (não esquecer de meter quando a função fi
             break;
 
         case 32 :
-
-            //filter(s, x, y.ARRAY, vars);
-            //filter(s, x, vars);
-
+            filter(s, x, vars);
             break;
     }
 }
@@ -733,7 +768,7 @@ void subarray(STACK *stack, char *sub, char *string) {
     push_ARRAY(stack, array);
 }
 
-// FUNÇÕES LIGADAS A BLOCOS
+/* FUNÇÕES LIGADAS A BLOCOS */
 
 /**
  * @brief Função "~"
@@ -801,71 +836,11 @@ void map(STACK *stack, DATA bloco, STACK *array, DATA *vars) {
     push_ARRAY(stack, result);
 }
 
-/*
-void filter(STACK *stack, DATA bloco, DATA *vars){
-
-    STACK *result = new_stack();
-    char *cpy = strdup(bloco.BLOCO); //cópia do bloco
-
-    long vezes = array->n_elems;
-
-    for (long i = 0;i<vezes;i++){
-
-        DATA elem = pop(array);
-        if (eval(strcat(DATAtoSTR(elem), strndup(cpy + 1, strlen(cpy) - 1)), result, vars))
-            push_LONG(stack, i);
-
-        cpy = strdup(bloco.BLOCO);
-    }
-    push_ARRAY(stack, result);
-}
-*/
-
-/*
-void filter(STACK *stack, DATA bloco, STACK *array, DATA *vars){
-    
-    Vou meter aqui o que pensei em fazer para a filter:
-    -faz-se a função map com o bloco dado (se calhar é melhor ser uma cópia do bloco), o array dado (mais uma vez melhor ser copia) e com um array vazio;
-    -esse map vai nos dar um array chamado result com o bloco calculado para cada elemento;
-    -com esse tal result podemos verificar que resultados do map dariam 0 ou diferente para cada elemento do array dado e assim retira-se os elementos do array original
-    que com bloco deram 0;
-    -para isso vai-se dando pop ao resultado e ao array (ao mesmo tempo) e se o pop do resultado der 0 n se volta a dar push ao elemento do array (é melhor dar push para outra
-    stack vazia)
-    -no fim inverte-se o array e damos push desse array para a stack;
-}
-*/
-
 /**
  * @brief Função final da "*" para blocos aplicado a arrays
  *
  * Função que faz umas espécie de fold para arrays
  *
-*/
-/*
-void fold(STACK *stack, DATA bloco, STACK *array, DATA *vars){
-
-    STACK *result = new_stack();
-    char *cpy = strdup(bloco.BLOCO); //cópia do bloco
-    char *transform;
-    long l_transform;
-
-    STACK *store = new_stack();
-
-    long vezes = array->n_elems;
-
-    for (long i = vezes; i > 0; i--){
-
-        DATA elem = pop(store);
-        eval(strcat(DATAtoSTR(elem), strndup(cpy + 1, strlen(cpy) - 1)), result, vars);
-        cpy = strdup(bloco.BLOCO);
-    }
-    push_ARRAY(stack, result);
-    DATA copy = pop(stack);
-    transform = DATAtoSTR(copy);
-    l_transform = stringToLong(transform);
-    push_LONG(stack, l_transform);
-
-}
 */
 void fold(STACK *stack, DATA bloco, STACK *array, DATA *vars){
 

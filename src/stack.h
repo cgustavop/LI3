@@ -10,7 +10,20 @@
 
 
 /** Atribuição de constantes aos tipos (masks) */
-typedef enum {LONG = 1, DOUBLE = 2, CHAR = 4, STRING = 8, ARRAY = 16, BLOCO = 32} TYPE;
+typedef enum {
+	/** long é enumerado como tipo 1 */
+	LONG = 1,
+	/** long é enumerado como tipo 2 */
+	DOUBLE = 2,
+	/** long é enumerado como tipo 4 */
+	CHAR = 4, 
+	/** long é enumerado como tipo 8 */
+	STRING = 8,
+	/** long é enumerado como tipo 16 */
+	ARRAY = 16,
+	/** long é enumerado como tipo 32 */
+	BLOCO = 32
+} TYPE;
 
 /** pré definição da stack */
 struct stack;
