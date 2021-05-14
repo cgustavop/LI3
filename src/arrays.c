@@ -844,19 +844,6 @@ void map(STACK *stack, DATA bloco, STACK *array, DATA *vars) {
 */
 void fold(STACK *stack, DATA bloco, STACK *array, DATA *vars){
 
-    //objetivo principal: fazer o eval de todos os elementos da stack mais o que está dentro do bloco long nelems = array->n_elems; (-1?) vezes
-    
-    //criar aux
-    //inverter o array
-    //while
-    //pop 2 elems
-    //passar dois elementos a string
-    //tirar chavetas do bloco
-    //concatenar a string com o bloco
-    //eval do resultado para a aux
-    //fim do while
-    //push do aux para a stack
-
     long nelems = array->n_elems - 1;
 
     STACK *store = new_stack();
@@ -877,12 +864,34 @@ void fold(STACK *stack, DATA bloco, STACK *array, DATA *vars){
 
 
 /**
- * @brief Função auxiliar da "$" que ordena o arrayu
+ * @brief Função que verifica se um array está ordenado por ordem crescente
+ *
+ * @returns um bool que indica se está ou não organizado
+*/
+long isSorted (STACK *array) {
+
+    //STACK cpy = *array;
+    long n_elems = array->n_elems;
+    long result = 0;
+
+    for(long i = 0; i < n_elems; i++) {
+
+        DATA a = pop(array);
+        DATA b = pop(array);
+
+        if(a.LONG < b.LONG) result++;
+
+        push_LONG(array, b.LONG);
+    }
+    return result;
+}
+/**
+ * @brief Função auxiliar da "$" que ordena o array
  *
  * Função que ordena de forma crescente os elementos do array
  *
  * @returns retorna o array ordenado
-*/
+*/ /*
 STACK *sortArray (STACK *array) {             // organiza um array de forma crescente
 
     STACK *sorted = new_stack();            // onde iremos guardar o array ordenado
@@ -893,22 +902,50 @@ STACK *sortArray (STACK *array) {             // organiza um array de forma cres
 
     long nelems = array->n_elems;
     
+
     for (long i = nelems; i > 0; i--) {
         
-        cpy = *sorted;
-        DATA x = pop(array);
-        DATA y = pop(&cpy);
+            cpy = *sorted;
+            DATA x = pop(array);
+            DATA y = pop(&cpy);
 
-        if (x.LONG < y.LONG) {              // se o que está no array ordenado é maior do que o novo elemento
+            if (x.LONG < y.LONG) {              // se o que está no array ordenado é maior do que o novo elemento
 
-            y = pop(sorted);                //dá o pop "real" do elemento maior
-            push_LONG(sorted, x.LONG);      //insere o novo elemento menor
-            push_LONG(sorted, y.LONG);      //coloca o maior de volta ao topo
+                y = pop(sorted);                //dá o pop "real" do elemento maior
+                push_LONG(sorted, x.LONG);      //insere o novo elemento menor
+                push_LONG(sorted, y.LONG);      //coloca o maior de volta ao topo
 
-        } else push_LONG(sorted, x.LONG);    //se o que está no array já é menor do que o que queremos inserir então só insere
+            } else push_LONG(sorted, x.LONG);    //se o que está no array já é menor do que o que queremos inserir então só insere
 
     }
+    
+    //while (isSorted(sorted) != 0) sorted = sortArray(sorted);
 
+    return sorted;
+
+} */
+
+STACK *sortArray (STACK *array) {             // organiza um array de forma crescente
+
+    STACK *sorted = new_stack();
+    long nelems = array->n_elems;    
+    
+    for (long k = 1; k < nelems - 1; k++) {
+        
+        for (long i = 0; i < nelems - 1; i++) {
+
+            if (array->stack[i].LONG < array->stack[i + 1].LONG) {              // se o que está no array ordenado é maior do que o novo elemento
+
+                DATA temp = array->stack[i];
+                array->stack[i] = array->stack[i + 1];
+                array->stack[i + 1] = temp;
+
+            } 
+
+        }
+    }
+
+    inverteArray(array, sorted);
     return sorted;
 
 }
@@ -949,7 +986,6 @@ void ordena(STACK *stack, DATA bloco, DATA *vars) {
 
     DATA elem = pop(stack);
     STACK *mapped = new_stack();    // array resultante do map do bloco com o array
-
 
     switch (elem.type) {
 
