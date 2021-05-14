@@ -19,6 +19,8 @@
  * 
  * Recebe a line e dessa line vai buscar o seu resto, ou seja diferente do operandos e operadores no topo da stack
  * 
+ * @param Recebe o resto do input
+ *
  * @returns Faz return ao maior resto do rest
  */
 char *restante (char *line){    // devolve o maior dos restos
@@ -55,6 +57,10 @@ char *restante (char *line){    // devolve o maior dos restos
  * 
  * Esta função tem como objetivo substituir o uso da função anteriormente utilizada "strtok" para obter tokens, de modo a conseguir trabalhar com arrays
  *
+ * @param line String que irá ser retirada do input
+ * @param rest Memória respetiva ao resto da stack 
+ *
+ * @returns return Devolve o token e coloca em rest o resto da string
  */
 char *get_token(char *line, char **rest) {  // devolve o token e coloca em "rest" o que resta da string
 
@@ -81,6 +87,12 @@ char *get_token(char *line, char **rest) {  // devolve o token e coloca em "rest
  * @brief Função que devolve o conteúdo do array
  * 
  * Verifica onde acaba o array delimitando o seu conteúdo e conseguindo assim, passar a trabalhar apenas com o seu interior
+ *
+ *
+ * @param line String que irá ser retirada do input
+ * @param seps Separadores de arrays
+ * @param rest Memória respetiva ao resto da stack
+ * @param array Array que irá conter a cópia das strings a ser retirada 
  *
  * @returns Faz return do array agora string, string essa que é só a parte que não está no rest
  */
@@ -119,6 +131,10 @@ char *get_delimited(char *line, char *seps, char **rest) { // devolve a parte da
  *
  * Devolve em forma de string o que se encontra entre a ocorrência de chavetas que chamam a função
  *
+ * @param line String que irá ser retirada do input
+ * @param seps Separadores de arrays
+ * @param rest Memória respetiva ao resto da stack
+ * 
  * @returns Returns do array em strings
 */
 char *get_bloco(char *line, char *seps, char **rest) { //devolve a parte da linha que contém o interior do array
@@ -281,13 +297,17 @@ STACK *eval(char *line, STACK *init_stack, DATA *vars){
 
                 case '[' :
         	        	// retira conteúdo do array para uma line
-        	        handle_array( get_delimited(line + strlen(token), seps, rest) , init_stack, vars);		// trata do conteúdo no interior do array e guarda-o na nossa stack
+        	        handle_array(get_delimited(line + strlen(token), seps, rest) , init_stack, vars);		// trata do conteúdo no interior do array e guarda-o na nossa stack
                     break;
 
                 case '{' :                      // função range
                     push_BLOCO(init_stack, get_bloco(line + strlen(token), seps, rest));
                     break;
 
+                case 'w' :                      // vai largando o topo da stack enquanto for diferente de 0
+                    trufy(init_stack, get_bloco(line + strlen(token), seps, rest), vars);
+                    break;
+ 
                 case ',' :						// função range
                 	range(init_stack, vars);
                 	break;
@@ -434,4 +454,3 @@ STACK *eval(char *line, STACK *init_stack, DATA *vars){
  	}
 	return init_stack;			// return the stack evaluated
 }                               // end of eval function
-

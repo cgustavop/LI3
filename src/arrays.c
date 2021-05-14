@@ -891,40 +891,7 @@ long isSorted (STACK *array) {
  * Função que ordena de forma crescente os elementos do array
  *
  * @returns retorna o array ordenado
-*/ /*
-STACK *sortArray (STACK *array) {             // organiza um array de forma crescente
-
-    STACK *sorted = new_stack();            // onde iremos guardar o array ordenado
-    STACK cpy = *sorted;                    // cópia do array ordenado para comparar os elementos que lá estão
-
-    DATA a = pop(array);    
-    push_LONG(sorted, a.LONG);
-
-    long nelems = array->n_elems;
-    
-
-    for (long i = nelems; i > 0; i--) {
-        
-            cpy = *sorted;
-            DATA x = pop(array);
-            DATA y = pop(&cpy);
-
-            if (x.LONG < y.LONG) {              // se o que está no array ordenado é maior do que o novo elemento
-
-                y = pop(sorted);                //dá o pop "real" do elemento maior
-                push_LONG(sorted, x.LONG);      //insere o novo elemento menor
-                push_LONG(sorted, y.LONG);      //coloca o maior de volta ao topo
-
-            } else push_LONG(sorted, x.LONG);    //se o que está no array já é menor do que o que queremos inserir então só insere
-
-    }
-    
-    //while (isSorted(sorted) != 0) sorted = sortArray(sorted);
-
-    return sorted;
-
-} */
-
+*/ 
 STACK *sortArray (STACK *array) {             // organiza um array de forma crescente
 
     STACK *sorted = new_stack();
@@ -1004,14 +971,19 @@ void ordena(STACK *stack, DATA bloco, DATA *vars) {
  *
  * Função que vai dando pop dos elementos da stack enquanto o topo for diferente de 0
  *
+ *
 */
-void trufy(STACK *stack, DATA bloco, DATA *vars){
+void trufy(STACK *stack, char *bloco, DATA *vars){
 
     STACK *result = new_stack();
-    char *cpy = strdup(bloco.BLOCO); // cópia do bloco
+    char *cpy = strdup(bloco); // cópia do bloco
     
     DATA array = pop(stack);
-    STACK *store = new_stack();
+    STACK *copia = array.ARRAY;       // cópia do array
+    STACK copia2 = *copia;
+    STACK *store = new_stack();      // array pre invertido
+    inverteArray(&copia2, store);     // array invertido
+    long truthy = 1;                   // tester
 
     switch(array.type){
         case 1 :
@@ -1027,22 +999,46 @@ void trufy(STACK *stack, DATA bloco, DATA *vars){
             break;
 
         case 16 :
-            STACK copia = array.ARRAY;
-            inverteArray(&copia, store);
-
-            while (store->stack[store->n_elems] != 0) {
+            while (store != NULL && truthy != 0) {
                 DATA elem = pop(store);
                 eval(strcat(DATAtoSTR(elem), strndup(cpy + 1, strlen(cpy) - 1)), result, vars);
-                pop(result);
-                cpy = strdup(bloco.BLOCO);
+                DATA operation = pop(result);
+                switch(operation.type){
+                    case 1 :
+                        if (operation.LONG == 0)
+                            truthy = 0; 
+                        break;
+
+                    case 2 :
+                        if (operation.DOUBLE == 0)
+                            truthy = 0;
+                        break;
+
+                    case 4 :
+                        if (operation.CHAR == '0')
+                            truthy = 0;
+                        break;
+
+                    case 8 :
+                        if (strcmp(operation.STRING, "0") == 0)
+                            truthy = 0;
+                        break;
+
+                    case 16 :
+                        break;
+
+                    case 32 :
+                        break;
+                }
+                cpy = strdup(bloco);
             }
 
-            result = store;
+            copia2 = *store;
+            inverteArray(&copia2,result);
             push_ARRAY(stack, result);
             break;
 
         case 32 :               // não há operações entre blocos
             break;
     }
-    
 }
