@@ -998,3 +998,28 @@ void ordena(STACK *stack, DATA bloco, DATA *vars) {
             break;
         }
 }
+
+/**
+ * @brief Função "w"
+ *
+ * Função que vai dando pop dos elementos da stack enquanto o topo for diferente de 0
+ *
+*/
+void trufy(STACK *stack, DATA bloco, DATA *vars){
+
+    STACK *result = new_stack();
+    char *cpy = strdup(bloco.BLOCO); // cópia do bloco
+    
+    STACK copia = *array;
+    STACK *store = new_stack();
+    inverteArray(&copia, store);
+
+    while (store) {
+        DATA elem = pop(store);
+        while (eval(strcat(DATAtoSTR(elem), strndup(cpy + 1, strlen(cpy) - 1)), result, vars))
+
+        cpy = strdup(bloco.BLOCO);
+    }
+    result = store;
+    push_ARRAY(stack, result);
+}
