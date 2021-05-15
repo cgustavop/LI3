@@ -104,7 +104,7 @@ void concatenar(STACK *pri, STACK *sec){
 */
 char *DATAtoSTR(DATA elem) {
 
-    char *string = malloc(sizeof(char)*10240);
+    char *string = malloc(sizeof(char)*500);
     memset(string, '\0', strlen(string));   
 
     switch (elem.type) {
