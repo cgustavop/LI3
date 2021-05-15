@@ -880,6 +880,7 @@ void fold(STACK *stack, DATA bloco, STACK *array, DATA *vars){
  * Função que ordena de forma crescente os elementos do array
  *
  * @returns retorna o array ordenado
+<<<<<<< HEAD
 */
 STACK *sortArray (STACK *array) {             // organiza um array de forma crescente
 
@@ -961,21 +962,84 @@ void ordena(STACK *stack, DATA bloco, DATA *vars) {
  * Função que vai dando pop dos elementos da stack enquanto o topo for diferente de 0
  *
 */ /*
-void trufy(STACK *stack, DATA bloco, DATA *vars){
+void trufy(STACK *stack, char *bloco, DATA *vars); {
 
     STACK *result = new_stack();
-    char *cpy = strdup(bloco.BLOCO); // cópia do bloco
+    char *cpy = strdup(bloco); // cópia do bloco
     
+
     //STACK copia = *array;
     STACK *store = new_stack();
     inverteArray(&copia, store);
 
-    while (store) {
-        DATA elem = pop(store);
-        while (eval(strcat(DATAtoSTR(elem), strndup(cpy + 1, strlen(cpy) - 1)), result, vars))
+    DATA array = pop(stack);
 
-        cpy = strdup(bloco.BLOCO);
+    STACK *copia = array.ARRAY;       // cópia do array
+    STACK copia2 = *copia;
+    STACK *store = new_stack();      // array pre invertido
+    inverteArray(&copia2, store);     // array invertido
+    long truthy = 1;                   // tester
+
+
+    switch(array.type){
+        case 1 :
+            break;
+
+        case 2 :
+            break;
+
+        case 4 :
+            break;
+
+        case 8 :
+            break;
+
+        case 16 :
+            while (store != NULL && truthy != 0) {
+                DATA elem = pop(store);
+                eval(strcat(DATAtoSTR(elem), strndup(cpy + 1, strlen(cpy) - 1)), result, vars);
+                DATA operation = pop(result);
+                switch(operation.type){
+                    case 1 :
+                        if (operation.LONG == 0)
+                            truthy = 0; 
+                        break;
+
+                    case 2 :
+                        if (operation.DOUBLE == 0)
+                            truthy = 0;
+                        break;
+
+                    case 4 :
+                        if (operation.CHAR == '0')
+                            truthy = 0;
+                        break;
+
+                    case 8 :
+                        if (strcmp(operation.STRING, "0") == 0)
+                            truthy = 0;
+                        break;
+
+                    case 16 :
+                        break;
+
+                    case 32 :
+                        break;
+                }
+                cpy = strdup(bloco);
+            }
+
+            copia2 = *store;
+            inverteArray(&copia2,result);
+            push_ARRAY(stack, result);
+            break;
+
+        case 32 :               // não há operações entre blocos
+            break;
     }
+
     result = store;
     push_ARRAY(stack, result);
-} */
+} 
+
+*/

@@ -18,6 +18,7 @@
  * 
  * @param elem Elemento que queremos avaliar
  * @param mask Máscara que representa um tipo de dados
+ *
  * @returns 0 se o elemento for do tipo da máscara e diferente de 0 caso contrário.
  */
 int has_type(DATA elem, int mask){
