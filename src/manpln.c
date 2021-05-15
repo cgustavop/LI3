@@ -762,9 +762,11 @@ long stringToLong(char *string) {
 
     long result;
 
-    if (strlen(string) <= 1)
-        result = (int)string[0];
-    else result = atol(string);
+    if (strlen(string) <= 1) {
+        char caratere = string[0];
+        result = caratere;
+
+    } else result = atol(string);
     
     return result;
 }
@@ -874,28 +876,6 @@ void charz(STACK *s){ //   CONVERTE O ELEMENTO NO TOPO DA STACK NUM CARATERE "c"
  */
 void stringz(STACK *s){ // CONVERTE O ELEMENTO NO TOPO DA STACK NUMA STRING "s"
     DATA x = pop(s);
-
-    switch(x.type){
-        case 1 :
-            push_LONG(s, x.LONG);
-            break;
-
-        case 2 :
-            push_DOUBLE(s, x.DOUBLE);
-            break;
-
-        case 4 :
-            push_STRING(s, x.STRING);
-            break;
-
-        case 8 :
-            push_STRING(s, x.STRING);
-            break;
-
-        case 16 :                                    // case de ser 16, de x ser do tipo array
-            break;
-
-        case 32 :
-            break;
-    }
+    push_STRING(s, DATAtoSTR(x));
+    
 }

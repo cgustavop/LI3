@@ -615,9 +615,13 @@ void incrementa(STACK *s){ // INCREMENTAR e remove último de array ou string ")
             break;                                              // fim do case quando x é char
 
         case 8 :                                                // case quando x é string
-            push_STRING(s, strndup(x.STRING, strlen(x.STRING) - 1));
-            push_STRING(s, strndup(x.STRING + strlen(x.STRING) -1, sizeof(char)));
-            break;                                              // fim do case quando x é string
+            
+            if (strlen(x.STRING) <= 1) {
+                push_LONG(s, atol(x.STRING) + 1);
+            } else {
+                push_STRING(s, strndup(x.STRING, strlen(x.STRING) - 1));
+                push_STRING(s, strndup(x.STRING + strlen(x.STRING) -1, sizeof(char)));
+            } break;                                              // fim do case quando x é string
 
         case 16 :                                               // case de ser 16, de x ser do tipo array
             removeUltArray(s, x.ARRAY);
@@ -650,8 +654,12 @@ void decrementa(STACK *s){ // DECREMENTAR e remove primeiro de array ou string "
             break;                                              // fim do case quando x é char
 
         case 8 :                                                // case quando x é string
+            if (strlen(x.STRING) <= 1) {
+                push_LONG(s, atol(x.STRING) - 1);
+            } else {
             push_STRING(s, x.STRING + 1);
             push_STRING(s, strndup(x.STRING, sizeof(char)));
+            }
             break;                                              // fim do case quando x é string
 
         case 16 :                                    // case de ser 16, de x ser do tipo array

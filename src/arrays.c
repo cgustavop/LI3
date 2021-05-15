@@ -103,7 +103,7 @@ void concatenar(STACK *pri, STACK *sec){
  *
 */
 char *DATAtoSTR(DATA elem) {
-    STACK *store = new_stack();
+
     char *string = malloc(sizeof(char)*10240);
     memset(string, '\0', strlen(string));   
 
@@ -126,10 +126,11 @@ char *DATAtoSTR(DATA elem) {
                 break;
 
             case 16 :
-                inverteArray(elem.ARRAY, store);
-                for (long i = 0;i<elem.ARRAY->n_elems;i++){
-                    DATA x = pop(store);
-                    DATAtoSTR(x);
+                for (long i = 0; i<elem.ARRAY->n_elems; i++){
+                    
+                    DATA x = elem.ARRAY->stack[i];
+                    string = strcat(string, DATAtoSTR(x));
+
                 }
                 break;
 
@@ -792,22 +793,33 @@ void aplica(STACK *stack, DATA bloco, DATA *vars) {
 */
 void mapstring(STACK *stack, DATA bloco, char * string, DATA *vars) {
 
-    char *cpy = strdup(string); // cópia da string
-    push_STRING(stack, cpy); // colocar a string numa stack
-
-    STACK copia = *stack; // fazer copia da stack com astring
-    STACK *store = new_stack(); // guardar a string na stack
-    inverteArray(&copia, store);
-
+    char *blocostr = strndup(bloco.BLOCO + 2, strlen(bloco.BLOCO) - 4);
     long vezes = strlen(string);
+    STACK *store = new_stack();
+    
 
-    for (long i = vezes; i > 0; i--){
+    for (long i = 0; i < vezes; i++){
+        
+        char *aspeado = malloc(sizeof(char) * strlen(string));
+        memset(aspeado, '\"', 1);
+        char *caratere = strcat( aspeado, strcat(strndup(string + i, sizeof(char)), "\""));
+        char *line = strcat(strcat(strcat(caratere, " "), blocostr), " ");
 
-        DATA elem = pop(store);
-        eval(strcat(DATAtoSTR(elem), strndup(cpy + 1, strlen(cpy) - 1)), stack, vars);
-        cpy = strdup(bloco.BLOCO);
+        eval(line, store, vars);    //eval do caratere com o bloco para a stack
+        
     }
-    push_STRING(stack, cpy);
+
+        long nelems = store->n_elems;
+        char *result = malloc(sizeof(char) * nelems + 1); //aloca espaço para tantos carateres quanto existem no resultado +1 de fim de string
+        memset(result, '\0', strlen(result));
+
+        for(long j = 0; j < nelems; j++) {
+
+            DATA elem = store->stack[j];
+            strcat(result, DATAtoSTR(elem));
+        }
+
+        push_STRING(stack, result);
 }
 
 /**
@@ -862,69 +874,13 @@ void fold(STACK *stack, DATA bloco, STACK *array, DATA *vars){
     push_ARRAY(stack, store);
 }
 
-
-/**
- * @brief Função que verifica se um array está ordenado por ordem crescente
- *
- * @returns um bool que indica se está ou não organizado
-*/
-long isSorted (STACK *array) {
-
-    //STACK cpy = *array;
-    long n_elems = array->n_elems;
-    long result = 0;
-
-    for(long i = 0; i < n_elems; i++) {
-
-        DATA a = pop(array);
-        DATA b = pop(array);
-
-        if(a.LONG < b.LONG) result++;
-
-        push_LONG(array, b.LONG);
-    }
-    return result;
-}
 /**
  * @brief Função auxiliar da "$" que ordena o array
  *
  * Função que ordena de forma crescente os elementos do array
  *
  * @returns retorna o array ordenado
-*/ /*
-STACK *sortArray (STACK *array) {             // organiza um array de forma crescente
-
-    STACK *sorted = new_stack();            // onde iremos guardar o array ordenado
-    STACK cpy = *sorted;                    // cópia do array ordenado para comparar os elementos que lá estão
-
-    DATA a = pop(array);    
-    push_LONG(sorted, a.LONG);
-
-    long nelems = array->n_elems;
-    
-
-    for (long i = nelems; i > 0; i--) {
-        
-            cpy = *sorted;
-            DATA x = pop(array);
-            DATA y = pop(&cpy);
-
-            if (x.LONG < y.LONG) {              // se o que está no array ordenado é maior do que o novo elemento
-
-                y = pop(sorted);                //dá o pop "real" do elemento maior
-                push_LONG(sorted, x.LONG);      //insere o novo elemento menor
-                push_LONG(sorted, y.LONG);      //coloca o maior de volta ao topo
-
-            } else push_LONG(sorted, x.LONG);    //se o que está no array já é menor do que o que queremos inserir então só insere
-
-    }
-    
-    //while (isSorted(sorted) != 0) sorted = sortArray(sorted);
-
-    return sorted;
-
-} */
-
+*/
 STACK *sortArray (STACK *array) {             // organiza um array de forma crescente
 
     STACK *sorted = new_stack();
@@ -1004,13 +960,13 @@ void ordena(STACK *stack, DATA bloco, DATA *vars) {
  *
  * Função que vai dando pop dos elementos da stack enquanto o topo for diferente de 0
  *
-*/
+*/ /*
 void trufy(STACK *stack, DATA bloco, DATA *vars){
 
     STACK *result = new_stack();
     char *cpy = strdup(bloco.BLOCO); // cópia do bloco
     
-    STACK copia = *array;
+    //STACK copia = *array;
     STACK *store = new_stack();
     inverteArray(&copia, store);
 
@@ -1022,4 +978,4 @@ void trufy(STACK *stack, DATA bloco, DATA *vars){
     }
     result = store;
     push_ARRAY(stack, result);
-}
+} */
