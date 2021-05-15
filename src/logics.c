@@ -293,8 +293,8 @@ void menor(STACK *s){ // <
                     break;
 
                 case 16 :                                    // case de ser 16, de x ser do tipo array
-                    takeXstart(x.LONG, y.ARRAY);
-                    push_ARRAY(s, y.ARRAY);
+                    
+                    push_ARRAY(s, takeXstart(x.LONG, y.ARRAY));
                     break;
 
                 case 32 :

@@ -26,12 +26,12 @@
 int main(void){
 
 	STACK *s = new_stack();
-    char line[500];
+    char line[10124];
     DATA *vars[26];
     for(int i = 0; i < 26; i++) vars[i] = (DATA *)malloc(sizeof(DATA));
     allocvars(*vars);//DATA array[26];
 
-    assert(fgets(line, 500, stdin) != NULL);
+    assert(fgets(line, 10124, stdin) != NULL);
     assert(line[strlen(line) - 1] == '\n');
     
     s = eval(line, s, *vars);

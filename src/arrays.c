@@ -62,9 +62,11 @@ void inverteArray(STACK *input, STACK *output) { // função auxiliar para inver
 void concatenar(STACK *pri, STACK *sec){
 
 	STACK *aux = new_stack();
-
-	while(sec->n_elems > 0){
-	DATA x = pop(sec);
+    STACK cpy = *sec;
+    long nelems = sec->n_elems;
+    
+    for(long i = 0; i < nelems; i++){
+	DATA x = pop(&cpy);
                             
             switch(x.type){                                     
                 case 1 :                       // case quando x é long                                   
@@ -95,7 +97,6 @@ void concatenar(STACK *pri, STACK *sec){
     inverteArray(aux, pri);
     free(aux);     
 }
-
 /**
  * @brief Função que converte qualquer tipo de dados para string
  *
@@ -105,7 +106,7 @@ void concatenar(STACK *pri, STACK *sec){
 char *DATAtoSTR(DATA elem) {
 
     char *string = malloc(sizeof(char)*500);
-    memset(string, '\0', strlen(string));   
+    memset(string, '\0', strlen(string));  
 
     switch (elem.type) {
 
@@ -436,13 +437,18 @@ void seeknstring(long n, char *string, STACK *stack) {
  * Retira do array os elementos menores do que n valor dado ao longo que percorre o array
  *
 */
-void takeXstart(long n, STACK *array) { // n <
+STACK *takeXstart(long n, STACK *array) { // n <
 
+    STACK *cpy = new_stack();
+    cpy = array;
     long vezes = (array->n_elems) - n;
 
     for(long i = 0; i < vezes; i++) {
-        pop(array);
+
+        pop(cpy);
     }
+
+    return cpy;
 }
 
 /**
@@ -452,14 +458,31 @@ void takeXstart(long n, STACK *array) { // n <
  * 
  * @returns Faz return da stack
 */
-STACK *takeXend(long n, STACK *array) { // n >
+STACK *takeXend(long n, STACK *array) {
 
+    STACK *cpy = new_stack();
+    cpy = array;
+    STACK *store = new_stack();
+
+    inverteArray(cpy, store);
+
+    takeXstart(n, store);
+
+    inverteArray(store, cpy);
+
+    return cpy;
+
+}
+/* STACK *takeXend(long n, STACK *array) { // n >
+
+    STACK *cpy = new_stack();
+    cpy = array;
     STACK *store = new_stack();
     STACK *aux = new_stack();
 
     for(long i = 0; i < n; i++) {
         
-        DATA z = pop(array);
+        DATA z = pop(cpy);
 
         switch (z.type) {
 
@@ -492,7 +515,7 @@ STACK *takeXend(long n, STACK *array) { // n >
     free(aux); 
     return store;
 }
-
+*/
 /**
  * @brief Função "*" para arrays 
  *
@@ -882,27 +905,31 @@ void fold(STACK *stack, DATA bloco, STACK *array, DATA *vars){
  * @returns retorna o array ordenado
 <<<<<<< HEAD
 */
-STACK *sortArray (STACK *array) {             // organiza um array de forma crescente
+STACK *sortArray (STACK *mapped, STACK *original) {             // organiza um array de forma crescente
 
     STACK *sorted = new_stack();
-    long nelems = array->n_elems;    
+    long nelems = mapped->n_elems;    
     
     for (long k = 1; k < nelems - 1; k++) {
         
         for (long i = 0; i < nelems - 1; i++) {
 
-            if (array->stack[i].LONG < array->stack[i + 1].LONG) {              // se o que está no array ordenado é maior do que o novo elemento
+            if (mapped->stack[i].LONG < mapped->stack[i + 1].LONG) {              // se o que está no array ordenado é maior do que o novo elemento
 
-                DATA temp = array->stack[i];
-                array->stack[i] = array->stack[i + 1];
-                array->stack[i + 1] = temp;
+                DATA temp1 = mapped->stack[i];
+                mapped->stack[i] = mapped->stack[i + 1];
+                mapped->stack[i + 1] = temp1;
+
+                DATA temp2 = original->stack[i];
+                original->stack[i] = original->stack[i + 1];
+                original->stack[i + 1] = temp2;
 
             } 
 
         }
     }
 
-    inverteArray(array, sorted);
+    inverteArray(original, sorted);
     return sorted;
 
 }
@@ -910,7 +937,7 @@ STACK *sortArray (STACK *array) {             // organiza um array de forma cres
 /**
  * @brief Função auxiliar da "$"
  *
- * Função que ordena os elementos em conjunto com o bloco percorrendo a lista e comparando sempre com o maior elemento
+ * Adaptação da função map para usar na função ordena
  *
 */
 void auxOrdena(STACK *stack, DATA bloco, STACK *array, DATA *vars) {
@@ -948,7 +975,7 @@ void ordena(STACK *stack, DATA bloco, DATA *vars) {
 
             case 16:
                 auxOrdena(mapped, bloco, elem.ARRAY, vars);
-                push_ARRAY(stack, sortArray(mapped));
+                push_ARRAY(stack, sortArray(mapped, elem.ARRAY));
                 break;
 
             default:
