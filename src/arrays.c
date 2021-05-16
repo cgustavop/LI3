@@ -106,7 +106,9 @@ void concatenar(STACK *pri, STACK *sec){
 char *DATAtoSTR(DATA elem) {
 
     char *string = malloc(sizeof(char)*500);
-    memset(string, '\0', strlen(string));  
+    memset(string, '\0', strlen(string));
+
+    if(has_type(elem, ARRAY)) memset(string, '[', sizeof(char));
 
     switch (elem.type) {
 
@@ -127,12 +129,21 @@ char *DATAtoSTR(DATA elem) {
                 break;
 
             case 16 :
+                
+                string = strcat(string, " ");
+
                 for (long i = 0; i<elem.ARRAY->n_elems; i++){
                     
                     DATA x = elem.ARRAY->stack[i];
-                    string = strcat(string, DATAtoSTR(x));
 
+                    if (strcmp(DATAtoSTR(x), " ") == 0) string = strcat(string, "S");
+                    else string = strcat(string, DATAtoSTR(x));
+
+                    string = strcat(string, " ");
                 }
+                
+                string = strcat(string, "]");
+
                 break;
 
             case 32 :
@@ -439,16 +450,37 @@ void seeknstring(long n, char *string, STACK *stack) {
 */
 STACK *takeXstart(long n, STACK *array) { // n <
 
-    STACK *cpy = new_stack();
-    cpy = array;
-    long vezes = (array->n_elems) - n;
+    STACK *result = new_stack();
 
-    for(long i = 0; i < vezes; i++) {
+    for(long i = 0; i < n; i++) {
 
-        pop(cpy);
+        switch(array->stack[i].type){
+        case 1 :
+            push_LONG(result, array->stack[i].LONG);
+            break;
+
+        case 2 :
+            push_DOUBLE(result, array->stack[i].DOUBLE);
+            break;
+
+        case 4 :
+            push_CHAR(result, array->stack[i].CHAR);
+            break;
+
+        case 8 :
+            push_STRING(result, array->stack[i].STRING);
+            break;
+
+        case 16 :
+            push_ARRAY(result, array->stack[i].ARRAY);
+            break;
+
+        case 32 :
+            push_BLOCO(result, array->stack[i].BLOCO);
+            break;
+        }
     }
-
-    return cpy;
+    return result;
 }
 
 /**
@@ -460,17 +492,38 @@ STACK *takeXstart(long n, STACK *array) { // n <
 */
 STACK *takeXend(long n, STACK *array) {
 
-    STACK *cpy = new_stack();
-    cpy = array;
-    STACK *store = new_stack();
+    STACK *result = new_stack();
+    long nelems = array->n_elems;
 
-    inverteArray(cpy, store);
+    for(long i = nelems - n; i < nelems; i++) {
 
-    takeXstart(n, store);
+        switch(array->stack[i].type){
+        case 1 :
+            push_LONG(result, array->stack[i].LONG);
+            break;
 
-    inverteArray(store, cpy);
+        case 2 :
+            push_DOUBLE(result, array->stack[i].DOUBLE);
+            break;
 
-    return cpy;
+        case 4 :
+            push_CHAR(result, array->stack[i].CHAR);
+            break;
+
+        case 8 :
+            push_STRING(result, array->stack[i].STRING);
+            break;
+
+        case 16 :
+            push_ARRAY(result, array->stack[i].ARRAY);
+            break;
+
+        case 32 :
+            push_BLOCO(result, array->stack[i].BLOCO);
+            break;
+        }
+    }
+    return result;
 
 }
 /* STACK *takeXend(long n, STACK *array) { // n >
@@ -803,8 +856,9 @@ void subarray(STACK *stack, char *sub, char *string) {
 void aplica(STACK *stack, DATA bloco, DATA *vars) {
 
     DATA elem = pop(stack);
- 
-    eval(strcat(DATAtoSTR(elem), strndup(bloco.BLOCO + 1, strlen(bloco.BLOCO) - 1)), stack, vars);
+    char *array = strdup(DATAtoSTR(elem));
+    
+    eval(strcat(strndup(array, strlen(array)), strndup(bloco.BLOCO + 1, strlen(bloco.BLOCO) - 2)), stack, vars);
 
 }
 
@@ -891,7 +945,7 @@ void fold(STACK *stack, DATA bloco, STACK *array, DATA *vars){
         DATA a = pop(store);
         DATA b = pop(store);
 
-       eval(strcat(strcat(strcat(strcat(DATAtoSTR(a), " "), DATAtoSTR(b)), " "), operator), store, vars); // transforma a e b em string e junta com o bloco na forma de string
+        eval(strcat(strcat(strcat(strcat(DATAtoSTR(a), " "), DATAtoSTR(b)), " "), operator), store, vars); // transforma a e b em string e junta com o bloco na forma de string
     }
 
     push_ARRAY(stack, store);
