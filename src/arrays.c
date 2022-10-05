@@ -957,7 +957,6 @@ void fold(STACK *stack, DATA bloco, STACK *array, DATA *vars){
  * Função que ordena de forma crescente os elementos do array
  *
  * @returns retorna o array ordenado
-<<<<<<< HEAD
 */
 STACK *sortArray (STACK *mapped, STACK *original) {             // organiza um array de forma crescente
 
